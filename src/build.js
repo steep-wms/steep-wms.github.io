@@ -1,6 +1,7 @@
 const Metalsmith  = require("metalsmith");
 const argv = require("yargs").argv;
 
+const htmlMinifier = require("metalsmith-html-minifier");
 const layouts = require("metalsmith-layouts");
 const markdown = require("metalsmith-markdown");
 const permalinks = require("metalsmith-permalinks");
@@ -15,7 +16,8 @@ let build = Metalsmith(__dirname)
   .use(permalinks({
     relative: false
   }))
-  .use(layouts());
+  .use(layouts())
+  .use(htmlMinifier());
 
 if (argv.watch) {
   build = build.use(
