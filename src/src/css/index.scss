@@ -1,3 +1,23 @@
+$blue: #1D71B8;
+$font-family-sans-serif: "Nunito", sans-serif;
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
 #welcome {
-  background: #f9f9f9;
+  background: #e9edf2;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    max-width: 95%;
+    width: 600px;
+  }
+
+  button {
+    margin-top: 3em;
+  }
 }

@@ -19,6 +19,7 @@
   },
   "homepage": "https://steep-wms.github.io/",
   "dependencies": {
+    "bootstrap": "^4.4.1",
     "jstransformer-nunjucks": "^1.0.0",
     "metalsmith": "^2.3.0",
     "metalsmith-html-minifier": "^4.0.1",
