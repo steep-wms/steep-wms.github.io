@@ -5,8 +5,8 @@
   "private": true,
   "main": "build.js",
   "scripts": {
-    "start": "node build.js",
-    "watch": "node build.js --watch"
+    "start": "node src/build.js",
+    "watch": "node src/build.js --watch"
   },
   "repository": {
     "type": "git",

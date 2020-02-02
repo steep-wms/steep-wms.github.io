@@ -9,8 +9,8 @@ const watch = require("metalsmith-watch");
 
 let build = Metalsmith(__dirname)
   .source("src")
-  .destination("docs")
-  .clean(true)
+  .destination("..")
+  .clean(false)
   .use(markdown())
   .use(permalinks({
     relative: false
