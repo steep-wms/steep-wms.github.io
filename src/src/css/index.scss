@@ -1,23 +1,122 @@
-$blue: #1D71B8;
-$font-family-sans-serif: "Nunito", sans-serif;
+$gray-700: #495057;
+$gray-800: #3c3c3b;
+
+$blue: #1d71b8;
+
+$font-family-sans-serif: "Roboto", sans-serif;
+$font-size-base: 1.4rem;
+$font-weight-base: 300;
+$line-height-base: 1.7;
+
+$border-radius-lg: 1rem;
+
+$body-color: $gray-700;
+
+$spacer: 1rem;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 952px,
+  xl: 1160px
+) !default;
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 920px,
+  xl: 1100px
+);
+
+$navbar-nav-link-padding-x: $spacer;
+$navbar-light-color: $gray-800;
+$navbar-light-hover-color: lighten($navbar-light-color, 25%);
+
+$btn-padding-y-lg: 0.8rem;
+$btn-padding-x-lg: 1.9rem;
 
 @import "node_modules/bootstrap/scss/bootstrap";
 
 #welcome {
-  background: #e9edf2;
+  background: #f5f8ff;
   height: 100vh;
+  background-image: url("/images/welcome-background.svg");
+  background-size: cover;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 
-  img {
-    max-width: 95%;
-    width: 600px;
+  .welcome-row {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1em;
   }
 
-  button {
-    margin-top: 3em;
+  .welcome-left {
+    max-width: 580px;
+    display: flex;
+    flex-direction: column;
+
+    .slogan {
+      font-size: $font-size-base * 2.2;
+      font-family: "Roboto Condensed", sans-serif;
+      font-weight: 400;
+      color: $gray-800;
+      line-height: 1.5em;
+      flex: 1;
+    }
+
+    .buttons {
+      .btn {
+        font-size: $font-size-base;
+        font-family: "Roboto Condensed", sans-serif;
+        font-weight: 300;
+      }
+    }
   }
+
+  .welcome-right {
+    flex: 1;
+    text-align: right;
+
+    img {
+      max-width: 90%;
+    }
+  }
+}
+
+.navbar-light {
+  padding-top: 1.5em;
+
+  .navbar-nav .nav-link {
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 400;
+  }
+}
+
+.navbar-collapse.show, .navbar-collapse.collapsing {
+  background-color: #fff;
+  padding: 1em;
+  border-radius: .25rem;
+}
+
+.navbar.headroom {
+  will-change: transform, background-color;
+  transition: transform 200ms linear,background-color 200ms linear 200ms,padding-top 100ms;
+}
+.navbar.headroom--top.not-collapse {
+  transition: transform 200ms linear,background-color 200ms linear 0ms;
+  background-color: $light !important;
+}
+.navbar.headroom--not-top, {
+  background-color: $light !important;
+  padding-top: .5em;
+}
+.headroom--pinned {
+  transform: translateY(0%);
+}
+.headroom--unpinned {
+  transform: translateY(-100%);
 }
