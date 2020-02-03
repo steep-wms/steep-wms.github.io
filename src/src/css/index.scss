@@ -129,9 +129,18 @@ h1, h2, h3, h4, h5 {
 #features {
   margin-top: 4em;
 
-  .col-sm {
+  .col-md {
     font-size: $font-size-sm;
     text-align: justify;
     hyphens: auto;
+  }
+
+  h6 {
+    text-align: left;
+  }
+
+  .feather {
+    margin: 0 .5rem 3px 0;
+    stroke: $primary;
   }
 }
