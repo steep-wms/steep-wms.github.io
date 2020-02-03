@@ -38,6 +38,11 @@ $btn-padding-x-lg: 1.9rem;
 
 @import "node_modules/bootstrap/scss/bootstrap";
 
+h1, h2, h3, h4, h5 {
+  text-align: center;
+  margin: 2rem 0 3rem 0;
+}
+
 #welcome {
   background: #f5f8ff;
   height: 100vh;
@@ -119,4 +124,14 @@ $btn-padding-x-lg: 1.9rem;
 }
 .headroom--unpinned {
   transform: translateY(-100%);
+}
+
+#features {
+  margin-top: 4em;
+
+  .col-sm {
+    font-size: $font-size-sm;
+    text-align: justify;
+    hyphens: auto;
+  }
 }
