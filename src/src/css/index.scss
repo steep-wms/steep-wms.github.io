@@ -248,7 +248,11 @@ pre {
 }
 
 #features {
-  margin-top: 4em;
+  padding-top: 4rem;
+
+  h2 {
+    margin-top: 3rem;
+  }
 
   .col-md {
     font-size: $font-size-sm;
@@ -276,6 +280,11 @@ pre {
   @include media-breakpoint-down(md) {
     text-align: center;
   }
+}
+
+#download-and-get-started {
+  position: relative;
+  top: -7rem;
 }
 
 .research {
