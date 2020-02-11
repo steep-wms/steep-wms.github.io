@@ -3,6 +3,7 @@ const argv = require("yargs").argv;
 const fs = require("fs");
 const highlightJs = require("highlight.js");
 const hyphenopoly = require("hyphenopoly");
+const marked = require("marked");
 const nunjucks = require("nunjucks");
 const nunjucksDate = require("nunjucks-date");
 const simpleIcons = require("simple-icons");
@@ -47,6 +48,16 @@ function SimpleIconsExtension() {
 fs.mkdirSync("js", { recursive: true });
 fs.copyFileSync("node_modules/headroom.js/dist/headroom.min.js", "js/headroom.min.js");
 
+const markdownRenderer = new marked.Renderer();
+markdownRenderer.oldHeadingRenderer = markdownRenderer.heading;
+markdownRenderer.oldTextRenderer = markdownRenderer.text;
+markdownRenderer.text = function(text) {
+    return this.oldTextRenderer(hyphenateText(text));
+};
+markdownRenderer.heading = function(text, level, raw) {
+    return this.oldHeadingRenderer(text.replace(/\u00ad/g, ""), level, raw);
+};
+
 let engineOptions = {
   filters: {
     "hyphen": hyphenFilter,
@@ -61,7 +72,8 @@ let engineOptions = {
       return code;
     }
     return highlightJs.highlight(lang, code).value
-  }
+  },
+  renderer: markdownRenderer
 };
 
 let build = Metalsmith(__dirname)
