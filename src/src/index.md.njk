@@ -14,14 +14,18 @@ following options:
 If you downloaded the binary package of Steep, extract the ZIP file and run the
 start script:
 
-    cd steep-5.0.1
-    bin/steep
+```bash
+cd steep-5.0.1
+bin/steep
+```
 
 Or, start the [Docker image](https://hub.docker.com/orgs/steep/steep) as
 follows:
 
-    docker run --name steep -d --rm -p 8080:8080 \
-        -e STEEP_HTTP_HOST=0.0.0.0 steep/steep:unstable
+```bash
+docker run --name steep -d --rm -p 8080:8080 \
+    -e STEEP_HTTP_HOST=0.0.0.0 steep/steep:unstable
+```
 
 After a few seconds, you should be able to access Steep's web interface on
 <http://localhost:8080/>.
@@ -30,21 +34,25 @@ We will now submit a simple workflow to test if Steep is running correctly. The
 workflow consists of a single `sleep` command that waits for 10 seconds and
 then quits. Execute the following command:
 
-    curl -X POST http://localhost:8080/workflows -d 'api: 4.0.0
-    vars:
-      - id: sleep_seconds
-        value: 10
-    actions:
-      - type: execute
-        service: sleep
-        parameters:
-          - id: seconds
-            var: sleep_seconds'
+```bash
+curl -X POST http://localhost:8080/workflows -d 'api: 4.0.0
+vars:
+  - id: sleep_seconds
+    value: 10
+actions:
+  - type: execute
+    service: sleep
+    parameters:
+      - id: seconds
+        var: sleep_seconds'
+```
 
 The command will return the ID of the submitted workflow. You can monitor the
 execution in the web interface or by issuing the following command:
 
-    curl http://localhost:8080/workflows/<workflow-id>
+```bash
+curl http://localhost:8080/workflows/<workflow-id>
+```
 
 Replace `<workflow-id>` by the returned ID.
 

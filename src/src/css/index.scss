@@ -1,3 +1,5 @@
+@import "node_modules/highlight.js/styles/zenburn";
+
 $gray-700: #495057;
 $gray-800: #3c3c3b;
 
@@ -142,6 +144,21 @@ i.simple-icon {
 }
 .headroom--unpinned {
   transform: translateY(-100%);
+}
+
+code {
+  font-size: .93em;
+}
+
+pre {
+  border-radius: $border-radius;
+  background: $gray-700;
+
+  code {
+    margin: $spacer $spacer * 1.5;
+    display: block;
+    color: $gray-100;
+  }
 }
 
 #features {

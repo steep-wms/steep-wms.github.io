@@ -1,6 +1,7 @@
 const Metalsmith  = require("metalsmith");
 const argv = require("yargs").argv;
 const fs = require("fs");
+const highlightJs = require("highlight.js");
 const hyphenopoly = require("hyphenopoly");
 const nunjucks = require("nunjucks");
 const simpleIcons = require("simple-icons");
@@ -52,7 +53,13 @@ let engineOptions = {
   extensions: {
     "simpleIcon": new SimpleIconsExtension()
   },
-  smartypants: true
+  smartypants: true,
+  highlight: (code, lang) => {
+    if (!lang) {
+      return code;
+    }
+    return highlightJs.highlight(lang, code).value
+  }
 };
 
 let build = Metalsmith(__dirname)
