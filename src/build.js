@@ -4,6 +4,7 @@ const fs = require("fs");
 const highlightJs = require("highlight.js");
 const hyphenopoly = require("hyphenopoly");
 const nunjucks = require("nunjucks");
+const nunjucksDate = require("nunjucks-date");
 const simpleIcons = require("simple-icons");
 
 const htmlMinifier = require("metalsmith-html-minifier");
@@ -48,7 +49,8 @@ fs.copyFileSync("node_modules/headroom.js/dist/headroom.min.js", "js/headroom.mi
 
 let engineOptions = {
   filters: {
-    "hyphen": hyphenFilter
+    "hyphen": hyphenFilter,
+    "date": nunjucksDate
   },
   extensions: {
     "simpleIcon": new SimpleIconsExtension()
