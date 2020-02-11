@@ -8,9 +8,7 @@ const simpleIcons = require("simple-icons");
 const htmlMinifier = require("metalsmith-html-minifier");
 const inPlace = require("metalsmith-in-place");
 const layouts = require("metalsmith-layouts");
-const markdown = require("metalsmith-markdown");
 const permalinks = require("metalsmith-permalinks");
-const rename = require("metalsmith-rename");
 const sass = require("metalsmith-sass");
 const uglify = require("metalsmith-uglify");
 const watch = require("metalsmith-watch");
@@ -53,7 +51,8 @@ let engineOptions = {
   },
   extensions: {
     "simpleIcon": new SimpleIconsExtension()
-  }
+  },
+  smartypants: true
 };
 
 let build = Metalsmith(__dirname)
@@ -64,17 +63,8 @@ let build = Metalsmith(__dirname)
   .use(uglify({
     removeOriginal: true
   }))
-  .use(rename([
-    [/\.md/, ".njk"]
-  ]))
   .use(inPlace({
     engineOptions
-  }))
-  .use(rename([
-    [/\.html/, ".md"]
-  ]))
-  .use(markdown({
-    smartypants: true
   }))
   .use(permalinks({
     relative: false
