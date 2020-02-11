@@ -2,17 +2,54 @@
 layout: index.njk
 ---
 
-## Get started
+## Download and get started
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
+In order to use Steep, you need to download it first. Choose from one of the
+following options:
 
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   
+<a href="https://github.com/steep-wms/steep/releases/download/v5.0.1/steep-5.0.1.zip" class="btn btn-primary"><i data-feather="download"></i> Download Steep 5.0.1 (binaries)</a>
+<a href="https://hub.docker.com/r/steep/steep/" class="btn btn-secondary">{% simpleIcon "docker" %} Docker image</a>
+<a href="https://github.com/steep-wms/steep" class="btn btn-secondary"><i data-feather="github"></i> Source code</a>
 
-Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.   
+If you downloaded the binary package of Steep, extract the ZIP file and run the
+start script:
 
-Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.   
+    cd steep-5.0.1
+    bin/steep
 
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.   
+Or, start the [Docker image](https://hub.docker.com/orgs/steep/steep) as
+follows:
 
-At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+    docker run --name steep -d --rm -p 8080:8080 \
+        -e STEEP_HTTP_HOST=0.0.0.0 steep/steep:unstable
 
+After a few seconds, you should be able to access Steep's web interface on
+<http://localhost:8080/>.
+
+We will now submit a simple workflow to test if Steep is running correctly. The
+workflow consists of a single `sleep` command that waits for 10 seconds and
+then quits. Execute the following command:
+
+    curl -X POST http://localhost:8080/workflows -d 'api: 4.0.0
+    vars:
+      - id: sleep_seconds
+        value: 10
+    actions:
+      - type: execute
+        service: sleep
+        parameters:
+          - id: seconds
+            var: sleep_seconds'
+
+The command will return the ID of the submitted workflow. You can monitor the
+execution in the web interface or by issuing the following command:
+
+    curl http://localhost:8080/workflows/<workflow-id>
+
+Replace `<workflow-id>` by the returned ID.
+
+*Congratulations! You successfully installed Steep and ran your first workflow.*
+
+## Documentation
+
+TODO

@@ -3,8 +3,10 @@ const argv = require("yargs").argv;
 const fs = require("fs");
 const hyphenopoly = require("hyphenopoly");
 const nunjucks = require("nunjucks");
+const simpleIcons = require("simple-icons");
 
 const htmlMinifier = require("metalsmith-html-minifier");
+const inPlace = require("metalsmith-in-place");
 const layouts = require("metalsmith-layouts");
 const markdown = require("metalsmith-markdown");
 const permalinks = require("metalsmith-permalinks");
@@ -23,11 +25,36 @@ const hyphenateText = hyphenopoly.config({
 });
 
 function hyphenFilter(str) {
-    return new nunjucks.runtime.SafeString(hyphenateText(str));
+  return new nunjucks.runtime.SafeString(hyphenateText(str));
+}
+
+function SimpleIconsExtension() {
+    this.tags = ['simpleIcon'];
+
+    this.parse = function(parser, nodes, lexer) {
+      let tok = parser.nextToken();
+      let args = parser.parseSignature(true, true);
+      parser.advanceAfterBlockEnd(tok.value);
+      return new nodes.CallExtension(this, "run", args);
+    };
+
+    this.run = function(context, name) {
+      return new nunjucks.runtime.SafeString("<i class=\"simple-icon\">" +
+          simpleIcons.get(name).svg + "</i>");
+    };
 }
 
 fs.mkdirSync("js", { recursive: true });
 fs.copyFileSync("node_modules/headroom.js/dist/headroom.min.js", "js/headroom.min.js");
+
+let engineOptions = {
+  filters: {
+    "hyphen": hyphenFilter
+  },
+  extensions: {
+    "simpleIcon": new SimpleIconsExtension()
+  }
+};
 
 let build = Metalsmith(__dirname)
   .source("src")
@@ -37,16 +64,23 @@ let build = Metalsmith(__dirname)
   .use(uglify({
     removeOriginal: true
   }))
-  .use(markdown())
+  .use(rename([
+    [/\.md/, ".njk"]
+  ]))
+  .use(inPlace({
+    engineOptions
+  }))
+  .use(rename([
+    [/\.html/, ".md"]
+  ]))
+  .use(markdown({
+    smartypants: true
+  }))
   .use(permalinks({
     relative: false
   }))
   .use(layouts({
-    engineOptions: {
-      filters: {
-        "hyphen": hyphenFilter
-      }
-    }
+    engineOptions
   }))
   .use(htmlMinifier());
 
