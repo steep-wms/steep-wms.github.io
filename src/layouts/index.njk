@@ -1,53 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<meta name="author" content="Michel Krämer">
-<meta name="description" content="Scientific Workflows in the Cloud">
-<meta name="robots" content="index,follow">
-
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400" rel="stylesheet">
-<script src="https://unpkg.com/feather-icons"></script>
-
-<link rel="stylesheet" href="css/index.css">
-
-<title>Steep Workflow Management System</title>
-
-</head>
-<body>
-
-<nav class="navbar fixed-top navbar-expand-lg navbar-light" id="main-navbar">
-<div class="container">
-  <a class="navbar-brand" href="/"><img src="/images/steep-logo.svg" width="200"></a>
-  <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#features">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#download-and-get-started">Download</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#documentation">Docs</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#about">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://github.com/steep-wms/steep"><i data-feather="github"></i></a>
-      </li>
-    </ul>
-  </div>
-</div>
-</nav>
+{% include "header.njk" %}
 
 <div id="welcome">
   <div class="container">
@@ -55,7 +6,7 @@
       <div class="welcome-left">
         <div class="slogan">Steep is a Scientific Workflow Management System made for the Cloud</div>
         <div class="buttons">
-          <a href="#download-and-get-started"><button type="button" class="btn btn-primary btn-lg"><i data-feather="book"></i> Get started ...</button></a>
+          <a href="/#download-and-get-started"><button type="button" class="btn btn-primary btn-lg"><i data-feather="book"></i> Get started ...</button></a>
         </div>
       </div>
       <div class="welcome-right">
@@ -193,32 +144,4 @@
 {{ contents | safe }}
 </div>
 
-<footer>
-  <div class="footer-background">
-  </div>
-  <div class="footer-content">
-    <div class="container">
-      <div class="row justify-content-between">
-        <div class="col-md-3">
-          <a href="https://igd.fraunhofer.de"><img src="/images/fraunhofer-light.svg" class="fraunhofer-logo img-fluid"></a>
-        </div>
-        <div class="col-md-6 copyright">
-          Copyright &copy; 2015-{{ site.time | date("YYYY") }} <a href="https://igd.fraunhofer.de">Fraunhofer Institute for Computer Graphics Research IGD</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<script src="js/headroom.min.js"></script>
-<script src="js/index.min.js"></script>
-
-<script>
-feather.replace()
-</script>
-
-</body>
-</html>
+{% include "footer.njk" %}

@@ -42,7 +42,7 @@ $(function() {
     }).init();
 
     // smooth scroll to sections
-    $('a[href^="#"]').click(function() {
+    $('a[href^="/#"]').click(function() {
         var id = $.attr(this, "href");
         id = id.substr(id.indexOf("#"));
         // hide navbar before scrolling
