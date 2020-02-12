@@ -77,6 +77,11 @@ let engineOptions = {
   // enable smart quotes in markdown
   smartypants: true,
 
+  // do not mangle email addresses in markdown
+  // this feature generates random characters everytime so our built HTML
+  // pages will always appear as changed
+  mangle: false,
+
   // enable syntax highlighting in markdown
   highlight: (code, lang) => {
     if (!lang) {
