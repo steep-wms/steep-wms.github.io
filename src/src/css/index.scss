@@ -86,7 +86,8 @@ h1, h2, h3, h4, h5 {
 }
 
 h2 {
-  margin: 7rem 0 4rem 0;
+  margin-bottom: 4rem;
+  padding-top: 7rem;
 }
 
 #welcome {
@@ -248,16 +249,10 @@ pre {
 }
 
 .page-content {
-  margin-top: 12rem;
+  margin-top: 7rem;
 }
 
 #features {
-  padding-top: 4rem;
-
-  h2 {
-    margin-top: 3rem;
-  }
-
   .col-md {
     font-size: $font-size-sm;
     text-align: justify;
@@ -284,11 +279,6 @@ pre {
   @include media-breakpoint-down(md) {
     text-align: center;
   }
-}
-
-#download-and-get-started {
-  position: relative;
-  top: -7rem;
 }
 
 .research {

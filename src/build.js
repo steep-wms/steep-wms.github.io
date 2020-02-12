@@ -3,10 +3,13 @@ const argv = require("yargs").argv;
 const fs = require("fs");
 const highlightJs = require("highlight.js");
 const hyphenopoly = require("hyphenopoly");
-const marked = require("marked");
 const nunjucks = require("nunjucks");
 const nunjucksDate = require("nunjucks-date");
 const simpleIcons = require("simple-icons");
+
+// get marked module from jstransformer-marked
+require("jstransformer-marked");
+const marked = require.cache[require.resolve("jstransformer-marked")].require("marked");
 
 const htmlMinifier = require("metalsmith-html-minifier");
 const inPlace = require("metalsmith-in-place");
@@ -57,8 +60,8 @@ markdownRenderer.oldTextRenderer = markdownRenderer.text;
 markdownRenderer.text = function(text) {
   return this.oldTextRenderer(hyphenateText(text));
 };
-markdownRenderer.heading = function(text, level, raw) {
-  return this.oldHeadingRenderer(text.replace(/\u00ad/g, ""), level, raw);
+markdownRenderer.heading = function(text, level, raw, slugger) {
+  return this.oldHeadingRenderer(text.replace(/\u00ad/g, ""), level, raw, slugger);
 };
 
 // engine options for the metalsmith-in-place and metalsmith-layouts plugins
@@ -76,6 +79,9 @@ let engineOptions = {
 
   // enable smart quotes in markdown
   smartypants: true,
+
+  // render IDs in headings
+  headerIds: true,
 
   // do not mangle email addresses in markdown
   // this feature generates random characters everytime so our built HTML
