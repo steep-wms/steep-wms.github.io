@@ -63,4 +63,11 @@ $(function() {
             $("#main-navbar").removeClass("not-collapse");
         }
     });
+
+    // switch language for all code samples at the same time
+    $('#sec-data-models a[data-toggle="tab"]').on("shown.bs.tab", function (e) {
+        var newId = $(e.target).attr("id");
+        var newPrefix = newId.split(/-/).slice(0, 2).join("-");
+        $('#sec-data-models a[data-toggle="tab"][id^="' + newPrefix + '"][id!="' + newId + '"]').tab("show");
+    });
 });
