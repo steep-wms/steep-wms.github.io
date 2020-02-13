@@ -66,8 +66,15 @@ $(function() {
 
     // switch language for all code samples at the same time
     $('#sec-data-models a[data-toggle="tab"]').on("shown.bs.tab", function (e) {
-        var newId = $(e.target).attr("id");
-        var newPrefix = newId.split(/-/).slice(0, 2).join("-");
-        $('#sec-data-models a[data-toggle="tab"][id^="' + newPrefix + '"][id!="' + newId + '"]').tab("show");
+        if ($(this).data("prevent-send-event")) {
+            // prevent .tab("show") from being called over and over again
+            $(this).removeData("prevent-send-event");
+        } else {
+            var newId = $(e.target).attr("id");
+            var newPrefix = newId.split(/-/).slice(0, 2).join("-");
+            var otherTabs = $('#sec-data-models a[data-toggle="tab"][id^="' + newPrefix + '"][id!="' + newId + '"]');
+            otherTabs.data("prevent-send-event", true);
+            otherTabs.tab("show");
+        }
     });
 });
