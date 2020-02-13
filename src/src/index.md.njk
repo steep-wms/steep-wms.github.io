@@ -96,23 +96,48 @@ workflow execution such as the start and end time as well as the current
 | succeededProcessChains | number | The number of process chains that have finished successfully
 | failedProcessChains    | number | The number of process chains whose execution has failed
 | totalProcessChains     | number | The current total number of process chains in this submission. May increase during execution when new process chains are generated.
+| result                 | object | If `status` is `SUCCESS` or `PARTIAL_SUCCESS`, this property contains the list of workflow result files grouped by their output variable ID. Otherwise, it is `null`.
+| errorMessage           | string | If `status` is `ERROR`, this property contains a human-readable error message. Otherwise, it is `null`.
 
 {% codeExample "submission" %}
 {
-  "id": "ailutj6mixgr7ydagkjq",
+  "id": "aiq7eios7ubxglkcqx5a",
   "workflow": {
     "api": "4.0.0",
-    "vars": [],
-    "actions": []
+    "vars": [{
+      "id": "myInputFile",
+      "value": "/data/input.txt"
+    }, {
+      "id": "myOutputFile"
+    }],
+    "actions": [{
+      "type": "execute",
+      "service": "cp",
+      "inputs": [{
+        "id": "input_file",
+        "var": "myInputFile"
+      }],
+      "outputs": [{
+        "id": "output_file",
+        "var": "myOutputFile",
+        "store": true
+      }],
+      "parameters": []
+    }]
   },
-  "startTime": "2020-02-05T13:37:27.452084Z",
-  "endTime": "2020-02-05T13:43:11.698011Z",
+  "startTime": "2020-02-13T15:38:58.719382Z",
+  "endTime": "2020-02-13T15:39:00.807715Z",
   "status": "SUCCESS",
   "runningProcessChains": 0,
   "cancelledProcessChains": 0,
-  "succeededProcessChains": 10,
+  "succeededProcessChains": 1,
   "failedProcessChains": 0,
-  "totalProcessChains": 10
+  "totalProcessChains": 1,
+  "results": {
+    "myOutputFile": [
+      "/data/out/aiq7eios7ubxglkcqx5a/aiq7hygs7ubxglkcrf5a"
+    ]
+  }
 }
 {% endCodeExample %}
 
