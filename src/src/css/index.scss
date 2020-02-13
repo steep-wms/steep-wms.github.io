@@ -276,6 +276,11 @@ pre {
 
   td:first-child {
     font-weight: 700;
+
+    em {
+      font-weight: $font-weight-base;
+      color: $gray-600;
+    }
   }
 }
 
