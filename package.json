@@ -6,7 +6,8 @@
   "main": "build.js",
   "scripts": {
     "start": "node src/build.js",
-    "watch": "node src/build.js --watch"
+    "watch": "node src/build.js --watch",
+    "preinstall": "npx npm-force-resolutions"
   },
   "repository": {
     "type": "git",
@@ -36,5 +37,8 @@
     "nunjucks-date": "^1.5.0",
     "simple-icons": "^2.4.0",
     "yargs": "^15.1.0"
+  },
+  "resolutions": {
+    "marked": "^0.8.0"
   }
 }
