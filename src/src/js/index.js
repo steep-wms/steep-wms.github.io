@@ -42,12 +42,13 @@ $(function() {
     }).init();
 
     // smooth scroll to sections
-    $('a[href^="/#"]').click(function() {
+    $('a[href^="/#"][role!="tab"],a[href^="#"][role!="tab"]').click(function() {
         var id = $.attr(this, "href");
         id = id.substr(id.indexOf("#"));
         // hide navbar before scrolling
         navbarSupportedContent.collapse("hide");
         scrollTo($(id).offset().top, 500);
+        window.location.href = id;
         return false;
     });
 

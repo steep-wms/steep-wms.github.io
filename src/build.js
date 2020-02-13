@@ -18,6 +18,7 @@ const permalinks = require("metalsmith-permalinks");
 const sass = require("metalsmith-sass");
 const uglify = require("metalsmith-uglify");
 const watch = require("metalsmith-watch");
+const yaml = require("js-yaml");
 
 // configure hyphenation
 const hyphenateText = hyphenopoly.config({
@@ -34,10 +35,14 @@ function hyphenFilter(str) {
   return new nunjucks.runtime.SafeString(hyphenateText(str));
 }
 
+function markdownFilter(str) {
+  return new nunjucks.runtime.SafeString(marked(str, engineOptions));
+}
+
 // a nunjucks extension that automatically inserts SVG code of an icon from the
 // simple-icons package
 function SimpleIconsExtension() {
-  this.tags = ['simpleIcon'];
+  this.tags = ["simpleIcon"];
 
   this.parse = function(parser, nodes, lexer) {
     let tok = parser.nextToken();
@@ -52,6 +57,53 @@ function SimpleIconsExtension() {
   };
 }
 
+// a nunjucks extension that renders code examples in JSON and YAML
+function CodeExampleExtension() {
+  this.tags = ["codeExample"];
+
+  this.parse = function(parser, nodes, lexer) {
+    let tok = parser.nextToken();
+    let args = parser.parseSignature(true, true);
+    parser.advanceAfterBlockEnd(tok.value);
+    let body = parser.parseUntilBlocks("endCodeExample");
+    parser.advanceAfterBlockEnd();
+    return new nodes.CallExtension(this, "run", args, [body]);
+  };
+
+  this.run = function(context, id, body) {
+    let json = body();
+    let obj = JSON.parse(json);
+    let yamlStr = yaml.safeDump(obj);
+    let result =
+`<div class="code-example">
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab-${id}" role="tablist">
+      <a class="nav-item nav-link active" id="nav-json-tab-${id}"
+          data-toggle="tab" href="#nav-json-${id}" role="tab"
+          aria-controls="nav-json-${id}" aria-selected="true">JSON</a>
+      <a class="nav-item nav-link" id="nav-yaml-tab-${id}"
+          data-toggle="tab" href="#nav-yaml-${id}" role="tab"
+          aria-controls="nav-yaml-${id}" aria-selected="false">YAML</a>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent-${id}">
+    <div class="tab-pane show active" id="nav-json-${id}" role="tabpanel" aria-labelledby="nav-json-tab-${id}">
+
+\`\`\`json${json}\`\`\`
+
+</div>
+<div class="tab-pane" id="nav-yaml-${id}" role="tabpanel" aria-labelledby="nav-yaml-tab-${id}">
+
+\`\`\`yaml
+${yamlStr}\`\`\`
+
+</div>
+</div>
+</div>`;
+    return new nunjucks.runtime.SafeString(result);
+  };
+}
+
 // a markdown renderer that automatically applies hyphenation to text but not
 // headings
 const markdownRenderer = new marked.Renderer();
@@ -63,17 +115,28 @@ markdownRenderer.text = function(text) {
 markdownRenderer.heading = function(text, level, raw, slugger) {
   return this.oldHeadingRenderer(text.replace(/\u00ad/g, ""), level, raw, slugger);
 };
+markdownRenderer.table = function(header, body) {
+  if (body) {
+    body = "<tbody>" + body + "</tbody>";
+  }
+
+  // add bootstrap class
+  return "<table class=\"table\">\n" +
+    "<thead>\n" + header + "</thead>\n" + body + "</table>\n";
+};
 
 // engine options for the metalsmith-in-place and metalsmith-layouts plugins
 let engineOptions = {
   // nunjucks filters
   filters: {
     "hyphen": hyphenFilter,
-    "date": nunjucksDate
+    "date": nunjucksDate,
+    "markdown": markdownFilter
   },
 
   // nunjucks extensions
   extensions: {
+    "codeExample": new CodeExampleExtension(),
     "simpleIcon": new SimpleIconsExtension()
   },
 

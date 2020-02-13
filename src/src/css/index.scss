@@ -1,5 +1,7 @@
 @import "node_modules/highlight.js/styles/zenburn";
 
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
 $gray-700: #495057;
 $gray-800: #3c3c3b;
 
@@ -35,6 +37,7 @@ $container-max-widths: (
 $navbar-nav-link-padding-x: $spacer;
 $navbar-light-color: $gray-800;
 $navbar-light-hover-color: lighten($navbar-light-color, 25%);
+$nav-tabs-link-active-bg: $gray-200;
 
 $btn-padding-y: 0.5rem;
 $btn-padding-x: 1.6rem;
@@ -81,13 +84,13 @@ $btn-padding-x-lg: 1.9rem;
 }
 
 h1, h2, h3, h4, h5 {
-  text-align: center;
   margin: 2rem 0 2rem 0;
 }
 
 h2 {
   margin-bottom: 4rem;
   padding-top: 7rem;
+  text-align: center;
 }
 
 #welcome {
@@ -240,6 +243,15 @@ pre {
   }
 }
 
+.table {
+  th:first-child, td:first-child {
+    padding-left: 0;
+  }
+  th:last-child, td:last-child {
+    padding-right: 0;
+  }
+}
+
 .container-smaller {
   max-width: 900px;
 }
@@ -250,6 +262,35 @@ pre {
 
 .page-content {
   margin-top: 7rem;
+}
+
+#sec-data-models .table {
+  th, td:first-child {
+    hyphens: none;
+    white-space: nowrap;
+  }
+
+  td:nth-child(2) {
+    hyphens: none;
+  }
+
+  td:first-child {
+    font-weight: 700;
+  }
+}
+
+.code-example {
+  .nav-tabs {
+    border-bottom-color: transparent;
+
+    .nav-link {
+      border-bottom-color: transparent !important;
+    }
+  }
+
+  .tab-content .tab-pane:first-child pre {
+    border-top-left-radius: 0;
+  }
 }
 
 #features {
