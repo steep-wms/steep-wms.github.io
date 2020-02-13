@@ -96,7 +96,7 @@ workflow execution such as the start and end time as well as the current
 | succeededProcessChains | number | The number of process chains that have finished successfully
 | failedProcessChains    | number | The number of process chains whose execution has failed
 | totalProcessChains     | number | The current total number of process chains in this submission. May increase during execution when new process chains are generated.
-| result                 | object | If `status` is `SUCCESS` or `PARTIAL_SUCCESS`, this property contains the list of workflow result files grouped by their output variable ID. Otherwise, it is `null`.
+| results                | object | If `status` is `SUCCESS` or `PARTIAL_SUCCESS`, this property contains the list of workflow result files grouped by their output variable ID. Otherwise, it is `null`.
 | errorMessage           | string | If `status` is `ERROR`, this property contains a human-readable error message. Otherwise, it is `null`.
 
 {% codeExample "submission" %}
