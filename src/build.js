@@ -113,7 +113,23 @@ markdownRenderer.text = function(text) {
   return this.oldTextRenderer(hyphenateText(text));
 };
 markdownRenderer.heading = function(text, level, raw, slugger) {
-  return this.oldHeadingRenderer(text.replace(/\u00ad/g, ""), level, raw, slugger);
+  text = text.replace(/\u00ad/g, "");
+  if (text === "Documentation") {
+    this.inDocumentation = true;
+    this.currentHeadingNumbers = [];
+  } else if (text === "About") {
+    this.inDocumentation = false;
+  }
+  if (level >= 3 && this.inDocumentation) {
+    let n = level - 3;
+    while (this.currentHeadingNumbers.length <= n) {
+      this.currentHeadingNumbers.push(0);
+    }
+    this.currentHeadingNumbers[n]++;
+    this.currentHeadingNumbers.splice(n + 1);
+    text = this.currentHeadingNumbers.join(".") + "&ensp;" + text;
+  }
+  return this.oldHeadingRenderer(text, level, raw, slugger);
 };
 markdownRenderer.table = function(header, body) {
   if (body) {
