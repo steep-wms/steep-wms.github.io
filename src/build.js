@@ -1,5 +1,6 @@
 const Metalsmith  = require("metalsmith");
 const argv = require("yargs").argv;
+const cheerio = require("cheerio");
 const fs = require("fs");
 const highlightJs = require("highlight.js");
 const hyphenopoly = require("hyphenopoly");
@@ -15,6 +16,7 @@ const htmlMinifier = require("metalsmith-html-minifier");
 const inPlace = require("metalsmith-in-place");
 const layouts = require("metalsmith-layouts");
 const permalinks = require("metalsmith-permalinks");
+const replace = require("metalsmith-text-replace");
 const sass = require("metalsmith-sass");
 const uglify = require("metalsmith-uglify");
 const watch = require("metalsmith-watch");
@@ -29,6 +31,12 @@ const hyphenateText = hyphenopoly.config({
   },
   "sync": true
 });
+
+// a place holder for the table of contents of the 'Documentation' section
+const docsTocPlaceholder = "%%%%" + (+new Date()) + "%%%%";
+
+// the table of contents of the 'Documentation' section
+let docsToc = [];
 
 // a nunjucks filter that hyphenates text
 function hyphenFilter(str) {
@@ -104,8 +112,10 @@ ${yamlStr}\`\`\`
   };
 }
 
-// a markdown renderer that automatically applies hyphenation to text but not
-// headings
+// a markdown renderer that:
+// * automatically applies hyphenation to text but not headings
+// * numbers headings in the 'Documentation' section
+// * generates a table of contents for the headings in the 'Documentation' section
 const markdownRenderer = new marked.Renderer();
 markdownRenderer.oldHeadingRenderer = markdownRenderer.heading;
 markdownRenderer.oldTextRenderer = markdownRenderer.text;
@@ -114,22 +124,47 @@ markdownRenderer.text = function(text) {
 };
 markdownRenderer.heading = function(text, level, raw, slugger) {
   text = text.replace(/\u00ad/g, "");
+
+  // number headings and keep them in a table of contents (docsToc)
+  let tocEntryToPush;
   if (text === "Documentation") {
+    // start generating numbers
     this.inDocumentation = true;
     this.currentHeadingNumbers = [];
-  } else if (text === "About") {
-    this.inDocumentation = false;
-  }
-  if (level >= 3 && this.inDocumentation) {
-    let n = level - 3;
-    while (this.currentHeadingNumbers.length <= n) {
-      this.currentHeadingNumbers.push(0);
+    docsToc = [];
+  } else {
+    if (this.inDocumentation) {
+      if (level < 3) {
+        // we reached the end of the 'Documentation' section
+        this.inDocumentation = false;
+      } else {
+        // generate heading number
+        let n = level - 3;
+        while (this.currentHeadingNumbers.length <= n) {
+          this.currentHeadingNumbers.push(0);
+        }
+        this.currentHeadingNumbers[n]++;
+        this.currentHeadingNumbers.splice(n + 1);
+        text = this.currentHeadingNumbers.join(".") + "&ensp;" + text;
+
+        // create an entry in the toc
+        tocEntryToPush = { text, level: n + 1 };
+      }
     }
-    this.currentHeadingNumbers[n]++;
-    this.currentHeadingNumbers.splice(n + 1);
-    text = this.currentHeadingNumbers.join(".") + "&ensp;" + text;
   }
-  return this.oldHeadingRenderer(text, level, raw, slugger);
+
+  let result = this.oldHeadingRenderer(text, level, raw, slugger);
+
+  if (tocEntryToPush) {
+    // get slug for toc
+    let e = cheerio(result);
+    let slug = e.attr("id");
+
+    tocEntryToPush["slug"] = slug;
+    docsToc.push(tocEntryToPush);
+  }
+
+  return result;
 };
 markdownRenderer.table = function(header, body) {
   if (body) {
@@ -140,6 +175,37 @@ markdownRenderer.table = function(header, body) {
   return "<table class=\"table\">\n" +
     "<thead>\n" + header + "</thead>\n" + body + "</table>\n";
 };
+
+// converts a table of contents to HTML
+function tocToHtml(toc) {
+  let result = "";
+  let currentLevel = 0;
+
+  for (entry of toc) {
+    // close lists
+    while (currentLevel > entry.level) {
+      result += "</ul>\n";
+      currentLevel--;
+    }
+
+    // open new lists
+    while (currentLevel < entry.level) {
+      result += "<ul class=\"toc level-" + currentLevel + "\">\n";
+      currentLevel++;
+    }
+
+    // add toc entry
+    result += "<li><a href=\"#" + entry.slug + "\">" + entry.text + "</a></li>\n";
+  }
+
+  // close remaining lists
+  while (currentLevel > 0) {
+    result += "</ul>\n";
+    currentLevel--;
+  }
+
+  return result;
+}
 
 // engine options for the metalsmith-in-place and metalsmith-layouts plugins
 let engineOptions = {
@@ -188,6 +254,10 @@ let build = Metalsmith(__dirname)
   .source("src")
   .destination("..")
 
+  .metadata({
+    docsTocPlaceholder
+  })
+
   // do not clean destination directory - it's our repository's root!
   .clean(false)
 
@@ -212,6 +282,14 @@ let build = Metalsmith(__dirname)
   // apply layouts
   .use(layouts({
     engineOptions
+  }))
+
+  // replace placeholder of table of contents with actual table of contents
+  .use(replace({
+    "index.html": {
+      find: new RegExp(docsTocPlaceholder, "g"),
+      replace: () => tocToHtml(docsToc)
+    }
   }))
 
   // minify HTML

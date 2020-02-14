@@ -284,6 +284,14 @@ pre {
   }
 }
 
+.toc {
+  list-style-type: none;
+
+  &.level-0 {
+    padding-left: 0;
+  }
+}
+
 .code-example {
   .nav-tabs {
     border-bottom-color: transparent;
