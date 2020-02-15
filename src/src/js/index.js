@@ -1,4 +1,8 @@
 $(function() {
+    function currentScrollTop() {
+        return Math.max($("html,body").scrollTop(), window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop);
+    }
+
     // smooth scroll
     function scrollTo(endOffset, duration) {
         var r = $("html,body");
@@ -6,7 +10,7 @@ $(function() {
             r.scrollTop(endOffset);
         }
 
-        var startOffset = Math.max(r.scrollTop(), window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop);
+        var startOffset = currentScrollTop();
         if (startOffset == endOffset) {
             return;
         }
@@ -65,7 +69,23 @@ $(function() {
     });
 
     // switch language for all code samples at the same time
-    $('.code-example a[data-toggle="tab"]').on("shown.bs.tab", function (e) {
+    var savedClickedElement;
+    var savedScrollTop;
+    var savedOffsetTop;
+    var codeExampleTabs = $('.code-example a[data-toggle="tab"]');
+    codeExampleTabs.on("show.bs.tab", function (e) {
+        if (!$(this).data("prevent-send-event")) {
+            // save current scroll top
+            savedClickedElement = $(this);
+            savedScrollTop = currentScrollTop();
+            savedOffsetTop = savedClickedElement.offset().top;
+        }
+    });
+    codeExampleTabs.on("shown.bs.tab", function (e) {
+        // restore current scroll top
+        var newOffsetTop = savedClickedElement.offset().top;
+        $("html,body").scrollTop(newOffsetTop - (savedOffsetTop - savedScrollTop));
+
         if ($(this).data("prevent-send-event")) {
             // prevent .tab("show") from being called over and over again
             $(this).removeData("prevent-send-event");
