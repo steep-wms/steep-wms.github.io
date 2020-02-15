@@ -86,24 +86,24 @@ function CodeExampleExtension() {
 `<div class="code-example">
   <nav>
     <div class="nav nav-tabs" id="nav-tab-${id}" role="tablist">
-      <a class="nav-item nav-link active" id="nav-json-tab-${id}"
-          data-toggle="tab" href="#nav-json-${id}" role="tab"
-          aria-controls="nav-json-${id}" aria-selected="true">JSON</a>
-      <a class="nav-item nav-link" id="nav-yaml-tab-${id}"
+      <a class="nav-item nav-link active" id="nav-yaml-tab-${id}"
           data-toggle="tab" href="#nav-yaml-${id}" role="tab"
-          aria-controls="nav-yaml-${id}" aria-selected="false">YAML</a>
+          aria-controls="nav-yaml-${id}" aria-selected="true">YAML</a>
+      <a class="nav-item nav-link" id="nav-json-tab-${id}"
+          data-toggle="tab" href="#nav-json-${id}" role="tab"
+          aria-controls="nav-json-${id}" aria-selected="false">JSON</a>
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent-${id}">
-    <div class="tab-pane show active" id="nav-json-${id}" role="tabpanel" aria-labelledby="nav-json-tab-${id}">
-
-\`\`\`json${json}\`\`\`
-
-</div>
-<div class="tab-pane" id="nav-yaml-${id}" role="tabpanel" aria-labelledby="nav-yaml-tab-${id}">
+    <div class="tab-pane show active" id="nav-yaml-${id}" role="tabpanel" aria-labelledby="nav-yaml-tab-${id}">
 
 \`\`\`yaml
 ${yamlStr}\`\`\`
+
+</div>
+<div class="tab-pane" id="nav-json-${id}" role="tabpanel" aria-labelledby="nav-json-tab-${id}">
+
+\`\`\`json${json}\`\`\`
 
 </div>
 </div>
@@ -284,7 +284,7 @@ let build = Metalsmith(__dirname)
     engineOptions
   }))
 
-  // replace placeholder of table of contents with actual table of contents
+  // replace placeholder for table of contents with actual table of contents
   .use(replace({
     "index.html": {
       find: new RegExp(docsTocPlaceholder, "g"),
