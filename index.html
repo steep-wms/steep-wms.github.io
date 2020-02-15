@@ -69,24 +69,24 @@ actions:
       <span class=hljs-attr>"var"</span>: <span class=hljs-string>"outputFile2"</span>
     }]
   }]
-}</code></pre></div></div></div><p class="h5 mt-5 mb-4">Service metadata:</p><div class=code-example><nav><div class="nav nav-tabs" id=nav-tab-example-1-service-metadata role=tablist><a class="nav-item nav-link active" id=nav-yaml-tab-example-1-service-metadata data-toggle=tab href=#nav-yaml-example-1-service-metadata role=tab aria-controls=nav-yaml-example-1-service-metadata aria-selected=true>YAML</a> <a class="nav-item nav-link" id=nav-json-tab-example-1-service-metadata data-toggle=tab href=#nav-json-example-1-service-metadata role=tab aria-controls=nav-json-example-1-service-metadata aria-selected=false>JSON</a></div></nav><div class=tab-content id=nav-tabContent-example-1-service-metadata><div class="tab-pane show active" id=nav-yaml-example-1-service-metadata role=tabpanel aria-labelledby=nav-yaml-tab-example-1-service-metadata><pre><code class=language-yaml><span class=hljs-attr>id:</span> <span class=hljs-string>copy</span>
-<span class=hljs-attr>name:</span> <span class=hljs-string>Copy</span>
-<span class=hljs-attr>description:</span> <span class=hljs-string>Copy</span> <span class=hljs-string>files</span>
-<span class=hljs-attr>path:</span> <span class=hljs-string>cp</span>
-<span class=hljs-attr>runtime:</span> <span class=hljs-string>other</span>
-<span class=hljs-attr>parameters:</span>
-  <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>input_file</span>
-    <span class=hljs-attr>name:</span> <span class=hljs-string>Input</span> <span class=hljs-string>file</span> <span class=hljs-string>name</span>
-    <span class=hljs-attr>description:</span> <span class=hljs-string>Input</span> <span class=hljs-string>file</span> <span class=hljs-string>name</span>
-    <span class=hljs-attr>type:</span> <span class=hljs-string>input</span>
-    <span class=hljs-attr>cardinality:</span> <span class=hljs-number>1</span><span class=hljs-string>..1</span>
-    <span class=hljs-attr>data_type:</span> <span class=hljs-string>file</span>
-  <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>output_file</span>
-    <span class=hljs-attr>name:</span> <span class=hljs-string>Output</span> <span class=hljs-string>file</span> <span class=hljs-string>name</span>
-    <span class=hljs-attr>description:</span> <span class=hljs-string>Output</span> <span class=hljs-string>file</span> <span class=hljs-string>name</span>
-    <span class=hljs-attr>type:</span> <span class=hljs-string>output</span>
-    <span class=hljs-attr>cardinality:</span> <span class=hljs-number>1</span><span class=hljs-string>..1</span>
-    <span class=hljs-attr>data_type:</span> <span class=hljs-string>file</span></code></pre></div><div class=tab-pane id=nav-json-example-1-service-metadata role=tabpanel aria-labelledby=nav-json-tab-example-1-service-metadata><pre><code class=language-json>{
+}</code></pre></div></div></div><p class="h5 mt-4 mb-4">Service metadata:</p><div class=code-example><nav><div class="nav nav-tabs" id=nav-tab-example-1-service-metadata role=tablist><a class="nav-item nav-link active" id=nav-yaml-tab-example-1-service-metadata data-toggle=tab href=#nav-yaml-example-1-service-metadata role=tab aria-controls=nav-yaml-example-1-service-metadata aria-selected=true>YAML</a> <a class="nav-item nav-link" id=nav-json-tab-example-1-service-metadata data-toggle=tab href=#nav-json-example-1-service-metadata role=tab aria-controls=nav-json-example-1-service-metadata aria-selected=false>JSON</a></div></nav><div class=tab-content id=nav-tabContent-example-1-service-metadata><div class="tab-pane show active" id=nav-yaml-example-1-service-metadata role=tabpanel aria-labelledby=nav-yaml-tab-example-1-service-metadata><pre><code class=language-yaml><span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>copy</span>
+  <span class=hljs-attr>name:</span> <span class=hljs-string>Copy</span>
+  <span class=hljs-attr>description:</span> <span class=hljs-string>Copy</span> <span class=hljs-string>files</span>
+  <span class=hljs-attr>path:</span> <span class=hljs-string>cp</span>
+  <span class=hljs-attr>runtime:</span> <span class=hljs-string>other</span>
+  <span class=hljs-attr>parameters:</span>
+    <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>input_file</span>
+      <span class=hljs-attr>name:</span> <span class=hljs-string>Input</span> <span class=hljs-string>file</span> <span class=hljs-string>name</span>
+      <span class=hljs-attr>description:</span> <span class=hljs-string>Input</span> <span class=hljs-string>file</span> <span class=hljs-string>name</span>
+      <span class=hljs-attr>type:</span> <span class=hljs-string>input</span>
+      <span class=hljs-attr>cardinality:</span> <span class=hljs-number>1</span><span class=hljs-string>..1</span>
+      <span class=hljs-attr>data_type:</span> <span class=hljs-string>file</span>
+    <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>output_file</span>
+      <span class=hljs-attr>name:</span> <span class=hljs-string>Output</span> <span class=hljs-string>file</span> <span class=hljs-string>name</span>
+      <span class=hljs-attr>description:</span> <span class=hljs-string>Output</span> <span class=hljs-string>file</span> <span class=hljs-string>name</span>
+      <span class=hljs-attr>type:</span> <span class=hljs-string>output</span>
+      <span class=hljs-attr>cardinality:</span> <span class=hljs-number>1</span><span class=hljs-string>..1</span>
+      <span class=hljs-attr>data_type:</span> <span class=hljs-string>file</span></code></pre></div><div class=tab-pane id=nav-json-example-1-service-metadata role=tabpanel aria-labelledby=nav-json-tab-example-1-service-metadata><pre><code class=language-json>[{
   <span class=hljs-attr>"id"</span>: <span class=hljs-string>"copy"</span>,
   <span class=hljs-attr>"name"</span>: <span class=hljs-string>"Copy"</span>,
   <span class=hljs-attr>"description"</span>: <span class=hljs-string>"Copy files"</span>,
@@ -107,7 +107,484 @@ actions:
     <span class=hljs-attr>"cardinality"</span>: <span class=hljs-string>"1..1"</span>,
     <span class=hljs-attr>"data_type"</span>: <span class=hljs-string>"file"</span>
   }]
-}</code></pre></div></div></div><h4 id=chaining-two-services>2.2&ensp;Chaining two services</h4><p>TODO</p><h4 id=splitting-and-joining-results>2.3&ensp;Splitting and joining results</h4><p>TODO</p><h4 id=dynamically-processing-results-in-parallel>2.4&ensp;Dynamically processing results in parallel</h4><p>TODO</p><h4 id=feeding-results-back-into-the-workflow-cyclesloops>2.5&ensp;Feeding results back into the workflow (cycles/loops)</h4><p>TODO</p><section id=sec-data-models><h3 id=data-models>3&ensp;Data models</h3><h4 id=workflows>3.1&ensp;Workflows</h4><p>TODO</p><h4 id=process-chains>3.2&ensp;Process chains</h4><p>TODO</p><h4 id=submissions>3.3&ensp;Submissions</h4><p>A <em>sub­mis­sion</em> is cre­ated when you sub­mit a <a href=#workflows>work­flow</a> through the <a href=#get-submissions><code>/workflows</code></a> en­d­point. It con­tains in­form­a­tion about the work­flow ex­e­cu­tion such as the start and end time as well as the cur­rent <a href=#submission-status>status</a>.</p><table class=table><thead><tr><th>Prop­erty</th><th>Type</th><th>De­scrip­tion</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>Unique sub­mis­sion iden­ti­fier</td></tr><tr><td>work­flow</td><td>ob­ject</td><td>The sub­mit­ted <a href=#workflows>work­flow</a></td></tr><tr><td>start­Time</td><td>string</td><td>An ISO 8601 timestamp de­not­ing the date and time when the work­flow ex­e­cu­tion was star­ted. May be <code>null</code> if the ex­e­cu­tion has not star­ted yet.</td></tr><tr><td>en­d­Time</td><td>string</td><td>An ISO 8601 timestamp de­not­ing the date and time when the work­flow ex­e­cu­tion fin­ished. May be <code>null</code> if the ex­e­cu­tion has not fin­ished yet.</td></tr><tr><td>status</td><td>string</td><td>The cur­rent <a href=#submission-status>status</a> of the sub­mis­sion</td></tr><tr><td>run­ning­Pro­cess­Chains</td><td>num­ber</td><td>The num­ber of <a href=#process-chains>pro­cess chains</a> cur­rently being ex­ecuted</td></tr><tr><td>can­celled­Pro­cess­Chains</td><td>num­ber</td><td>The num­ber of pro­cess chains that have been can­celled</td></tr><tr><td>suc­ceeded­Pro­cess­Chains</td><td>num­ber</td><td>The num­ber of pro­cess chains that have fin­ished suc­cess­fully</td></tr><tr><td>failed­Pro­cess­Chains</td><td>num­ber</td><td>The num­ber of pro­cess chains whose ex­e­cu­tion has failed</td></tr><tr><td>total­Pro­cess­Chains</td><td>num­ber</td><td>The cur­rent total num­ber of pro­cess chains in this sub­mis­sion. May in­crease dur­ing ex­e­cu­tion when new pro­cess chains are gen­er­ated.</td></tr><tr><td>res­ults</td><td>ob­ject</td><td>If <code>status</code> is <code>SUCCESS</code> or <code>PARTIAL_SUCCESS</code>, this prop­erty con­tains the list of work­flow res­ult files grouped by their out­put vari­able ID. Oth­er­wise, it is <code>null</code>.</td></tr><tr><td>er­rorMes­sage</td><td>string</td><td>If <code>status</code> is <code>ERROR</code>, this prop­erty con­tains a human-​readable error mes­sage. Oth­er­wise, it is <code>null</code>.</td></tr></tbody></table><div class=code-example><nav><div class="nav nav-tabs" id=nav-tab-submission role=tablist><a class="nav-item nav-link active" id=nav-yaml-tab-submission data-toggle=tab href=#nav-yaml-submission role=tab aria-controls=nav-yaml-submission aria-selected=true>YAML</a> <a class="nav-item nav-link" id=nav-json-tab-submission data-toggle=tab href=#nav-json-submission role=tab aria-controls=nav-json-submission aria-selected=false>JSON</a></div></nav><div class=tab-content id=nav-tabContent-submission><div class="tab-pane show active" id=nav-yaml-submission role=tabpanel aria-labelledby=nav-yaml-tab-submission><pre><code class=language-yaml><span class=hljs-attr>id:</span> <span class=hljs-string>aiq7eios7ubxglkcqx5a</span>
+}]</code></pre></div></div></div><h4 id=chaining-two-services>2.2&ensp;Chaining two services</h4><p>The fol­low­ing ex­ample work­flow makes a copy of a file and then a copy of the copy (i.e. the file is copied and the res­ult is copied again). The work­flow con­tains two ac­tions that share the same vari­able: <code>outputFile1</code> is used as the out­put of the first ac­tion and as the input of the second ac­tion. Steep ex­ecutes them in se­quence.</p><p>The ser­vice metadata for this work­flow is the same as for the pre­vi­ous one.</p><p class="h5 mt-4 mb-4">Workflow:</p><div class=code-example><nav><div class="nav nav-tabs" id=nav-tab-example-2-workflow role=tablist><a class="nav-item nav-link active" id=nav-yaml-tab-example-2-workflow data-toggle=tab href=#nav-yaml-example-2-workflow role=tab aria-controls=nav-yaml-example-2-workflow aria-selected=true>YAML</a> <a class="nav-item nav-link" id=nav-json-tab-example-2-workflow data-toggle=tab href=#nav-json-example-2-workflow role=tab aria-controls=nav-json-example-2-workflow aria-selected=false>JSON</a></div></nav><div class=tab-content id=nav-tabContent-example-2-workflow><div class="tab-pane show active" id=nav-yaml-example-2-workflow role=tabpanel aria-labelledby=nav-yaml-tab-example-2-workflow><pre><code class=language-yaml><span class=hljs-attr>api:</span> <span class=hljs-number>4.0</span><span class=hljs-number>.0</span>
+<span class=hljs-attr>vars:</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>inputFile</span>
+    <span class=hljs-attr>value:</span> <span class=hljs-string>example.txt</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>outputFile1</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>outputFile2</span>
+<span class=hljs-attr>actions:</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>type:</span> <span class=hljs-string>execute</span>
+    <span class=hljs-attr>service:</span> <span class=hljs-string>copy</span>
+    <span class=hljs-attr>inputs:</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>input_file</span>
+        <span class=hljs-attr>var:</span> <span class=hljs-string>inputFile</span>
+    <span class=hljs-attr>outputs:</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>output_file</span>
+        <span class=hljs-attr>var:</span> <span class=hljs-string>outputFile1</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>type:</span> <span class=hljs-string>execute</span>
+    <span class=hljs-attr>service:</span> <span class=hljs-string>copy</span>
+    <span class=hljs-attr>inputs:</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>input_file</span>
+        <span class=hljs-attr>var:</span> <span class=hljs-string>outputFile1</span>
+    <span class=hljs-attr>outputs:</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>output_file</span>
+        <span class=hljs-attr>var:</span> <span class=hljs-string>outputFile2</span></code></pre></div><div class=tab-pane id=nav-json-example-2-workflow role=tabpanel aria-labelledby=nav-json-tab-example-2-workflow><pre><code class=language-json>{
+  <span class=hljs-attr>"api"</span>: <span class=hljs-string>"4.0.0"</span>,
+  <span class=hljs-attr>"vars"</span>: [{
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"inputFile"</span>,
+    <span class=hljs-attr>"value"</span>: <span class=hljs-string>"example.txt"</span>
+  }, {
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"outputFile1"</span>
+  }, {
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"outputFile2"</span>
+  }],
+  <span class=hljs-attr>"actions"</span>: [{
+    <span class=hljs-attr>"type"</span>: <span class=hljs-string>"execute"</span>,
+    <span class=hljs-attr>"service"</span>: <span class=hljs-string>"copy"</span>,
+    <span class=hljs-attr>"inputs"</span>: [{
+      <span class=hljs-attr>"id"</span>: <span class=hljs-string>"input_file"</span>,
+      <span class=hljs-attr>"var"</span>: <span class=hljs-string>"inputFile"</span>
+    }],
+    <span class=hljs-attr>"outputs"</span>: [{
+      <span class=hljs-attr>"id"</span>: <span class=hljs-string>"output_file"</span>,
+      <span class=hljs-attr>"var"</span>: <span class=hljs-string>"outputFile1"</span>
+    }]
+  }, {
+    <span class=hljs-attr>"type"</span>: <span class=hljs-string>"execute"</span>,
+    <span class=hljs-attr>"service"</span>: <span class=hljs-string>"copy"</span>,
+    <span class=hljs-attr>"inputs"</span>: [{
+      <span class=hljs-attr>"id"</span>: <span class=hljs-string>"input_file"</span>,
+      <span class=hljs-attr>"var"</span>: <span class=hljs-string>"outputFile1"</span>
+    }],
+    <span class=hljs-attr>"outputs"</span>: [{
+      <span class=hljs-attr>"id"</span>: <span class=hljs-string>"output_file"</span>,
+      <span class=hljs-attr>"var"</span>: <span class=hljs-string>"outputFile2"</span>
+    }]
+  }]
+}</code></pre></div></div></div><h4 id=splitting-and-joining-results>2.3&ensp;Splitting and joining results</h4><p>This ex­ample starts with an ac­tion that cop­ies a file. Two other ac­tions then run in par­al­lel and make cop­ies of the res­ult of the first ac­tion. A final ac­tion then joins these cop­ies to a single file. The work­flow has a split-​and-join pat­tern be­cause the graph is split into two branches after the first ac­tion. These branches are then joined into a single one with the final ac­tion.</p><p class="h5 mt-4 mb-4">Workflow:</p><div class=code-example><nav><div class="nav nav-tabs" id=nav-tab-example-3-workflow role=tablist><a class="nav-item nav-link active" id=nav-yaml-tab-example-3-workflow data-toggle=tab href=#nav-yaml-example-3-workflow role=tab aria-controls=nav-yaml-example-3-workflow aria-selected=true>YAML</a> <a class="nav-item nav-link" id=nav-json-tab-example-3-workflow data-toggle=tab href=#nav-json-example-3-workflow role=tab aria-controls=nav-json-example-3-workflow aria-selected=false>JSON</a></div></nav><div class=tab-content id=nav-tabContent-example-3-workflow><div class="tab-pane show active" id=nav-yaml-example-3-workflow role=tabpanel aria-labelledby=nav-yaml-tab-example-3-workflow><pre><code class=language-yaml><span class=hljs-attr>api:</span> <span class=hljs-number>4.0</span><span class=hljs-number>.0</span>
+<span class=hljs-attr>vars:</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>inputFile</span>
+    <span class=hljs-attr>value:</span> <span class=hljs-string>example.txt</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>outputFile1</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>outputFile2</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>outputFile3</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>outputFile4</span>
+<span class=hljs-attr>actions:</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>type:</span> <span class=hljs-string>execute</span>
+    <span class=hljs-attr>service:</span> <span class=hljs-string>copy</span>
+    <span class=hljs-attr>inputs:</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>input_file</span>
+        <span class=hljs-attr>var:</span> <span class=hljs-string>inputFile</span>
+    <span class=hljs-attr>outputs:</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>output_file</span>
+        <span class=hljs-attr>var:</span> <span class=hljs-string>outputFile1</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>type:</span> <span class=hljs-string>execute</span>
+    <span class=hljs-attr>service:</span> <span class=hljs-string>copy</span>
+    <span class=hljs-attr>inputs:</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>input_file</span>
+        <span class=hljs-attr>var:</span> <span class=hljs-string>outputFile1</span>
+    <span class=hljs-attr>outputs:</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>output_file</span>
+        <span class=hljs-attr>var:</span> <span class=hljs-string>outputFile2</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>type:</span> <span class=hljs-string>execute</span>
+    <span class=hljs-attr>service:</span> <span class=hljs-string>copy</span>
+    <span class=hljs-attr>inputs:</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>input_file</span>
+        <span class=hljs-attr>var:</span> <span class=hljs-string>outputFile1</span>
+    <span class=hljs-attr>outputs:</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>output_file</span>
+        <span class=hljs-attr>var:</span> <span class=hljs-string>outputFile3</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>type:</span> <span class=hljs-string>execute</span>
+    <span class=hljs-attr>service:</span> <span class=hljs-string>join</span>
+    <span class=hljs-attr>inputs:</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>i</span>
+        <span class=hljs-attr>var:</span> <span class=hljs-string>outputFile2</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>i</span>
+        <span class=hljs-attr>var:</span> <span class=hljs-string>outputFile3</span>
+    <span class=hljs-attr>outputs:</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>o</span>
+        <span class=hljs-attr>var:</span> <span class=hljs-string>outputFile4</span></code></pre></div><div class=tab-pane id=nav-json-example-3-workflow role=tabpanel aria-labelledby=nav-json-tab-example-3-workflow><pre><code class=language-json>{
+  <span class=hljs-attr>"api"</span>: <span class=hljs-string>"4.0.0"</span>,
+  <span class=hljs-attr>"vars"</span>: [{
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"inputFile"</span>,
+    <span class=hljs-attr>"value"</span>: <span class=hljs-string>"example.txt"</span>
+  }, {
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"outputFile1"</span>
+  }, {
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"outputFile2"</span>
+  }, {
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"outputFile3"</span>
+  }, {
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"outputFile4"</span>
+  }],
+  <span class=hljs-attr>"actions"</span>: [{
+    <span class=hljs-attr>"type"</span>: <span class=hljs-string>"execute"</span>,
+    <span class=hljs-attr>"service"</span>: <span class=hljs-string>"copy"</span>,
+    <span class=hljs-attr>"inputs"</span>: [{
+      <span class=hljs-attr>"id"</span>: <span class=hljs-string>"input_file"</span>,
+      <span class=hljs-attr>"var"</span>: <span class=hljs-string>"inputFile"</span>
+    }],
+    <span class=hljs-attr>"outputs"</span>: [{
+      <span class=hljs-attr>"id"</span>: <span class=hljs-string>"output_file"</span>,
+      <span class=hljs-attr>"var"</span>: <span class=hljs-string>"outputFile1"</span>
+    }]
+  }, {
+    <span class=hljs-attr>"type"</span>: <span class=hljs-string>"execute"</span>,
+    <span class=hljs-attr>"service"</span>: <span class=hljs-string>"copy"</span>,
+    <span class=hljs-attr>"inputs"</span>: [{
+      <span class=hljs-attr>"id"</span>: <span class=hljs-string>"input_file"</span>,
+      <span class=hljs-attr>"var"</span>: <span class=hljs-string>"outputFile1"</span>
+    }],
+    <span class=hljs-attr>"outputs"</span>: [{
+      <span class=hljs-attr>"id"</span>: <span class=hljs-string>"output_file"</span>,
+      <span class=hljs-attr>"var"</span>: <span class=hljs-string>"outputFile2"</span>
+    }]
+  }, {
+    <span class=hljs-attr>"type"</span>: <span class=hljs-string>"execute"</span>,
+    <span class=hljs-attr>"service"</span>: <span class=hljs-string>"copy"</span>,
+    <span class=hljs-attr>"inputs"</span>: [{
+      <span class=hljs-attr>"id"</span>: <span class=hljs-string>"input_file"</span>,
+      <span class=hljs-attr>"var"</span>: <span class=hljs-string>"outputFile1"</span>
+    }],
+    <span class=hljs-attr>"outputs"</span>: [{
+      <span class=hljs-attr>"id"</span>: <span class=hljs-string>"output_file"</span>,
+      <span class=hljs-attr>"var"</span>: <span class=hljs-string>"outputFile3"</span>
+    }]
+  }, {
+    <span class=hljs-attr>"type"</span>: <span class=hljs-string>"execute"</span>,
+    <span class=hljs-attr>"service"</span>: <span class=hljs-string>"join"</span>,
+    <span class=hljs-attr>"inputs"</span>: [{
+      <span class=hljs-attr>"id"</span>: <span class=hljs-string>"i"</span>,
+      <span class=hljs-attr>"var"</span>: <span class=hljs-string>"outputFile2"</span>
+    }, {
+      <span class=hljs-attr>"id"</span>: <span class=hljs-string>"i"</span>,
+      <span class=hljs-attr>"var"</span>: <span class=hljs-string>"outputFile3"</span>
+    }],
+    <span class=hljs-attr>"outputs"</span>: [{
+      <span class=hljs-attr>"id"</span>: <span class=hljs-string>"o"</span>,
+      <span class=hljs-attr>"var"</span>: <span class=hljs-string>"outputFile4"</span>
+    }]
+  }]
+}</code></pre></div></div></div><p class="h5 mt-4 mb-4">Service metadata:</p><div class=code-example><nav><div class="nav nav-tabs" id=nav-tab-example-3-service-metadata role=tablist><a class="nav-item nav-link active" id=nav-yaml-tab-example-3-service-metadata data-toggle=tab href=#nav-yaml-example-3-service-metadata role=tab aria-controls=nav-yaml-example-3-service-metadata aria-selected=true>YAML</a> <a class="nav-item nav-link" id=nav-json-tab-example-3-service-metadata data-toggle=tab href=#nav-json-example-3-service-metadata role=tab aria-controls=nav-json-example-3-service-metadata aria-selected=false>JSON</a></div></nav><div class=tab-content id=nav-tabContent-example-3-service-metadata><div class="tab-pane show active" id=nav-yaml-example-3-service-metadata role=tabpanel aria-labelledby=nav-yaml-tab-example-3-service-metadata><pre><code class=language-yaml><span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>copy</span>
+  <span class=hljs-attr>name:</span> <span class=hljs-string>Copy</span>
+  <span class=hljs-attr>description:</span> <span class=hljs-string>Copy</span> <span class=hljs-string>files</span>
+  <span class=hljs-attr>path:</span> <span class=hljs-string>cp</span>
+  <span class=hljs-attr>runtime:</span> <span class=hljs-string>other</span>
+  <span class=hljs-attr>parameters:</span>
+    <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>input_file</span>
+      <span class=hljs-attr>name:</span> <span class=hljs-string>Input</span> <span class=hljs-string>file</span> <span class=hljs-string>name</span>
+      <span class=hljs-attr>description:</span> <span class=hljs-string>Input</span> <span class=hljs-string>file</span> <span class=hljs-string>name</span>
+      <span class=hljs-attr>type:</span> <span class=hljs-string>input</span>
+      <span class=hljs-attr>cardinality:</span> <span class=hljs-number>1</span><span class=hljs-string>..1</span>
+      <span class=hljs-attr>data_type:</span> <span class=hljs-string>file</span>
+    <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>output_file</span>
+      <span class=hljs-attr>name:</span> <span class=hljs-string>Output</span> <span class=hljs-string>file</span> <span class=hljs-string>name</span>
+      <span class=hljs-attr>description:</span> <span class=hljs-string>Output</span> <span class=hljs-string>file</span> <span class=hljs-string>name</span>
+      <span class=hljs-attr>type:</span> <span class=hljs-string>output</span>
+      <span class=hljs-attr>cardinality:</span> <span class=hljs-number>1</span><span class=hljs-string>..1</span>
+      <span class=hljs-attr>data_type:</span> <span class=hljs-string>file</span>
+<span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>join</span>
+  <span class=hljs-attr>name:</span> <span class=hljs-string>Join</span>
+  <span class=hljs-attr>description:</span> <span class=hljs-string>Merge</span> <span class=hljs-string>one</span> <span class=hljs-string>or</span> <span class=hljs-string>more</span> <span class=hljs-string>files</span> <span class=hljs-string>into</span> <span class=hljs-string>one</span>
+  <span class=hljs-attr>path:</span> <span class=hljs-string>join.sh</span>
+  <span class=hljs-attr>runtime:</span> <span class=hljs-string>other</span>
+  <span class=hljs-attr>parameters:</span>
+    <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>i</span>
+      <span class=hljs-attr>name:</span> <span class=hljs-string>Input</span> <span class=hljs-string>files</span>
+      <span class=hljs-attr>description:</span> <span class=hljs-string>One</span> <span class=hljs-string>or</span> <span class=hljs-string>more</span> <span class=hljs-string>input</span> <span class=hljs-string>files</span> <span class=hljs-string>to</span> <span class=hljs-string>merge</span>
+      <span class=hljs-attr>type:</span> <span class=hljs-string>input</span>
+      <span class=hljs-attr>cardinality:</span> <span class=hljs-number>1</span><span class=hljs-string>..n</span>
+      <span class=hljs-attr>data_type:</span> <span class=hljs-string>file</span>
+    <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>o</span>
+      <span class=hljs-attr>name:</span> <span class=hljs-string>Output</span> <span class=hljs-string>file</span>
+      <span class=hljs-attr>description:</span> <span class=hljs-string>The</span> <span class=hljs-string>output</span> <span class=hljs-string>file</span>
+      <span class=hljs-attr>type:</span> <span class=hljs-string>output</span>
+      <span class=hljs-attr>cardinality:</span> <span class=hljs-number>1</span><span class=hljs-string>..1</span>
+      <span class=hljs-attr>data_type:</span> <span class=hljs-string>file</span></code></pre></div><div class=tab-pane id=nav-json-example-3-service-metadata role=tabpanel aria-labelledby=nav-json-tab-example-3-service-metadata><pre><code class=language-json>[{
+  <span class=hljs-attr>"id"</span>: <span class=hljs-string>"copy"</span>,
+  <span class=hljs-attr>"name"</span>: <span class=hljs-string>"Copy"</span>,
+  <span class=hljs-attr>"description"</span>: <span class=hljs-string>"Copy files"</span>,
+  <span class=hljs-attr>"path"</span>: <span class=hljs-string>"cp"</span>,
+  <span class=hljs-attr>"runtime"</span>: <span class=hljs-string>"other"</span>,
+  <span class=hljs-attr>"parameters"</span>: [{
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"input_file"</span>,
+    <span class=hljs-attr>"name"</span>: <span class=hljs-string>"Input file name"</span>,
+    <span class=hljs-attr>"description"</span>: <span class=hljs-string>"Input file name"</span>,
+    <span class=hljs-attr>"type"</span>: <span class=hljs-string>"input"</span>,
+    <span class=hljs-attr>"cardinality"</span>: <span class=hljs-string>"1..1"</span>,
+    <span class=hljs-attr>"data_type"</span>: <span class=hljs-string>"file"</span>
+  }, {
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"output_file"</span>,
+    <span class=hljs-attr>"name"</span>: <span class=hljs-string>"Output file name"</span>,
+    <span class=hljs-attr>"description"</span>: <span class=hljs-string>"Output file name"</span>,
+    <span class=hljs-attr>"type"</span>: <span class=hljs-string>"output"</span>,
+    <span class=hljs-attr>"cardinality"</span>: <span class=hljs-string>"1..1"</span>,
+    <span class=hljs-attr>"data_type"</span>: <span class=hljs-string>"file"</span>
+  }]
+}, {
+  <span class=hljs-attr>"id"</span>: <span class=hljs-string>"join"</span>,
+  <span class=hljs-attr>"name"</span>: <span class=hljs-string>"Join"</span>,
+  <span class=hljs-attr>"description"</span>: <span class=hljs-string>"Merge one or more files into one"</span>,
+  <span class=hljs-attr>"path"</span>: <span class=hljs-string>"join.sh"</span>,
+  <span class=hljs-attr>"runtime"</span>: <span class=hljs-string>"other"</span>,
+  <span class=hljs-attr>"parameters"</span>: [{
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"i"</span>,
+    <span class=hljs-attr>"name"</span>: <span class=hljs-string>"Input files"</span>,
+    <span class=hljs-attr>"description"</span>: <span class=hljs-string>"One or more input files to merge"</span>,
+    <span class=hljs-attr>"type"</span>: <span class=hljs-string>"input"</span>,
+    <span class=hljs-attr>"cardinality"</span>: <span class=hljs-string>"1..n"</span>,
+    <span class=hljs-attr>"data_type"</span>: <span class=hljs-string>"file"</span>
+  }, {
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"o"</span>,
+    <span class=hljs-attr>"name"</span>: <span class=hljs-string>"Output file"</span>,
+    <span class=hljs-attr>"description"</span>: <span class=hljs-string>"The output file"</span>,
+    <span class=hljs-attr>"type"</span>: <span class=hljs-string>"output"</span>,
+    <span class=hljs-attr>"cardinality"</span>: <span class=hljs-string>"1..1"</span>,
+    <span class=hljs-attr>"data_type"</span>: <span class=hljs-string>"file"</span>
+  }]
+}]</code></pre></div></div></div><h4 id=dynamically-processing-results-in-parallel>2.4&ensp;Dynamically processing results in parallel</h4><p>This ex­ample demon­strates how to pro­cess the res­ults of an ac­tion in par­al­lel even if the num­ber of res­ult files is un­known dur­ing the design of the work­flow. The work­flow starts with an ac­tion that splits an input file <code>inputFile</code> into mul­tiple files (e.g. one file per line) stored in a dir­ect­ory <code>outputDirectory</code>. A for-​each ac­tion then it­er­ates over these files and cre­ates cop­ies. The for-​each ac­tion has an iter­ator <code>i</code> that serves as the input for the in­di­vidual in­stances of the <code>copy</code> ser­vice. The out­put files (<code>outputFile1</code>) of this ser­vice are col­lec­ted via the <code>yieldToOutput</code> prop­erty in a vari­able called <code>copies</code>. The final <code>join</code> ser­vice merges these cop­ies into a single file <code>outputFile2</code>.</p><p class="h5 mt-4 mb-4">Workflow:</p><div class=code-example><nav><div class="nav nav-tabs" id=nav-tab-example-4-workflow role=tablist><a class="nav-item nav-link active" id=nav-yaml-tab-example-4-workflow data-toggle=tab href=#nav-yaml-example-4-workflow role=tab aria-controls=nav-yaml-example-4-workflow aria-selected=true>YAML</a> <a class="nav-item nav-link" id=nav-json-tab-example-4-workflow data-toggle=tab href=#nav-json-example-4-workflow role=tab aria-controls=nav-json-example-4-workflow aria-selected=false>JSON</a></div></nav><div class=tab-content id=nav-tabContent-example-4-workflow><div class="tab-pane show active" id=nav-yaml-example-4-workflow role=tabpanel aria-labelledby=nav-yaml-tab-example-4-workflow><pre><code class=language-yaml><span class=hljs-attr>api:</span> <span class=hljs-number>4.0</span><span class=hljs-number>.0</span>
+<span class=hljs-attr>vars:</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>inputFile</span>
+    <span class=hljs-attr>value:</span> <span class=hljs-string>example.txt</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>lines</span>
+    <span class=hljs-attr>value:</span> <span class=hljs-number>1</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>outputDirectory</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>i</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>outputFile1</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>copies</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>outputFile2</span>
+<span class=hljs-attr>actions:</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>type:</span> <span class=hljs-string>execute</span>
+    <span class=hljs-attr>service:</span> <span class=hljs-string>split</span>
+    <span class=hljs-attr>parameters:</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>lines</span>
+        <span class=hljs-attr>var:</span> <span class=hljs-string>lines</span>
+    <span class=hljs-attr>inputs:</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>file</span>
+        <span class=hljs-attr>var:</span> <span class=hljs-string>inputFile</span>
+    <span class=hljs-attr>outputs:</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>output_directory</span>
+        <span class=hljs-attr>var:</span> <span class=hljs-string>outputDirectory</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>type:</span> <span class=hljs-string>for</span>
+    <span class=hljs-attr>input:</span> <span class=hljs-string>outputDirectory</span>
+    <span class=hljs-attr>enumerator:</span> <span class=hljs-string>i</span>
+    <span class=hljs-attr>output:</span> <span class=hljs-string>copies</span>
+    <span class=hljs-attr>actions:</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>type:</span> <span class=hljs-string>execute</span>
+        <span class=hljs-attr>service:</span> <span class=hljs-string>copy</span>
+        <span class=hljs-attr>inputs:</span>
+          <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>input_file</span>
+            <span class=hljs-attr>var:</span> <span class=hljs-string>i</span>
+        <span class=hljs-attr>outputs:</span>
+          <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>output_file</span>
+            <span class=hljs-attr>var:</span> <span class=hljs-string>outputFile1</span>
+    <span class=hljs-attr>yieldToOutput:</span> <span class=hljs-string>outputFile1</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>type:</span> <span class=hljs-string>execute</span>
+    <span class=hljs-attr>service:</span> <span class=hljs-string>join</span>
+    <span class=hljs-attr>inputs:</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>i</span>
+        <span class=hljs-attr>var:</span> <span class=hljs-string>copies</span>
+    <span class=hljs-attr>outputs:</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>o</span>
+        <span class=hljs-attr>var:</span> <span class=hljs-string>outputFile2</span></code></pre></div><div class=tab-pane id=nav-json-example-4-workflow role=tabpanel aria-labelledby=nav-json-tab-example-4-workflow><pre><code class=language-json>{
+  <span class=hljs-attr>"api"</span>: <span class=hljs-string>"4.0.0"</span>,
+  <span class=hljs-attr>"vars"</span>: [{
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"inputFile"</span>,
+    <span class=hljs-attr>"value"</span>: <span class=hljs-string>"example.txt"</span>
+  }, {
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"lines"</span>,
+    <span class=hljs-attr>"value"</span>: <span class=hljs-number>1</span>
+  }, {
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"outputDirectory"</span>
+  }, {
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"i"</span>
+  }, {
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"outputFile1"</span>
+  }, {
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"copies"</span>
+  }, {
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"outputFile2"</span>
+  }],
+  <span class=hljs-attr>"actions"</span>: [{
+    <span class=hljs-attr>"type"</span>: <span class=hljs-string>"execute"</span>,
+    <span class=hljs-attr>"service"</span>: <span class=hljs-string>"split"</span>,
+    <span class=hljs-attr>"parameters"</span>: [{
+      <span class=hljs-attr>"id"</span>: <span class=hljs-string>"lines"</span>,
+      <span class=hljs-attr>"var"</span>: <span class=hljs-string>"lines"</span>
+    }],
+    <span class=hljs-attr>"inputs"</span>: [{
+      <span class=hljs-attr>"id"</span>: <span class=hljs-string>"file"</span>,
+      <span class=hljs-attr>"var"</span>: <span class=hljs-string>"inputFile"</span>
+    }],
+    <span class=hljs-attr>"outputs"</span>: [{
+      <span class=hljs-attr>"id"</span>: <span class=hljs-string>"output_directory"</span>,
+      <span class=hljs-attr>"var"</span>: <span class=hljs-string>"outputDirectory"</span>
+    }]
+  }, {
+    <span class=hljs-attr>"type"</span>: <span class=hljs-string>"for"</span>,
+    <span class=hljs-attr>"input"</span>: <span class=hljs-string>"outputDirectory"</span>,
+    <span class=hljs-attr>"enumerator"</span>: <span class=hljs-string>"i"</span>,
+    <span class=hljs-attr>"output"</span>: <span class=hljs-string>"copies"</span>,
+    <span class=hljs-attr>"actions"</span>: [{
+      <span class=hljs-attr>"type"</span>: <span class=hljs-string>"execute"</span>,
+      <span class=hljs-attr>"service"</span>: <span class=hljs-string>"copy"</span>,
+      <span class=hljs-attr>"inputs"</span>: [{
+        <span class=hljs-attr>"id"</span>: <span class=hljs-string>"input_file"</span>,
+        <span class=hljs-attr>"var"</span>: <span class=hljs-string>"i"</span>
+      }],
+      <span class=hljs-attr>"outputs"</span>: [{
+        <span class=hljs-attr>"id"</span>: <span class=hljs-string>"output_file"</span>,
+        <span class=hljs-attr>"var"</span>: <span class=hljs-string>"outputFile1"</span>
+      }]
+    }],
+    <span class=hljs-attr>"yieldToOutput"</span>: <span class=hljs-string>"outputFile1"</span>
+  }, {
+    <span class=hljs-attr>"type"</span>: <span class=hljs-string>"execute"</span>,
+    <span class=hljs-attr>"service"</span>: <span class=hljs-string>"join"</span>,
+    <span class=hljs-attr>"inputs"</span>: [{
+      <span class=hljs-attr>"id"</span>: <span class=hljs-string>"i"</span>,
+      <span class=hljs-attr>"var"</span>: <span class=hljs-string>"copies"</span>
+    }],
+    <span class=hljs-attr>"outputs"</span>: [{
+      <span class=hljs-attr>"id"</span>: <span class=hljs-string>"o"</span>,
+      <span class=hljs-attr>"var"</span>: <span class=hljs-string>"outputFile2"</span>
+    }]
+  }]
+}</code></pre></div></div></div><p class="h5 mt-4 mb-4">Service metadata:</p><div class=code-example><nav><div class="nav nav-tabs" id=nav-tab-example-4-service-metadata role=tablist><a class="nav-item nav-link active" id=nav-yaml-tab-example-4-service-metadata data-toggle=tab href=#nav-yaml-example-4-service-metadata role=tab aria-controls=nav-yaml-example-4-service-metadata aria-selected=true>YAML</a> <a class="nav-item nav-link" id=nav-json-tab-example-4-service-metadata data-toggle=tab href=#nav-json-example-4-service-metadata role=tab aria-controls=nav-json-example-4-service-metadata aria-selected=false>JSON</a></div></nav><div class=tab-content id=nav-tabContent-example-4-service-metadata><div class="tab-pane show active" id=nav-yaml-example-4-service-metadata role=tabpanel aria-labelledby=nav-yaml-tab-example-4-service-metadata><pre><code class=language-yaml><span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>split</span>
+  <span class=hljs-attr>name:</span> <span class=hljs-string>Split</span>
+  <span class=hljs-attr>description:</span> <span class=hljs-string>Split</span> <span class=hljs-string>a</span> <span class=hljs-string>file</span> <span class=hljs-string>into</span> <span class=hljs-string>pieces</span>
+  <span class=hljs-attr>path:</span> <span class=hljs-string>split</span>
+  <span class=hljs-attr>runtime:</span> <span class=hljs-string>other</span>
+  <span class=hljs-attr>parameters:</span>
+    <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>lines</span>
+      <span class=hljs-attr>name:</span> <span class=hljs-string>Number</span> <span class=hljs-string>of</span> <span class=hljs-string>lines</span> <span class=hljs-string>per</span> <span class=hljs-string>file</span>
+      <span class=hljs-attr>description:</span> <span class=hljs-string>Create</span> <span class=hljs-string>smaller</span> <span class=hljs-string>files</span> <span class=hljs-string>n</span> <span class=hljs-string>lines</span> <span class=hljs-string>in</span> <span class=hljs-string>length</span>
+      <span class=hljs-attr>type:</span> <span class=hljs-string>argument</span>
+      <span class=hljs-attr>cardinality:</span> <span class=hljs-number>0</span><span class=hljs-string>..1</span>
+      <span class=hljs-attr>data_type:</span> <span class=hljs-string>integer</span>
+      <span class=hljs-attr>label:</span> <span class=hljs-string>'-l'</span>
+    <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>file</span>
+      <span class=hljs-attr>name:</span> <span class=hljs-string>Input</span> <span class=hljs-string>file</span>
+      <span class=hljs-attr>description:</span> <span class=hljs-string>The</span> <span class=hljs-string>input</span> <span class=hljs-string>file</span> <span class=hljs-string>to</span> <span class=hljs-string>split</span>
+      <span class=hljs-attr>type:</span> <span class=hljs-string>input</span>
+      <span class=hljs-attr>cardinality:</span> <span class=hljs-number>1</span><span class=hljs-string>..1</span>
+      <span class=hljs-attr>data_type:</span> <span class=hljs-string>file</span>
+    <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>output_directory</span>
+      <span class=hljs-attr>name:</span> <span class=hljs-string>Output</span> <span class=hljs-string>directory</span>
+      <span class=hljs-attr>description:</span> <span class=hljs-string>The</span> <span class=hljs-string>output</span> <span class=hljs-string>directory</span>
+      <span class=hljs-attr>type:</span> <span class=hljs-string>output</span>
+      <span class=hljs-attr>cardinality:</span> <span class=hljs-number>1</span><span class=hljs-string>..1</span>
+      <span class=hljs-attr>data_type:</span> <span class=hljs-string>directory</span>
+      <span class=hljs-attr>file_suffix:</span> <span class=hljs-string>/</span>
+<span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>copy</span>
+  <span class=hljs-attr>name:</span> <span class=hljs-string>Copy</span>
+  <span class=hljs-attr>description:</span> <span class=hljs-string>Copy</span> <span class=hljs-string>files</span>
+  <span class=hljs-attr>path:</span> <span class=hljs-string>cp</span>
+  <span class=hljs-attr>runtime:</span> <span class=hljs-string>other</span>
+  <span class=hljs-attr>parameters:</span>
+    <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>input_file</span>
+      <span class=hljs-attr>name:</span> <span class=hljs-string>Input</span> <span class=hljs-string>file</span> <span class=hljs-string>name</span>
+      <span class=hljs-attr>description:</span> <span class=hljs-string>Input</span> <span class=hljs-string>file</span> <span class=hljs-string>name</span>
+      <span class=hljs-attr>type:</span> <span class=hljs-string>input</span>
+      <span class=hljs-attr>cardinality:</span> <span class=hljs-number>1</span><span class=hljs-string>..1</span>
+      <span class=hljs-attr>data_type:</span> <span class=hljs-string>file</span>
+    <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>output_file</span>
+      <span class=hljs-attr>name:</span> <span class=hljs-string>Output</span> <span class=hljs-string>file</span> <span class=hljs-string>name</span>
+      <span class=hljs-attr>description:</span> <span class=hljs-string>Output</span> <span class=hljs-string>file</span> <span class=hljs-string>name</span>
+      <span class=hljs-attr>type:</span> <span class=hljs-string>output</span>
+      <span class=hljs-attr>cardinality:</span> <span class=hljs-number>1</span><span class=hljs-string>..1</span>
+      <span class=hljs-attr>data_type:</span> <span class=hljs-string>file</span>
+<span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>join</span>
+  <span class=hljs-attr>name:</span> <span class=hljs-string>Join</span>
+  <span class=hljs-attr>description:</span> <span class=hljs-string>Merge</span> <span class=hljs-string>one</span> <span class=hljs-string>or</span> <span class=hljs-string>more</span> <span class=hljs-string>files</span> <span class=hljs-string>into</span> <span class=hljs-string>one</span>
+  <span class=hljs-attr>path:</span> <span class=hljs-string>join.sh</span>
+  <span class=hljs-attr>runtime:</span> <span class=hljs-string>other</span>
+  <span class=hljs-attr>parameters:</span>
+    <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>i</span>
+      <span class=hljs-attr>name:</span> <span class=hljs-string>Input</span> <span class=hljs-string>files</span>
+      <span class=hljs-attr>description:</span> <span class=hljs-string>One</span> <span class=hljs-string>or</span> <span class=hljs-string>more</span> <span class=hljs-string>input</span> <span class=hljs-string>files</span> <span class=hljs-string>to</span> <span class=hljs-string>merge</span>
+      <span class=hljs-attr>type:</span> <span class=hljs-string>input</span>
+      <span class=hljs-attr>cardinality:</span> <span class=hljs-number>1</span><span class=hljs-string>..n</span>
+      <span class=hljs-attr>data_type:</span> <span class=hljs-string>file</span>
+    <span class=hljs-bullet>-</span> <span class=hljs-attr>id:</span> <span class=hljs-string>o</span>
+      <span class=hljs-attr>name:</span> <span class=hljs-string>Output</span> <span class=hljs-string>file</span>
+      <span class=hljs-attr>description:</span> <span class=hljs-string>The</span> <span class=hljs-string>output</span> <span class=hljs-string>file</span>
+      <span class=hljs-attr>type:</span> <span class=hljs-string>output</span>
+      <span class=hljs-attr>cardinality:</span> <span class=hljs-number>1</span><span class=hljs-string>..1</span>
+      <span class=hljs-attr>data_type:</span> <span class=hljs-string>file</span></code></pre></div><div class=tab-pane id=nav-json-example-4-service-metadata role=tabpanel aria-labelledby=nav-json-tab-example-4-service-metadata><pre><code class=language-json>[{
+  <span class=hljs-attr>"id"</span>: <span class=hljs-string>"split"</span>,
+  <span class=hljs-attr>"name"</span>: <span class=hljs-string>"Split"</span>,
+  <span class=hljs-attr>"description"</span>: <span class=hljs-string>"Split a file into pieces"</span>,
+  <span class=hljs-attr>"path"</span>: <span class=hljs-string>"split"</span>,
+  <span class=hljs-attr>"runtime"</span>: <span class=hljs-string>"other"</span>,
+  <span class=hljs-attr>"parameters"</span>: [{
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"lines"</span>,
+    <span class=hljs-attr>"name"</span>: <span class=hljs-string>"Number of lines per file"</span>,
+    <span class=hljs-attr>"description"</span>: <span class=hljs-string>"Create smaller files n lines in length"</span>,
+    <span class=hljs-attr>"type"</span>: <span class=hljs-string>"argument"</span>,
+    <span class=hljs-attr>"cardinality"</span>: <span class=hljs-string>"0..1"</span>,
+    <span class=hljs-attr>"data_type"</span>: <span class=hljs-string>"integer"</span>,
+    <span class=hljs-attr>"label"</span>: <span class=hljs-string>"-l"</span>
+  }, {
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"file"</span>,
+    <span class=hljs-attr>"name"</span>: <span class=hljs-string>"Input file"</span>,
+    <span class=hljs-attr>"description"</span>: <span class=hljs-string>"The input file to split"</span>,
+    <span class=hljs-attr>"type"</span>: <span class=hljs-string>"input"</span>,
+    <span class=hljs-attr>"cardinality"</span>: <span class=hljs-string>"1..1"</span>,
+    <span class=hljs-attr>"data_type"</span>: <span class=hljs-string>"file"</span>
+  }, {
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"output_directory"</span>,
+    <span class=hljs-attr>"name"</span>: <span class=hljs-string>"Output directory"</span>,
+    <span class=hljs-attr>"description"</span>: <span class=hljs-string>"The output directory"</span>,
+    <span class=hljs-attr>"type"</span>: <span class=hljs-string>"output"</span>,
+    <span class=hljs-attr>"cardinality"</span>: <span class=hljs-string>"1..1"</span>,
+    <span class=hljs-attr>"data_type"</span>: <span class=hljs-string>"directory"</span>,
+    <span class=hljs-attr>"file_suffix"</span>: <span class=hljs-string>"/"</span>
+  }]
+}, {
+  <span class=hljs-attr>"id"</span>: <span class=hljs-string>"copy"</span>,
+  <span class=hljs-attr>"name"</span>: <span class=hljs-string>"Copy"</span>,
+  <span class=hljs-attr>"description"</span>: <span class=hljs-string>"Copy files"</span>,
+  <span class=hljs-attr>"path"</span>: <span class=hljs-string>"cp"</span>,
+  <span class=hljs-attr>"runtime"</span>: <span class=hljs-string>"other"</span>,
+  <span class=hljs-attr>"parameters"</span>: [{
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"input_file"</span>,
+    <span class=hljs-attr>"name"</span>: <span class=hljs-string>"Input file name"</span>,
+    <span class=hljs-attr>"description"</span>: <span class=hljs-string>"Input file name"</span>,
+    <span class=hljs-attr>"type"</span>: <span class=hljs-string>"input"</span>,
+    <span class=hljs-attr>"cardinality"</span>: <span class=hljs-string>"1..1"</span>,
+    <span class=hljs-attr>"data_type"</span>: <span class=hljs-string>"file"</span>
+  }, {
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"output_file"</span>,
+    <span class=hljs-attr>"name"</span>: <span class=hljs-string>"Output file name"</span>,
+    <span class=hljs-attr>"description"</span>: <span class=hljs-string>"Output file name"</span>,
+    <span class=hljs-attr>"type"</span>: <span class=hljs-string>"output"</span>,
+    <span class=hljs-attr>"cardinality"</span>: <span class=hljs-string>"1..1"</span>,
+    <span class=hljs-attr>"data_type"</span>: <span class=hljs-string>"file"</span>
+  }]
+}, {
+  <span class=hljs-attr>"id"</span>: <span class=hljs-string>"join"</span>,
+  <span class=hljs-attr>"name"</span>: <span class=hljs-string>"Join"</span>,
+  <span class=hljs-attr>"description"</span>: <span class=hljs-string>"Merge one or more files into one"</span>,
+  <span class=hljs-attr>"path"</span>: <span class=hljs-string>"join.sh"</span>,
+  <span class=hljs-attr>"runtime"</span>: <span class=hljs-string>"other"</span>,
+  <span class=hljs-attr>"parameters"</span>: [{
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"i"</span>,
+    <span class=hljs-attr>"name"</span>: <span class=hljs-string>"Input files"</span>,
+    <span class=hljs-attr>"description"</span>: <span class=hljs-string>"One or more input files to merge"</span>,
+    <span class=hljs-attr>"type"</span>: <span class=hljs-string>"input"</span>,
+    <span class=hljs-attr>"cardinality"</span>: <span class=hljs-string>"1..n"</span>,
+    <span class=hljs-attr>"data_type"</span>: <span class=hljs-string>"file"</span>
+  }, {
+    <span class=hljs-attr>"id"</span>: <span class=hljs-string>"o"</span>,
+    <span class=hljs-attr>"name"</span>: <span class=hljs-string>"Output file"</span>,
+    <span class=hljs-attr>"description"</span>: <span class=hljs-string>"The output file"</span>,
+    <span class=hljs-attr>"type"</span>: <span class=hljs-string>"output"</span>,
+    <span class=hljs-attr>"cardinality"</span>: <span class=hljs-string>"1..1"</span>,
+    <span class=hljs-attr>"data_type"</span>: <span class=hljs-string>"file"</span>
+  }]
+}]</code></pre></div></div></div><h4 id=feeding-results-back-into-the-workflow-cyclesloops>2.5&ensp;Feeding results back into the workflow (cycles/loops)</h4><p>TODO</p><section id=sec-data-models><h3 id=data-models>3&ensp;Data models</h3><h4 id=workflows>3.1&ensp;Workflows</h4><p>TODO</p><h4 id=process-chains>3.2&ensp;Process chains</h4><p>TODO</p><h4 id=submissions>3.3&ensp;Submissions</h4><p>A <em>sub­mis­sion</em> is cre­ated when you sub­mit a <a href=#workflows>work­flow</a> through the <a href=#get-submissions><code>/workflows</code></a> en­d­point. It con­tains in­form­a­tion about the work­flow ex­e­cu­tion such as the start and end time as well as the cur­rent <a href=#submission-status>status</a>.</p><table class=table><thead><tr><th>Prop­erty</th><th>Type</th><th>De­scrip­tion</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>Unique sub­mis­sion iden­ti­fier</td></tr><tr><td>work­flow</td><td>ob­ject</td><td>The sub­mit­ted <a href=#workflows>work­flow</a></td></tr><tr><td>start­Time</td><td>string</td><td>An ISO 8601 timestamp de­not­ing the date and time when the work­flow ex­e­cu­tion was star­ted. May be <code>null</code> if the ex­e­cu­tion has not star­ted yet.</td></tr><tr><td>en­d­Time</td><td>string</td><td>An ISO 8601 timestamp de­not­ing the date and time when the work­flow ex­e­cu­tion fin­ished. May be <code>null</code> if the ex­e­cu­tion has not fin­ished yet.</td></tr><tr><td>status</td><td>string</td><td>The cur­rent <a href=#submission-status>status</a> of the sub­mis­sion</td></tr><tr><td>run­ning­Pro­cess­Chains</td><td>num­ber</td><td>The num­ber of <a href=#process-chains>pro­cess chains</a> cur­rently being ex­ecuted</td></tr><tr><td>can­celled­Pro­cess­Chains</td><td>num­ber</td><td>The num­ber of pro­cess chains that have been can­celled</td></tr><tr><td>suc­ceeded­Pro­cess­Chains</td><td>num­ber</td><td>The num­ber of pro­cess chains that have fin­ished suc­cess­fully</td></tr><tr><td>failed­Pro­cess­Chains</td><td>num­ber</td><td>The num­ber of pro­cess chains whose ex­e­cu­tion has failed</td></tr><tr><td>total­Pro­cess­Chains</td><td>num­ber</td><td>The cur­rent total num­ber of pro­cess chains in this sub­mis­sion. May in­crease dur­ing ex­e­cu­tion when new pro­cess chains are gen­er­ated.</td></tr><tr><td>res­ults</td><td>ob­ject</td><td>If <code>status</code> is <code>SUCCESS</code> or <code>PARTIAL_SUCCESS</code>, this prop­erty con­tains the list of work­flow res­ult files grouped by their out­put vari­able ID. Oth­er­wise, it is <code>null</code>.</td></tr><tr><td>er­rorMes­sage</td><td>string</td><td>If <code>status</code> is <code>ERROR</code>, this prop­erty con­tains a human-​readable error mes­sage. Oth­er­wise, it is <code>null</code>.</td></tr></tbody></table><div class=code-example><nav><div class="nav nav-tabs" id=nav-tab-submission role=tablist><a class="nav-item nav-link active" id=nav-yaml-tab-submission data-toggle=tab href=#nav-yaml-submission role=tab aria-controls=nav-yaml-submission aria-selected=true>YAML</a> <a class="nav-item nav-link" id=nav-json-tab-submission data-toggle=tab href=#nav-json-submission role=tab aria-controls=nav-json-submission aria-selected=false>JSON</a></div></nav><div class=tab-content id=nav-tabContent-submission><div class="tab-pane show active" id=nav-yaml-submission role=tabpanel aria-labelledby=nav-yaml-tab-submission><pre><code class=language-yaml><span class=hljs-attr>id:</span> <span class=hljs-string>aiq7eios7ubxglkcqx5a</span>
 <span class=hljs-attr>workflow:</span>
   <span class=hljs-attr>api:</span> <span class=hljs-number>4.0</span><span class=hljs-number>.0</span>
   <span class=hljs-attr>vars:</span>
