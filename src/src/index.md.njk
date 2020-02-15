@@ -83,7 +83,93 @@ and [service metadata](#servie-metadata), please read the section on
 
 #### Running two services in parallel
 
-TODO
+This example workflow consists of two actions that each copy a file. Since both
+actions do not depend on each other (i.e. they do not share any variable), Steep
+converts them to two independent process chains and executes them in parallel
+(as long as there are at least two agents available).
+
+The workflow defines four variables `inputFile1` and `inputFile1` point to the
+two files to be copied. `outputFile1` and `outputFile2` have no value. Steep
+will create unique values (output file names) for them during the workflow
+execution.
+
+The workflow then specifies two execute actions for the `copy` service. The
+service metadata of `copy` defines that this processing service has an input
+parameter `input_file` and an output parameter `output_file` both of which
+must be specified exactly one time (`cardinality` equals `1..1`).
+
+For each execute action, Steep assigns the input variables to the input
+parameters, generates file names for the output variables, and then executes the
+processing services.
+
+<p class="h5 mt-4 mb-4">Workflow:</p>
+
+{% codeExample "example-1-workflow" %}
+{
+  "api": "4.0.0",
+  "vars": [{
+    "id": "inputFile1",
+    "value": "example1.txt"
+  }, {
+    "id": "outputFile1"
+  }, {
+    "id": "inputFile2",
+    "value": "example2.txt"
+  }, {
+    "id": "outputFile2"
+  }],
+  "actions": [{
+    "type": "execute",
+    "service": "copy",
+    "inputs": [{
+      "id": "input_file",
+      "var": "inputFile1"
+    }],
+    "outputs": [{
+      "id": "output_file",
+      "var": "outputFile1"
+    }]
+  }, {
+    "type": "execute",
+    "service": "copy",
+    "inputs": [{
+      "id": "input_file",
+      "var": "inputFile2"
+    }],
+    "outputs": [{
+      "id": "output_file",
+      "var": "outputFile2"
+    }]
+  }]
+}
+{% endCodeExample %}
+
+<p class="h5 mt-5 mb-4">Service metadata:</p>
+
+{% codeExample "example-1-service-metadata" %}
+{
+  "id": "copy",
+  "name": "Copy",
+  "description": "Copy files",
+  "path": "cp",
+  "runtime": "other",
+  "parameters": [{
+    "id": "input_file",
+    "name": "Input file name",
+    "description": "Input file name",
+    "type": "input",
+    "cardinality": "1..1",
+    "data_type": "file"
+  }, {
+    "id": "output_file",
+    "name": "Output file name",
+    "description": "Output file name",
+    "type": "output",
+    "cardinality": "1..1",
+    "data_type": "file"
+  }]
+}
+{% endCodeExample %}
 
 #### Chaining two services
 
