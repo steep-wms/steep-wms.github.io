@@ -1,10 +1,15 @@
 $(function() {
+    var headroom;
+
     function currentScrollTop() {
         return Math.max($("html,body").scrollTop(), window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop);
     }
 
     // smooth scroll
     function scrollTo(endOffset, duration) {
+        // do not change state of main navbar while scrolling
+        headroom.freeze();
+
         var r = $("html,body");
         if (!requestAnimationFrame) {
             r.scrollTop(endOffset);
@@ -12,6 +17,7 @@ $(function() {
 
         var startOffset = currentScrollTop();
         if (startOffset == endOffset) {
+            headroom.unfreeze();
             return;
         }
 
@@ -28,6 +34,8 @@ $(function() {
             r.scrollTop(currentOffset);
             if (t < 1) {
                 requestAnimationFrame(step);
+            } else {
+                headroom.unfreeze();
             }
         }
 
@@ -37,16 +45,23 @@ $(function() {
     // hide navbar if not needed
     var navbar = document.querySelector(".navbar");
     var navbarSupportedContent = $("#main-navbar #navbarSupportedContent");
-    new Headroom(navbar, {
+    headroom = new Headroom(navbar, {
         offset: 100,
         onUnpin: function() {
             // hide navbar
             navbarSupportedContent.collapse("hide");
         }
-    }).init();
+    });
+    headroom.init();
 
     // smooth scroll to sections
     $('a[href^="/#"][role!="tab"],a[href^="#"][role!="tab"]').click(function() {
+        if (!$(this).hasClass("nav-link")) {
+            // unpin main navbar if we clicked on a link in the text and not
+            // on one in the navbar
+            headroom.unpin();
+        }
+
         var id = $.attr(this, "href");
         id = id.substr(id.indexOf("#"));
         // hide navbar before scrolling
@@ -75,6 +90,9 @@ $(function() {
     var codeExampleTabs = $('.code-example a[data-toggle="tab"]');
     codeExampleTabs.on("show.bs.tab", function (e) {
         if (!$(this).data("prevent-send-event")) {
+            // freeze state of main navbar
+            headroom.freeze();
+
             // save current scroll top
             savedClickedElement = $(this);
             savedScrollTop = currentScrollTop();
@@ -95,6 +113,11 @@ $(function() {
             var otherTabs = $('.code-example a[data-toggle="tab"][id^="' + newPrefix + '"][id!="' + newId + '"]');
             otherTabs.data("prevent-send-event", true);
             otherTabs.tab("show");
+
+            setTimeout(function() {
+                // unfreeze state of main navbar after all events have been processed
+                headroom.unfreeze();
+            }, 0);
         }
     });
 });
