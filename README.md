@@ -13,7 +13,7 @@ If you make changes to the source, rebuild the website and commit both the
 modified sources and the built artefacts together. Push the commit and wait
 for GitHub Pages to update.
 
-Build the website with:
+Build the website:
 
     cd src
     npm i
@@ -22,3 +22,10 @@ Build the website with:
 Run website in development mode:
 
     npm run dev
+
+Update GitHub pages:
+
+    npm run deploy
+    git add -A
+    git commit
+    git push
