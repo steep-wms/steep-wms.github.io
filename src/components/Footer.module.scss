@@ -33,7 +33,37 @@ footer {
       color: #fff;
     }
 
-    @include media-breakpoint-down(sm) {
+    .footer-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      @media (max-width: $md) {
+        flex-direction: column;
+      }
+    }
+
+    .logo {
+      max-width: 25%;
+
+      @media (max-width: $xl) {
+        max-width: 33%;
+      }
+
+      @media (max-width: $md) {
+        max-width: 100%;
+      }
+    }
+
+    .copyright {
+      max-width: 50%;
+
+      @media (max-width: $md) {
+        max-width: 95%;
+      }
+    }
+
+    @media (max-width: $md) {
       text-align: center;
 
       .copyright {

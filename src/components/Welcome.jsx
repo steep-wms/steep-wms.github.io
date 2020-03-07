@@ -9,10 +9,8 @@ export default () => (
           <div className="slogan">Steep is a Scientific Workflow
               Management System made for the Cloud</div>
           <div className="buttons">
-            <a href="/#download-and-get-started">
-              <button type="button" className="btn btn-primary btn-lg">
-                <Book className="feather" /> Get started ...
-              </button>
+            <a href="/#download-and-get-started" className="btn btn-primary">
+              <Book className="feather" /> Get started ...
             </a>
           </div>
         </div>

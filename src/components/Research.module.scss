@@ -11,7 +11,7 @@
       padding-top: 0;
     }
 
-    @include media-breakpoint-up(md) {
+    @media (min-width: $md) {
       padding-left: 0;
       padding-right: 0;
     }
@@ -29,7 +29,7 @@
       border: 1px solid #eee;
     }
 
-    @include media-breakpoint-up(md) {
+    @media (min-width: $md) {
       display: block;
     }
   }

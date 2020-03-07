@@ -1,54 +1,113 @@
+@import "normalize.css/normalize";
 @import "highlight.js/styles/zenburn";
 
-@import "./variables";
 @import "./mixins";
 
-@import "bootstrap/scss/_root";
-@import "bootstrap/scss/_reboot";
-@import "bootstrap/scss/_type";
-@import "bootstrap/scss/_images";
-@import "bootstrap/scss/_code";
-@import "bootstrap/scss/_grid";
-// @import "bootstrap/scss/_tables";
-// @import "bootstrap/scss/_forms";
-@import "bootstrap/scss/_buttons";
-@import "bootstrap/scss/_transitions";
-// @import "bootstrap/scss/_dropdown";
-// @import "bootstrap/scss/_button-group";
-// @import "bootstrap/scss/_input-group";
-// @import "bootstrap/scss/_custom-forms";
-@import "bootstrap/scss/_nav";
-@import "bootstrap/scss/_navbar";
-// @import "bootstrap/scss/_card";
-// @import "bootstrap/scss/_breadcrumb";
-// @import "bootstrap/scss/_pagination";
-// @import "bootstrap/scss/_badge";
-// @import "bootstrap/scss/_jumbotron";
-// @import "bootstrap/scss/_alert";
-// @import "bootstrap/scss/_progress";
-// @import "bootstrap/scss/_media";
-// @import "bootstrap/scss/_list-group";
-// @import "bootstrap/scss/_close";
-// @import "bootstrap/scss/_toasts";
-// @import "bootstrap/scss/_modal";
-// @import "bootstrap/scss/_tooltip";
-// @import "bootstrap/scss/_popover";
-// @import "bootstrap/scss/_carousel";
-// @import "bootstrap/scss/_spinners";
-@import "bootstrap/scss/_utilities";
-@import "bootstrap/scss/_print";
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: $font-size-base;
+  font-weight: 300;
+  line-height: $line-height-base;
+  color: $gray-700;
+}
 
 h1, h2, h3, h4, h5 {
   margin: 2rem 0 2rem 0;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: $font-size-base * 2.5;
 }
 
 h2 {
+  font-size: $font-size-base * 2;
   margin-bottom: 4rem;
   padding-top: 7rem;
   text-align: center;
 }
 
+h3 {
+  font-size: $font-size-base * 1.75;
+}
+
+h4 {
+  font-size: $font-size-base * 1.5;
+}
+
+h5 {
+  font-size: $font-size-base * 1.25;
+}
+
+h6 {
+  font-size: $font-size-base;
+  font-weight: 400;
+}
+
+.container {
+  width: 100%;
+  padding-right: $spacer;
+  padding-left: $spacer;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media (min-width: $sm) {
+    max-width: 540px;
+  }
+
+  @media (min-width: $md) {
+    max-width: 720px;
+  }
+
+  @media (min-width: $lg) {
+    max-width: 920px;
+  }
+
+  @media (min-width: $xl) {
+    max-width: 1100px;
+  }
+}
+
+.img-fluid {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: $primary;
+
+  &:hover {
+    text-decoration: underline;
+    color: darken($primary, 10%);
+  }
+}
+
 .btn {
+  display: inline-block;
+  border-radius: $border-radius;
+  padding: $spacer * 0.5 $spacer * 1.5;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+
+  background-color: $gray-600;
+  color: #fff;
+
+  &:hover {
+    background-color: darken($gray-600, 10%);
+    text-decoration: none;
+    color: #fff;
+  }
+
   .feather {
     margin-bottom: 4px;
   }
@@ -60,38 +119,22 @@ h2 {
   }
 }
 
-.navbar-light {
-  padding-top: 1.5em;
+img {
+  vertical-align: middle;
+}
 
-  .navbar-nav .nav-link {
-    font-family: "Roboto Condensed", sans-serif;
-    font-weight: 400;
+svg {
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.btn-primary {
+  background-color: $primary;
+  color: #fff;
+
+  &:hover {
+    background-color: darken($primary, 10%);
   }
-}
-
-.navbar-collapse.show, .navbar-collapse.collapsing {
-  background-color: #fff;
-  padding: 1em;
-  border-radius: .25rem;
-}
-
-.navbar.headroom {
-  will-change: transform, background-color;
-  transition: transform 200ms linear,background-color 200ms linear 200ms,padding-top 100ms;
-}
-.navbar.headroom--top.headroom-not-collapse {
-  transition: transform 200ms linear,background-color 200ms linear 0ms;
-  background-color: $light !important;
-}
-.navbar.headroom--not-top, {
-  background-color: $light !important;
-  padding-top: .5em;
-}
-.headroom--pinned {
-  transform: translateY(0%);
-}
-.headroom--unpinned {
-  transform: translateY(-100%);
 }
 
 .container-smaller {
@@ -104,6 +147,15 @@ h2 {
 
 .page-content {
   margin-top: 7rem;
+}
+
+code {
+  font-size: .93em;
+  color: #cc6b6b;
+}
+
+code, pre {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 .hljs, pre {

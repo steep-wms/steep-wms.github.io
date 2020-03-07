@@ -1,37 +1,37 @@
-@import "bootstrap/scss/_mixins";
+@import "./variables";
 
 @mixin responsive-property($property, $xl-value) {
-  @include media-breakpoint-up(xs) {
+  @media (min-width: $xs) {
     #{$property}: $xl-value * 0.85;
   }
-  @include media-breakpoint-up(sm) {
+  @media (min-width: $sm) {
     #{$property}: $xl-value * 0.89;
   }
-  @include media-breakpoint-up(md) {
+  @media (min-width: $md) {
     #{$property}: $xl-value * 0.93;
   }
-  @include media-breakpoint-up(lg) {
+  @media (min-width: $lg) {
     #{$property}: $xl-value * 0.97;
   }
-  @include media-breakpoint-up(xl) {
+  @media (min-width: $xl) {
     #{$property}: $xl-value;
   }
 }
 
 @mixin responsive-property-smaller($property, $xl-value) {
-  @include media-breakpoint-up(xs) {
+  @media (min-width: $xs) {
     #{$property}: $xl-value * 0.55;
   }
-  @include media-breakpoint-up(sm) {
+  @media (min-width: $sm) {
     #{$property}: $xl-value * 0.67;
   }
-  @include media-breakpoint-up(md) {
+  @media (min-width: $md) {
     #{$property}: $xl-value * 0.79;
   }
-  @include media-breakpoint-up(lg) {
+  @media (min-width: $lg) {
     #{$property}: $xl-value * 0.91;
   }
-  @include media-breakpoint-up(xl) {
+  @media (min-width: $xl) {
     #{$property}: $xl-value;
   }
 }

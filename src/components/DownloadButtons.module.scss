@@ -7,9 +7,10 @@
   .btn {
     margin-bottom: 1rem;
     margin-right: .5rem;
+    font-weight: 400;
   }
 
-  @include media-breakpoint-down(md) {
+  @media (max-width: $md) {
     text-align: center;
   }
 }
