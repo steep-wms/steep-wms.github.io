@@ -55,6 +55,7 @@ class ScrollLink extends React.Component {
     if (target) {
       e.preventDefault();
       scrollTo(target.offsetTop, 500);
+      window.location.href = "#" + id;
     }
   }
 

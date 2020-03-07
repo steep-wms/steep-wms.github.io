@@ -6,30 +6,37 @@ import getScrollTop from "./lib/get-scroll-top";
 import { AUTO_SCROLL_START, AUTO_SCROLL_END } from "./lib/events";
 
 class NavBar extends React.Component {
-  currentScrollTop = getScrollTop();
+  currentScrollTop = -1;
   ref = React.createRef();
 
   state = {
-    top: true,
+    top: undefined,
     leaving: false,
-    pinned: false
+    pinned: false,
+    collapse: false
   };
 
   autoScrolling = false;
 
   componentDidMount() {
-    let newScrollTop = getScrollTop();
-    let height = this.ref.current.clientHeight;
-    let isTop = newScrollTop <= height;
-    if (!isTop) {
-      this.setState({
-        top: false,
-        pinned: true
-      });
-    }
     window.addEventListener("scroll", this.onScroll);
     window.addEventListener(AUTO_SCROLL_START, this.onAutoScrollStart);
     window.addEventListener(AUTO_SCROLL_END, this.onAutoScrollEnd);
+
+    // enable component after 100ms to give browser some time to scroll
+    // to the right place
+    setTimeout(() => {
+      let newScrollTop = getScrollTop();
+      this.currentScrollTop = newScrollTop;
+      let height = this.ref.current.clientHeight;
+      let isTop = newScrollTop <= height;
+      if (!isTop) {
+        this.setState({
+          top: false,
+          pinned: true
+        });
+      }
+    }, 100);
   }
 
   componentWillUnmount() {
@@ -40,14 +47,37 @@ class NavBar extends React.Component {
 
   onAutoScrollStart = () => {
     this.autoScrolling = true;
+    this.setState(state => ({
+      top: false,
+      pinned: true,
+      collapse: false
+    }));
   }
 
   onAutoScrollEnd = () => {
-    this.autoScrolling = false;
+    setTimeout(() => {
+      this.autoScrolling = false;
+      this.setState(state => ({
+        top: false,
+        pinned: true,
+        collapse: false
+      }));
+    }, 100);
+  }
+
+  onToggle = () => {
+    this.setState(state => ({
+      collapse: !state.collapse
+    }));
   }
 
   onScroll = (e) => {
     let newScrollTop = getScrollTop();
+
+    if (this.currentScrollTop < 0) {
+      // not enabled yet
+      return;
+    }
 
     if (this.autoScrolling) {
       // do not change state of navbar while we are auto-scrolling
@@ -72,7 +102,8 @@ class NavBar extends React.Component {
     if (!isTop && this.state.top && !this.state.leaving) {
       // add .leaving class so there won't be a transition to translateY(-100%)
       this.setState({
-        leaving: true
+        leaving: true,
+        collapse: false
       });
     } else {
       this.setState({
@@ -86,7 +117,8 @@ class NavBar extends React.Component {
       let diff = newScrollTop - this.currentScrollTop;
       if (this.state.pinned && diff > 2) {
         this.setState({
-          pinned: false
+          pinned: false,
+          collapse: false
         });
       } else if (!this.state.pinned && diff < -2) {
         this.setState({
@@ -99,23 +131,31 @@ class NavBar extends React.Component {
   }
 
   render() {
-    let top = this.state.top ? "top" : "not-top";
+    let top;
+    if (this.state.top === undefined) {
+      top = "";
+    } else {
+      top = this.state.top ? "top" : "not-top";
+    }
     let leaving = this.state.leaving ? "leaving" : "";
     let pinned = this.state.pinned ? "pinned" : "not-pinned";
+    let collapse = this.state.collapse ? "collapse" : "";
     return (
-      <nav className={`navbar ${top} ${leaving} ${pinned}`}
+      <nav className={`navbar ${top} ${leaving} ${pinned} ${collapse}`}
           id="main-navbar" ref={this.ref}>
         <div className="container">
-          <Link href="/">
-            <a className="navbar-brand">
-              <img src="/images/steep-logo.svg" width="200" />
-            </a>
-          </Link>
-          <button type="button">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+          <div className="head">
+            <Link href="/">
+              <a className="navbar-brand">
+                <img src="/images/steep-logo.svg" width="200" />
+              </a>
+            </Link>
+            <div className="button" onClick={this.onToggle}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
           <ScrollLink className="nav-item" href="/#features">Features</ScrollLink>
           <ScrollLink className="nav-item" href="/#download-and-get-started">Download</ScrollLink>
           <ScrollLink className="nav-item" href="/#documentation">Docs</ScrollLink>

@@ -1,5 +1,6 @@
 import "./Welcome.module.scss";
 import { Book } from "react-feather";
+import ScrollLink from "./ScrollLink";
 
 export default () => (
   <div id="welcome" className="welcome">
@@ -9,9 +10,9 @@ export default () => (
           <div className="slogan">Steep is a Scientific Workflow
               Management System made for the Cloud</div>
           <div className="buttons">
-            <a href="/#download-and-get-started" className="btn btn-primary">
+            <ScrollLink href="/#download-and-get-started" className="btn btn-primary">
               <Book className="feather" /> Get started ...
-            </a>
+            </ScrollLink>
           </div>
         </div>
         <div className="welcome-right">
