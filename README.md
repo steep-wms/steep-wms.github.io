@@ -12,3 +12,13 @@ correctly.
 If you make changes to the source, rebuild the website and commit both the
 modified sources and the built artefacts together. Push the commit and wait
 for GitHub Pages to update.
+
+Build the website with:
+
+    cd src
+    npm i
+    npm run build
+
+Run website in development mode:
+
+    npm run dev

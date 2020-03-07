@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "next",
-    "build": "next build && next export",
+    "build": "next build && next export && rm -rf ../_next ../images ../imprint ../privacy ../index.html && cp -r out/_next out/images out/imprint out/privacy out/index.html ..",
     "start": "next start"
   },
   "repository": {
