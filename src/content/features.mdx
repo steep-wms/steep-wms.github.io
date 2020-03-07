@@ -1,0 +1,98 @@
+import Feature from "../components/Feature";
+import Features from "../components/Features";
+
+import * as icons from "react-feather";
+
+<Features title="Key features">
+  <Feature icon={<icons.Cloud />} title="Distributed">
+
+Dynamic and scalable execution of data-driven workflows in a distributed
+environment such as the Cloud.
+
+  </Feature>
+  <Feature icon={<icons.RotateCw />} title="Cyclic workflow graphs">
+
+Support for cyclic workflow graphs without a priori runtime knowledge.
+Workflows are converted incrementally and on-demand to so-called process
+chains.
+
+  </Feature>
+  <Feature icon={<icons.Clock />} title="Capability-based scheduling">
+
+Optimized, capability-based process chain scheduling through
+parallelization and distribution to multiple agents (i.e. Steep instances
+running in the Cloud or in a cluster).
+
+  </Feature>
+  <Feature icon={<icons.Repeat />} title="Automatic failover">
+
+Crashed workflows can be resumed without loss of information (even without
+a database).
+
+  </Feature>
+  <Feature icon={<icons.Cpu />} title="Microservice integration">
+
+Service metadata allows microservices (also called processing services)
+with almost arbitrary interfaces to be integrated/executed.
+
+  </Feature>
+  <Feature icon={<icons.Target />} title="Runtime environments">
+
+Built-in runtime environments for executable microservices that are
+provided as binaries or Docker images.
+
+  </Feature>
+  <Feature icon={<icons.Package />} title="Plugins">
+
+Plugins let you modify generated process chains, the way agents collect
+results, or add custom runtime environments (e.g. Python, AWS Lambda, Web
+Processing Services).
+
+  </Feature>
+  <Feature icon={<icons.Database />} title="Optional databases">
+
+If you want your workflows to be persisted in a database over a long
+period of time, Steep offers support for [MongoDB](https://www.mongodb.com/)
+and [PostgreSQL](https://www.postgresql.org/).
+
+  </Feature>
+  <Feature icon={<icons.Monitor />} title="HTTP and web interfaces">
+
+Steep has a REST-like HTTP interface, a web-based user interface for
+monitoring, and can provide metrics to [Prometheus](https://prometheus.io/).
+
+  </Feature>
+  <Feature icon={<icons.Grid />} title="Kubernetes">
+
+Tight integration with [Kubernetes](https://kubernetes.io/) enables optimized
+resource usage through auto-scaling.
+
+  </Feature>
+  <Feature icon={<icons.Server />} title="OpenStack">
+
+The [OpenStack](https://www.openstack.org/) Cloud Connector allows virtual
+machines hosting additional Steep agents to be created on demand.
+
+  </Feature>
+  <Feature icon={<icons.TrendingUp />} title="Scalability">
+
+Its asynchronous event-driven architecture allows Steep to scale
+horizontally across multiple machines in your cluster and to support
+complex dynamic workflows with thousands of tasks.
+
+  </Feature>
+  <Feature icon={<icons.Truck />} title="Production-ready">
+
+Steep is very reliable and has been used in production for many years to
+execute workflows from various domains. The source code has a very high
+test coverage.
+
+  </Feature>
+  <Feature icon={<icons.GitHub />} title="Open-Source">
+
+Steep is free and open-source. It is released under the
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0). The
+code can be found on [GitHub](https://github.com/steep-wms/steep).
+
+  </Feature>
+</Features>

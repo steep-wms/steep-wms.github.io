@@ -1,0 +1,37 @@
+@import "bootstrap/scss/_mixins";
+
+@mixin responsive-property($property, $xl-value) {
+  @include media-breakpoint-up(xs) {
+    #{$property}: $xl-value * 0.85;
+  }
+  @include media-breakpoint-up(sm) {
+    #{$property}: $xl-value * 0.89;
+  }
+  @include media-breakpoint-up(md) {
+    #{$property}: $xl-value * 0.93;
+  }
+  @include media-breakpoint-up(lg) {
+    #{$property}: $xl-value * 0.97;
+  }
+  @include media-breakpoint-up(xl) {
+    #{$property}: $xl-value;
+  }
+}
+
+@mixin responsive-property-smaller($property, $xl-value) {
+  @include media-breakpoint-up(xs) {
+    #{$property}: $xl-value * 0.55;
+  }
+  @include media-breakpoint-up(sm) {
+    #{$property}: $xl-value * 0.67;
+  }
+  @include media-breakpoint-up(md) {
+    #{$property}: $xl-value * 0.79;
+  }
+  @include media-breakpoint-up(lg) {
+    #{$property}: $xl-value * 0.91;
+  }
+  @include media-breakpoint-up(xl) {
+    #{$property}: $xl-value;
+  }
+}

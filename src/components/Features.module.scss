@@ -1,0 +1,17 @@
+@import "../css/variables";
+
+#features {
+  .col-md {
+    font-size: $font-size-sm;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  h6 {
+    text-align: left;
+  }
+
+  p {
+    margin: 0;
+  }
+}

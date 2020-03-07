@@ -1,0 +1,89 @@
+@import "../css/variables";
+@import "../css/mixins";
+
+.welcome {
+  background: #f5f8ff;
+  height: 100vh;
+  background-image: url("/images/welcome-background.svg");
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .welcome-row {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1em;
+
+    @media (orientation: portrait) {
+      flex-direction: column-reverse;
+    }
+  }
+
+  .welcome-left {
+    max-width: 580px;
+    display: flex;
+    flex-direction: column;
+
+    @include media-breakpoint-down(md) {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (orientation: portrait) {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .slogan {
+      @include responsive-property-smaller(font-size, $font-size-base * 2.2);
+      font-family: "Roboto Condensed", sans-serif;
+      font-weight: 400;
+      color: $gray-800;
+      @include responsive-property(line-height, 1.5em);
+      flex: 1;
+
+      @media (orientation: landscape) {
+        @include media-breakpoint-down(md) {
+          margin-top: 3rem;
+        }
+      }
+    }
+
+    .buttons {
+      :global .btn {
+        font-size: $font-size-base;
+        font-family: "Roboto Condensed", sans-serif;
+        font-weight: 300;
+        margin-top: 2rem;
+      }
+    }
+  }
+
+  .welcome-right {
+    flex: 1;
+    text-align: right;
+
+    img {
+      max-width: 90%;
+    }
+
+    @media (orientation: landscape) {
+      @include media-breakpoint-down(md) {
+        display: none;
+      }
+    }
+
+    @media (orientation: portrait) {
+      text-align: center;
+
+      img {
+        max-width: 80%;
+        margin: 4rem 0 2rem 0;
+      }
+    }
+  }
+}

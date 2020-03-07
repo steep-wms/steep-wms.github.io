@@ -1,0 +1,22 @@
+import Layout from "../components/layouts/Index";
+import Welcome from "../components/Welcome";
+
+import Features from "../content/features.mdx";
+import GetStarted from "../content/get-started.mdx";
+import Docs from "../content/docs.mdx";
+import About from "../content/about.mdx";
+
+export default Layout;
+
+export const meta = {
+  title: "Steep Workflow Management System"
+};
+
+<Welcome />
+<Features />
+
+<div className="container container-smaller main-content">
+  <GetStarted />
+  <Docs />
+  <About />
+</div>
