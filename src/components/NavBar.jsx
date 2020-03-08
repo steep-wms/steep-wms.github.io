@@ -3,66 +3,42 @@ import Link from "next/link";
 import ScrollLink from "./ScrollLink";
 import { GitHub } from "react-feather";
 import getScrollTop from "./lib/get-scroll-top";
-import { AUTO_SCROLL_START, AUTO_SCROLL_END } from "./lib/events";
+import GlobalContext from "./lib/global-context";
 
 class NavBar extends React.Component {
+  static contextType = GlobalContext;
+
   currentScrollTop = -1;
   ref = React.createRef();
 
   state = {
-    top: undefined,
+    top: true,
     leaving: false,
     pinned: false,
     collapse: false
   };
 
-  autoScrolling = false;
-
   componentDidMount() {
     window.addEventListener("scroll", this.onScroll);
-    window.addEventListener(AUTO_SCROLL_START, this.onAutoScrollStart);
-    window.addEventListener(AUTO_SCROLL_END, this.onAutoScrollEnd);
 
     // enable component after 100ms to give browser some time to scroll
     // to the right place
     setTimeout(() => {
+      if (!this.ref.current) {
+        // component has already been unmounted again
+        return;
+      }
+
+      let height = this.ref.current.clientHeight;
+      this.context.setNavBarHeight(height);
+
       let newScrollTop = getScrollTop();
       this.currentScrollTop = newScrollTop;
-      let height = this.ref.current.clientHeight;
-      let isTop = newScrollTop <= height;
-      if (!isTop) {
-        this.setState({
-          top: false,
-          pinned: true
-        });
-      }
     }, 100);
   }
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this.onScroll);
-    window.removeEventListener(AUTO_SCROLL_START, this.onAutoScrollStart);
-    window.removeEventListener(AUTO_SCROLL_END, this.onAutoScrollEnd);
-  }
-
-  onAutoScrollStart = () => {
-    this.autoScrolling = true;
-    this.setState(state => ({
-      top: false,
-      pinned: true,
-      collapse: false
-    }));
-  }
-
-  onAutoScrollEnd = () => {
-    setTimeout(() => {
-      this.autoScrolling = false;
-      this.setState(state => ({
-        top: false,
-        pinned: true,
-        collapse: false
-      }));
-    }, 100);
   }
 
   onToggle = () => {
@@ -79,9 +55,16 @@ class NavBar extends React.Component {
       return;
     }
 
-    if (this.autoScrolling) {
-      // do not change state of navbar while we are auto-scrolling
+    if (this.context.autoScrolling) {
+      // do not change 'pinned' state of navbar while we are auto-scrolling
       this.currentScrollTop = newScrollTop;
+
+      // but toggle 'collapse' state
+      if (this.state.collapse) {
+        this.setState({
+          collapse: false
+        });
+      }
       return;
     }
 
@@ -97,6 +80,7 @@ class NavBar extends React.Component {
       this.setState({
         pinned: false
       });
+      this.context.setNavBarPinned(false);
     }
 
     if (!isTop && this.state.top && !this.state.leaving) {
@@ -120,10 +104,12 @@ class NavBar extends React.Component {
           pinned: false,
           collapse: false
         });
+        this.context.setNavBarPinned(false);
       } else if (!this.state.pinned && diff < -2) {
         this.setState({
           pinned: true
         });
+        this.context.setNavBarPinned(true);
       }
     }
 
@@ -156,7 +142,7 @@ class NavBar extends React.Component {
               <span></span>
             </div>
           </div>
-          <ScrollLink className="nav-item" href="/#features">Features</ScrollLink>
+          <ScrollLink className="nav-item" href="/#key-features">Features</ScrollLink>
           <ScrollLink className="nav-item" href="/#download-and-get-started">Download</ScrollLink>
           <ScrollLink className="nav-item" href="/#documentation">Docs</ScrollLink>
           <ScrollLink className="nav-item" href="/#about">About</ScrollLink>
