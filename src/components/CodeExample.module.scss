@@ -1,0 +1,53 @@
+@import "../css/variables";
+
+.code-example {
+  margin: $spacer * 2 0 $spacer * 3 0;
+
+  .code-example-title {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    padding: $spacer / 2 $spacer;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    border: 1px solid $gray-300;
+    border-bottom: none;
+    z-index: 0;
+    transition: background-color 0.15s ease-in-out;
+
+    margin-right: -1px;
+    &:not(:first-child) {
+      margin-left: -1px;
+    }
+
+    &.active {
+      transition: none;
+      background-color: $gray-700;
+      border-color: $gray-700;
+      color: #fff;
+      z-index: 1;
+    }
+
+    &:hover:not(.active) {
+      background-color: $gray-300;
+    }
+  }
+
+  .code-example-page {
+    pre {
+      display: none;
+      margin-top: 0;
+      border-top-left-radius: 0;
+    }
+
+    code {
+      margin-top: 0;
+    }
+
+    &.active {
+      pre {
+        display: block;
+      }
+    }
+  }
+}
