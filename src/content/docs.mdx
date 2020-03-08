@@ -1,4 +1,44 @@
+import ScrollLink from "../components/ScrollLink";
+import "./docs.scss";
+
 ## Documentation
+
+In this section, we describe the individual features of Steep. The
+documentation always applies to the latest version.
+
+###### Table of contents
+
+<div class="table-of-contents"></div>
+
+### How does Steep work?
 
 TODO
 
+### Example workflows
+
+In this section, we describe example workflows covering patterns we regularly
+see in real-world use cases. For each workflow, we also provide the required
+service metadata. For more information about the <ScrollLink href="#workflows">workflow model</ScrollLink>
+and <ScrollLink href="#service-metadata">service metadata</ScrollLink>, please read
+the section on <ScrollLink href="#data-models">data models</ScrollLink>.
+
+#### Running two services in parallel
+
+This example workflow consists of two actions that each copy a file. Since both
+actions do not depend on each other (i.e. they do not share any variable), Steep
+converts them to two independent process chains and executes them in parallel
+(as long as there are at least two agents available).
+
+The workflow defines four variables. `inputFile1` and `inputFile1` point to the
+two files to be copied. `outputFile1` and `outputFile2` have no value. Steep
+will create unique values (output file names) for them during the workflow
+execution.
+
+The workflow then specifies two execute actions for the `copy` service. The
+service metadata of `copy` defines that this processing service has an input
+parameter `input_file` and an output parameter `output_file`, both of which
+must be specified exactly one time (`cardinality` equals `1..1`).
+
+For each execute action, Steep assigns the input variables to the input
+parameters, generates file names for the output variables, and then executes the
+processing services.

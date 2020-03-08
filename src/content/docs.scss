@@ -1,0 +1,19 @@
+#table-of-contents {
+  margin-bottom: 0;
+}
+
+.toc {
+  ol {
+    list-style-type: none;
+    counter-reset: item;
+
+    li:before {
+      content: counters(item, ".") "\2002";
+      counter-increment: item;
+    }
+
+    &.toc-level-1 {
+      padding-left: 0;
+    }
+  }
+}
