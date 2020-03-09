@@ -1,12 +1,10 @@
 const State = React.createContext();
 const Dispatch = React.createContext()
 
-const reducer = (state, autoScrolling) => ({
-  autoScrolling
-});
+const reducer = (state, autoScrolling) => autoScrolling;
 
 const Provider = ({ children }) => {
-  const [state, dispatch] = React.useReducer(reducer, { autoScrolling: false });
+  const [state, dispatch] = React.useReducer(reducer, false);
 
   return (
     <State.Provider value={state}>

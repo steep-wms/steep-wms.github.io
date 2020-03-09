@@ -26,7 +26,7 @@ export default () => {
       currentScrollTop.current = newScrollTop;
     }
 
-    if (autoScrolling.autoScrolling) {
+    if (autoScrolling) {
       // do not change 'pinned' state of navbar while we are auto-scrolling
       currentScrollTop.current = newScrollTop;
 
