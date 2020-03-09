@@ -1,3 +1,5 @@
+@import "../css/variables";
+
 #table-of-contents {
   margin-bottom: 0;
 }
@@ -15,5 +17,57 @@
 
   & > ol:first-child {
     padding-left: 0;
+  }
+}
+
+table {
+  border-collapse: collapse;
+
+  th, td {
+    margin: 0;
+    padding: $spacer / 2;
+    text-align: left;
+    border-bottom: 1px solid $gray-300;
+    vertical-align: top;
+  }
+
+  th {
+    border-bottom: 2px solid $gray-300;
+  }
+
+  td:first-child, td:nth-child(2):not(:last-child) {
+    hyphens: none;
+  }
+
+  th, td:first-child {
+    hyphens: none;
+    white-space: nowrap;
+  }
+
+  td:first-child {
+    font-weight: 700;
+
+    em {
+      font-weight: 300;
+      color: $gray-600;
+    }
+  }
+
+  td:last-child {
+    text-align: justify;
+  }
+
+  td:first-child, th:first-child {
+    padding-left: 0;
+  }
+
+  td:last-child, th:last-child {
+    padding-right: 0;
+  }
+
+  tr:last-child {
+    td {
+      border-bottom: none;
+    }
   }
 }

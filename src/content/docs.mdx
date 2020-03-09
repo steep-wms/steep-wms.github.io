@@ -481,3 +481,208 @@ The final `join` service merges these copies into a single file `outputFile2`.
 #### Feeding results back into the workflow (cycles/loops)
 
 TODO
+
+### Data models
+
+#### Workflows
+
+TODO
+
+#### Process chains
+
+TODO
+
+#### Submissions
+
+A *submission* is created when you submit a <ScrollLink href="#workflows">workflow</ScrollLink>
+through the <ScrollLink href="#get-submissions">`/workflows`</ScrollLink> endpoint. It contains information
+about the workflow execution such as the start and end time as well as the
+current <ScrollLink href="#submission-status">status</ScrollLink>.
+
+| Property               | Type   | Description
+| ---------------------- | ------ | -----------
+| id                     | string | Unique submission identifier
+| workflow               | object | The submitted <ScrollLink href="#workflows">workflow</ScrollLink>
+| startTime              | string | An ISO 8601 timestamp denoting the date and time when the workflow execution was started. May be `null` if the execution has not started yet.
+| endTime                | string | An ISO 8601 timestamp denoting the date and time when the workflow execution finished. May be `null` if the execution has not finished yet.
+| status                 | string | The current <ScrollLink href="#submission-status">status</ScrollLink> of the submission
+| runningProcessChains   | number | The number of <ScrollLink href="#process-chains">process chains</ScrollLink> currently being executed
+| cancelledProcessChains | number | The number of process chains that have been cancelled
+| succeededProcessChains | number | The number of process chains that have finished successfully
+| failedProcessChains    | number | The number of process chains whose execution has failed
+| totalProcessChains     | number | The current total number of process chains in this submission. May increase during execution when new process chains are generated.
+| results                | object | If `status` is `SUCCESS` or `PARTIAL_SUCCESS`, this property contains the list of workflow result files grouped by their output variable ID. Otherwise, it is `null`.
+| errorMessage           | string | If `status` is `ERROR`, this property contains a human-readable error message. Otherwise, it is `null`.
+
+<CodeExample>
+
+```json code-example
+{
+  "id": "aiq7eios7ubxglkcqx5a",
+  "workflow": {
+    "api": "4.0.0",
+    "vars": [{
+      "id": "myInputFile",
+      "value": "/data/input.txt"
+    }, {
+      "id": "myOutputFile"
+    }],
+    "actions": [{
+      "type": "execute",
+      "service": "cp",
+      "inputs": [{
+        "id": "input_file",
+        "var": "myInputFile"
+      }],
+      "outputs": [{
+        "id": "output_file",
+        "var": "myOutputFile",
+        "store": true
+      }],
+      "parameters": []
+    }]
+  },
+  "startTime": "2020-02-13T15:38:58.719382Z",
+  "endTime": "2020-02-13T15:39:00.807715Z",
+  "status": "SUCCESS",
+  "runningProcessChains": 0,
+  "cancelledProcessChains": 0,
+  "succeededProcessChains": 1,
+  "failedProcessChains": 0,
+  "totalProcessChains": 1,
+  "results": {
+    "myOutputFile": [
+      "/data/out/aiq7eios7ubxglkcqx5a/aiq7hygs7ubxglkcrf5a"
+    ]
+  }
+}
+```
+
+</CodeExample>
+
+#### Submission status
+
+The following table shows the statuses a <ScrollLink href="#submissions">submission</ScrollLink>
+can have:
+
+| Status          | Description
+| --------------- | -----------
+| ACCEPTED        | The submission has been accepted by Steep but execution has not started yet
+| RUNNING         | The submission is currently being executed
+| CANCELLED       | The submission was cancelled
+| SUCCESS         | The execution of the submission finished successfully
+| PARTIAL_SUCCESS | The submission was executed completely but one or more process chains failed
+| ERROR           | The execution of the submission failed
+
+#### Process chain status
+
+The following table shows the statuses a <ScrollLink href="#process-chains">process chain</ScrollLink>
+can have:
+
+| Status          | Description
+| --------------- | -----------
+| REGISTERED      | The process chain has been created but execution has not started yet
+| RUNNING         | The process chain is currently being executed
+| CANCELLED       | The execution of the process chain was cancelled
+| SUCCESS         | The process chain was executed successfully
+| ERROR           | The execution of the process chain failed
+
+#### Service metadata
+
+Service metadata is used to describe the interface of a processing service so
+it can be executed by Steep.
+
+| Property                              | Type   | Description
+| ------------------------------------- | ------ | -----------
+| id<br/>*(required)*                    | string | A unique service identifier
+| name<br/>*(required)*                  | string | A human-readable name
+| description<br/>*(required)*           | string | A human-readable description
+| path<br/>*(required)*                  | string | Relative path to the service executable in the service artefact (or a Docker image if `runtime` equals `docker`)
+| runtime<br/>*(required)*               | string | The <ScrollLink href="#runtime-environments">runtime environment</ScrollLink>
+| parameters<br/>*(required)*            | array  | A list of <ScrollLink href="#service-parameters">service parameters</ScrollLink>
+| runtime_args<br/>*(optional)*          | array  | An optional list of <ScrollLink href="#runtime-arguments">arguments</ScrollLink> to pass to the runtime
+| required_capabilities<br/>*(optional)* | array  | A set of strings specifying capabilities a host system must provide to be able to execute this service. See also <ScrollLink href="#setups">setups</ScrollLink>.
+
+<CodeExample>
+
+```json code-example
+{
+  "id": "cp",
+  "name": "cp",
+  "description": "Copies files",
+  "path": "cp",
+  "runtime": "other",
+  "parameters": [{
+    "id": "no_overwrite",
+    "name": "No overwrite",
+    "description": "Do not overwrite existing file",
+    "type": "argument",
+    "cardinality": "1..1",
+    "label": "-n",
+    "data_type": "boolean",
+    "default": false
+  }, {
+    "id": "input_file",
+    "name": "Input file name",
+    "description": "Input file name",
+    "type": "input",
+    "cardinality": "1..1",
+    "data_type": "file"
+  }, {
+    "id": "output_file",
+    "name": "Output file name",
+    "description": "Output file name",
+    "type": "output",
+    "cardinality": "1..1",
+    "data_type": "file"
+  }]
+}
+```
+
+</CodeExample>
+
+#### Runtime environments
+
+Steep provides a set of default runtime environments that define how
+processing services are executed. More environments can be added through <ScrollLink href="#custom-runtime-environments">runtime environment plugins</ScrollLink>.
+
+| Name    | Description
+| ------- | -----------
+| docker  | The service will be executed through Docker. The service metadata attribute `path` specifies the Docker image to run. The attribute `runtime_args` specifies parameters that should be forwarded to the `docker` `run` command.
+| other   | The service will be executed like a normal executable program (binary or shell script)
+
+#### Service parameters
+
+TODO
+
+#### Runtime arguments
+
+TODO
+
+#### Setups
+
+TODO
+
+### HTTP endpoints
+
+#### Get submissions
+
+### Configuration
+
+TODO
+
+### Extending Steep through plugins
+
+TODO
+
+#### Custom runtime environments
+
+TODO
+
+#### Output adapters
+
+TODO
+
+#### Process chain adapters
+
+TODO
