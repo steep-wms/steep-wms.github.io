@@ -3,156 +3,122 @@ import Link from "next/link";
 import ScrollLink from "./ScrollLink";
 import { GitHub } from "react-feather";
 import getScrollTop from "./lib/get-scroll-top";
-import GlobalContext from "./lib/global-context";
+import AutoScrollingContext from "./lib/AutoScrollingContext";
+import NavBarContext from "./lib/NavBarContext";
 
-class NavBar extends React.Component {
-  static contextType = GlobalContext;
+export default () => {
+  const [top, setTop] = React.useState(true);
+  const [leaving, setLeaving] = React.useState(false);
+  const [pinned, setPinned] = React.useState(false);
+  const [collapse, setCollapse] = React.useState(false);
 
-  currentScrollTop = -1;
-  ref = React.createRef();
+  const thresholdReached = React.useRef(0);
+  const currentScrollTop = React.useRef(-1);
+  const ref = React.useRef();
 
-  state = {
-    top: true,
-    leaving: false,
-    pinned: false,
-    collapse: false
-  };
+  const autoScrolling = React.useContext(AutoScrollingContext.State);
+  const setNavBarState = React.useContext(NavBarContext.Dispatch);
 
-  componentDidMount() {
-    window.addEventListener("scroll", this.onScroll);
-
-    // enable component after 100ms to give browser some time to scroll
-    // to the right place
-    setTimeout(() => {
-      if (!this.ref.current) {
-        // component has already been unmounted again
-        return;
-      }
-
-      let height = this.ref.current.clientHeight;
-      this.context.setNavBarHeight(height);
-
-      let newScrollTop = getScrollTop();
-      this.currentScrollTop = newScrollTop;
-    }, 100);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.onScroll);
-  }
-
-  onToggle = () => {
-    this.setState(state => ({
-      collapse: !state.collapse
-    }));
-  }
-
-  onScroll = (e) => {
+  const onScroll = (e) => {
     let newScrollTop = getScrollTop();
-
-    if (this.currentScrollTop < 0) {
-      // not enabled yet
-      return;
+    if (currentScrollTop.current === -1) {
+      currentScrollTop.current = newScrollTop;
     }
 
-    if (this.context.autoScrolling) {
+    if (autoScrolling.autoScrolling) {
       // do not change 'pinned' state of navbar while we are auto-scrolling
-      this.currentScrollTop = newScrollTop;
+      currentScrollTop.current = newScrollTop;
 
       // but toggle 'collapse' state
-      if (this.state.collapse) {
-        this.setState({
-          collapse: false
-        });
+      if (collapse) {
+        setCollapse(false);
       }
       return;
     }
 
-    let height = this.ref.current.clientHeight;
-    let py = -this.ref.current.offsetTop;
+    let height = ref.current.clientHeight;
+    let py = -ref.current.offsetTop;
 
     // If we are 'pinned' and scroll up until we reach the initial position
     // of the navbar, switch from 'pinned' to 'top'. Otherwise, switch from
     // 'top' to 'not-top' when the navbar leaves the screen.
-    let isTop = this.state.pinned ? newScrollTop <= py : newScrollTop <= height;
+    let isTop = pinned ? newScrollTop <= py : newScrollTop <= height;
 
-    if (this.state.pinned && isTop) {
-      this.setState({
-        pinned: false
-      });
-      this.context.setNavBarPinned(false);
+    if (pinned && isTop) {
+      setPinned(false);
+      setNavBarState({ pinned: false });
     }
 
-    if (!isTop && this.state.top && !this.state.leaving) {
+    if (!isTop && top && !leaving) {
       // add .leaving class so there won't be a transition to translateY(-100%)
-      this.setState({
-        leaving: true,
-        collapse: false
-      });
+      setLeaving(true);
+      setCollapse(false);
     } else {
-      this.setState({
-        top: isTop,
-        leaving: false
-      });
+      setTop(isTop);
+      setLeaving(false);
     }
 
     if (!isTop) {
       // switch between 'pinned' states only if we're not 'top'
-      let diff = newScrollTop - this.currentScrollTop;
-      if (this.state.pinned && diff > 2) {
-        this.setState({
-          pinned: false,
-          collapse: false
-        });
-        this.context.setNavBarPinned(false);
-      } else if (!this.state.pinned && diff < -2) {
-        this.setState({
-          pinned: true
-        });
-        this.context.setNavBarPinned(true);
+      let diff = newScrollTop - currentScrollTop.current;
+      if (pinned && diff > 2) {
+        // require that we are at least two times over threshold so we can
+        // ignore quick state changes by browser (e.g. on page refresh)
+        thresholdReached.current++;
+        if (thresholdReached.current > 1) {
+          setPinned(false);
+          setNavBarState({ pinned: false });
+          setCollapse(false);
+          thresholdReached.current = 0;
+        }
+      } else if (!pinned && diff < -2) {
+        thresholdReached.current++;
+        if (thresholdReached.current > 1) {
+          setPinned(true);
+          setNavBarState({ pinned: true });
+          thresholdReached.current = 0;
+        }
       }
     }
 
-    this.currentScrollTop = newScrollTop;
+    currentScrollTop.current = newScrollTop;
   }
 
-  render() {
-    let top;
-    if (this.state.top === undefined) {
-      top = "";
-    } else {
-      top = this.state.top ? "top" : "not-top";
-    }
-    let leaving = this.state.leaving ? "leaving" : "";
-    let pinned = this.state.pinned ? "pinned" : "not-pinned";
-    let collapse = this.state.collapse ? "collapse" : "";
-    return (
-      <nav className={`navbar ${top} ${leaving} ${pinned} ${collapse}`}
-          id="main-navbar" ref={this.ref}>
-        <div className="container">
-          <div className="head">
-            <Link href="/">
-              <a className="navbar-brand">
-                <img src="/images/steep-logo.svg" width="200" />
-              </a>
-            </Link>
-            <div className="button" onClick={this.onToggle}>
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
+  React.useEffect(() => {
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    let height = ref.current.clientHeight;
+    setNavBarState({ height });
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [top, leaving, pinned, collapse, autoScrolling]);
+
+  return (
+    <nav className={`navbar${top ? " top" : " not-top"}${leaving ? " leaving" : ""}${pinned ? " pinned" : " not-pinned"}${collapse ? " collapse" : ""}`}
+        id="main-navbar" ref={ref}>
+      <div className="container">
+        <div className="head">
+          <Link href="/">
+            <a className="navbar-brand">
+              <img src="/images/steep-logo.svg" width="200" />
+            </a>
+          </Link>
+          <div className="button" onClick={() => setCollapse(!collapse)}>
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
-          <ScrollLink className="nav-item" href="/#key-features">Features</ScrollLink>
-          <ScrollLink className="nav-item" href="/#download-and-get-started">Download</ScrollLink>
-          <ScrollLink className="nav-item" href="/#documentation">Docs</ScrollLink>
-          <ScrollLink className="nav-item" href="/#about">About</ScrollLink>
-          <ScrollLink className="nav-item" href="https://github.com/steep-wms/steep">
-            <GitHub className="feather" />
-          </ScrollLink>
         </div>
-      </nav>
-    );
-  }
-}
-
-export default NavBar;
+        <ScrollLink className="nav-item" href="/#key-features">Features</ScrollLink>
+        <ScrollLink className="nav-item" href="/#download-and-get-started">Download</ScrollLink>
+        <ScrollLink className="nav-item" href="/#documentation">Docs</ScrollLink>
+        <ScrollLink className="nav-item" href="/#about">About</ScrollLink>
+        <ScrollLink className="nav-item" href="https://github.com/steep-wms/steep">
+          <GitHub className="feather" />
+        </ScrollLink>
+      </div>
+    </nav>
+  );
+};

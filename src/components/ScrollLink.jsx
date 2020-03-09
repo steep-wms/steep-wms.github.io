@@ -1,5 +1,6 @@
 import getScrollTop from "./lib/get-scroll-top";
-import GlobalContext from "./lib/global-context";
+import AutoScrollingContext from "./lib/AutoScrollingContext";
+import NavBarContext from "./lib/NavBarContext";
 
 function scrollTop(top) {
   if (typeof window !== "undefined") {
@@ -7,12 +8,13 @@ function scrollTop(top) {
   }
 }
 
-class ScrollLink extends React.Component {
-  static contextType = GlobalContext;
+export default (props) => {
+  const setAutoScrolling = React.useContext(AutoScrollingContext.Dispatch);
+  const navBarState = React.useContext(NavBarContext.State);
 
   // smooth scroll
-  scrollTo(endOffset, duration) {
-    this.context.setAutoScrolling(true);
+  const scrollTo = (endOffset, duration, id) => {
+    setAutoScrolling(true);
 
     if (!requestAnimationFrame) {
       scrollTo(endOffset);
@@ -20,7 +22,8 @@ class ScrollLink extends React.Component {
 
     let startOffset = getScrollTop();
     if (startOffset === endOffset) {
-      this.context.setAutoScrolling(false);
+      window.location.hash = id;
+      setAutoScrolling(false);
       return;
     }
 
@@ -30,23 +33,29 @@ class ScrollLink extends React.Component {
     let step = timestamp => {
       if (!start) {
         start = timestamp;
+
+        // Setting the hash will trigger a scroll event. We should set it only
+        // after we set autoscrolling to true to prevent the navbar from unpinning.
+        window.location.hash = id;
       }
+
       let elapsed = timestamp - start;
       let t = Math.min(1, elapsed / duration);
       let currentOffset = startOffset + distance * (t * (2 - t));
       scrollTop(currentOffset);
+
       if (t < 1) {
         requestAnimationFrame(step);
       } else {
-        this.context.setAutoScrolling(false);
+        setAutoScrolling(false);
       }
     };
 
     requestAnimationFrame(step);
-  }
+  };
 
-  handleClick = (e) => {
-    let id = this.props.href;
+  const handleClick = (e) => {
+    let id = props.href;
     if (id.startsWith("/")) {
       id = id.substring(1);
     }
@@ -57,19 +66,13 @@ class ScrollLink extends React.Component {
     if (target) {
       e.preventDefault();
       // leave room for navbar
-      let room = Math.max(15, this.context.navBarPinned ? this.context.navBarHeight : 0);
+      let room = Math.max(15, navBarState.pinned ? navBarState.height : 0);
 
       let padding = Number.parseInt(window.getComputedStyle(target).paddingTop);
       let offset = target.offsetTop + padding - room;
-      this.scrollTo(offset, 500);
-
-      window.location.href = "#" + id;
+      scrollTo(offset, 500, id);
     }
-  }
+  };
 
-  render() {
-    return <a {...this.props} onClick={this.handleClick}></a>
-  }
-}
-
-export default ScrollLink;
+  return <a {...props} onClick={handleClick}></a>
+};
