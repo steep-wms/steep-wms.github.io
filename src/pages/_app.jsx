@@ -1,12 +1,14 @@
 import "../css/main.scss";
-import CodeLanguageContext from "../components/lib/code-language-context";
 import AutoScrollingContext from "../components/lib/AutoScrollingContext";
+import CodeLanguageContext from "../components/lib/CodeLanguageContext";
 import NavBarContext from "../components/lib/NavBarContext";
 
 export default ({ Component, pageProps }) => (
   <AutoScrollingContext.Provider>
-    <NavBarContext.Provider>
-      <Component {...pageProps} />
-    </NavBarContext.Provider>
+    <CodeLanguageContext.Provider>
+      <NavBarContext.Provider>
+        <Component {...pageProps} />
+      </NavBarContext.Provider>
+    </CodeLanguageContext.Provider>
   </AutoScrollingContext.Provider>
 );

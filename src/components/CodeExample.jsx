@@ -1,3 +1,6 @@
+import getScrollTop from "./lib/get-scroll-top";
+import AutoScrollingContext from "./lib/AutoScrollingContext";
+import CodeLanguageContext from "./lib/CodeLanguageContext";
 import "./CodeExample.module.scss";
 import { useState } from "react";
 
@@ -19,10 +22,32 @@ function getLanguage(pre) {
 }
 
 export default ({ children }) => {
-  const [active, setActive] = useState("json");
+  const setAutoScrolling = React.useContext(AutoScrollingContext.Dispatch);
+  const setActive = React.useContext(CodeLanguageContext.Dispatch);
+  const active = React.useContext(CodeLanguageContext.State);
+
+  const lastOffsetTop = React.useRef(-1);
+  const lastScrollPos = React.useRef(-1);
+  const ref = React.useRef();
+  if (lastOffsetTop.current !== -1 && lastScrollPos.current !== -1) {
+    setTimeout(() => {
+      document.body.scrollTop = document.documentElement.scrollTop =
+          ref.current.offsetTop - (lastOffsetTop.current - lastScrollPos.current);
+      lastOffsetTop.current = -1;
+      lastScrollPos.current = -1;
+      setAutoScrolling(false);
+    }, 0);
+  }
 
   let newChildren = [];
   findCodeInChildren(children, newChildren);
+
+  const onClick = (lang) => {
+    lastOffsetTop.current = ref.current.offsetTop;
+    lastScrollPos.current = getScrollTop();
+    setAutoScrolling(true);
+    setActive(lang);
+  };
 
   let titles = [];
   let pages = [];
@@ -31,7 +56,7 @@ export default ({ children }) => {
 
     let title = (
       <div className={`code-example-title${active === lang ? " active" : ""}`}
-          onClick={() => setActive(lang)} key={`title-${lang}`}>
+          onClick={() => onClick(lang)} key={`title-${lang}`}>
         {lang.toUpperCase()}
       </div>
     );
@@ -46,6 +71,6 @@ export default ({ children }) => {
   });
 
   return (
-    <div className="code-example">{titles}{pages}</div>
+    <div className="code-example" ref={ref}>{titles}{pages}</div>
   );
 };
