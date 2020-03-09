@@ -12,6 +12,7 @@ export default () => {
   const [pinned, setPinned] = React.useState(false);
   const [collapse, setCollapse] = React.useState(false);
 
+  const lastThresholdTimestamp = React.useRef(0);
   const thresholdReached = React.useRef(0);
   const currentScrollTop = React.useRef(-1);
   const ref = React.useRef();
@@ -61,23 +62,30 @@ export default () => {
     if (!isTop) {
       // switch between 'pinned' states only if we're not 'top'
       let diff = newScrollTop - currentScrollTop.current;
-      if (pinned && diff > 2) {
+
+      let down = pinned && diff > 2;
+      let up = !pinned && diff < -2;
+      if (down || up) {
         // require that we are at least two times over threshold so we can
         // ignore quick state changes by browser (e.g. on page refresh)
         thresholdReached.current++;
-        if (thresholdReached.current > 1) {
-          setPinned(false);
-          setNavBarState({ pinned: false });
-          setCollapse(false);
+        let timestamp = +new Date();
+        if (timestamp - lastThresholdTimestamp.current > 50) {
           thresholdReached.current = 0;
         }
-      } else if (!pinned && diff < -2) {
-        thresholdReached.current++;
         if (thresholdReached.current > 1) {
-          setPinned(true);
-          setNavBarState({ pinned: true });
+          if (down) {
+            setPinned(false);
+            setNavBarState({ pinned: false });
+            setCollapse(false);
+          } else {
+            setPinned(true);
+            setNavBarState({ pinned: true });
+            thresholdReached.current = 0;
+          }
           thresholdReached.current = 0;
         }
+        lastThresholdTimestamp.current = timestamp;
       }
     }
 
