@@ -15,6 +15,10 @@ module.exports = () => (tree, file) => {
     if (node.value) {
       if (ancestors.findIndex(e => e.type === "heading") == -1) {
         node.value = hyphenateText(node.value);
+        while (node.value.substr(-3).indexOf("\u00ad") >= 0) {
+          node.value = node.value.substring(0, node.value.length - 3) +
+              node.value.substr(-3).replace("\u00ad", "");
+        }
       }
     }
   });
