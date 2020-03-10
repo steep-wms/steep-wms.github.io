@@ -65,9 +65,30 @@ table {
     padding-right: 0;
   }
 
-  tr:last-child {
-    td {
+  @media (min-width: $sm) {
+    tr:last-child {
+      td {
+        border-bottom: none;
+      }
+    }
+  }
+
+  @media (max-width: $sm) {
+    th {
+      display: none;
+    }
+
+    tr {
+      display: flex;
+      flex-direction: column;
+    }
+
+    td:last-child {
       border-bottom: none;
+    }
+
+    td:not(:first-child) {
+      margin-left: $spacer;
     }
   }
 }
