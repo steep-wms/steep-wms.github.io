@@ -26,26 +26,35 @@ export default ({ children }) => {
   const setActive = React.useContext(CodeLanguageContext.Dispatch);
   const active = React.useContext(CodeLanguageContext.State);
 
-  const lastOffsetTop = React.useRef(-1);
-  const lastScrollPos = React.useRef(-1);
   const ref = React.useRef();
-  if (lastOffsetTop.current !== -1 && lastScrollPos.current !== -1) {
-    setTimeout(() => {
-      document.body.scrollTop = document.documentElement.scrollTop =
-          ref.current.offsetTop - (lastOffsetTop.current - lastScrollPos.current);
-      lastOffsetTop.current = -1;
-      lastScrollPos.current = -1;
-      setAutoScrolling(false);
-    }, 0);
-  }
 
   let newChildren = [];
   findCodeInChildren(children, newChildren);
 
   const onClick = (lang) => {
-    lastOffsetTop.current = ref.current.offsetTop;
-    lastScrollPos.current = getScrollTop();
+    // keep scroll position
+    const lastDiff = ref.current.offsetTop - getScrollTop();
+    const observer = new MutationObserver((mutations) => {
+      document.body.scrollTop = document.documentElement.scrollTop =
+          ref.current.offsetTop - lastDiff;
+
+      for (let mutation of mutations) {
+        if (mutation.target.parentNode === ref.current) {
+          observer.disconnect();
+          setAutoScrolling(false);
+        }
+      }
+    });
+    observer.observe(document, {
+      attributes: true,
+      attributeFilter: ["class"],
+      subtree: true
+    });
+
+    // prevent navbar from hiding
     setAutoScrolling(true);
+
+    // change language for all code examples
     setActive(lang);
   };
 
