@@ -32,6 +32,10 @@ export default ({ children }) => {
   findCodeInChildren(children, newChildren);
 
   const onClick = (lang) => {
+    if (active === lang) {
+      return;
+    }
+
     // keep scroll position
     const lastDiff = ref.current.offsetTop - getScrollTop();
     const observer = new MutationObserver((mutations) => {
