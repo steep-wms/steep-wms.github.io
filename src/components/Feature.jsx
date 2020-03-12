@@ -1,4 +1,4 @@
-import "./Feature.module.scss";
+import "./Feature.scss";
 
 export default ({ icon, title, children }) => {
   return (

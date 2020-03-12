@@ -1,94 +1,96 @@
 @import "../css/variables";
 
-#table-of-contents {
-  margin-bottom: 0;
-}
-
-.table-of-contents {
-  ol {
-    list-style-type: none;
-    counter-reset: item;
-
-    li:before {
-      content: counters(item, ".") "\2002";
-      counter-increment: item;
-    }
+.docs {
+  #table-of-contents {
+    margin-bottom: 0;
   }
 
-  & > ol:first-child {
-    padding-left: 0;
-  }
-}
+  .table-of-contents {
+    ol {
+      list-style-type: none;
+      counter-reset: item;
 
-table {
-  border-collapse: collapse;
-
-  th, td {
-    margin: 0;
-    padding: $spacer / 2;
-    text-align: left;
-    border-bottom: 1px solid $gray-300;
-    vertical-align: top;
-  }
-
-  th {
-    border-bottom: 2px solid $gray-300;
-  }
-
-  td:first-child, td:nth-child(2):not(:last-child) {
-    hyphens: none;
-  }
-
-  th, td:first-child {
-    hyphens: none;
-    white-space: nowrap;
-  }
-
-  td:first-child {
-    font-weight: 700;
-
-    em {
-      font-weight: 300;
-      color: $gray-600;
-    }
-  }
-
-  td:last-child {
-    text-align: justify;
-  }
-
-  td:first-child, th:first-child {
-    padding-left: 0;
-  }
-
-  td:last-child, th:last-child {
-    padding-right: 0;
-  }
-
-  @media (min-width: $sm) {
-    tr:last-child {
-      td {
-        border-bottom: none;
+      li:before {
+        content: counters(item, ".") "\2002";
+        counter-increment: item;
       }
     }
+
+    & > ol:first-child {
+      padding-left: 0;
+    }
   }
 
-  @media (max-width: $sm) {
-    th {
-      display: none;
+  table {
+    border-collapse: collapse;
+
+    th, td {
+      margin: 0;
+      padding: $spacer / 2;
+      text-align: left;
+      border-bottom: 1px solid $gray-300;
+      vertical-align: top;
     }
 
-    tr {
-      display: flex;
-      flex-direction: column;
+    th {
+      border-bottom: 2px solid $gray-300;
+    }
+
+    td:first-child, td:nth-child(2):not(:last-child) {
+      hyphens: none;
+    }
+
+    th, td:first-child {
+      hyphens: none;
+      white-space: nowrap;
+    }
+
+    td:first-child {
+      font-weight: 700;
+
+      em {
+        font-weight: 300;
+        color: $gray-600;
+      }
     }
 
     td:last-child {
-      border-bottom: none;
+      text-align: justify;
     }
 
-    td:not(:first-child) {
-      margin-left: $spacer;
+    td:first-child, th:first-child {
+      padding-left: 0;
+    }
+
+    td:last-child, th:last-child {
+      padding-right: 0;
+    }
+
+    @media (min-width: $sm) {
+      tr:last-child {
+        td {
+          border-bottom: none;
+        }
+      }
+    }
+
+    @media (max-width: $sm) {
+      th {
+        display: none;
+      }
+
+      tr {
+        display: flex;
+        flex-direction: column;
+      }
+
+      td:last-child {
+        border-bottom: none;
+      }
+
+      td:not(:first-child) {
+        margin-left: $spacer;
+      }
     }
   }
 }

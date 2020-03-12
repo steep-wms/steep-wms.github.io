@@ -1,4 +1,4 @@
-import "./Features.module.scss";
+import "./Features.scss";
 
 export default ({ children, title }) => (
   <div id="features" className="container">

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import "./Footer.module.scss";
+import "./Footer.scss";
 
 const format = new Intl.DateTimeFormat("en", { year: "numeric" });
 const currentYear = format.format(new Date());

@@ -1,12 +1,12 @@
 @import "../css/variables";
 
-.feature-icon svg {
-  margin: 0 .5rem 4px 0;
-  stroke: $primary;
-}
-
 .feature {
   font-size: $font-size-sm;
   text-align: justify;
   hyphens: auto;
+
+  .feature-icon svg {
+    margin: 0 .5rem 4px 0;
+    stroke: $primary;
+  }
 }

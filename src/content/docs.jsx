@@ -76,5 +76,5 @@ export default ({ children }) => {
     return c;
   });
 
-  return <>{newChildren}</>;
+  return <section className="docs">{newChildren}</section>;
 };
