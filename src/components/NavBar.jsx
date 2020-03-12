@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import "./NavBar.module.scss";
 import Link from "next/link";
 import ScrollLink from "./ScrollLink";
@@ -104,7 +105,7 @@ export default () => {
   }, [top, leaving, pinned, collapse, autoScrolling]);
 
   return (
-    <nav className={`navbar${top ? " top" : " not-top"}${leaving ? " leaving" : ""}${pinned ? " pinned" : " not-pinned"}${collapse ? " collapse" : ""}`}
+    <nav className={classNames("navbar", { top, leaving, pinned, collapse })}
         id="main-navbar" ref={ref}>
       <div className="container">
         <div className="head">

@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import getScrollTop from "./lib/get-scroll-top";
 import AutoScrollingContext from "./lib/AutoScrollingContext";
 import CodeLanguageContext from "./lib/CodeLanguageContext";
@@ -67,16 +68,18 @@ export default ({ children }) => {
   newChildren.forEach((c, i) => {
     let lang = getLanguage(c);
 
+    let activeClassName = { "active": active === lang };
+    let titleClassName = classNames("code-example-title", activeClassName);
     let title = (
-      <div className={`code-example-title${active === lang ? " active" : ""}`}
-          onClick={() => onClick(lang)} key={`title-${lang}`}>
+      <div className={titleClassName} onClick={() => onClick(lang)} key={`title-${lang}`}>
         {lang.toUpperCase()}
       </div>
     );
     titles.push(title);
 
+    let pageClassName = classNames("code-example-page", activeClassName);
     let page = (
-      <div className={`code-example-page${active === lang ? " active" : ""}`} key={`page-${lang}`}>
+      <div className={pageClassName} key={`page-${lang}`}>
         {c}
       </div>
     );

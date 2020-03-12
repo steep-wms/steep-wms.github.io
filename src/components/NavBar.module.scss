@@ -20,7 +20,7 @@
     transform: translateY(-100%);
   }
 
-  &.not-top {
+  &:not(.top) {
     position: fixed;
     top: -$spacer * 1.75;
     background-color: $gray-100;
@@ -30,7 +30,7 @@
       transform: translateY(0%);
     }
 
-    &.not-pinned {
+    &:not(.pinned) {
       transform: translateY(-100%);
     }
   }
