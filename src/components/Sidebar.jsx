@@ -38,6 +38,11 @@ export default ({ children }) => {
   };
 
   const onToggle = () => {
+    if (collapse) {
+      enableBodyScroll(tocRef.current);
+    } else {
+      disableBodyScroll(tocRef.current);
+    }
     cancelAutoHideTimer();
     setCollapse(!collapse);
   };
