@@ -1,0 +1,82 @@
+@import "../css/variables";
+
+.sidebar {
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+
+  &.visible {
+    opacity: 1;
+  }
+
+  .table-of-contents {
+    // inherits from .table-of-contents from docs.scss
+
+    z-index: 10000;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: $spacer * 2;
+    max-width: 100%;
+    width: 400px;
+    background-color: $gray-100;
+    overflow: scroll;
+    font-size: $font-size-sm;
+    box-shadow: 0px 0px 10px rgba(0,0,0,.3);
+
+    transition: transform 200ms ease-in-out;
+    transform: translateX(102%);
+
+    &.collapse {
+      transform: translateX(0%);
+    }
+
+    ol {
+      margin-top: 0;
+    }
+  }
+
+  .sidebar-button {
+    z-index: 10010;
+    cursor: pointer;
+    position: fixed;
+    display: flex;
+    right: $spacer * 2;
+    bottom: $spacer * 2;
+    color: #fff;
+    background-color: $gray-700;
+    padding: $spacer * 0.75;
+    border-radius: $border-radius;
+    box-shadow: 0px 0px 10px rgba(0,0,0,.3);
+    transition: background-color 0.15s ease-in-out;
+
+    &:hover {
+      background-color: darken($gray-700, 10%);
+    }
+
+    .sidebar-button-icons {
+      position: relative;
+
+      .feather {
+        transition: opacity 200ms ease-in-out;
+        display: block;
+
+        &.collapse {
+          opacity: 0;
+        }
+
+        &.feather-x {
+          position: absolute;
+          left: 0;
+          top: 0;
+          opacity: 0;
+          transform: scale(1.2);
+
+          &.collapse {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}

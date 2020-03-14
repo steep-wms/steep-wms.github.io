@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import ScrollLink from "../components/ScrollLink";
+import Sidebar from "../components/Sidebar";
 
 function spliceToc(currentToc, n) {
   while (currentToc.length > n + 1) {
@@ -76,5 +77,12 @@ export default ({ children }) => {
     return c;
   });
 
-  return <section className="docs">{newChildren}</section>;
+  return (
+    <section className="docs">
+      {newChildren}
+      <Sidebar>
+        {currentToc[0]}
+      </Sidebar>
+    </section>
+  );
 };
