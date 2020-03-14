@@ -7,6 +7,7 @@ import throttle from "lodash.throttle";
 import "./Sidebar.scss";
 
 export default ({ children }) => {
+  const ref = React.useRef();
   const tocRef = React.useRef();
   const autoHideTimer = React.useRef(null);
   const [ collapse, setCollapse ] = useState(false);
@@ -66,16 +67,16 @@ export default ({ children }) => {
   }, 100);
 
   useEffect(() => {
-    tocRef.current.addEventListener("mouseenter", onMouseEnter);
-    tocRef.current.addEventListener("mouseleave", onMouseLeave);
+    ref.current.addEventListener("mouseenter", onMouseEnter);
+    ref.current.addEventListener("mouseleave", onMouseLeave);
     window.addEventListener("scroll", onScroll, { passive: true });
 
     // trigger onScroll once so the button appears
     onScroll();
 
     return () => {
-      tocRef.current.removeEventListener("mouseenter", onMouseEnter);
-      tocRef.current.removeEventListener("mouseleave", onMouseLeave);
+      ref.current.removeEventListener("mouseenter", onMouseEnter);
+      ref.current.removeEventListener("mouseleave", onMouseLeave);
       window.removeEventListener("scroll", onScroll);
       clearAllBodyScrollLocks();
     };
@@ -88,8 +89,8 @@ export default ({ children }) => {
   });
 
   return (
-    <div className={classNames("sidebar", { "visible": visible })} ref={tocRef}>
-      <div className={classNames("table-of-contents", { "collapse": collapse })}>
+    <div className={classNames("sidebar", { "visible": visible })} ref={ref}>
+      <div className={classNames("table-of-contents", { "collapse": collapse })} ref={tocRef}>
         {newChildren}
       </div>
       <div className="sidebar-button" onClick={onToggle}>
