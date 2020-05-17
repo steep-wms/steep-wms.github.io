@@ -3,6 +3,9 @@ import ScrollLink from "../components/ScrollLink"
 import Layout from "./docs"
 import "./docs.scss"
 
+import Architecture from "../assets/architecture.svg"
+import GenerateProcessChains from "../assets/generate-process-chains.svg?include"
+
 export default Layout
 
 ## Documentation
@@ -16,7 +19,100 @@ documentation always applies to the latest software version.
 
 ### How does Steep work?
 
-TODO
+In order to understand how Steep works, we first have to learn how it
+transforms scientific workflow graphs to executable units. We then have a look
+at its software architecture.
+
+(The description in this section is based on our publication: Krämer, M. (2020).
+Capability-Based Scheduling of Scientific Workflows in the Cloud.
+*Proceedings of the 9th International Conference on Data Science, Technology, and Applications DATA*.)
+
+#### Workflow scheduling
+
+Steep is a scientific workflow management system that can be used to control
+the processing of very large data sets in a distributed environment.
+
+A scientific workflow is typically represented by a directed acyclic graph that
+describes how an input data set is processed by certain tasks in a given order
+to produce a desired outcome. Such workflows can become very large with
+hundreds up to several thousands of tasks processing data volumes ranging from
+gigabytes to terabytes. The following figure shows a simple example of such a
+workflow in an extended Petri Net notation proposed by van der
+[Aalst and van Hee (2004)](https://doi.org/10.7551/mitpress/7301.001.0001).
+
+<div className="docs-image docs-image-generate-process-chains"
+  dangerouslySetInnerHTML={{ __html: GenerateProcessChains }} />
+
+In this example, an input file is first processed by a task A. This task
+produces two results. The first one is processed by task B whose result is in
+turn sent to C. The second result of A is processed by D. The outcomes of C and
+D are finally processed by task E.
+
+In order to be able to schedule such a workflow in a distributed environment,
+the graph has to be transformed to individual executable units. Steep follows a
+hybrid scheduling approach that applies heuristics on the level of the workflow
+graph and later on the level of individual executable units. We assume that
+tasks that access the same data should be executed on the same machine to
+reduce the communication overhead and to improve file reuse. We therefore
+group tasks into so-called <ScrollLink href="#process-chains">process chains</ScrollLink>,
+which are linear sequential lists (without branches and loops).
+
+Steep transforms workflows to process chains in an iterative manner. In each
+iteration, it finds the longest linear sequences of tasks and groups them to
+process chains. The following animation shows how this works for our example
+workflow:
+
+<div className="docs-image docs-image-generate-process-chains-animated"
+  dangerouslySetInnerHTML={{ __html: GenerateProcessChains }} />
+
+Task A will be put into a process chain in iteration 1. Steep then schedules
+the execution of this process chain. After the execution has finished,
+Steep uses the results to produce a process chain containing B and C and
+another one containing D. These process chains are then scheduled to be
+executed in parallel. The results are finally used to generate the fourth
+process chain containing task E, which is also scheduled for execution.
+
+#### Software architecture
+
+The following figure shows the main components of Steep: the HTTP server,
+the controller, the scheduler, the agent, and the cloud manager.
+
+<img className="docs-image docs-image-architecture" src={Architecture} />
+
+Together, these components form an instance of Steep. In practice, a single
+instance typically runs on a separate virtual machine, but multiple instances
+can also be started on the same machine. Each component can be enabled or
+disabled in a given instance (see the <ScrollLink href="#configuration">configuration options</ScrollLink> 
+for more information). That means, in a cluster, there can be instances
+that have all five components enabled, and others that have only an agent,
+for example.
+
+All components of all instances communicate with each other through messages
+sent over an event bus. Further, the HTTP server, the controller, and the
+scheduler are able to connect to a shared database.
+
+The HTTP server provides information about scheduled, running, and finished
+workflows to clients. Clients can also upload a new workflow. In this case,
+the HTTP server puts the workflow into the database and sends a message to one
+of the instances of the controller.
+
+The controller receives this message, loads the workflow from the database,
+and starts transforming it iteratively to process chains as
+described <ScrollLink href="#workflow-scheduling">above</ScrollLink>.
+Whenever it has generated new process chains, it puts them into the database
+and sends a message to all instances of the scheduler.
+
+The schedulers then select agents to execute the process chains. They load the
+process chains from the database, send them via the event bus to the selected
+agents for execution, and finally write the results into the database. The
+schedulers also send a message back to the controller so it can continue with
+the next iteration and generate more process chains until the workflow has been
+completely transformed.
+
+In case a scheduler does not find an agent suitable for the execution of a
+process chain, it sends a message to the cloud manager (a component that
+interacts with the API of the Cloud infrastructure) and asks it to create a
+new agent.
 
 ### Example workflows
 
@@ -668,6 +764,10 @@ TODO
 #### Get submissions
 
 ### Configuration
+
+TODO
+
+#### Overview of configuration files
 
 TODO
 

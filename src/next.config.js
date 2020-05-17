@@ -4,6 +4,7 @@ const bundleAnalyzer = require("@next/bundle-analyzer")({
 const codeExample = require("./plugins/remark-codeexample")
 const hyphenate = require("./plugins/remark-hyphenate")
 const highlight = require("rehype-highlight")
+const optimizedImages = require("next-optimized-images")
 const sass = require("@zeit/next-sass")
 const slug = require("rehype-slug")
 const smartypants = require("@silvenon/remark-smartypants")
@@ -55,6 +56,7 @@ const config = {
 }
 
 module.exports = withPlugins([
+  [optimizedImages],
   [sass],
   [mdx],
   [bundleAnalyzer]

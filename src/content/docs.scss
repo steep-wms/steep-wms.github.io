@@ -1,5 +1,50 @@
 @import "../css/variables";
 
+@keyframes show1 {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0;
+  }
+  21% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes show2 {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  41% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes show3 {
+  0% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+  }
+  61% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .docs {
   #table-of-contents {
     margin-bottom: 0;
@@ -92,5 +137,36 @@
         margin-left: $spacer;
       }
     }
+  }
+
+  .docs-image {
+    display: block;
+    margin: $spacer * 2 auto;
+  }
+
+  .docs-image-generate-process-chains, .docs-image-generate-process-chains-animated {
+    width: 10rem;
+
+    .st5, .st6, .st7 {
+      opacity: 0;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+    }
+  }
+
+  .docs-image-generate-process-chains-animated {
+    .st5 {
+      animation-name: show1;
+    }
+    .st6 {
+      animation-name: show2;
+    }
+    .st7 {
+      animation-name: show3;
+    }
+  }
+
+  .docs-image-architecture {
+    width: 16rem;
   }
 }
