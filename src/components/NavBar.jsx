@@ -124,9 +124,9 @@ export default () => {
         <ScrollLink className="nav-item" href="/#download-and-get-started">Download</ScrollLink>
         <ScrollLink className="nav-item" href="/#documentation">Docs</ScrollLink>
         <ScrollLink className="nav-item" href="/#about">About</ScrollLink>
-        <ScrollLink className="nav-item" href="https://github.com/steep-wms/steep">
+        <a className="nav-item" href="https://github.com/steep-wms/steep">
           <GitHub className="feather" />
-        </ScrollLink>
+        </a>
       </div>
     </nav>
   );

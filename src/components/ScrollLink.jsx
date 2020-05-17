@@ -17,7 +17,7 @@ export default (props) => {
     setAutoScrolling(true);
 
     if (!requestAnimationFrame) {
-      scrollTo(endOffset);
+      scrollTop(endOffset);
     }
 
     let startOffset = getScrollTop();
