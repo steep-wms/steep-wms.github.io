@@ -147,7 +147,8 @@
   .docs-image-generate-process-chains, .docs-image-generate-process-chains-animated {
     width: 10rem;
 
-    .st5, .st6, .st7 {
+    #docs-image-generate-process-chains-box1, #docs-image-generate-process-chains-box2,
+    #docs-image-generate-process-chains-box3, #docs-image-generate-process-chains-box4 {
       opacity: 0;
       animation-duration: 5s;
       animation-iteration-count: infinite;
@@ -155,13 +156,13 @@
   }
 
   .docs-image-generate-process-chains-animated {
-    .st5 {
+    #docs-image-generate-process-chains-box1 {
       animation-name: show1;
     }
-    .st6 {
+    #docs-image-generate-process-chains-box2, #docs-image-generate-process-chains-box3 {
       animation-name: show2;
     }
-    .st7 {
+    #docs-image-generate-process-chains-box4 {
       animation-name: show3;
     }
   }

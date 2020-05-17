@@ -4,7 +4,7 @@
 	 viewBox="0 0 101.7 278.9" style="enable-background:new 0 0 101.7 278.9;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:none;stroke:#000000;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st1{font-family:'Arial',sans-serif;}
+	.st1{font-family:'ArialMT';}
 	.st2{font-size:9.775px;}
 	.st3{fill:none;stroke:#000000;stroke-width:0.72;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st4{fill-rule:evenodd;clip-rule:evenodd;}
@@ -62,12 +62,13 @@
 <path class="st4" d="M32,191.1l-3.2-6.5c2,1,4.4,1,6.5,0L32,191.1z"/>
 <line class="st3" x1="32" y1="179.8" x2="32" y2="186.2"/>
 <path class="st0" d="M32,202.5c3.1,0,5.7-2.5,5.7-5.7s-2.5-5.7-5.7-5.7c-3.1,0-5.7,2.5-5.7,5.7S28.9,202.5,32,202.5z"/>
-<path id="box1" class="st5" d="M11,90.8h79.7c5.5,0,10-3.5,10-7.8V8.8c0-4.3-4.5-7.8-10-7.8H11C5.5,1,1,4.5,1,8.8v74.1
-	C1,87.3,5.5,90.8,11,90.8z"/>
-<path id="box2" class="st6" d="M18.1,205.7h27.2c1.9,0,3.4-1.5,3.4-3.4V70.8c0-1.9-1.5-3.4-3.4-3.4H18.1c-1.9,0-3.4,1.5-3.4,3.4
-	v131.6C14.7,204.2,16.2,205.7,18.1,205.7z"/>
-<path id="box3" class="st6" d="M55.3,149.6h27.2c1.9,0,3.4-1.5,3.4-3.4V70.8c0-1.9-1.5-3.4-3.4-3.4H55.3c-1.9,0-3.4,1.5-3.4,3.4
-	v75.4C51.9,148.1,53.4,149.6,55.3,149.6z"/>
-<path id="box4" class="st7" d="M91.2,125.4H59.9c-5.2,0-9.4,4.2-9.4,9.4v38.7c0,5.2-4.2,9.4-9.4,9.4H10.4c-5.2,0-9.4,4.2-9.4,9.4
-	v76.2c0,5.2,4.2,9.4,9.4,9.4h80.8c5.2,0,9.4-4.2,9.4-9.4V134.8C100.6,129.6,96.4,125.4,91.2,125.4z"/>
+<path id="docs-image-generate-process-chains-box1" class="st5" d="M11,90.8h79.7c5.5,0,10-3.5,10-7.8V8.8c0-4.3-4.5-7.8-10-7.8H11
+	C5.5,1,1,4.5,1,8.8v74.1C1,87.3,5.5,90.8,11,90.8z"/>
+<path id="docs-image-generate-process-chains-box2" class="st6" d="M18.1,205.7h27.2c1.9,0,3.4-1.5,3.4-3.4V70.8
+	c0-1.9-1.5-3.4-3.4-3.4H18.1c-1.9,0-3.4,1.5-3.4,3.4v131.6C14.7,204.2,16.2,205.7,18.1,205.7z"/>
+<path id="docs-image-generate-process-chains-box3" class="st6" d="M55.3,149.6h27.2c1.9,0,3.4-1.5,3.4-3.4V70.8
+	c0-1.9-1.5-3.4-3.4-3.4H55.3c-1.9,0-3.4,1.5-3.4,3.4v75.4C51.9,148.1,53.4,149.6,55.3,149.6z"/>
+<path id="docs-image-generate-process-chains-box4" class="st7" d="M91.2,125.4H59.9c-5.2,0-9.4,4.2-9.4,9.4v38.7
+	c0,5.2-4.2,9.4-9.4,9.4H10.4c-5.2,0-9.4,4.2-9.4,9.4v76.2c0,5.2,4.2,9.4,9.4,9.4h80.8c5.2,0,9.4-4.2,9.4-9.4V134.8
+	C100.6,129.6,96.4,125.4,91.2,125.4z"/>
 </svg>
