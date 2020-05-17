@@ -6,7 +6,7 @@ const Dispatch = createContext()
 const reducer = (state, language) => language
 
 const Provider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, "json")
+  const [state, dispatch] = useReducer(reducer, "yaml")
 
   return (
     <State.Provider value={state}>

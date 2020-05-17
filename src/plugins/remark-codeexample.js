@@ -10,12 +10,12 @@ module.exports = () => (tree) => {
       node.type = "parent"
       node.children = [{
         type: "code",
-        lang: "json",
-        value: node.value
-      }, {
-        type: "code",
         lang: "yaml",
         value: yamlStr
+      }, {
+        type: "code",
+        lang: "json",
+        value: node.value
       }]
       delete node.meta
       delete node.value
