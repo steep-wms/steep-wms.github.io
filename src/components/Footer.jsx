@@ -1,8 +1,8 @@
-import Link from "next/link";
-import "./Footer.scss";
+import Link from "next/link"
+import "./Footer.scss"
 
-const format = new Intl.DateTimeFormat("en", { year: "numeric" });
-const currentYear = format.format(new Date());
+const format = new Intl.DateTimeFormat("en", { year: "numeric" })
+const currentYear = format.format(new Date())
 
 export default () => (
   <footer>
@@ -22,4 +22,4 @@ export default () => (
       </div>
     </div>
   </footer>
-);
+)

@@ -1,20 +1,22 @@
-const State = React.createContext();
-const Dispatch = React.createContext()
+import { createContext, useReducer } from "react"
 
-const reducer = (state, autoScrolling) => autoScrolling;
+const State = createContext()
+const Dispatch = createContext()
+
+const reducer = (state, autoScrolling) => autoScrolling
 
 const Provider = ({ children }) => {
-  const [state, dispatch] = React.useReducer(reducer, false);
+  const [state, dispatch] = useReducer(reducer, false)
 
   return (
     <State.Provider value={state}>
       <Dispatch.Provider value={dispatch}>{children}</Dispatch.Provider>
     </State.Provider>
-  );
-};
+  )
+}
 
 export default {
   State,
   Dispatch,
   Provider
-};
+}

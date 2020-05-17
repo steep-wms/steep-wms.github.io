@@ -1,5 +1,5 @@
-import Head from "next/head";
-import NavBar from "./NavBar";
+import Head from "next/head"
+import NavBar from "./NavBar"
 
 export default ({ title = "Steep Workflow Management System" }) => (
   <header>
@@ -15,4 +15,4 @@ export default ({ title = "Steep Workflow Management System" }) => (
     </Head>
     <NavBar />
   </header>
-);
+)

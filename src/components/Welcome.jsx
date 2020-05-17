@@ -1,6 +1,6 @@
-import "./Welcome.scss";
-import { Book } from "react-feather";
-import ScrollLink from "./ScrollLink";
+import "./Welcome.scss"
+import { Book } from "react-feather"
+import ScrollLink from "./ScrollLink"
 
 export default () => (
   <div id="welcome" className="welcome">
@@ -21,4 +21,4 @@ export default () => (
       </div>
     </div>
   </div>
-);
+)

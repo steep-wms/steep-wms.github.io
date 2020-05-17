@@ -6,8 +6,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "next",
-    "build": "next build && next export",
+    "build": "npm run lint && next build && next export",
     "deploy": "rm -rf .next out && mkdir out && next build && next export && rm -rf ../_next ../images ../imprint ../privacy ../index.html && cp -r out/_next out/images out/imprint out/privacy out/index.html ..",
+    "lint": "eslint --ext js,jsx components content pages plugins",
     "start": "next start"
   },
   "repository": {
@@ -29,6 +30,7 @@
     "@zeit/next-sass": "^1.0.1",
     "body-scroll-lock": "^2.6.4",
     "classnames": "^2.2.6",
+    "eslint-loader": "^4.0.2",
     "hast-util-to-text": "^2.0.0",
     "hyphenopoly": "^4.1.0",
     "js-yaml": "^3.13.1",
@@ -46,5 +48,10 @@
     "rehype-toc": "^3.0.0",
     "unist-util-visit-parents": "^3.0.2",
     "webpack": "^4.42.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.0.0",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.2"
   }
 }

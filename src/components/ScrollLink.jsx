@@ -1,78 +1,79 @@
-import getScrollTop from "./lib/get-scroll-top";
-import AutoScrollingContext from "./lib/AutoScrollingContext";
-import NavBarContext from "./lib/NavBarContext";
+import getScrollTop from "./lib/get-scroll-top"
+import AutoScrollingContext from "./lib/AutoScrollingContext"
+import NavBarContext from "./lib/NavBarContext"
+import { useContext } from "react"
 
 function scrollTop(top) {
   if (typeof window !== "undefined") {
-    document.body.scrollTop = document.documentElement.scrollTop = top;
+    document.body.scrollTop = document.documentElement.scrollTop = top
   }
 }
 
 export default (props) => {
-  const setAutoScrolling = React.useContext(AutoScrollingContext.Dispatch);
-  const navBarState = React.useContext(NavBarContext.State);
+  const setAutoScrolling = useContext(AutoScrollingContext.Dispatch)
+  const navBarState = useContext(NavBarContext.State)
 
   // smooth scroll
   const scrollTo = (endOffset, duration, id) => {
-    setAutoScrolling(true);
+    setAutoScrolling(true)
 
     if (!requestAnimationFrame) {
-      scrollTop(endOffset);
+      scrollTop(endOffset)
     }
 
-    let startOffset = getScrollTop();
+    let startOffset = getScrollTop()
     if (startOffset === endOffset) {
-      window.location.hash = id;
-      setAutoScrolling(false);
-      return;
+      window.location.hash = id
+      setAutoScrolling(false)
+      return
     }
 
-    let distance = endOffset - startOffset;
-    let start = undefined;
+    let distance = endOffset - startOffset
+    let start = undefined
 
     let step = timestamp => {
       if (!start) {
-        start = timestamp;
+        start = timestamp
 
         // Setting the hash will trigger a scroll event. We should set it only
         // after we set autoscrolling to true to prevent the navbar from unpinning.
-        window.location.hash = id;
+        window.location.hash = id
       }
 
-      let elapsed = timestamp - start;
-      let t = Math.min(1, elapsed / duration);
-      let currentOffset = startOffset + distance * (t * (2 - t));
-      scrollTop(currentOffset);
+      let elapsed = timestamp - start
+      let t = Math.min(1, elapsed / duration)
+      let currentOffset = startOffset + distance * (t * (2 - t))
+      scrollTop(currentOffset)
 
       if (t < 1) {
-        requestAnimationFrame(step);
+        requestAnimationFrame(step)
       } else {
-        setAutoScrolling(false);
+        setAutoScrolling(false)
       }
-    };
+    }
 
-    requestAnimationFrame(step);
-  };
+    requestAnimationFrame(step)
+  }
 
   const handleClick = (e) => {
-    let id = props.href;
+    let id = props.href
     if (id.startsWith("/")) {
-      id = id.substring(1);
+      id = id.substring(1)
     }
     if (id.startsWith("#")) {
-      id = id.substring(1);
+      id = id.substring(1)
     }
-    let target = document.getElementById(id);
+    let target = document.getElementById(id)
     if (target) {
-      e.preventDefault();
+      e.preventDefault()
       // leave room for navbar
-      let room = Math.max(15, navBarState.pinned ? navBarState.height : 0);
+      let room = Math.max(15, navBarState.pinned ? navBarState.height : 0)
 
-      let padding = Number.parseInt(window.getComputedStyle(target).paddingTop);
-      let offset = target.offsetTop + padding - room;
-      scrollTo(offset, 500, id);
+      let padding = Number.parseInt(window.getComputedStyle(target).paddingTop)
+      let offset = target.offsetTop + padding - room
+      scrollTo(offset, 500, id)
     }
-  };
+  }
 
   return <a {...props} onClick={handleClick}></a>
-};
+}

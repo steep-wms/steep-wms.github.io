@@ -1,4 +1,4 @@
-import "./Features.scss";
+import "./Features.scss"
 
 export default ({ children, title }) => (
   <div id="features" className="container">
@@ -7,4 +7,4 @@ export default ({ children, title }) => (
       {children}
     </div>
   </div>
-);
+)

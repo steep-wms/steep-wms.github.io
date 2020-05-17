@@ -1,5 +1,5 @@
 export default ({ image, pdf, children }) => {
-  let img = <img src={image} className="img-fluid"/>;
+  let img = <img src={image} className="img-fluid"/>
   return (
     <div className="research-item">
       <div className="research-image">
@@ -13,5 +13,5 @@ export default ({ image, pdf, children }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

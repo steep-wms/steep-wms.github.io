@@ -1,5 +1,5 @@
-import Header from "../Header";
-import Footer from "../Footer";
+import Header from "../Header"
+import Footer from "../Footer"
 
 const Layout = props => (
   <main>
@@ -9,6 +9,6 @@ const Layout = props => (
     </div>
     <Footer />
   </main>
-);
+)
 
-export default Layout;
+export default Layout

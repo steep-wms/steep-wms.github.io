@@ -1,4 +1,4 @@
-import "./Feature.scss";
+import "./Feature.scss"
 
 export default ({ icon, title, children }) => {
   return (
@@ -6,5 +6,5 @@ export default ({ icon, title, children }) => {
       <h6><span className="feature-icon">{icon}</span> {title}</h6>
       {children}
     </div>
-  );
-};
+  )
+}
