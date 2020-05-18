@@ -19,11 +19,12 @@ documentation always applies to the latest software version.
 
 ### How does Steep work?
 
-In order to understand how Steep works, we first have to learn how it
-transforms scientific workflow graphs to executable units. We then have a look
-at its software architecture.
+In order to answer this question, we will first describe how Steep transforms
+scientific workflow graphs into executable units. After that, we will have a
+look at Steep's software architecture and what kind of processing services it
+can execute.
 
-(The description in this section is based on our publication: Krämer, M. (2020).
+(This section is based on the following publication: Krämer, M. (2020).
 Capability-Based Scheduling of Scientific Workflows in the Cloud.
 *Proceedings of the 9th International Conference on Data Science, Technology, and Applications DATA*.)
 
@@ -114,6 +115,39 @@ process chain, it sends a message to the cloud manager (a component that
 interacts with the API of the Cloud infrastructure) and asks it to create a
 new agent.
 
+#### Processing services
+
+Steep is very flexible and allows a wide range of processing services (or
+microservices) to be integrated. A typical processing service is a program
+that reads one or more input files and writes one or more output files. The
+program may also accept generic parameters. The service can be implemented in
+any programming language (as long as the binary or script is executable on the
+machine the Steep agent is running) or can be wrapped in a Docker container.
+
+For a seamless integration, a processing service should adhere to the following
+guidelines:
+
+* Every processing service should be a microservice. It should run in
+  its own process and serve one specific purpose.
+* As Steep needs to call the service in a distributed environment, it should
+  not have a graphical user interface or require any human interaction during
+  the runtime. Suitable services are command-line applications that accept
+  arguments to specify input files, output files, and parameters.
+* The service should read from input files, process the data, write results to
+  output files, and then exit. It should not run continuously like a web
+  service. If you need to integrate a web service in your workflow, we
+  recommend using the `curl` command or something similar.
+* Steep does not require the processing services to implement a specific
+  interface. Instead, the service's input and output parameters should be
+  described in a special data model called <ScrollLink href="#service-metadata">service metadata</ScrollLink>.
+* According to common conventions for exit codes, a processing service should
+  return 0 (zero) upon successful execution and any number but zero in case an
+  error has occurred (e.g. 1, 2, 128, 255, etc.).
+* In order to ensure deterministic workflow exceutions, services should be
+  stateless and idempotent. This means that every execution of a service with
+  the same input data and the same set of parameters should produce the same
+  result.
+
 ### Example workflows
 
 In this section, we describe example workflows covering patterns we regularly
@@ -129,7 +163,7 @@ actions do not depend on each other (i.e. they do not share any variable), Steep
 converts them to two independent process chains and executes them in parallel
 (as long as there are at least two agents available).
 
-The workflow defines four variables. `inputFile1` and `inputFile1` point to the
+The workflow defines four variables. `inputFile1` and `inputFile2` point to the
 two files to be copied. `outputFile1` and `outputFile2` have no value. Steep
 will create unique values (output file names) for them during the workflow
 execution.
@@ -143,9 +177,7 @@ For each execute action, Steep assigns the input variables to the input
 parameters, generates file names for the output variables, and then executes the
 processing services.
 
-###### Workflow:
-
-<CodeExample>
+<CodeExample title="Workflow:">
 
 ```json code-example
 {
@@ -189,9 +221,7 @@ processing services.
 
 </CodeExample>
 
-###### Service metadata:
-
-<CodeExample>
+<CodeExample title="Service metadata:">
 
 ```json code-example
 [{
@@ -230,9 +260,7 @@ executes them in sequence.
 
 The service metadata for this workflow is the same as for the previous one.
 
-###### Workflow:
-
-<CodeExample>
+<CodeExample title="Workflow:">
 
 ```json code-example
 {
@@ -282,9 +310,7 @@ split-and-join pattern because the graph is split into two branches after the
 first action. These branches are then joined into a single one with the final
 action.
 
-###### Workflow:
-
-<CodeExample>
+<CodeExample title="Workflow:">
 
 ```json code-example
 {
@@ -354,9 +380,7 @@ action.
 
 </CodeExample>
 
-###### Service metadata:
-
-<CodeExample>
+<CodeExample title="Service metadata:">
 
 ```json code-example
 [{
@@ -406,7 +430,7 @@ action.
 
 </CodeExample>
 
-#### Dynamically processing results in parallel
+#### Processing a dynamic number of results in parallel
 
 This example demonstrates how to process the results of an action in parallel
 even if the number of result files is unknown during the design of the workflow.
@@ -418,9 +442,7 @@ instances of the `copy` service. The output files (`outputFile1`) of this servic
 are collected via the `yieldToOutput` property in a variable called `copies`.
 The final `join` service merges these copies into a single file `outputFile2`.
 
-###### Workflow:
-
-<CodeExample>
+<CodeExample title="Workflow:">
 
 ```json code-example
 {
@@ -492,9 +514,7 @@ The final `join` service merges these copies into a single file `outputFile2`.
 
 </CodeExample>
 
-###### Service metadata:
-
-<CodeExample>
+<CodeExample title="Service metadata:">
 
 ```json code-example
 [{

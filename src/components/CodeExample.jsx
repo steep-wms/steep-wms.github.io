@@ -22,7 +22,7 @@ function getLanguage(pre) {
   return arr[0].props.className.match(/language-(.+)/)[1]
 }
 
-export default ({ children }) => {
+export default ({ children, title }) => {
   const setAutoScrolling = useContext(AutoScrollingContext.Dispatch)
   const setActive = useContext(CodeLanguageContext.Dispatch)
   const active = useContext(CodeLanguageContext.State)
@@ -86,7 +86,8 @@ export default ({ children }) => {
     pages.push(page)
   })
 
-  return (
+  return (<>
+    {title && <h6>{title}</h6>}
     <div className="code-example" ref={ref}>{titles}{pages}</div>
-  )
+  </>)
 }
