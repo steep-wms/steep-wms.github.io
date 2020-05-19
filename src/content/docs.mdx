@@ -816,6 +816,8 @@ sub-actions is undefined (i.e. the execution is non-sequential and
 non-deterministic). Instead, Steep always tries to execute as many sub-actions
 as possible in parallel.
 
+For-each actions may contain execute actions but also nested for-each actions.
+
 | Property                       | Type   | Description
 | ------------------------------ | ------ | -----------
 | type<br/>*(required)*          | string | The type of the action. Must be `"for"`.
@@ -854,27 +856,218 @@ as possible in parallel.
 
 ##### Parameters
 
-TODO
+This data model represents inputs and generic parameters of <ScrollLink href="#execute-actions">execute actions</ScrollLink>.
+
+| Property             | Type   | Description
+| -------------------- | ------ | -----------
+| id<br/>*(required)*  | string | The ID of the parameter as defined in the <ScrollLink href="#service-metadata">service metadata</ScrollLink>
+| var<br/>*(required)* | string | The ID of a variable that holds the value for this parameter
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "id": "input",
+  "var": "i"
+}
+```
+
+</CodeExample>
 
 ##### Output parameters
 
-TODO
+Output parameters of <ScrollLink href="#execute-actions">execute actions</ScrollLink> have
+additional properties compared to input parameters and generic parameters.
+
+| Property                | Type    | Description
+| ----------------------- | ------- | -----------
+| id<br/>*(required)*     | string  | The ID of the parameter as defined in the <ScrollLink href="#service-metadata">service metadata</ScrollLink>
+| var<br/>*(required)*    | string  | The ID of a variable to which Steep will assign the generated name of the output file. This variable can then be used, for example, as an input parameter of a subsequent action.
+| prefix<br/>*(optional)* | string  | An optional string to prepend to the generated name of the output file. For example, if Steep generates the name `"name123abc"` and the prefix is `"my/dir/"`, the output filename will be `"my/dir/name123abc"`. Note that the prefix must end with a slash if you want to create a directory. The output filename will be relative to the <ScrollLink href="#steepyaml">configured temporary directory or output directory</ScrollLink> (depending on the `store` property). You may even specify an absolute path: if the generated name is `"name456fgh"` and the prefix is `"/absolute/dir/"`, the output filename will be `"/absolute/dir/name456fgh"`.
+| store<br/>*(optional)*  | boolean | If this property is `true`, Steep will generate an output filename that is relative to the <ScrollLink href="#steepyaml">configured output directory</ScrollLink> instead of the <ScrollLink href="#steepyaml">temporary directory</ScrollLink>. The default value is `false`.
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "id": "output",
+  "var": "o",
+  "prefix": "some_directory/",
+  "store": false
+}
+```
+
+</CodeExample>
 
 #### Process chains
 
-TODO
+As described <ScrollLink href="#workflow-scheduling">above</ScrollLink>, Steep
+transforms a workflow to one or more *process chains*. A process chain is a
+sequential list of instructions that will be sent to Steep's remote agents to
+execute processing services in a distributed environment.
+
+| Property                              | Type   | Description
+| ------------------------------------- | ------ | -----------
+| id<br/>*(required)*                   | string | Unique process chain identifier
+| executables<br/>*(required)*          | array  | A list of <ScrollLink href="#executables">executable objects</ScrollLink> that describe what processing services should be called and with which arguments
+| submissionId<br/>*(required)*         | string | The ID of the <ScrollLink href="#submissions">submission</ScrollLink> to which this process chain belongs
+| startTime<br/>*(optional)*            | string | An ISO 8601 timestamp denoting the date and time when the process chain execution was started. May be `null` if the execution has not started yet.
+| endTime<br/>*(optional)*              | string | An ISO 8601 timestamp denoting the date and time when the process chain execution finished. May be `null` if the execution has not finished yet.
+| status<br/>*(required)*               | string | The current <ScrollLink href="#process-chain-status">status</ScrollLink> of the process chain
+| requiredCapabilities<br/>*(optional)* | array  | A set of strings specifying capabilities a host system must provide to be able to execute this process chain. See also <ScrollLink href="#setups">setups</ScrollLink>.
+| results<br/>*(optional)*              | object | If `status` is `SUCCESS`, this property contains the list of process chain result files grouped by their output variable ID. Otherwise, it is `null`.
+| errorMessage<br/>*(optional)*         | string | If `status` is `ERROR`, this property contains a human-readable error message. Otherwise, it is `null`.
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "id": "akpm646jjigral4cdyyq",
+  "submissionId": "akpm6yojjigral4cdxgq",
+  "startTime": "2020-05-18T08:44:19.221456Z",
+  "endTime": "2020-05-18T08:44:19.446437Z",
+  "status": "SUCCESS",
+  "requiredCapabilities": ["nodejs"],
+  "executables": [{
+    "id": "Count Down",
+    "path": "./countdown.js",
+    "runtime": "other",
+    "arguments": [{
+      "id": "input",
+      "type": "input",
+      "dataType": "file",
+      "variable": {
+        "id": "input_file",
+        "value": "input.txt"
+      }
+    }, {
+      "id": "output",
+      "type": "output",
+      "dataType": "fileOrEmptyList",
+      "variable": {
+        "id": "output_file",
+        "value": "output.txt"
+      }
+    }],
+    "runtimeArgs": []
+  }],
+  "results": {
+    "output_file": ["output.txt"]
+  }
+}
+```
+
+</CodeExample>
 
 #### Executables
 
-TODO
+An executable is part of a <ScrollLink href="#process-chains">process chain</ScrollLink>.
+It describes how a processing service should be executed and with which parameters.
+
+| Property                                | Type   | Description
+| --------------------------------------- | ------ | -----------
+| id<br/>*(required)*                     | string | An identifier (does not have to be unique. Typically refers to the ID or name of the service to be executed)
+| path<br/>*(required)*                   | string | The path to the binary of the service to be executed. This property is specific to the `runtime`. For example, for the `docker` runtime, this property refers to the Docker image.
+| arguments<br/>*(required)*              | array  | A list of <ScrollLink href="#arguments">arguments</ScrollLink> to pass to the service. May be empty.
+| runtime<br/>*(required)*                | string | The name of the runtime that will execute the service. Built-in runtimes are currently `other` (for any service that is executable on the target system) and `docker` for Docker containers. More runtimes can be added through <ScrollLink href="#custom-runtime-environments">plugins</ScrollLink>
+| runtimeArgs<br/>*(optional)*            | array  | A list of <ScrollLink href="#arguments">arguments</ScrollLink> to pass to the runtime. May be empty.
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "id": "Count Down",
+  "path": "my_docker_image:latest",
+  "runtime": "docker",
+  "arguments": [{
+    "id": "input",
+    "type": "input",
+    "dataType": "file",
+    "variable": {
+      "id": "input_file",
+      "value": "/data/input.txt"
+    }
+  }, {
+    "id": "output",
+    "type": "output",
+    "dataType": "directory",
+    "variable": {
+      "id": "output_file",
+      "value": "/data/output"
+    }
+  }, {
+    "id": "arg1",
+    "type": "argument",
+    "dataType": "boolean",
+    "label": "--foobar",
+    "variable": {
+      "id": "akqcqqoedcsaoescyhga",
+      "value": "true"
+    }
+  }],
+  "runtimeArgs": [{
+    "id": "akqcqqoedcsaoescyhgq",
+    "type": "argument",
+    "dataType": "string",
+    "label": "-v",
+    "variable": {
+      "id": "data_mount",
+      "value": "/data:/data"
+    }
+  }]
+}
+```
+
+</CodeExample>
 
 ##### Arguments
 
-TODO
+An argument is part of an <ScrollLink href="#executables">executable</ScrollLink>.
+
+| Property                  | Type   | Description
+| ------------------------- | ------ | -----------
+| id<br/>*(required)*       | string | An argument identifier
+| label<br/>*(optional)*    | string | An optional label to use when the argument is passed to the service (e.g. `--input`).
+| variable<br/>*(required)* | object | A <ScrollLink href="#argument-variables">variable</ScrollLink> that holds the value of this argument.
+| type<br/>*(required)*     | string | The type of this argument. Valid values: `input`, `output`, `argument`
+| dataType<br/>*(required)* | string | The type of the argument value. If this property is `directory`, Steep will create a new directory for the service's output and recursively search it for result files after the service has been executed. Otherwise, this property can be an arbitrary string. New data types with special handling can be added through <ScrollLink href="#output-adapters">output adapter plugins</ScrollLink>.
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "id": "akqcqqoedcsaoescyhgq",
+  "type": "argument",
+  "dataType": "string",
+  "label": "-v",
+  "variable": {
+    "id": "data_mount",
+    "value": "/data:/data"
+  }
+}
+```
+
+</CodeExample>
 
 ##### Argument variables
 
-TODO
+An argument variable holds the value of an <ScrollLink href="#arguments">argument</ScrollLink>.
+
+| Property               | Type   | Description
+| ---------------------- | ------ | -----------
+| id<br/>*(required)*    | string | The variable's unique identifier
+| value<br/>*(required)* | string | The variable's value
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "id": "data_mount",
+  "value": "/data:/data"
+}
+```
+
+</CodeExample>
 
 #### Submissions
 
@@ -890,6 +1083,7 @@ current <ScrollLink href="#submission-status">status</ScrollLink>.
 | startTime<br/>*(optional)*              | string | An ISO 8601 timestamp denoting the date and time when the workflow execution was started. May be `null` if the execution has not started yet.
 | endTime<br/>*(optional)*                | string | An ISO 8601 timestamp denoting the date and time when the workflow execution finished. May be `null` if the execution has not finished yet.
 | status<br/>*(required)*                 | string | The current <ScrollLink href="#submission-status">status</ScrollLink> of the submission
+| requiredCapabilities                    | array  | A set of strings specifying capabilities a host system must provide to be able to execute this workflow. See also <ScrollLink href="#setups">setups</ScrollLink>.
 | runningProcessChains<br/>*(required)*   | number | The number of <ScrollLink href="#process-chains">process chains</ScrollLink> currently being executed
 | cancelledProcessChains<br/>*(required)* | number | The number of process chains that have been cancelled
 | succeededProcessChains<br/>*(required)* | number | The number of process chains that have finished successfully
@@ -1049,13 +1243,89 @@ TODO
 
 ### HTTP endpoints
 
-#### Get submissions
+TODO
 
-### Configuration
+#### GET version information
 
 TODO
 
-#### Overview of configuration files
+#### GET submissions
+
+TODO
+
+#### GET submission by ID
+
+TODO
+
+#### PUT submission
+
+TODO
+
+#### POST submission
+
+TODO
+
+#### GET process chains
+
+TODO
+
+#### GET process chain by ID
+
+TODO
+
+#### PUT process chain
+
+TODO
+
+#### GET agents
+
+TODO
+
+#### GET agent by ID
+
+TODO
+
+#### GET VMs
+
+TODO
+
+#### GET VM by ID
+
+TODO
+
+#### GET services
+
+TODO
+
+#### GET service by ID
+
+TODO
+
+#### GET Prometheus metrics
+
+TODO
+
+### Web-based user interface
+
+TODO
+
+### Configuration
+
+TODO Overview of configuration files
+
+#### steep.yaml
+
+TODO
+
+#### setups.yaml
+
+TODO
+
+#### services/services.yaml
+
+TODO
+
+#### plugins/commons.yaml
 
 TODO
 
@@ -1072,5 +1342,9 @@ TODO
 TODO
 
 #### Process chain adapters
+
+TODO
+
+#### Initializers
 
 TODO
