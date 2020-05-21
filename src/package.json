@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "next",
     "build": "npm run lint && next build && next export",
-    "deploy": "rm -rf .next out && mkdir out && next build && next export && rm -rf ../_next ../images ../imprint ../privacy ../index.html && cp -r out/_next out/images out/imprint out/privacy out/index.html ..",
+    "deploy": "rm -rf .next out && mkdir out && next build && next export && rm -rf ../_next ../images ../imprint ../privacy ../index.html && cp -r out/_next out/favicons out/images out/imprint out/privacy out/index.html ..",
     "lint": "eslint --ext js,jsx components content pages plugins",
     "start": "next start"
   },
