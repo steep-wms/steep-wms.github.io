@@ -1,5 +1,5 @@
-import ScrollLink from "../components/ScrollLink"
-import Sidebar from "../components/Sidebar"
+import ScrollLink from "components/ScrollLink"
+import Sidebar from "components/Sidebar"
 import { cloneElement } from "react"
 
 function spliceToc(currentToc, n) {
