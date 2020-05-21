@@ -1,5 +1,5 @@
 import { Download, GitHub } from "react-feather"
-import Docker from "@icons-pack/react-simple-icons/lib/Docker"
+import { Docker } from "@icons-pack/react-simple-icons"
 import "./DownloadButtons.scss"
 
 export default () => (

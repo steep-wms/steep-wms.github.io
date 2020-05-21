@@ -15,7 +15,7 @@ const mdx = require("@next/mdx")({
     remarkPlugins: [hyphenate, smartypants, codeExample],
     rehypePlugins: [highlight, slug]
   }
-});
+})
 
 const config = {
   // also render markdown pages
