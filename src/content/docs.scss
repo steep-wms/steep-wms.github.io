@@ -171,4 +171,8 @@
   .docs-image-architecture {
     width: 16rem;
   }
+
+  table + table, pre + table {
+    margin-top: $spacer * 2;
+  }
 }

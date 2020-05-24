@@ -1364,19 +1364,197 @@ manager.
 
 ### HTTP endpoints
 
-TODO
+The main way to communicate with Steep (i.e. to submit workflows, to monitor
+progress, fetch metadata, etc.) is through its HTTP interface. In this
+section, we describe all HTTP endpoints. By default, Steep listens to
+incoming connections on port 8080.
 
-#### GET version information
+#### GET information
 
-TODO
+Get information about Steep. This includes:
+
+* Steep's version number
+* A build ID
+* A SHA of the Git commit for which the build was created
+* A timestamp of the moment when the build was created
+
+| Resource URL |
+| ------------ |
+
+```http
+/
+```
+
+| Parameters   |                              |
+| ------------ | ---------------------------- |
+| None         |                              |
+
+| Status codes |                              |
+| ------------ | ---------------------------- |
+| 200          | The operation was successful |
+
+| Example request |
+| --------------- |
+
+```http
+GET / HTTP/1.1
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-type: application/json
+content-length: 136
+
+{
+    "build": "83",
+    "commit": "2e54898b3e15da0015a1831bf6f6abc94a43eaee",
+    "timestamp": 1590049676916,
+    "version": "5.2.0-beta.1"
+}
+```
 
 #### GET submissions
 
-TODO
+Get information about all submissions in the database. The response is a JSON
+array consisting of <ScrollLink href="#submissions">submission objects</ScrollLink>
+without the properties `workflow`, `results`, and `errorMessage`. In order to
+get the complete details of a submission, use
+the <ScrollLink href="#get-submission-by-id">GET submission by ID endpoint</ScrollLink>.
+
+The submissions are returned in the order in which they were added to the
+database with the newest ones at the top.
+
+| Resource URL |
+| ------------ |
+
+```http
+/workflows
+```
+
+| Parameters              |                              |
+| ----------------------- | ---------------------------- |
+| size<br/>*(optional)*   | The maximum number of submissions to return. The default value is 10.  |
+| offset<br/>*(optional)* | The offset of the first submission to return. The default value is 0. |
+| status<br/>*(optional)* | If this parameter is defined, Steep will only return submissions with the given status. See the list of <ScrollLink href="#submission-status">submission statuses</ScrollLink> for valid values. Otherwise, it will return all submissions from the database. |
+
+| Response headers |                                                                |
+| ---------------- | -------------------------------------------------------------- |
+| x-page-size      | The size of the current page (i.e. the maximum number of submission objects returned). See `size` request parameter. |
+| x-page-offset    | The offset of the first submission returned. See `offset` request parameter |
+| x-page-total     | The total number of submissions in the database matching the given request parameters. |
+
+| Status codes |                                                                |
+| ------------ | -------------------------------------------------------------- |
+| 200          | The operation was successful                                   |
+| 400          | One of the parameters was invalid. See response body for error message. |
+
+| Example request |
+| --------------- |
+
+```http
+GET /workflows HTTP/1.1
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-encoding: gzip
+content-length: 707
+content-type: application/json
+x-page-offset: 0
+x-page-size: 10
+x-page-total: 2
+
+[
+    {
+      "id": "akpm6yojjigral4cdxgq",
+      "startTime": "2020-05-18T08:44:01.045710Z",
+      "endTime": "2020-05-18T08:44:21.218425Z",
+      "status": "SUCCESS",
+      "requiredCapabilities": [],
+      "runningProcessChains": 0,
+      "cancelledProcessChains": 0,
+      "succeededProcessChains": 10,
+      "failedProcessChains": 0,
+      "totalProcessChains": 10
+    },
+    {
+      "id": "akttc5kv575splk3ameq",
+      "startTime": "2020-05-24T17:20:37.343072Z",
+      "status": "RUNNING",
+      "requiredCapabilities": [],
+      "runningProcessChains": 1,
+      "cancelledProcessChains": 0,
+      "succeededProcessChains": 391,
+      "failedProcessChains": 0,
+      "totalProcessChains": 1000
+    }
+]
+```
 
 #### GET submission by ID
 
-TODO
+Get details about a single submission from the database.
+
+| Resource URL |
+| ------------ |
+
+```http
+/workflows/:id
+```
+
+| Parameters |                                    |
+| ---------- | ---------------------------------- |
+| id         | The ID of the submission to return |
+
+| Status codes |                              |
+| ------------ | ---------------------------- |
+| 200          | The operation was successful |
+| 404          | The submssion was not found  |
+
+| Example request |
+| --------------- |
+
+```http
+GET /workflows/akpm6yojjigral4cdxgq HTTP/1.1
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-encoding: gzip
+content-length: 348
+content-type: application/json
+
+{
+  "id": "akpm6yojjigral4cdxgq",
+  "startTime": "2020-05-18T08:44:01.045710Z",
+  "endTime": "2020-05-18T08:44:21.218425Z",
+  "status": "SUCCESS",
+  "requiredCapabilities": [],
+  "runningProcessChains": 0,
+  "cancelledProcessChains": 0,
+  "succeededProcessChains": 10,
+  "failedProcessChains": 0,
+  "totalProcessChains": 10,
+  "workflow": {
+    "api": "4.0.0",
+    "vars": [
+      ...
+    ],
+    "actions": [
+      ...
+    ]
+  }
+}
+```
 
 #### PUT submission
 
