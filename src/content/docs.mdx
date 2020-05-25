@@ -1558,11 +1558,140 @@ content-type: application/json
 
 #### PUT submission
 
-TODO
+Update a submission. The request body is a JSON object with the <ScrollLink href="#submissions">submission properties</ScrollLink>
+to update. At the moment, only the `status` property can be updated.
 
-#### POST submission
+Note: You can use this endpoint to cancel the execution of a submission (see
+example below).
 
-TODO
+| Resource URL |
+| ------------ |
+
+```http
+/workflows/:id
+```
+
+| Parameters |                                    |
+| ---------- | ---------------------------------- |
+| id         | The ID of the submission to update |
+
+| Status codes |                              |
+| ------------ | ---------------------------- |
+| 200          | The operation was successful |
+| 400          | The request body was invalid |
+| 404          | The submssion was not found  |
+
+| Example request |
+| --------------- |
+
+```http
+PUT /workflows/akujvtkv575splk3saqa HTTP/1.1
+Content-Length: 28
+Content-Type: application/json
+
+{
+  "status": "CANCELLED"
+}
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-encoding: gzip
+content-length: 168
+content-type: application/json
+
+{
+  "id": "akujvtkv575splk3saqa",
+  "startTime": "2020-05-25T19:02:21.610396Z",
+  "endTime": "2020-05-25T19:02:33.414032Z",
+  "status": "CANCELLED",
+  "runningProcessChains": 0,
+  "cancelledProcessChains": 314,
+  "succeededProcessChains": 686,
+  "failedProcessChains": 0,
+  "totalProcessChains": 1000
+}
+```
+
+#### POST workflow
+
+Create a new submission. The request body contains the <ScrollLink href="#workflows">workflow</ScrollLink>
+to execute.
+
+If the operation was successful, the response body contains
+the created <ScrollLink href="#submissions">submission</ScrollLink>.
+
+| Resource URL |
+| ------------ |
+
+```http
+/workflows
+```
+
+| Status codes |                              |
+| ------------ | ---------------------------- |
+| 202          | The workflow has been accepted (i.e. stored in the database) and is scheduled for execution. |
+| 400          | The posted workflow was invalid. See response body for more information. |
+
+| Example request |
+| --------------- |
+
+```http
+POST /workflows HTTP/1.1
+Content-Length: 231
+Content-Type: application/json
+
+{
+  "api": "3.0.0",
+  "vars": [{
+    "id": "sleep_seconds",
+    "value": 3
+  }],
+  "actions": [{
+    "type": "execute",
+    "service": "sleep",
+    "parameters": [{
+      "id": "seconds",
+      "var": "sleep_seconds"
+    }]
+  }]
+}
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 202 Accepted
+content-encoding: gzip
+content-length: 374
+content-type: application/json
+
+{
+  "id": "akukkcsv575splk3v2ma",
+  "status": "ACCEPTED",
+  "workflow": {
+    "api": "3.0.0",
+    "vars": [{
+      "id": "sleep_seconds",
+      "value": 3
+    }],
+    "actions": [{
+      "type": "execute",
+      "service": "sleep",
+      "inputs": [],
+      "outputs": [],
+      "parameters": [{
+        "id": "seconds",
+        "var": "sleep_seconds"
+      }]
+    }]
+  }
+}
+```
 
 #### GET process chains
 
