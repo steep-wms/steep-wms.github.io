@@ -1438,7 +1438,7 @@ database with the newest ones at the top.
 | ----------------------- | ---------------------------- |
 | size<br/>*(optional)*   | The maximum number of submissions to return. The default value is 10.  |
 | offset<br/>*(optional)* | The offset of the first submission to return. The default value is 0. |
-| status<br/>*(optional)* | If this parameter is defined, Steep will only return submissions with the given status. See the list of <ScrollLink href="#submission-status">submission statuses</ScrollLink> for valid values. Otherwise, it will return all submissions from the database. |
+| status<br/>*(optional)* | If this parameter is defined, Steep will only return submissions with the given status. Otherwise, it will return all submissions from the database. See the list of <ScrollLink href="#submission-status">submission statuses</ScrollLink> for valid values. |
 
 | Response headers |                                                                |
 | ---------------- | -------------------------------------------------------------- |
@@ -1499,7 +1499,8 @@ x-page-total: 2
 
 #### GET submission by ID
 
-Get details about a single submission from the database.
+Get details about a single <ScrollLink href="#submissions">submission</ScrollLink>
+from the database.
 
 | Resource URL |
 | ------------ |
@@ -1558,8 +1559,13 @@ content-type: application/json
 
 #### PUT submission
 
-Update a submission. The request body is a JSON object with the <ScrollLink href="#submissions">submission properties</ScrollLink>
+Update a <ScrollLink href="#submissions">submission</ScrollLink>. The request
+body is a JSON object with the <ScrollLink href="#submissions">submission properties</ScrollLink>
 to update. At the moment, only the `status` property can be updated.
+
+If the operation was successful, the response body contains
+the updated submission without the properties `workflow`, `results`, and
+`errorMessage`.
 
 Note: You can use this endpoint to cancel the execution of a submission (see
 example below).
@@ -1579,7 +1585,7 @@ example below).
 | ------------ | ---------------------------- |
 | 200          | The operation was successful |
 | 400          | The request body was invalid |
-| 404          | The submssion was not found  |
+| 404          | The submission was not found  |
 
 | Example request |
 | --------------- |
@@ -1618,11 +1624,11 @@ content-type: application/json
 
 #### POST workflow
 
-Create a new submission. The request body contains the <ScrollLink href="#workflows">workflow</ScrollLink>
+Create a new <ScrollLink href="#submissions">submission</ScrollLink>. The
+request body contains the <ScrollLink href="#workflows">workflow</ScrollLink>
 to execute.
 
-If the operation was successful, the response body contains
-the created <ScrollLink href="#submissions">submission</ScrollLink>.
+If the operation was successful, the response body contains submission.
 
 | Resource URL |
 | ------------ |
@@ -1695,15 +1701,201 @@ content-type: application/json
 
 #### GET process chains
 
-TODO
+Get information about all process chains in the database. The response is a JSON
+array consisting of <ScrollLink href="#process-chains">process chain objects</ScrollLink>
+without the properties `executables` and `results`. In order to
+get the complete details of a process chain, use
+the <ScrollLink href="#get-process-chain-by-id">GET process chain by ID endpoint</ScrollLink>.
+
+The process chains are returned in the order in which they were added to the
+database with the newest ones at the top.
+
+| Resource URL |
+| ------------ |
+
+```http
+/processchains
+```
+
+| Parameters              |                              |
+| ----------------------- | ---------------------------- |
+| size<br/>*(optional)*   | The maximum number of process chains to return. The default value is 10.  |
+| offset<br/>*(optional)* | The offset of the first process chain to return. The default value is 0. |
+| submissionId<br/>*(optional)* | If this parameter is defined, Steep will only return process chains from the submission with the given ID. Otherwise, it will return process chains from all submissions. If there is no submission with the given ID, the result will be an empty array. |
+| status<br/>*(optional)* | If this parameter is defined, Steep will only return process chains with the given status. Otherwise, it will return all process chains from the database. See the list of <ScrollLink href="#process-chain-status">process chain statuses</ScrollLink> for valid values. |
+
+| Response headers |                                                                |
+| ---------------- | -------------------------------------------------------------- |
+| x-page-size      | The size of the current page (i.e. the maximum number of process chain objects returned). See `size` request parameter. |
+| x-page-offset    | The offset of the first process chain returned. See `offset` request parameter |
+| x-page-total     | The total number of process chains in the database matching the given request parameters. |
+
+| Status codes |                                                                |
+| ------------ | -------------------------------------------------------------- |
+| 200          | The operation was successful                                   |
+| 400          | One of the parameters was invalid. See response body for error message. |
+
+| Example request |
+| --------------- |
+
+```http
+GET /processchains HTTP/1.1
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-encoding: gzip
+content-length: 262
+content-type: application/json
+x-page-offset: 0
+x-page-size: 10
+x-page-total: 7026
+
+[
+  {
+    "id": "akukkcsv575splk3v2na",
+    "submissionId": "akukkcsv575splk3v2ma",
+    "startTime": "2020-05-25T19:46:02.532829Z",
+    "endTime": "2020-05-25T19:46:05.546807Z",
+    "status": "SUCCESS",
+    "requiredCapabilities": []
+  },
+  {
+    "id": "akujvtkv575splk3tppq",
+    "submissionId": "akujvtkv575splk3saqa",
+    "status": "CANCELLED",
+    "requiredCapabilities": []
+  },
+  ...
+]
+```
 
 #### GET process chain by ID
 
-TODO
+Get details about a single <ScrollLink href="#process-chains">process chain</ScrollLink>
+from the database.
+
+| Resource URL |
+| ------------ |
+
+```http
+/processchains/:id
+```
+
+| Parameters |                                    |
+| ---------- | ---------------------------------- |
+| id         | The ID of the process chain to return |
+
+| Status codes |                              |
+| ------------ | ---------------------------- |
+| 200          | The operation was successful |
+| 404          | The process chain was not found  |
+
+| Example request |
+| --------------- |
+
+```http
+GET /processchains/akukkcsv575splk3v2na HTTP/1.1
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-encoding: gzip
+content-length: 535
+content-type: application/json
+
+{
+  "id": "akukkcsv575splk3v2na",
+  "submissionId": "akukkcsv575splk3v2ma",
+  "startTime": "2020-05-25T19:46:02.532829Z",
+  "endTime": "2020-05-25T19:46:05.546807Z",
+  "status": "SUCCESS",
+  "requiredCapabilities": [],
+  "results": {},
+  "executables": [{
+    "id": "sleep",
+    "path": "sleep",
+    "runtime": "other",
+    "runtimeArgs": [],
+    "arguments": [{
+      "id": "seconds",
+      "type": "argument",
+      "dataType": "integer",
+      "variable": {
+        "id": "sleep_seconds",
+        "value": "3"
+      }
+    }]
+  }]
+}
+```
 
 #### PUT process chain
 
-TODO
+Update a <ScrollLink href="#process-chains">process chain</ScrollLink>. The request
+body is a JSON object with the process chain properties to update. At the
+moment, only the `status` property can be updated.
+
+If the operation was successful, the response body contains
+the updated process chain without the properties `executables` and `results`.
+
+Note: You can use this endpoint to cancel the execution of a process chain (see
+example below).
+
+| Resource URL |
+| ------------ |
+
+```http
+/processchains/:id
+```
+
+| Parameters |                                    |
+| ---------- | ---------------------------------- |
+| id         | The ID of the process chain to update |
+
+| Status codes |                              |
+| ------------ | ---------------------------- |
+| 200          | The operation was successful |
+| 400          | The request body was invalid |
+| 404          | The process chain was not found  |
+
+| Example request |
+| --------------- |
+
+```http
+PUT /processchains/akuxzp4rojbw7mnvovcq HTTP/1.1
+Content-Length: 28
+Content-Type: application/json
+
+{
+  "status": "CANCELLED"
+}
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-encoding: gzip
+content-length: 222
+content-type: application/json
+
+{
+  "id": "akuxzp4rojbw7mnvovcq",
+  "submissionId": "akuxzp4rojbw7mnvovbq",
+  "startTime": "2020-05-26T11:06:24.055225Z",
+  "endTime": "2020-05-26T11:06:52.367194Z",
+  "status": "CANCELLED",
+  "requiredCapabilities": []
+}
+```
 
 #### GET agents
 
