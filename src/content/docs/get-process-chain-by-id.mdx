@@ -1,0 +1,62 @@
+import ScrollLink from "components/ScrollLink"
+
+Get details about a single <ScrollLink href="#process-chains">process chain</ScrollLink>
+from the database.
+
+| Resource URL |
+| ------------ |
+
+```http
+/processchains/:id
+```
+
+| Parameters |                                    |
+| ---------- | ---------------------------------- |
+| id         | The ID of the process chain to return |
+
+| Status codes |                              |
+| ------------ | ---------------------------- |
+| 200          | The operation was successful |
+| 404          | The process chain was not found  |
+
+| Example request |
+| --------------- |
+
+```http
+GET /processchains/akukkcsv575splk3v2na HTTP/1.1
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-encoding: gzip
+content-length: 535
+content-type: application/json
+
+{
+  "id": "akukkcsv575splk3v2na",
+  "submissionId": "akukkcsv575splk3v2ma",
+  "startTime": "2020-05-25T19:46:02.532829Z",
+  "endTime": "2020-05-25T19:46:05.546807Z",
+  "status": "SUCCESS",
+  "requiredCapabilities": [],
+  "results": {},
+  "executables": [{
+    "id": "sleep",
+    "path": "sleep",
+    "runtime": "other",
+    "runtimeArgs": [],
+    "arguments": [{
+      "id": "seconds",
+      "type": "argument",
+      "dataType": "integer",
+      "variable": {
+        "id": "sleep_seconds",
+        "value": "3"
+      }
+    }]
+  }]
+}
+```

@@ -3,9 +3,6 @@ import ScrollLink from "components/ScrollLink"
 import Layout from "./docs"
 import "./docs.scss"
 
-import Architecture from "assets/architecture.svg"
-import GenerateProcessChains from "assets/generate-process-chains.svg?include"
-
 export default Layout
 
 ## Documentation
@@ -19,693 +16,63 @@ documentation always applies to the latest software version.
 
 ### How does Steep work?
 
-In order to answer this question, we will first describe how Steep transforms
-scientific workflow graphs into executable units. After that, we will have a
-look at Steep's software architecture and what kind of processing services it
-can execute.
+import HowDoesSteepWork from "./docs/how-does-steep-work.mdx"
 
-(This section is based on the following publication: Krämer, M. (2020).
-Capability-Based Scheduling of Scientific Workflows in the Cloud.
-*Proceedings of the 9th International Conference on Data Science, Technology, and Applications DATA*.)
+<HowDoesSteepWork />
 
 #### Workflow scheduling
 
-Steep is a scientific workflow management system that can be used to control
-the processing of very large data sets in a distributed environment.
+import WorkflowScheduling from "./docs/workflow-scheduling.mdx"
 
-A scientific workflow is typically represented by a directed acyclic graph that
-describes how an input data set is processed by certain tasks in a given order
-to produce a desired outcome. Such workflows can become very large with
-hundreds up to several thousands of tasks processing data volumes ranging from
-gigabytes to terabytes. The following figure shows a simple example of such a
-workflow in an extended Petri Net notation proposed by
-[van der Aalst and van Hee (2004)](https://doi.org/10.7551/mitpress/7301.001.0001).
-
-<div className="docs-image docs-image-generate-process-chains"
-  dangerouslySetInnerHTML={{ __html: GenerateProcessChains }} />
-
-In this example, an input file is first processed by a task A. This task
-produces two results. The first one is processed by task B whose result is in
-turn sent to C. The second result of A is processed by D. The outcomes of C and
-D are finally processed by task E.
-
-In order to be able to schedule such a workflow in a distributed environment,
-the graph has to be transformed to individual executable units. Steep follows a
-hybrid scheduling approach that applies heuristics on the level of the workflow
-graph and later on the level of individual executable units. We assume that
-tasks that access the same data should be executed on the same machine to
-reduce the communication overhead and to improve file reuse. We therefore
-group tasks into so-called <ScrollLink href="#process-chains">process chains</ScrollLink>,
-which are linear sequential lists (without branches and loops).
-
-Steep transforms workflows to process chains in an iterative manner. In each
-iteration, it finds the longest linear sequences of tasks and groups them to
-process chains. The following animation shows how this works for our example
-workflow:
-
-<div className="docs-image docs-image-generate-process-chains-animated"
-  dangerouslySetInnerHTML={{ __html: GenerateProcessChains }} />
-
-Task A will be put into a process chain in iteration 1. Steep then schedules
-the execution of this process chain. After the execution has finished,
-Steep uses the results to produce a process chain containing B and C and
-another one containing D. These process chains are then scheduled to be
-executed in parallel. The results are finally used to generate the fourth
-process chain containing task E, which is also scheduled for execution.
+<WorkflowScheduling />
 
 #### Software architecture
 
-The following figure shows the main components of Steep: the HTTP server,
-the controller, the scheduler, the agent, and the cloud manager.
+import SoftwareArchitecture from "./docs/software-architecture.mdx"
 
-<img className="docs-image docs-image-architecture" src={Architecture} />
-
-Together, these components form an instance of Steep. In practice, a single
-instance typically runs on a separate virtual machine, but multiple instances
-can also be started on the same machine. Each component can be enabled or
-disabled in a given instance (see the <ScrollLink href="#configuration">configuration options</ScrollLink> 
-for more information). That means, in a cluster, there can be instances
-that have all five components enabled, and others that have only an agent,
-for example.
-
-All components of all instances communicate with each other through messages
-sent over an event bus. Further, the HTTP server, the controller, and the
-scheduler are able to connect to a shared database.
-
-The HTTP server provides information about scheduled, running, and finished
-workflows to clients. Clients can also upload a new workflow. In this case,
-the HTTP server puts the workflow into the database and sends a message to one
-of the instances of the controller.
-
-The controller receives this message, loads the workflow from the database,
-and starts transforming it iteratively to process chains as
-described <ScrollLink href="#workflow-scheduling">above</ScrollLink>.
-Whenever it has generated new process chains, it puts them into the database
-and sends a message to all instances of the scheduler.
-
-The schedulers then select agents to execute the process chains. They load the
-process chains from the database, send them via the event bus to the selected
-agents for execution, and finally write the results into the database. The
-schedulers also send a message back to the controller so it can continue with
-the next iteration and generate more process chains until the workflow has been
-completely transformed.
-
-In case a scheduler does not find an agent suitable for the execution of a
-process chain, it sends a message to the cloud manager (a component that
-interacts with the API of the Cloud infrastructure) and asks it to create a
-new agent.
+<SoftwareArchitecture />
 
 #### Processing services
 
-Steep is very flexible and allows a wide range of processing services (or
-microservices) to be integrated. A typical processing service is a program
-that reads one or more input files and writes one or more output files. The
-program may also accept generic parameters. The service can be implemented in
-any programming language (as long as the binary or script is executable on the
-machine the Steep agent is running) or can be wrapped in a Docker container.
+import ProcessingServices from "./docs/processing-services.mdx"
 
-For a seamless integration, a processing service should adhere to the following
-guidelines:
-
-* Every processing service should be a microservice. It should run in
-  its own process and serve one specific purpose.
-* As Steep needs to call the service in a distributed environment, it should
-  not have a graphical user interface or require any human interaction during
-  the runtime. Suitable services are command-line applications that accept
-  arguments to specify input files, output files, and parameters.
-* The service should read from input files, process the data, write results to
-  output files, and then exit. It should not run continuously like a web
-  service. If you need to integrate a web service in your workflow, we
-  recommend using the `curl` command or something similar.
-* Steep does not require the processing services to implement a specific
-  interface. Instead, the service's input and output parameters should be
-  described in a special data model called <ScrollLink href="#service-metadata">service metadata</ScrollLink>.
-* According to common conventions for exit codes, a processing service should
-  return 0 (zero) upon successful execution and any number but zero in case an
-  error has occurred (e.g. 1, 2, 128, 255, etc.).
-* In order to ensure deterministic workflow exceutions, services should be
-  stateless and idempotent. This means that every execution of a service with
-  the same input data and the same set of parameters should produce the same
-  result.
+<ProcessingServices />
 
 ### Example workflows
 
-In this section, we describe example workflows covering patterns we regularly
-see in real-world use cases. For each workflow, we also provide the required
-service metadata. For more information about the <ScrollLink href="#workflows">workflow model</ScrollLink>
-and <ScrollLink href="#service-metadata">service metadata</ScrollLink>, please read
-the section on <ScrollLink href="#data-models">data models</ScrollLink>.
+import ExampleWorkflows from "./docs/example-workflows.mdx"
+
+<ExampleWorkflows />
 
 #### Running two services in parallel
 
-This example workflow consists of two actions that each copy a file. Since both
-actions do not depend on each other (i.e. they do not share any variable), Steep
-converts them to two independent process chains and executes them in parallel
-(as long as there are at least two agents available).
+import RunningTwoServicesInParallel from "./docs/running-two-services-in-parallel.mdx"
 
-The workflow defines four variables. `inputFile1` and `inputFile2` point to the
-two files to be copied. `outputFile1` and `outputFile2` have no value. Steep
-will create unique values (output file names) for them during the workflow
-execution.
-
-The workflow then specifies two execute actions for the `copy` service. The
-service metadata of `copy` defines that this processing service has an input
-parameter `input_file` and an output parameter `output_file`, both of which
-must be specified exactly one time (`cardinality` equals `1..1`).
-
-For each execute action, Steep assigns the input variables to the input
-parameters, generates file names for the output variables, and then executes the
-processing services.
-
-<CodeExample title="Workflow:">
-
-```json code-example
-{
-  "api": "4.0.0",
-  "vars": [{
-    "id": "inputFile1",
-    "value": "example1.txt"
-  }, {
-    "id": "outputFile1"
-  }, {
-    "id": "inputFile2",
-    "value": "example2.txt"
-  }, {
-    "id": "outputFile2"
-  }],
-  "actions": [{
-    "type": "execute",
-    "service": "copy",
-    "inputs": [{
-      "id": "input_file",
-      "var": "inputFile1"
-    }],
-    "outputs": [{
-      "id": "output_file",
-      "var": "outputFile1"
-    }]
-  }, {
-    "type": "execute",
-    "service": "copy",
-    "inputs": [{
-      "id": "input_file",
-      "var": "inputFile2"
-    }],
-    "outputs": [{
-      "id": "output_file",
-      "var": "outputFile2"
-    }]
-  }]
-}
-```
-
-</CodeExample>
-
-<CodeExample title="Service metadata:">
-
-```json code-example
-[{
-  "id": "copy",
-  "name": "Copy",
-  "description": "Copy files",
-  "path": "cp",
-  "runtime": "other",
-  "parameters": [{
-    "id": "input_file",
-    "name": "Input file name",
-    "description": "Input file name",
-    "type": "input",
-    "cardinality": "1..1",
-    "data_type": "file"
-  }, {
-    "id": "output_file",
-    "name": "Output file name",
-    "description": "Output file name",
-    "type": "output",
-    "cardinality": "1..1",
-    "data_type": "file"
-  }]
-}]
-```
-
-</CodeExample>
+<RunningTwoServicesInParallel />
 
 #### Chaining two services
 
-The following example workflow makes a copy of a file and then a copy of the
-copy (i.e. the file is copied and the result is copied again). The workflow
-contains two actions that share the same variable: `outputFile1` is used as
-the output of the first action and as the input of the second action. Steep
-executes them in sequence.
+import ChainingTwoServices from "./docs/chaining-two-services.mdx"
 
-The service metadata for this workflow is the same as for the previous one.
-
-<CodeExample title="Workflow:">
-
-```json code-example
-{
-  "api": "4.0.0",
-  "vars": [{
-    "id": "inputFile",
-    "value": "example.txt"
-  }, {
-    "id": "outputFile1"
-  }, {
-    "id": "outputFile2"
-  }],
-  "actions": [{
-    "type": "execute",
-    "service": "copy",
-    "inputs": [{
-      "id": "input_file",
-      "var": "inputFile"
-    }],
-    "outputs": [{
-      "id": "output_file",
-      "var": "outputFile1"
-    }]
-  }, {
-    "type": "execute",
-    "service": "copy",
-    "inputs": [{
-      "id": "input_file",
-      "var": "outputFile1"
-    }],
-    "outputs": [{
-      "id": "output_file",
-      "var": "outputFile2"
-    }]
-  }]
-}
-```
-
-</CodeExample>
+<ChainingTwoServices />
 
 #### Splitting and joining results
 
-This example starts with an action that copies a file. Two other actions then
-run in parallel and make copies of the result of the first action. A final
-action then joins these copies to a single file. The workflow has a
-split-and-join pattern because the graph is split into two branches after the
-first action. These branches are then joined into a single one with the final
-action.
+import SplittingAndJoiningResults from "./docs/splitting-and-joining-results.mdx"
 
-<CodeExample title="Workflow:">
-
-```json code-example
-{
-  "api": "4.0.0",
-  "vars": [{
-    "id": "inputFile",
-    "value": "example.txt"
-  }, {
-    "id": "outputFile1"
-  }, {
-    "id": "outputFile2"
-  }, {
-    "id": "outputFile3"
-  }, {
-    "id": "outputFile4"
-  }],
-  "actions": [{
-    "type": "execute",
-    "service": "copy",
-    "inputs": [{
-      "id": "input_file",
-      "var": "inputFile"
-    }],
-    "outputs": [{
-      "id": "output_file",
-      "var": "outputFile1"
-    }]
-  }, {
-    "type": "execute",
-    "service": "copy",
-    "inputs": [{
-      "id": "input_file",
-      "var": "outputFile1"
-    }],
-    "outputs": [{
-      "id": "output_file",
-      "var": "outputFile2"
-    }]
-  }, {
-    "type": "execute",
-    "service": "copy",
-    "inputs": [{
-      "id": "input_file",
-      "var": "outputFile1"
-    }],
-    "outputs": [{
-      "id": "output_file",
-      "var": "outputFile3"
-    }]
-  }, {
-    "type": "execute",
-    "service": "join",
-    "inputs": [{
-      "id": "i",
-      "var": "outputFile2"
-    }, {
-      "id": "i",
-      "var": "outputFile3"
-    }],
-    "outputs": [{
-      "id": "o",
-      "var": "outputFile4"
-    }]
-  }]
-}
-```
-
-</CodeExample>
-
-<CodeExample title="Service metadata:">
-
-```json code-example
-[{
-  "id": "copy",
-  "name": "Copy",
-  "description": "Copy files",
-  "path": "cp",
-  "runtime": "other",
-  "parameters": [{
-    "id": "input_file",
-    "name": "Input file name",
-    "description": "Input file name",
-    "type": "input",
-    "cardinality": "1..1",
-    "data_type": "file"
-  }, {
-    "id": "output_file",
-    "name": "Output file name",
-    "description": "Output file name",
-    "type": "output",
-    "cardinality": "1..1",
-    "data_type": "file"
-  }]
-}, {
-  "id": "join",
-  "name": "Join",
-  "description": "Merge one or more files into one",
-  "path": "join.sh",
-  "runtime": "other",
-  "parameters": [{
-    "id": "i",
-    "name": "Input files",
-    "description": "One or more input files to merge",
-    "type": "input",
-    "cardinality": "1..n",
-    "data_type": "file"
-  }, {
-    "id": "o",
-    "name": "Output file",
-    "description": "The output file",
-    "type": "output",
-    "cardinality": "1..1",
-    "data_type": "file"
-  }]
-}]
-```
-
-</CodeExample>
+<SplittingAndJoiningResults />
 
 #### Processing a dynamic number of results in parallel
 
-This example demonstrates how to process the results of an action in parallel
-even if the number of result files is unknown during the design of the workflow.
-The workflow starts with an action that splits an input file `inputFile` into
-multiple files (e.g. one file per line) stored in a directory `outputDirectory`.
-A for-each action then iterates over these files and creates copies. The
-for-each action has an iterator `i` that serves as the input for the individual
-instances of the `copy` service. The output files (`outputFile1`) of this service
-are collected via the `yieldToOutput` property in a variable called `copies`.
-The final `join` service merges these copies into a single file `outputFile2`.
+import ProcessingADynamicNumberOfResultsInParallel from "./docs/processing-a-dynamic-number-of-results-in-parallel.mdx"
 
-<CodeExample title="Workflow:">
-
-```json code-example
-{
-  "api": "4.0.0",
-  "vars": [{
-    "id": "inputFile",
-    "value": "example.txt"
-  }, {
-    "id": "lines",
-    "value": 1
-  }, {
-    "id": "outputDirectory"
-  }, {
-    "id": "i"
-  }, {
-    "id": "outputFile1"
-  }, {
-    "id": "copies"
-  }, {
-    "id": "outputFile2"
-  }],
-  "actions": [{
-    "type": "execute",
-    "service": "split",
-    "parameters": [{
-      "id": "lines",
-      "var": "lines"
-    }],
-    "inputs": [{
-      "id": "file",
-      "var": "inputFile"
-    }],
-    "outputs": [{
-      "id": "output_directory",
-      "var": "outputDirectory"
-    }]
-  }, {
-    "type": "for",
-    "input": "outputDirectory",
-    "enumerator": "i",
-    "output": "copies",
-    "actions": [{
-      "type": "execute",
-      "service": "copy",
-      "inputs": [{
-        "id": "input_file",
-        "var": "i"
-      }],
-      "outputs": [{
-        "id": "output_file",
-        "var": "outputFile1"
-      }]
-    }],
-    "yieldToOutput": "outputFile1"
-  }, {
-    "type": "execute",
-    "service": "join",
-    "inputs": [{
-      "id": "i",
-      "var": "copies"
-    }],
-    "outputs": [{
-      "id": "o",
-      "var": "outputFile2"
-    }]
-  }]
-}
-```
-
-</CodeExample>
-
-<CodeExample title="Service metadata:">
-
-```json code-example
-[{
-  "id": "split",
-  "name": "Split",
-  "description": "Split a file into pieces",
-  "path": "split",
-  "runtime": "other",
-  "parameters": [{
-    "id": "lines",
-    "name": "Number of lines per file",
-    "description": "Create smaller files n lines in length",
-    "type": "argument",
-    "cardinality": "0..1",
-    "data_type": "integer",
-    "label": "-l"
-  }, {
-    "id": "file",
-    "name": "Input file",
-    "description": "The input file to split",
-    "type": "input",
-    "cardinality": "1..1",
-    "data_type": "file"
-  }, {
-    "id": "output_directory",
-    "name": "Output directory",
-    "description": "The output directory",
-    "type": "output",
-    "cardinality": "1..1",
-    "data_type": "directory",
-    "file_suffix": "/"
-  }]
-}, {
-  "id": "copy",
-  "name": "Copy",
-  "description": "Copy files",
-  "path": "cp",
-  "runtime": "other",
-  "parameters": [{
-    "id": "input_file",
-    "name": "Input file name",
-    "description": "Input file name",
-    "type": "input",
-    "cardinality": "1..1",
-    "data_type": "file"
-  }, {
-    "id": "output_file",
-    "name": "Output file name",
-    "description": "Output file name",
-    "type": "output",
-    "cardinality": "1..1",
-    "data_type": "file"
-  }]
-}, {
-  "id": "join",
-  "name": "Join",
-  "description": "Merge one or more files into one",
-  "path": "join.sh",
-  "runtime": "other",
-  "parameters": [{
-    "id": "i",
-    "name": "Input files",
-    "description": "One or more input files to merge",
-    "type": "input",
-    "cardinality": "1..n",
-    "data_type": "file"
-  }, {
-    "id": "o",
-    "name": "Output file",
-    "description": "The output file",
-    "type": "output",
-    "cardinality": "1..1",
-    "data_type": "file"
-  }]
-}]
-```
-
-</CodeExample>
+<ProcessingADynamicNumberOfResultsInParallel />
 
 #### Feeding results back into the workflow (cycles/loops)
 
-The following example shows how to create loops with a dynamic number of
-iterations. Suppose there is a processing service called `countdown.js` that
-reads a number from an input file, decreases this number by 1, and then writes
-the result to an output file. The service could be implemented in Node.js
-as follows:
+import FeedingResultsBackIntoTheWorkflow from "./docs/feeding-results-back-into-the-workflow.mdx"
 
-```javascript
-#!/usr/bin/env node
-
-const fs = require("fs").promises
-
-async function countDown(input, output) {
-  let value = parseInt(await fs.readFile(input, "utf-8"))
-  console.log(`Old value: ${value}`)
-
-  value--
-  if (value > 0) {
-    console.log(`New value: ${value}`)
-    await fs.writeFile(output, "" + value, "utf-8")
-  } else {
-    console.log("No new value")
-  }
-}
-
-countDown(process.argv[2], process.argv[3])
-```
-
-The following workflow uses this service in a for-each action to continuously
-reprocess a file and decrease the number in it until it reaches 0.
-
-In the first iteration of the for-each action, the service reads from a file called
-`input.txt` and writes to an output file with a name generated during runtime.
-The path of this output file is routed back into the for-each action via
-`yieldToInput`. In the second iteration, the service reads from the output file
-and produces another one. This process continues until the number equals 0.
-In this case, the service does not write an output file anymore and the
-workflow finishes.
-
-Note that we use the data type `fileOrEmptyList` in the service metadata for the
-output parameter of the `countdown` service. This is a special data type that
-either returns the generated file or an empty list if the file does not exist.
-In the latter case, the for-each action does not have any more input values to
-process. Think of the `input` of a for-each action as a queue. If nothing is
-pushed into the queue and all elements have already been processed, the for-each
-action can finish.
-
-<CodeExample title="Workflow:">
-
-```json code-example
-{
-  "api": "4.0.0",
-  "vars": [{
-    "id": "input_file",
-    "value": "input.txt"
-  }, {
-    "id": "i"
-  }, {
-    "id": "output_file"
-  }],
-  "actions": [{
-    "type": "for",
-    "input": "input_file",
-    "enumerator": "i",
-    "yieldToInput": "output_file",
-    "actions": [{
-      "type": "execute",
-      "service": "countdown",
-      "inputs": [{
-        "id": "input",
-        "var": "i"
-      }],
-      "outputs": [{
-        "id": "output",
-        "var": "output_file"
-      }]
-    }]
-  }]
-}
-```
-
-</CodeExample>
-
-<CodeExample title="Service metadata:">
-
-```json code-example
-[{
-  "id": "countdown",
-  "name": "Count Down",
-  "description": "Read a number, subtract 1, and write the result",
-  "path": "./countdown.js",
-  "runtime": "other",
-  "parameters": [{
-    "id": "input",
-    "name": "Input file",
-    "description": "The input file containing the number to decrease",
-    "type": "input",
-    "cardinality": "1..1",
-    "data_type": "file"
-  }, {
-    "id": "output",
-    "name": "Output file",
-    "description": "The path to the output file",
-    "type": "output",
-    "cardinality": "1..1",
-    "data_type": "fileOrEmptyList"
-  }]
-}]
-```
-
-</CodeExample>
+<FeedingResultsBackIntoTheWorkflow />
 
 ### Data models
 
@@ -713,1189 +80,183 @@ This section contains a description of all data models used by Steep.
 
 #### Workflows
 
-The main components of the workflow model are variables and actions. Use
-variables to specify input files and parameters for your processing services.
-Variables for output files must also be declared but must not have a value. The
-names of output files will be generated by Steep during the runtime of the
-workflow.
+import Workflows from "./docs/workflows.mdx"
 
-| Property                  | Type   | Description
-| ------------------------- | ------ | -----------
-| api<br/>*(required)*      | string | The API (or data model) version. Should be `4.0.0`.
-| name<br/>*(optional)*     | string | An optional human-readable workflow name
-| vars<br/>*(required)*     | array  | An array of <ScrollLink href="#variables">variables</ScrollLink>
-| actions<br/>*(required)*  | array  | An array of <ScrollLink href="#actions">actions</ScrollLink> that make up the workflow
-
-<h6>Example:</h6>
-
-See the section on <ScrollLink href="#example-workflows">example workflows</ScrollLink>.
+<Workflows />
 
 #### Variables
 
-A variable holds a value for inputs, outputs, and generic parameters of
-processing services. It can be defined (input variables and generic parameters)
-or undefined (output parameters). Defined values are immutable. Undefined
-variables will be assigned a value by Steep during the runtime of a workflow.
+import Variables from "./docs/variables.mdx"
 
-Variables are also used to link two services together and to define the data
-flow in the workflow graph. For example, if the output parameter of a service A
-refers to a variable V, and the input parameter of service B refers to the same
-variable, Steep will first execute A to determine the value of V and then
-execute B.
-
-| Property               | Type   | Description
-| ---------------------- | ------ | -----------
-| id<br/>*(required)*    | string | A unique variable identifier
-| value<br/>*(optional)* | any    | The variable's value or `null` if the variable is undefined
-
-<CodeExample title="Example:">
-
-```json code-example
-{
-  "id": "input_file",
-  "value": "/data/input.txt"
-}
-```
-
-</CodeExample>
+<Variables />
 
 #### Actions
 
-There are two types of actions in a workflow: <ScrollLink href="#execute-actions">execute actions</ScrollLink>
-and <ScrollLink href="#for-each-actions">for-each actions</ScrollLink>.
-They are differentiated by their `type` attribute.
+import Actions from "./docs/actions.mdx"
+
+<Actions />
 
 ##### Execute actions
 
-An execute action instructs Steep to execute a certain service with given
-inputs, outputs, and generic parameters.
+import ExecuteActions from "./docs/execute-actions.mdx"
 
-| Property                    | Type   | Description
-| --------------------------- | ------ | -----------
-| type<br/>*(required)*       | string | The type of the action. Must be `"execute"`.
-| service<br/>*(required)*    | string | The ID of the <ScrollLink href="#service-metadata">service</ScrollLink> to execute
-| inputs<br/>*(optional)*     | array  | An array of <ScrollLink href="#parameters">input parameters</ScrollLink>
-| outputs<br/>*(optional)*    | array  | An array of <ScrollLink href="#output-parameters">output parameters</ScrollLink>
-| parameters<br/>*(optional)* | array  | An array of <ScrollLink href="#parameters">generic parameters</ScrollLink>
-
-<CodeExample title="Example:">
-
-```json code-example
-{
-  "type": "execute",
-  "service": "my_service",
-  "inputs": [{
-    "id": "input_file",
-    "var": "my_input_file"
-  }],
-  "outputs": [{
-    "id": "output_file",
-    "var": "my_output_file",
-    "store": true
-  }],
-  "parameters": [{
-    "id": "verbose",
-    "var": "is_verbose"
-  }, {
-    "id": "resolution",
-    "var": "resolution_pixels"
-  }]
-}
-```
-
-</CodeExample>
+<ExecuteActions />
 
 ##### For-each actions
 
-A for-each action has an input, a list of sub-actions, and an output. It clones
-the sub-actions as many times as there are items in its input, executes the
-actions, and then collects the results in the output.
+import ForEachActions from "./docs/for-each-actions.mdx"
 
-Although the action is called 'for-each', the execution order of the
-sub-actions is undefined (i.e. the execution is non-sequential and
-non-deterministic). Instead, Steep always tries to execute as many sub-actions
-as possible in parallel.
-
-For-each actions may contain execute actions but also nested for-each actions.
-
-| Property                       | Type   | Description
-| ------------------------------ | ------ | -----------
-| type<br/>*(required)*          | string | The type of the action. Must be `"for"`.
-| input<br/>*(required)*         | string | The ID of a variable containing the items to which to apply the sub-actions
-| enumerator<br/>*(required)*    | string | The ID of a variable that holds the current value from `input` for each iteration
-| output<br/>*(optional)*        | string | The ID of a variable that will collect output values from all iterations (see `yieldToOutput`)
-| actions<br/>*(optional)*       | array  | An array of sub-actions to execute in each iteration
-| yieldToOutput<br/>*(optional)* | string | The ID of a sub-action's output variable whose value should be appended to the for-each action's `output`
-| yieldToInput<br/>*(optional)*  | string | The ID of a sub-action's output variable whose value should be appended to the for-each action's `input` to generate further iterations
-
-<CodeExample title="Example:">
-
-```json code-example
-{
-  "type": "for",
-  "input": "all_input_files",
-  "output": "all_output_files",
-  "enumerator": "i",
-  "yieldToOutput": "output_file",
-  "actions": [{
-    "type": "execute",
-    "service": "copy",
-    "inputs": [{
-      "id": "input",
-      "var": "i"
-    }],
-    "outputs": [{
-      "id": "output",
-      "var": "output_file"
-    }]
-  }]
-}
-```
-
-</CodeExample>
+<ForEachActions />
 
 ##### Parameters
 
-This data model represents inputs and generic parameters of <ScrollLink href="#execute-actions">execute actions</ScrollLink>.
+import Parameters from "./docs/parameters.mdx"
 
-| Property             | Type   | Description
-| -------------------- | ------ | -----------
-| id<br/>*(required)*  | string | The ID of the parameter as defined in the <ScrollLink href="#service-metadata">service metadata</ScrollLink>
-| var<br/>*(required)* | string | The ID of a variable that holds the value for this parameter
-
-<CodeExample title="Example:">
-
-```json code-example
-{
-  "id": "input",
-  "var": "i"
-}
-```
-
-</CodeExample>
+<Parameters />
 
 ##### Output parameters
 
-Output parameters of <ScrollLink href="#execute-actions">execute actions</ScrollLink> have
-additional properties compared to input parameters and generic parameters.
+import OutputParameters from "./docs/output-parameters.mdx"
 
-| Property                | Type    | Description
-| ----------------------- | ------- | -----------
-| id<br/>*(required)*     | string  | The ID of the parameter as defined in the <ScrollLink href="#service-metadata">service metadata</ScrollLink>
-| var<br/>*(required)*    | string  | The ID of a variable to which Steep will assign the generated name of the output file. This variable can then be used, for example, as an input parameter of a subsequent action.
-| prefix<br/>*(optional)* | string  | An optional string to prepend to the generated name of the output file. For example, if Steep generates the name `"name123abc"` and the prefix is `"my/dir/"`, the output filename will be `"my/dir/name123abc"`. Note that the prefix must end with a slash if you want to create a directory. The output filename will be relative to the <ScrollLink href="#steepyaml">configured temporary directory or output directory</ScrollLink> (depending on the `store` property). You may even specify an absolute path: if the generated name is `"name456fgh"` and the prefix is `"/absolute/dir/"`, the output filename will be `"/absolute/dir/name456fgh"`.
-| store<br/>*(optional)*  | boolean | If this property is `true`, Steep will generate an output filename that is relative to the <ScrollLink href="#steepyaml">configured output directory</ScrollLink> instead of the <ScrollLink href="#steepyaml">temporary directory</ScrollLink>. The default value is `false`.
-
-<CodeExample title="Example:">
-
-```json code-example
-{
-  "id": "output",
-  "var": "o",
-  "prefix": "some_directory/",
-  "store": false
-}
-```
-
-</CodeExample>
+<OutputParameters />
 
 #### Process chains
 
-As described <ScrollLink href="#workflow-scheduling">above</ScrollLink>, Steep
-transforms a workflow to one or more *process chains*. A process chain is a
-sequential list of instructions that will be sent to Steep's remote agents to
-execute processing services in a distributed environment.
+import ProcessChains from "./docs/process-chains.mdx"
 
-| Property                              | Type   | Description
-| ------------------------------------- | ------ | -----------
-| id<br/>*(required)*                   | string | Unique process chain identifier
-| executables<br/>*(required)*          | array  | A list of <ScrollLink href="#executables">executable objects</ScrollLink> that describe what processing services should be called and with which arguments
-| submissionId<br/>*(required)*         | string | The ID of the <ScrollLink href="#submissions">submission</ScrollLink> to which this process chain belongs
-| startTime<br/>*(optional)*            | string | An ISO 8601 timestamp denoting the date and time when the process chain execution was started. May be `null` if the execution has not started yet.
-| endTime<br/>*(optional)*              | string | An ISO 8601 timestamp denoting the date and time when the process chain execution finished. May be `null` if the execution has not finished yet.
-| status<br/>*(required)*               | string | The current <ScrollLink href="#process-chain-status">status</ScrollLink> of the process chain
-| requiredCapabilities<br/>*(optional)* | array  | A set of strings specifying capabilities a host system must provide to be able to execute this process chain. See also <ScrollLink href="#setups">setups</ScrollLink>.
-| results<br/>*(optional)*              | object | If `status` is `SUCCESS`, this property contains the list of process chain result files grouped by their output variable ID. Otherwise, it is `null`.
-| errorMessage<br/>*(optional)*         | string | If `status` is `ERROR`, this property contains a human-readable error message. Otherwise, it is `null`.
-
-<CodeExample title="Example:">
-
-```json code-example
-{
-  "id": "akpm646jjigral4cdyyq",
-  "submissionId": "akpm6yojjigral4cdxgq",
-  "startTime": "2020-05-18T08:44:19.221456Z",
-  "endTime": "2020-05-18T08:44:19.446437Z",
-  "status": "SUCCESS",
-  "requiredCapabilities": ["nodejs"],
-  "executables": [{
-    "id": "Count Down",
-    "path": "./countdown.js",
-    "runtime": "other",
-    "arguments": [{
-      "id": "input",
-      "type": "input",
-      "dataType": "file",
-      "variable": {
-        "id": "input_file",
-        "value": "input.txt"
-      }
-    }, {
-      "id": "output",
-      "type": "output",
-      "dataType": "fileOrEmptyList",
-      "variable": {
-        "id": "output_file",
-        "value": "output.txt"
-      }
-    }],
-    "runtimeArgs": []
-  }],
-  "results": {
-    "output_file": ["output.txt"]
-  }
-}
-```
-
-</CodeExample>
+<ProcessChains />
 
 #### Executables
 
-An executable is part of a <ScrollLink href="#process-chains">process chain</ScrollLink>.
-It describes how a processing service should be executed and with which parameters.
+import Executables from "./docs/executables.mdx"
 
-| Property                                | Type   | Description
-| --------------------------------------- | ------ | -----------
-| id<br/>*(required)*                     | string | An identifier (does not have to be unique. Typically refers to the ID or name of the service to be executed)
-| path<br/>*(required)*                   | string | The path to the binary of the service to be executed. This property is specific to the `runtime`. For example, for the `docker` runtime, this property refers to the Docker image.
-| arguments<br/>*(required)*              | array  | A list of <ScrollLink href="#arguments">arguments</ScrollLink> to pass to the service. May be empty.
-| runtime<br/>*(required)*                | string | The name of the runtime that will execute the service. Built-in runtimes are currently `other` (for any service that is executable on the target system) and `docker` for Docker containers. More runtimes can be added through <ScrollLink href="#custom-runtime-environments">plugins</ScrollLink>
-| runtimeArgs<br/>*(optional)*            | array  | A list of <ScrollLink href="#arguments">arguments</ScrollLink> to pass to the runtime. May be empty.
-
-<CodeExample title="Example:">
-
-```json code-example
-{
-  "id": "Count Down",
-  "path": "my_docker_image:latest",
-  "runtime": "docker",
-  "arguments": [{
-    "id": "input",
-    "type": "input",
-    "dataType": "file",
-    "variable": {
-      "id": "input_file",
-      "value": "/data/input.txt"
-    }
-  }, {
-    "id": "output",
-    "type": "output",
-    "dataType": "directory",
-    "variable": {
-      "id": "output_file",
-      "value": "/data/output"
-    }
-  }, {
-    "id": "arg1",
-    "type": "argument",
-    "dataType": "boolean",
-    "label": "--foobar",
-    "variable": {
-      "id": "akqcqqoedcsaoescyhga",
-      "value": "true"
-    }
-  }],
-  "runtimeArgs": [{
-    "id": "akqcqqoedcsaoescyhgq",
-    "type": "argument",
-    "dataType": "string",
-    "label": "-v",
-    "variable": {
-      "id": "data_mount",
-      "value": "/data:/data"
-    }
-  }]
-}
-```
-
-</CodeExample>
+<Executables />
 
 ##### Arguments
 
-An argument is part of an <ScrollLink href="#executables">executable</ScrollLink>.
+import Arguments from "./docs/arguments.mdx"
 
-| Property                  | Type   | Description
-| ------------------------- | ------ | -----------
-| id<br/>*(required)*       | string | An argument identifier
-| label<br/>*(optional)*    | string | An optional label to use when the argument is passed to the service (e.g. `--input`).
-| variable<br/>*(required)* | object | A <ScrollLink href="#argument-variables">variable</ScrollLink> that holds the value of this argument.
-| type<br/>*(required)*     | string | The type of this argument. Valid values: `input`, `output`, `argument`
-| dataType<br/>*(required)* | string | The type of the argument value. If this property is `directory`, Steep will create a new directory for the service's output and recursively search it for result files after the service has been executed. Otherwise, this property can be an arbitrary string. New data types with special handling can be added through <ScrollLink href="#output-adapters">output adapter plugins</ScrollLink>.
-
-<CodeExample title="Example:">
-
-```json code-example
-{
-  "id": "akqcqqoedcsaoescyhgq",
-  "type": "argument",
-  "dataType": "string",
-  "label": "-v",
-  "variable": {
-    "id": "data_mount",
-    "value": "/data:/data"
-  }
-}
-```
-
-</CodeExample>
+<Arguments />
 
 ##### Argument variables
 
-An argument variable holds the value of an <ScrollLink href="#arguments">argument</ScrollLink>.
+import ArgumentVariables from "./docs/argument-variables.mdx"
 
-| Property               | Type   | Description
-| ---------------------- | ------ | -----------
-| id<br/>*(required)*    | string | The variable's unique identifier
-| value<br/>*(required)* | string | The variable's value
-
-<CodeExample title="Example:">
-
-```json code-example
-{
-  "id": "data_mount",
-  "value": "/data:/data"
-}
-```
-
-</CodeExample>
+<ArgumentVariables />
 
 #### Submissions
 
-A *submission* is created when you submit a <ScrollLink href="#workflows">workflow</ScrollLink>
-through the <ScrollLink href="#get-submissions">`/workflows`</ScrollLink> endpoint. It contains information
-about the workflow execution such as the start and end time as well as the
-current <ScrollLink href="#submission-status">status</ScrollLink>.
+import Submissions from "./docs/submissions.mdx"
 
-| Property                                | Type   | Description
-| --------------------------------------- | ------ | -----------
-| id<br/>*(required)*                     | string | Unique submission identifier
-| workflow<br/>*(required)*               | object | The submitted <ScrollLink href="#workflows">workflow</ScrollLink>
-| startTime<br/>*(optional)*              | string | An ISO 8601 timestamp denoting the date and time when the workflow execution was started. May be `null` if the execution has not started yet.
-| endTime<br/>*(optional)*                | string | An ISO 8601 timestamp denoting the date and time when the workflow execution finished. May be `null` if the execution has not finished yet.
-| status<br/>*(required)*                 | string | The current <ScrollLink href="#submission-status">status</ScrollLink> of the submission
-| requiredCapabilities                    | array  | A set of strings specifying capabilities a host system must provide to be able to execute this workflow. See also <ScrollLink href="#setups">setups</ScrollLink>.
-| runningProcessChains<br/>*(required)*   | number | The number of <ScrollLink href="#process-chains">process chains</ScrollLink> currently being executed
-| cancelledProcessChains<br/>*(required)* | number | The number of process chains that have been cancelled
-| succeededProcessChains<br/>*(required)* | number | The number of process chains that have finished successfully
-| failedProcessChains<br/>*(required)*    | number | The number of process chains whose execution has failed
-| totalProcessChains<br/>*(required)*     | number | The current total number of process chains in this submission. May increase during execution when new process chains are generated.
-| results<br/>*(optional)*                | object | If `status` is `SUCCESS` or `PARTIAL_SUCCESS`, this property contains the list of workflow result files grouped by their output variable ID. Otherwise, it is `null`.
-| errorMessage<br/>*(optional)*           | string | If `status` is `ERROR`, this property contains a human-readable error message. Otherwise, it is `null`.
-
-<CodeExample title="Example:">
-
-```json code-example
-{
-  "id": "aiq7eios7ubxglkcqx5a",
-  "workflow": {
-    "api": "4.0.0",
-    "vars": [{
-      "id": "myInputFile",
-      "value": "/data/input.txt"
-    }, {
-      "id": "myOutputFile"
-    }],
-    "actions": [{
-      "type": "execute",
-      "service": "cp",
-      "inputs": [{
-        "id": "input_file",
-        "var": "myInputFile"
-      }],
-      "outputs": [{
-        "id": "output_file",
-        "var": "myOutputFile",
-        "store": true
-      }],
-      "parameters": []
-    }]
-  },
-  "startTime": "2020-02-13T15:38:58.719382Z",
-  "endTime": "2020-02-13T15:39:00.807715Z",
-  "status": "SUCCESS",
-  "runningProcessChains": 0,
-  "cancelledProcessChains": 0,
-  "succeededProcessChains": 1,
-  "failedProcessChains": 0,
-  "totalProcessChains": 1,
-  "results": {
-    "myOutputFile": [
-      "/data/out/aiq7eios7ubxglkcqx5a/aiq7hygs7ubxglkcrf5a"
-    ]
-  }
-}
-```
-
-</CodeExample>
+<Submissions />
 
 #### Submission status
 
-The following table shows the statuses a <ScrollLink href="#submissions">submission</ScrollLink>
-can have:
+import SubmissionStatus from "./docs/submission-status.mdx"
 
-| Status          | Description
-| --------------- | -----------
-| ACCEPTED        | The submission has been accepted by Steep but execution has not started yet
-| RUNNING         | The submission is currently being executed
-| CANCELLED       | The submission was cancelled
-| SUCCESS         | The execution of the submission finished successfully
-| PARTIAL_SUCCESS | The submission was executed completely but one or more process chains failed
-| ERROR           | The execution of the submission failed
+<SubmissionStatus />
 
 #### Process chain status
 
-The following table shows the statuses a <ScrollLink href="#process-chains">process chain</ScrollLink>
-can have:
+import ProcessChainStatus from "./docs/process-chain-status.mdx"
 
-| Status          | Description
-| --------------- | -----------
-| REGISTERED      | The process chain has been created but execution has not started yet
-| RUNNING         | The process chain is currently being executed
-| CANCELLED       | The execution of the process chain was cancelled
-| SUCCESS         | The process chain was executed successfully
-| ERROR           | The execution of the process chain failed
+<ProcessChainStatus />
 
 #### Service metadata
 
-Service metadata is used to describe the interface of a processing service so
-it can be executed by Steep.
+import ServiceMetadata from "./docs/service-metadata.mdx"
 
-| Property                               | Type   | Description
-| -------------------------------------- | ------ | -----------
-| id<br/>*(required)*                    | string | A unique service identifier
-| name<br/>*(required)*                  | string | A human-readable name
-| description<br/>*(required)*           | string | A human-readable description
-| path<br/>*(required)*                  | string | Relative path to the service executable in the service artefact (or a Docker image if `runtime` equals `docker`)
-| runtime<br/>*(required)*               | string | The <ScrollLink href="#runtime-environments">runtime environment</ScrollLink>
-| parameters<br/>*(required)*            | array  | A list of <ScrollLink href="#service-parameters">service parameters</ScrollLink>
-| runtime_args<br/>*(optional)*          | array  | An optional list of <ScrollLink href="#runtime-arguments">arguments</ScrollLink> to pass to the runtime
-| required_capabilities<br/>*(optional)* | array  | A set of strings specifying capabilities a host system must provide to be able to execute this service. See also <ScrollLink href="#setups">setups</ScrollLink>.
+<ServiceMetadata />
 
-<CodeExample title="Example:">
+##### Runtime environments
 
-```json code-example
-{
-  "id": "cp",
-  "name": "cp",
-  "description": "Copies files",
-  "path": "cp",
-  "runtime": "other",
-  "parameters": [{
-    "id": "no_overwrite",
-    "name": "No overwrite",
-    "description": "Do not overwrite existing file",
-    "type": "argument",
-    "cardinality": "1..1",
-    "label": "-n",
-    "data_type": "boolean",
-    "default": false
-  }, {
-    "id": "input_file",
-    "name": "Input file name",
-    "description": "Input file name",
-    "type": "input",
-    "cardinality": "1..1",
-    "data_type": "file"
-  }, {
-    "id": "output_file",
-    "name": "Output file name",
-    "description": "Output file name",
-    "type": "output",
-    "cardinality": "1..1",
-    "data_type": "file"
-  }]
-}
-```
+import RuntimeEnvironments from "./docs/runtime-environments.mdx"
 
-</CodeExample>
+<RuntimeEnvironments />
 
-#### Runtime environments
+##### Service parameters
 
-Steep provides a set of default runtime environments that define how
-processing services are executed. More environments can be added through <ScrollLink href="#custom-runtime-environments">runtime environment plugins</ScrollLink>.
+import ServiceParameters from "./docs/service-parameters.mdx"
 
-| Name    | Description
-| ------- | -----------
-| docker  | The service will be executed through Docker. The service metadata attribute `path` specifies the Docker image to run. The attribute `runtime_args` specifies parameters that should be forwarded to the `docker` `run` command.
-| other   | The service will be executed like a normal executable program (binary or shell script)
+<ServiceParameters />
 
-#### Service parameters
+##### Runtime arguments
 
-This data model describes the parameters that can be passed to a processing
-service. It is part of the <ScrollLink href="#service-metadata">service metadata</ScrollLink>.
+import RuntimeArguments from "./docs/runtime-arguments.mdx"
 
-| Property                     | Type   | Description
-| ---------------------------- | ------ | -----------
-| id<br/>*(required)*          | string | A unique parameter identifier
-| name<br/>*(required)*        | string | A human-readable name
-| description<br/>*(required)* | string | A human-readable description
-| type<br/>*(required)*        | string | The type of this parameter. Valid values: `input`, `output`, `argument`
-| cardinality<br/>*(required)* | string | A string in the form `lower..upper` specifying how many times the parameter must appear at least (lower limit) and how many times it can appear at most (upper limit). The character `n` can be used for the upper limit to specify an arbitrary number. The lower limit must not be greater that the upper limit. Examples cardinalities are listed below.
-| data_type<br/>*(optional)*   | string | The type of the parameter value. Steep treats parameters differently depending on the data type (see description below).
-| default<br/>*(optional)*     | string | An optional default value for this parameter that will be used if the lower limit of `cardinality` is 1 but no parameter value is given in the workflow.
-| file_suffix<br/>*(optional)* | string | An optional suffix that should be appended to the generated filename of an `output` parameter. This property is typically used for file extensions (including the dot), e.g. `".xml"` or `".json"`.
-| label<br/>*(optional)*       | string | An optional string that will be used as a label for the parameter in the service call. Examples are `-i`, `--input`, `--resolution`, etc.
+<RuntimeArguments />
 
-<h6>Example cardinalities:</h6>
+#### Agents
 
-* `"0..1"` means the parameter is optional (it can appear 0 times or 1 time)
-* `"1..1"` means the parameter is mandatory (it must appear 1 time)
-* `"1..n"` means it must appear at least once or many times (no upper limit)
+import Agents from "./docs/agents.mdx"
 
-<h6>Data type:</h6>
+<Agents />
 
-Steep treats parameters differently depending on the `type` and `data_type`:
+#### VMs
 
-* If `type` is `"output"` and `data_type` is `"directory"`, Steep will create a new
-  directory for the service's output and recursively search it for result files
-  after the service has been executed.
-* If `type` is `"input"` and `data_type` is `"directory"`, Steep will find the
-  common parent directory of the files from the parameter's value and pass it
-  to the service. For example, if the parameter's value is an array with the
-  elements `["/tmp/a.txt", "/tmp/b.txt", "/tmp/subdir/c.txt"]`, Steep will pass
-  `"/tmp/"` to the service.
-* If `type` is `"input"`, `data_type` *is not* `"directory"`, but the
-  parameter's value is an array, Steep will duplicate the parameter as many
-  times as there are items in the array (given that the cardinality has no
-  upper limit).
+import VMs from "./docs/vms.mdx"
 
-* If `type` is `"argument"`, `data_type` is `"boolean"`, and the parameter has
-  a `label`, Steep will pass the `label` to the service if the parameter's
-  value is `true` and ignore the parameter if the value is `false`.
-* Otherwise, this property can be an arbitrary string. New data types with
-  special handling can be added through <ScrollLink href="#output-adapters">output adapter plugins</ScrollLink>.
-
-<CodeExample title="Example:">
-
-```json code-example
-{
-  "id": "no_overwrite",
-  "name": "No overwrite",
-  "description": "Do not overwrite existing file",
-  "type": "argument",
-  "cardinality": "1..1",
-  "label": "-n",
-  "data_type": "boolean",
-  "default": false
-}
-```
-
-</CodeExample>
-
-#### Runtime arguments
-
-Runtime arguments are similar to <ScrollLink href="#service-parameters">service parameters</ScrollLink>,
-except they are passed to the runtime that executes the service (e.g. Docker)
-instead of the service itself.
-
-| Property                     | Type   | Description
-| ---------------------------- | ------ | -----------
-| id<br/>*(required)*          | string | A unique argument identifier
-| name<br/>*(required)*        | string | A human-readable name
-| description<br/>*(required)* | string | A human-readable description
-| data_type<br/>*(optional)*   | string | The type of the parameter value. Typically `"string"` or `"boolean"`. The same rules apply as for <ScrollLink href="#service-parameters">service parameters</ScrollLink>.
-| label<br/>*(optional)*       | string | An optional string that will be used as a label for the parameter. Examples are `-v`, `--volume`, `--entrypoint`, etc.
-| value<br/>*(optional)*       | string | An optional value for this parameter.
-
-<CodeExample title="Example:">
-
-```json code-example
-{
-  "id": "volume",
-  "name": "Volume mount",
-  "description": "Mount data directory",
-  "label": "-v",
-  "value": "/data:/data"
-}
-```
-
-</CodeExample>
+<VMs />
 
 #### Setups
 
-A setup describes how a virtual machine (VM) should be created by Steep's cloud
-manager.
+import Setups from "./docs/setups.mdx"
 
-| Property                               | Type    | Description
-| -------------------------------------- | ------- | -----------
-| id<br/>*(required)*                    | string  | A unique setup identifier
-| flavor<br/>*(required)*                | string  | The flavor of the new VM
-| imageName<br/>*(required)*             | string  | The name of the VM image to deploy
-| availabilityZone<br/>*(required)*      | string  | The availability zone in which to create the VM
-| blockDeviceSizeGb<br/>*(required)*     | number  | The size of the VM's block device in gigabytes
-| blockDeviceVolumeType<br/>*(optional)* | string  | An optional type of the VM's block device. By default, the type will be selected automatically
-| minVMs<br/>*(optional)*                | number  | An optional minimum number of VMs to create with this setup. The default value is `0`.
-| maxVMs<br/>*(required)*                | number  | The maximum number of VMs to create with this setup
-| maxCreateConcurrent<br/>*(optional)*   | number  | The maximum number of VMs to create and provision concurrently. The default value is `1`.
-| provisioningScripts<br/>*(optional)*   | array   | An optional list of paths to scripts that should be executed on the VM after it has been created
-| providedCapabilities<br/>*(optional)*  | array   | An optional list of capabilities that VMs with this setup will have
-| sshUsername<br/>*(optional)*           | string  | An optional username for the SSH connection to the created VM. Overrides the <ScrollLink href="#steepyaml">main configuration</ScrollLink> item `steep.cloud.ssh.username` if it is defined.
-
-<CodeExample title="Example:">
-
-```json code-example
-{
-  "id": "default",
-  "flavor": "7d217779-4d7b-4689-8a40-c12a377b946d",
-  "imageName": "Ubuntu 18.04",
-  "availabilityZone": "nova",
-  "blockDeviceSizeGb": 50,
-  "minVMs": 0,
-  "maxVMs": 4,
-  "provisioningScripts": [
-    "conf/setups/default/01_docker.sh",
-    "conf/setups/default/02_steep.sh"
-  ],
-  "providedCapabilities": ["docker"]
-}
-```
-
-</CodeExample>
+<Setups />
 
 ### HTTP endpoints
 
-The main way to communicate with Steep (i.e. to submit workflows, to monitor
-progress, fetch metadata, etc.) is through its HTTP interface. In this
-section, we describe all HTTP endpoints. By default, Steep listens to
-incoming connections on port 8080.
+import HttpEndpoints from "./docs/http-endpoints.mdx"
+
+<HttpEndpoints />
 
 #### GET information
 
-Get information about Steep. This includes:
+import GetInformation from "./docs/get-information.mdx"
 
-* Steep's version number
-* A build ID
-* A SHA of the Git commit for which the build was created
-* A timestamp of the moment when the build was created
-
-| Resource URL |
-| ------------ |
-
-```http
-/
-```
-
-| Parameters   |                              |
-| ------------ | ---------------------------- |
-| None         |                              |
-
-| Status codes |                              |
-| ------------ | ---------------------------- |
-| 200          | The operation was successful |
-
-| Example request |
-| --------------- |
-
-```http
-GET / HTTP/1.1
-```
-
-| Example response |
-| ---------------- |
-
-```http
-HTTP/1.1 200 OK
-content-type: application/json
-content-length: 136
-
-{
-    "build": "83",
-    "commit": "2e54898b3e15da0015a1831bf6f6abc94a43eaee",
-    "timestamp": 1590049676916,
-    "version": "5.2.0-beta.1"
-}
-```
+<GetInformation />
 
 #### GET submissions
 
-Get information about all submissions in the database. The response is a JSON
-array consisting of <ScrollLink href="#submissions">submission objects</ScrollLink>
-without the properties `workflow`, `results`, and `errorMessage`. In order to
-get the complete details of a submission, use
-the <ScrollLink href="#get-submission-by-id">GET submission by ID endpoint</ScrollLink>.
+import GetSubmissions from "./docs/get-submissions.mdx"
 
-The submissions are returned in the order in which they were added to the
-database with the newest ones at the top.
-
-| Resource URL |
-| ------------ |
-
-```http
-/workflows
-```
-
-| Parameters              |                              |
-| ----------------------- | ---------------------------- |
-| size<br/>*(optional)*   | The maximum number of submissions to return. The default value is 10.  |
-| offset<br/>*(optional)* | The offset of the first submission to return. The default value is 0. |
-| status<br/>*(optional)* | If this parameter is defined, Steep will only return submissions with the given status. Otherwise, it will return all submissions from the database. See the list of <ScrollLink href="#submission-status">submission statuses</ScrollLink> for valid values. |
-
-| Response headers |                                                                |
-| ---------------- | -------------------------------------------------------------- |
-| x-page-size      | The size of the current page (i.e. the maximum number of submission objects returned). See `size` request parameter. |
-| x-page-offset    | The offset of the first submission returned. See `offset` request parameter |
-| x-page-total     | The total number of submissions in the database matching the given request parameters. |
-
-| Status codes |                                                                |
-| ------------ | -------------------------------------------------------------- |
-| 200          | The operation was successful                                   |
-| 400          | One of the parameters was invalid. See response body for error message. |
-
-| Example request |
-| --------------- |
-
-```http
-GET /workflows HTTP/1.1
-```
-
-| Example response |
-| ---------------- |
-
-```http
-HTTP/1.1 200 OK
-content-encoding: gzip
-content-length: 707
-content-type: application/json
-x-page-offset: 0
-x-page-size: 10
-x-page-total: 2
-
-[
-    {
-      "id": "akpm6yojjigral4cdxgq",
-      "startTime": "2020-05-18T08:44:01.045710Z",
-      "endTime": "2020-05-18T08:44:21.218425Z",
-      "status": "SUCCESS",
-      "requiredCapabilities": [],
-      "runningProcessChains": 0,
-      "cancelledProcessChains": 0,
-      "succeededProcessChains": 10,
-      "failedProcessChains": 0,
-      "totalProcessChains": 10
-    },
-    {
-      "id": "akttc5kv575splk3ameq",
-      "startTime": "2020-05-24T17:20:37.343072Z",
-      "status": "RUNNING",
-      "requiredCapabilities": [],
-      "runningProcessChains": 1,
-      "cancelledProcessChains": 0,
-      "succeededProcessChains": 391,
-      "failedProcessChains": 0,
-      "totalProcessChains": 1000
-    }
-]
-```
+<GetSubmissions />
 
 #### GET submission by ID
 
-Get details about a single <ScrollLink href="#submissions">submission</ScrollLink>
-from the database.
+import GetSubmissionById from "./docs/get-submission-by-id.mdx"
 
-| Resource URL |
-| ------------ |
-
-```http
-/workflows/:id
-```
-
-| Parameters |                                    |
-| ---------- | ---------------------------------- |
-| id         | The ID of the submission to return |
-
-| Status codes |                              |
-| ------------ | ---------------------------- |
-| 200          | The operation was successful |
-| 404          | The submssion was not found  |
-
-| Example request |
-| --------------- |
-
-```http
-GET /workflows/akpm6yojjigral4cdxgq HTTP/1.1
-```
-
-| Example response |
-| ---------------- |
-
-```http
-HTTP/1.1 200 OK
-content-encoding: gzip
-content-length: 348
-content-type: application/json
-
-{
-  "id": "akpm6yojjigral4cdxgq",
-  "startTime": "2020-05-18T08:44:01.045710Z",
-  "endTime": "2020-05-18T08:44:21.218425Z",
-  "status": "SUCCESS",
-  "requiredCapabilities": [],
-  "runningProcessChains": 0,
-  "cancelledProcessChains": 0,
-  "succeededProcessChains": 10,
-  "failedProcessChains": 0,
-  "totalProcessChains": 10,
-  "workflow": {
-    "api": "4.0.0",
-    "vars": [
-      ...
-    ],
-    "actions": [
-      ...
-    ]
-  }
-}
-```
+<GetSubmissionById />
 
 #### PUT submission
 
-Update a <ScrollLink href="#submissions">submission</ScrollLink>. The request
-body is a JSON object with the <ScrollLink href="#submissions">submission properties</ScrollLink>
-to update. At the moment, only the `status` property can be updated.
+import PutSubmission from "./docs/put-submission.mdx"
 
-If the operation was successful, the response body contains
-the updated submission without the properties `workflow`, `results`, and
-`errorMessage`.
-
-Note: You can use this endpoint to cancel the execution of a submission (see
-example below).
-
-| Resource URL |
-| ------------ |
-
-```http
-/workflows/:id
-```
-
-| Parameters |                                    |
-| ---------- | ---------------------------------- |
-| id         | The ID of the submission to update |
-
-| Status codes |                              |
-| ------------ | ---------------------------- |
-| 200          | The operation was successful |
-| 400          | The request body was invalid |
-| 404          | The submission was not found  |
-
-| Example request |
-| --------------- |
-
-```http
-PUT /workflows/akujvtkv575splk3saqa HTTP/1.1
-Content-Length: 28
-Content-Type: application/json
-
-{
-  "status": "CANCELLED"
-}
-```
-
-| Example response |
-| ---------------- |
-
-```http
-HTTP/1.1 200 OK
-content-encoding: gzip
-content-length: 168
-content-type: application/json
-
-{
-  "id": "akujvtkv575splk3saqa",
-  "startTime": "2020-05-25T19:02:21.610396Z",
-  "endTime": "2020-05-25T19:02:33.414032Z",
-  "status": "CANCELLED",
-  "runningProcessChains": 0,
-  "cancelledProcessChains": 314,
-  "succeededProcessChains": 686,
-  "failedProcessChains": 0,
-  "totalProcessChains": 1000
-}
-```
+<PutSubmission />
 
 #### POST workflow
 
-Create a new <ScrollLink href="#submissions">submission</ScrollLink>. The
-request body contains the <ScrollLink href="#workflows">workflow</ScrollLink>
-to execute.
+import PostWorkflow from "./docs/post-workflow.mdx"
 
-If the operation was successful, the response body contains submission.
-
-| Resource URL |
-| ------------ |
-
-```http
-/workflows
-```
-
-| Status codes |                              |
-| ------------ | ---------------------------- |
-| 202          | The workflow has been accepted (i.e. stored in the database) and is scheduled for execution. |
-| 400          | The posted workflow was invalid. See response body for more information. |
-
-| Example request |
-| --------------- |
-
-```http
-POST /workflows HTTP/1.1
-Content-Length: 231
-Content-Type: application/json
-
-{
-  "api": "3.0.0",
-  "vars": [{
-    "id": "sleep_seconds",
-    "value": 3
-  }],
-  "actions": [{
-    "type": "execute",
-    "service": "sleep",
-    "parameters": [{
-      "id": "seconds",
-      "var": "sleep_seconds"
-    }]
-  }]
-}
-```
-
-| Example response |
-| ---------------- |
-
-```http
-HTTP/1.1 202 Accepted
-content-encoding: gzip
-content-length: 374
-content-type: application/json
-
-{
-  "id": "akukkcsv575splk3v2ma",
-  "status": "ACCEPTED",
-  "workflow": {
-    "api": "3.0.0",
-    "vars": [{
-      "id": "sleep_seconds",
-      "value": 3
-    }],
-    "actions": [{
-      "type": "execute",
-      "service": "sleep",
-      "inputs": [],
-      "outputs": [],
-      "parameters": [{
-        "id": "seconds",
-        "var": "sleep_seconds"
-      }]
-    }]
-  }
-}
-```
+<PostWorkflow />
 
 #### GET process chains
 
-Get information about all process chains in the database. The response is a JSON
-array consisting of <ScrollLink href="#process-chains">process chain objects</ScrollLink>
-without the properties `executables` and `results`. In order to
-get the complete details of a process chain, use
-the <ScrollLink href="#get-process-chain-by-id">GET process chain by ID endpoint</ScrollLink>.
+import GetProcessChains from "./docs/get-process-chains.mdx"
 
-The process chains are returned in the order in which they were added to the
-database with the newest ones at the top.
-
-| Resource URL |
-| ------------ |
-
-```http
-/processchains
-```
-
-| Parameters              |                              |
-| ----------------------- | ---------------------------- |
-| size<br/>*(optional)*   | The maximum number of process chains to return. The default value is 10.  |
-| offset<br/>*(optional)* | The offset of the first process chain to return. The default value is 0. |
-| submissionId<br/>*(optional)* | If this parameter is defined, Steep will only return process chains from the submission with the given ID. Otherwise, it will return process chains from all submissions. If there is no submission with the given ID, the result will be an empty array. |
-| status<br/>*(optional)* | If this parameter is defined, Steep will only return process chains with the given status. Otherwise, it will return all process chains from the database. See the list of <ScrollLink href="#process-chain-status">process chain statuses</ScrollLink> for valid values. |
-
-| Response headers |                                                                |
-| ---------------- | -------------------------------------------------------------- |
-| x-page-size      | The size of the current page (i.e. the maximum number of process chain objects returned). See `size` request parameter. |
-| x-page-offset    | The offset of the first process chain returned. See `offset` request parameter |
-| x-page-total     | The total number of process chains in the database matching the given request parameters. |
-
-| Status codes |                                                                |
-| ------------ | -------------------------------------------------------------- |
-| 200          | The operation was successful                                   |
-| 400          | One of the parameters was invalid. See response body for error message. |
-
-| Example request |
-| --------------- |
-
-```http
-GET /processchains HTTP/1.1
-```
-
-| Example response |
-| ---------------- |
-
-```http
-HTTP/1.1 200 OK
-content-encoding: gzip
-content-length: 262
-content-type: application/json
-x-page-offset: 0
-x-page-size: 10
-x-page-total: 7026
-
-[
-  {
-    "id": "akukkcsv575splk3v2na",
-    "submissionId": "akukkcsv575splk3v2ma",
-    "startTime": "2020-05-25T19:46:02.532829Z",
-    "endTime": "2020-05-25T19:46:05.546807Z",
-    "status": "SUCCESS",
-    "requiredCapabilities": []
-  },
-  {
-    "id": "akujvtkv575splk3tppq",
-    "submissionId": "akujvtkv575splk3saqa",
-    "status": "CANCELLED",
-    "requiredCapabilities": []
-  },
-  ...
-]
-```
+<GetProcessChains />
 
 #### GET process chain by ID
 
-Get details about a single <ScrollLink href="#process-chains">process chain</ScrollLink>
-from the database.
+import GetProcessChainById from "./docs/get-process-chain-by-id.mdx"
 
-| Resource URL |
-| ------------ |
-
-```http
-/processchains/:id
-```
-
-| Parameters |                                    |
-| ---------- | ---------------------------------- |
-| id         | The ID of the process chain to return |
-
-| Status codes |                              |
-| ------------ | ---------------------------- |
-| 200          | The operation was successful |
-| 404          | The process chain was not found  |
-
-| Example request |
-| --------------- |
-
-```http
-GET /processchains/akukkcsv575splk3v2na HTTP/1.1
-```
-
-| Example response |
-| ---------------- |
-
-```http
-HTTP/1.1 200 OK
-content-encoding: gzip
-content-length: 535
-content-type: application/json
-
-{
-  "id": "akukkcsv575splk3v2na",
-  "submissionId": "akukkcsv575splk3v2ma",
-  "startTime": "2020-05-25T19:46:02.532829Z",
-  "endTime": "2020-05-25T19:46:05.546807Z",
-  "status": "SUCCESS",
-  "requiredCapabilities": [],
-  "results": {},
-  "executables": [{
-    "id": "sleep",
-    "path": "sleep",
-    "runtime": "other",
-    "runtimeArgs": [],
-    "arguments": [{
-      "id": "seconds",
-      "type": "argument",
-      "dataType": "integer",
-      "variable": {
-        "id": "sleep_seconds",
-        "value": "3"
-      }
-    }]
-  }]
-}
-```
+<GetProcessChainById />
 
 #### PUT process chain
 
-Update a <ScrollLink href="#process-chains">process chain</ScrollLink>. The request
-body is a JSON object with the process chain properties to update. At the
-moment, only the `status` property can be updated.
+import PutProcessChain from "./docs/put-process-chain.mdx"
 
-If the operation was successful, the response body contains
-the updated process chain without the properties `executables` and `results`.
-
-Note: You can use this endpoint to cancel the execution of a process chain (see
-example below).
-
-| Resource URL |
-| ------------ |
-
-```http
-/processchains/:id
-```
-
-| Parameters |                                    |
-| ---------- | ---------------------------------- |
-| id         | The ID of the process chain to update |
-
-| Status codes |                              |
-| ------------ | ---------------------------- |
-| 200          | The operation was successful |
-| 400          | The request body was invalid |
-| 404          | The process chain was not found  |
-
-| Example request |
-| --------------- |
-
-```http
-PUT /processchains/akuxzp4rojbw7mnvovcq HTTP/1.1
-Content-Length: 28
-Content-Type: application/json
-
-{
-  "status": "CANCELLED"
-}
-```
-
-| Example response |
-| ---------------- |
-
-```http
-HTTP/1.1 200 OK
-content-encoding: gzip
-content-length: 222
-content-type: application/json
-
-{
-  "id": "akuxzp4rojbw7mnvovcq",
-  "submissionId": "akuxzp4rojbw7mnvovbq",
-  "startTime": "2020-05-26T11:06:24.055225Z",
-  "endTime": "2020-05-26T11:06:52.367194Z",
-  "status": "CANCELLED",
-  "requiredCapabilities": []
-}
-```
+<PutProcessChain />
 
 #### GET agents
 

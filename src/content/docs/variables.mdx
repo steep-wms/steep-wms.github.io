@@ -1,0 +1,28 @@
+import CodeExample from "components/CodeExample"
+
+A variable holds a value for inputs, outputs, and generic parameters of
+processing services. It can be defined (input variables and generic parameters)
+or undefined (output parameters). Defined values are immutable. Undefined
+variables will be assigned a value by Steep during the runtime of a workflow.
+
+Variables are also used to link two services together and to define the data
+flow in the workflow graph. For example, if the output parameter of a service A
+refers to a variable V, and the input parameter of service B refers to the same
+variable, Steep will first execute A to determine the value of V and then
+execute B.
+
+| Property               | Type   | Description
+| ---------------------- | ------ | -----------
+| id<br/>*(required)*    | string | A unique variable identifier
+| value<br/>*(optional)* | any    | The variable's value or `null` if the variable is undefined
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "id": "input_file",
+  "value": "/data/input.txt"
+}
+```
+
+</CodeExample>

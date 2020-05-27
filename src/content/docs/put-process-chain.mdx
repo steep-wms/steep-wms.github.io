@@ -1,0 +1,60 @@
+import ScrollLink from "components/ScrollLink"
+
+Update a <ScrollLink href="#process-chains">process chain</ScrollLink>. The request
+body is a JSON object with the process chain properties to update. At the
+moment, only the `status` property can be updated.
+
+If the operation was successful, the response body contains
+the updated process chain without the properties `executables` and `results`.
+
+Note: You can use this endpoint to cancel the execution of a process chain (see
+example below).
+
+| Resource URL |
+| ------------ |
+
+```http
+/processchains/:id
+```
+
+| Parameters |                                    |
+| ---------- | ---------------------------------- |
+| id         | The ID of the process chain to update |
+
+| Status codes |                              |
+| ------------ | ---------------------------- |
+| 200          | The operation was successful |
+| 400          | The request body was invalid |
+| 404          | The process chain was not found  |
+
+| Example request |
+| --------------- |
+
+```http
+PUT /processchains/akuxzp4rojbw7mnvovcq HTTP/1.1
+Content-Length: 28
+Content-Type: application/json
+
+{
+  "status": "CANCELLED"
+}
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-encoding: gzip
+content-length: 222
+content-type: application/json
+
+{
+  "id": "akuxzp4rojbw7mnvovcq",
+  "submissionId": "akuxzp4rojbw7mnvovbq",
+  "startTime": "2020-05-26T11:06:24.055225Z",
+  "endTime": "2020-05-26T11:06:52.367194Z",
+  "status": "CANCELLED",
+  "requiredCapabilities": []
+}
+```

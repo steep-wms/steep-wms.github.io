@@ -1,0 +1,20 @@
+import CodeExample from "components/CodeExample"
+import ScrollLink from "components/ScrollLink"
+
+This data model represents inputs and generic parameters of <ScrollLink href="#execute-actions">execute actions</ScrollLink>.
+
+| Property             | Type   | Description
+| -------------------- | ------ | -----------
+| id<br/>*(required)*  | string | The ID of the parameter as defined in the <ScrollLink href="#service-metadata">service metadata</ScrollLink>
+| var<br/>*(required)* | string | The ID of a variable that holds the value for this parameter
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "id": "input",
+  "var": "i"
+}
+```
+
+</CodeExample>

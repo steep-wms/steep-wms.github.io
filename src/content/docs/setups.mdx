@@ -1,0 +1,41 @@
+import CodeExample from "components/CodeExample"
+import ScrollLink from "components/ScrollLink"
+
+A setup describes how a virtual machine (VM) should be created by Steep's cloud
+manager.
+
+| Property                               | Type    | Description
+| -------------------------------------- | ------- | -----------
+| id<br/>*(required)*                    | string  | A unique setup identifier
+| flavor<br/>*(required)*                | string  | The flavor of the new VM
+| imageName<br/>*(required)*             | string  | The name of the VM image to deploy
+| availabilityZone<br/>*(required)*      | string  | The availability zone in which to create the VM
+| blockDeviceSizeGb<br/>*(required)*     | number  | The size of the VM's block device in gigabytes
+| blockDeviceVolumeType<br/>*(optional)* | string  | An optional type of the VM's block device. By default, the type will be selected automatically
+| minVMs<br/>*(optional)*                | number  | An optional minimum number of VMs to create with this setup. The default value is `0`.
+| maxVMs<br/>*(required)*                | number  | The maximum number of VMs to create with this setup
+| maxCreateConcurrent<br/>*(optional)*   | number  | The maximum number of VMs to create and provision concurrently. The default value is `1`.
+| provisioningScripts<br/>*(optional)*   | array   | An optional list of paths to scripts that should be executed on the VM after it has been created
+| providedCapabilities<br/>*(optional)*  | array   | An optional set of strings specifying capabilities that VMs with this setup will have
+| sshUsername<br/>*(optional)*           | string  | An optional username for the SSH connection to the created VM. Overrides the <ScrollLink href="#steepyaml">main configuration</ScrollLink> item `steep.cloud.ssh.username` if it is defined.
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "id": "default",
+  "flavor": "7d217779-4d7b-4689-8a40-c12a377b946d",
+  "imageName": "Ubuntu 18.04",
+  "availabilityZone": "nova",
+  "blockDeviceSizeGb": 50,
+  "minVMs": 0,
+  "maxVMs": 4,
+  "provisioningScripts": [
+    "conf/setups/default/01_docker.sh",
+    "conf/setups/default/02_steep.sh"
+  ],
+  "providedCapabilities": ["docker"]
+}
+```
+
+</CodeExample>

@@ -1,0 +1,112 @@
+import CodeExample from "components/CodeExample"
+
+The following example shows how to create loops with a dynamic number of
+iterations. Suppose there is a processing service called `countdown.js` that
+reads a number from an input file, decreases this number by 1, and then writes
+the result to an output file. The service could be implemented in Node.js
+as follows:
+
+```javascript
+#!/usr/bin/env node
+
+const fs = require("fs").promises
+
+async function countDown(input, output) {
+  let value = parseInt(await fs.readFile(input, "utf-8"))
+  console.log(`Old value: ${value}`)
+
+  value--
+  if (value > 0) {
+    console.log(`New value: ${value}`)
+    await fs.writeFile(output, "" + value, "utf-8")
+  } else {
+    console.log("No new value")
+  }
+}
+
+countDown(process.argv[2], process.argv[3])
+```
+
+The following workflow uses this service in a for-each action to continuously
+reprocess a file and decrease the number in it until it reaches 0.
+
+In the first iteration of the for-each action, the service reads from a file called
+`input.txt` and writes to an output file with a name generated during runtime.
+The path of this output file is routed back into the for-each action via
+`yieldToInput`. In the second iteration, the service reads from the output file
+and produces another one. This process continues until the number equals 0.
+In this case, the service does not write an output file anymore and the
+workflow finishes.
+
+Note that we use the data type `fileOrEmptyList` in the service metadata for the
+output parameter of the `countdown` service. This is a special data type that
+either returns the generated file or an empty list if the file does not exist.
+In the latter case, the for-each action does not have any more input values to
+process. Think of the `input` of a for-each action as a queue. If nothing is
+pushed into the queue and all elements have already been processed, the for-each
+action can finish.
+
+<CodeExample title="Workflow:">
+
+```json code-example
+{
+  "api": "4.0.0",
+  "vars": [{
+    "id": "input_file",
+    "value": "input.txt"
+  }, {
+    "id": "i"
+  }, {
+    "id": "output_file"
+  }],
+  "actions": [{
+    "type": "for",
+    "input": "input_file",
+    "enumerator": "i",
+    "yieldToInput": "output_file",
+    "actions": [{
+      "type": "execute",
+      "service": "countdown",
+      "inputs": [{
+        "id": "input",
+        "var": "i"
+      }],
+      "outputs": [{
+        "id": "output",
+        "var": "output_file"
+      }]
+    }]
+  }]
+}
+```
+
+</CodeExample>
+
+<CodeExample title="Service metadata:">
+
+```json code-example
+[{
+  "id": "countdown",
+  "name": "Count Down",
+  "description": "Read a number, subtract 1, and write the result",
+  "path": "./countdown.js",
+  "runtime": "other",
+  "parameters": [{
+    "id": "input",
+    "name": "Input file",
+    "description": "The input file containing the number to decrease",
+    "type": "input",
+    "cardinality": "1..1",
+    "data_type": "file"
+  }, {
+    "id": "output",
+    "name": "Output file",
+    "description": "The path to the output file",
+    "type": "output",
+    "cardinality": "1..1",
+    "data_type": "fileOrEmptyList"
+  }]
+}]
+```
+
+</CodeExample>

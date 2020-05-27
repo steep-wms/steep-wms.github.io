@@ -1,0 +1,44 @@
+Get information about Steep. This includes:
+
+* Steep's version number
+* A build ID
+* A SHA of the Git commit for which the build was created
+* A timestamp of the moment when the build was created
+
+| Resource URL |
+| ------------ |
+
+```http
+/
+```
+
+| Parameters   |                              |
+| ------------ | ---------------------------- |
+| None         |                              |
+
+| Status codes |                              |
+| ------------ | ---------------------------- |
+| 200          | The operation was successful |
+
+| Example request |
+| --------------- |
+
+```http
+GET / HTTP/1.1
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-type: application/json
+content-length: 135
+
+{
+  "build": "83",
+  "commit": "2e54898b3e15da0015a1831bf6f6abc94a43eaee",
+  "timestamp": 1590049676916,
+  "version": "5.2.0-beta.1"
+}
+```

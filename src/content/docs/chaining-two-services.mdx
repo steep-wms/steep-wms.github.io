@@ -1,0 +1,50 @@
+import CodeExample from "components/CodeExample"
+
+The following example workflow makes a copy of a file and then a copy of the
+copy (i.e. the file is copied and the result is copied again). The workflow
+contains two actions that share the same variable: `outputFile1` is used as
+the output of the first action and as the input of the second action. Steep
+executes them in sequence.
+
+The service metadata for this workflow is the same as for the previous one.
+
+<CodeExample title="Workflow:">
+
+```json code-example
+{
+  "api": "4.0.0",
+  "vars": [{
+    "id": "inputFile",
+    "value": "example.txt"
+  }, {
+    "id": "outputFile1"
+  }, {
+    "id": "outputFile2"
+  }],
+  "actions": [{
+    "type": "execute",
+    "service": "copy",
+    "inputs": [{
+      "id": "input_file",
+      "var": "inputFile"
+    }],
+    "outputs": [{
+      "id": "output_file",
+      "var": "outputFile1"
+    }]
+  }, {
+    "type": "execute",
+    "service": "copy",
+    "inputs": [{
+      "id": "input_file",
+      "var": "outputFile1"
+    }],
+    "outputs": [{
+      "id": "output_file",
+      "var": "outputFile2"
+    }]
+  }]
+}
+```
+
+</CodeExample>

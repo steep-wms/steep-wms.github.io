@@ -1,0 +1,32 @@
+import ScrollLink from "components/ScrollLink"
+
+Steep is very flexible and allows a wide range of processing services (or
+microservices) to be integrated. A typical processing service is a program
+that reads one or more input files and writes one or more output files. The
+program may also accept generic parameters. The service can be implemented in
+any programming language (as long as the binary or script is executable on the
+machine the Steep agent is running) or can be wrapped in a Docker container.
+
+For a seamless integration, a processing service should adhere to the following
+guidelines:
+
+* Every processing service should be a microservice. It should run in
+  its own process and serve one specific purpose.
+* As Steep needs to call the service in a distributed environment, it should
+  not have a graphical user interface or require any human interaction during
+  the runtime. Suitable services are command-line applications that accept
+  arguments to specify input files, output files, and parameters.
+* The service should read from input files, process the data, write results to
+  output files, and then exit. It should not run continuously like a web
+  service. If you need to integrate a web service in your workflow, we
+  recommend using the `curl` command or something similar.
+* Steep does not require the processing services to implement a specific
+  interface. Instead, the service's input and output parameters should be
+  described in a special data model called <ScrollLink href="#service-metadata">service metadata</ScrollLink>.
+* According to common conventions for exit codes, a processing service should
+  return 0 (zero) upon successful execution and any number but zero in case an
+  error has occurred (e.g. 1, 2, 128, 255, etc.).
+* In order to ensure deterministic workflow exceutions, services should be
+  stateless and idempotent. This means that every execution of a service with
+  the same input data and the same set of parameters should produce the same
+  result.

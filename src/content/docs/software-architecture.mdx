@@ -1,0 +1,42 @@
+import Architecture from "assets/architecture.svg"
+import ScrollLink from "components/ScrollLink"
+
+The following figure shows the main components of Steep: the HTTP server,
+the controller, the scheduler, the agent, and the cloud manager.
+
+<img className="docs-image docs-image-architecture" src={Architecture} />
+
+Together, these components form an instance of Steep. In practice, a single
+instance typically runs on a separate virtual machine, but multiple instances
+can also be started on the same machine. Each component can be enabled or
+disabled in a given instance (see the <ScrollLink href="#configuration">configuration options</ScrollLink> 
+for more information). That means, in a cluster, there can be instances
+that have all five components enabled, and others that have only an agent,
+for example.
+
+All components of all instances communicate with each other through messages
+sent over an event bus. Further, the HTTP server, the controller, and the
+scheduler are able to connect to a shared database.
+
+The HTTP server provides information about scheduled, running, and finished
+workflows to clients. Clients can also upload a new workflow. In this case,
+the HTTP server puts the workflow into the database and sends a message to one
+of the instances of the controller.
+
+The controller receives this message, loads the workflow from the database,
+and starts transforming it iteratively to process chains as
+described <ScrollLink href="#workflow-scheduling">above</ScrollLink>.
+Whenever it has generated new process chains, it puts them into the database
+and sends a message to all instances of the scheduler.
+
+The schedulers then select agents to execute the process chains. They load the
+process chains from the database, send them via the event bus to the selected
+agents for execution, and finally write the results into the database. The
+schedulers also send a message back to the controller so it can continue with
+the next iteration and generate more process chains until the workflow has been
+completely transformed.
+
+In case a scheduler does not find an agent suitable for the execution of a
+process chain, it sends a message to the cloud manager (a component that
+interacts with the API of the Cloud infrastructure) and asks it to create a
+new agent.

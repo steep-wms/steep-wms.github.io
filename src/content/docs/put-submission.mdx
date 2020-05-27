@@ -1,0 +1,64 @@
+import ScrollLink from "components/ScrollLink"
+
+Update a <ScrollLink href="#submissions">submission</ScrollLink>. The request
+body is a JSON object with the <ScrollLink href="#submissions">submission properties</ScrollLink>
+to update. At the moment, only the `status` property can be updated.
+
+If the operation was successful, the response body contains
+the updated submission without the properties `workflow`, `results`, and
+`errorMessage`.
+
+Note: You can use this endpoint to cancel the execution of a submission (see
+example below).
+
+| Resource URL |
+| ------------ |
+
+```http
+/workflows/:id
+```
+
+| Parameters |                                    |
+| ---------- | ---------------------------------- |
+| id         | The ID of the submission to update |
+
+| Status codes |                              |
+| ------------ | ---------------------------- |
+| 200          | The operation was successful |
+| 400          | The request body was invalid |
+| 404          | The submission was not found  |
+
+| Example request |
+| --------------- |
+
+```http
+PUT /workflows/akujvtkv575splk3saqa HTTP/1.1
+Content-Length: 28
+Content-Type: application/json
+
+{
+  "status": "CANCELLED"
+}
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-encoding: gzip
+content-length: 168
+content-type: application/json
+
+{
+  "id": "akujvtkv575splk3saqa",
+  "startTime": "2020-05-25T19:02:21.610396Z",
+  "endTime": "2020-05-25T19:02:33.414032Z",
+  "status": "CANCELLED",
+  "runningProcessChains": 0,
+  "cancelledProcessChains": 314,
+  "succeededProcessChains": 686,
+  "failedProcessChains": 0,
+  "totalProcessChains": 1000
+}
+```

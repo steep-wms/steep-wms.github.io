@@ -1,0 +1,54 @@
+import CodeExample from "components/CodeExample"
+import ScrollLink from "components/ScrollLink"
+
+Service metadata is used to describe the interface of a processing service so
+it can be executed by Steep.
+
+| Property                               | Type   | Description
+| -------------------------------------- | ------ | -----------
+| id<br/>*(required)*                    | string | A unique service identifier
+| name<br/>*(required)*                  | string | A human-readable name
+| description<br/>*(required)*           | string | A human-readable description
+| path<br/>*(required)*                  | string | Relative path to the service executable in the service artefact (or a Docker image if `runtime` equals `docker`)
+| runtime<br/>*(required)*               | string | The <ScrollLink href="#runtime-environments">runtime environment</ScrollLink>
+| parameters<br/>*(required)*            | array  | A list of <ScrollLink href="#service-parameters">service parameters</ScrollLink>
+| runtime_args<br/>*(optional)*          | array  | An optional list of <ScrollLink href="#runtime-arguments">arguments</ScrollLink> to pass to the runtime
+| required_capabilities<br/>*(optional)* | array  | A set of strings specifying capabilities a host system must provide to be able to execute this service. See also <ScrollLink href="#setups">setups</ScrollLink>.
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "id": "cp",
+  "name": "cp",
+  "description": "Copies files",
+  "path": "cp",
+  "runtime": "other",
+  "parameters": [{
+    "id": "no_overwrite",
+    "name": "No overwrite",
+    "description": "Do not overwrite existing file",
+    "type": "argument",
+    "cardinality": "1..1",
+    "label": "-n",
+    "data_type": "boolean",
+    "default": false
+  }, {
+    "id": "input_file",
+    "name": "Input file name",
+    "description": "Input file name",
+    "type": "input",
+    "cardinality": "1..1",
+    "data_type": "file"
+  }, {
+    "id": "output_file",
+    "name": "Output file name",
+    "description": "Output file name",
+    "type": "output",
+    "cardinality": "1..1",
+    "data_type": "file"
+  }]
+}
+```
+
+</CodeExample>

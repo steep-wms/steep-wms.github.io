@@ -1,0 +1,163 @@
+import CodeExample from "components/CodeExample"
+
+This example demonstrates how to process the results of an action in parallel
+even if the number of result files is unknown during the design of the workflow.
+The workflow starts with an action that splits an input file `inputFile` into
+multiple files (e.g. one file per line) stored in a directory `outputDirectory`.
+A for-each action then iterates over these files and creates copies. The
+for-each action has an iterator `i` that serves as the input for the individual
+instances of the `copy` service. The output files (`outputFile1`) of this service
+are collected via the `yieldToOutput` property in a variable called `copies`.
+The final `join` service merges these copies into a single file `outputFile2`.
+
+<CodeExample title="Workflow:">
+
+```json code-example
+{
+  "api": "4.0.0",
+  "vars": [{
+    "id": "inputFile",
+    "value": "example.txt"
+  }, {
+    "id": "lines",
+    "value": 1
+  }, {
+    "id": "outputDirectory"
+  }, {
+    "id": "i"
+  }, {
+    "id": "outputFile1"
+  }, {
+    "id": "copies"
+  }, {
+    "id": "outputFile2"
+  }],
+  "actions": [{
+    "type": "execute",
+    "service": "split",
+    "parameters": [{
+      "id": "lines",
+      "var": "lines"
+    }],
+    "inputs": [{
+      "id": "file",
+      "var": "inputFile"
+    }],
+    "outputs": [{
+      "id": "output_directory",
+      "var": "outputDirectory"
+    }]
+  }, {
+    "type": "for",
+    "input": "outputDirectory",
+    "enumerator": "i",
+    "output": "copies",
+    "actions": [{
+      "type": "execute",
+      "service": "copy",
+      "inputs": [{
+        "id": "input_file",
+        "var": "i"
+      }],
+      "outputs": [{
+        "id": "output_file",
+        "var": "outputFile1"
+      }]
+    }],
+    "yieldToOutput": "outputFile1"
+  }, {
+    "type": "execute",
+    "service": "join",
+    "inputs": [{
+      "id": "i",
+      "var": "copies"
+    }],
+    "outputs": [{
+      "id": "o",
+      "var": "outputFile2"
+    }]
+  }]
+}
+```
+
+</CodeExample>
+
+<CodeExample title="Service metadata:">
+
+```json code-example
+[{
+  "id": "split",
+  "name": "Split",
+  "description": "Split a file into pieces",
+  "path": "split",
+  "runtime": "other",
+  "parameters": [{
+    "id": "lines",
+    "name": "Number of lines per file",
+    "description": "Create smaller files n lines in length",
+    "type": "argument",
+    "cardinality": "0..1",
+    "data_type": "integer",
+    "label": "-l"
+  }, {
+    "id": "file",
+    "name": "Input file",
+    "description": "The input file to split",
+    "type": "input",
+    "cardinality": "1..1",
+    "data_type": "file"
+  }, {
+    "id": "output_directory",
+    "name": "Output directory",
+    "description": "The output directory",
+    "type": "output",
+    "cardinality": "1..1",
+    "data_type": "directory",
+    "file_suffix": "/"
+  }]
+}, {
+  "id": "copy",
+  "name": "Copy",
+  "description": "Copy files",
+  "path": "cp",
+  "runtime": "other",
+  "parameters": [{
+    "id": "input_file",
+    "name": "Input file name",
+    "description": "Input file name",
+    "type": "input",
+    "cardinality": "1..1",
+    "data_type": "file"
+  }, {
+    "id": "output_file",
+    "name": "Output file name",
+    "description": "Output file name",
+    "type": "output",
+    "cardinality": "1..1",
+    "data_type": "file"
+  }]
+}, {
+  "id": "join",
+  "name": "Join",
+  "description": "Merge one or more files into one",
+  "path": "join.sh",
+  "runtime": "other",
+  "parameters": [{
+    "id": "i",
+    "name": "Input files",
+    "description": "One or more input files to merge",
+    "type": "input",
+    "cardinality": "1..n",
+    "data_type": "file"
+  }, {
+    "id": "o",
+    "name": "Output file",
+    "description": "The output file",
+    "type": "output",
+    "cardinality": "1..1",
+    "data_type": "file"
+  }]
+}]
+```
+
+</CodeExample>

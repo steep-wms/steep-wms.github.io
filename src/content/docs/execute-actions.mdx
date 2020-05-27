@@ -1,0 +1,40 @@
+import CodeExample from "components/CodeExample"
+import ScrollLink from "components/ScrollLink"
+
+An execute action instructs Steep to execute a certain service with given
+inputs, outputs, and generic parameters.
+
+| Property                    | Type   | Description
+| --------------------------- | ------ | -----------
+| type<br/>*(required)*       | string | The type of the action. Must be `"execute"`.
+| service<br/>*(required)*    | string | The ID of the <ScrollLink href="#service-metadata">service</ScrollLink> to execute
+| inputs<br/>*(optional)*     | array  | An array of <ScrollLink href="#parameters">input parameters</ScrollLink>
+| outputs<br/>*(optional)*    | array  | An array of <ScrollLink href="#output-parameters">output parameters</ScrollLink>
+| parameters<br/>*(optional)* | array  | An array of <ScrollLink href="#parameters">generic parameters</ScrollLink>
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "type": "execute",
+  "service": "my_service",
+  "inputs": [{
+    "id": "input_file",
+    "var": "my_input_file"
+  }],
+  "outputs": [{
+    "id": "output_file",
+    "var": "my_output_file",
+    "store": true
+  }],
+  "parameters": [{
+    "id": "verbose",
+    "var": "is_verbose"
+  }, {
+    "id": "resolution",
+    "var": "resolution_pixels"
+  }]
+}
+```
+
+</CodeExample>

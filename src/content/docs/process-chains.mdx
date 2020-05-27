@@ -1,0 +1,60 @@
+import CodeExample from "components/CodeExample"
+import ScrollLink from "components/ScrollLink"
+
+As described <ScrollLink href="#workflow-scheduling">above</ScrollLink>, Steep
+transforms a workflow to one or more *process chains*. A process chain is a
+sequential list of instructions that will be sent to Steep's remote agents to
+execute processing services in a distributed environment.
+
+| Property                              | Type   | Description
+| ------------------------------------- | ------ | -----------
+| id<br/>*(required)*                   | string | Unique process chain identifier
+| executables<br/>*(required)*          | array  | A list of <ScrollLink href="#executables">executable objects</ScrollLink> that describe what processing services should be called and with which arguments
+| submissionId<br/>*(required)*         | string | The ID of the <ScrollLink href="#submissions">submission</ScrollLink> to which this process chain belongs
+| startTime<br/>*(optional)*            | string | An ISO 8601 timestamp denoting the date and time when the process chain execution was started. May be `null` if the execution has not started yet.
+| endTime<br/>*(optional)*              | string | An ISO 8601 timestamp denoting the date and time when the process chain execution finished. May be `null` if the execution has not finished yet.
+| status<br/>*(required)*               | string | The current <ScrollLink href="#process-chain-status">status</ScrollLink> of the process chain
+| requiredCapabilities<br/>*(optional)* | array  | A set of strings specifying capabilities a host system must provide to be able to execute this process chain. See also <ScrollLink href="#setups">setups</ScrollLink>.
+| results<br/>*(optional)*              | object | If `status` is `SUCCESS`, this property contains the list of process chain result files grouped by their output variable ID. Otherwise, it is `null`.
+| errorMessage<br/>*(optional)*         | string | If `status` is `ERROR`, this property contains a human-readable error message. Otherwise, it is `null`.
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "id": "akpm646jjigral4cdyyq",
+  "submissionId": "akpm6yojjigral4cdxgq",
+  "startTime": "2020-05-18T08:44:19.221456Z",
+  "endTime": "2020-05-18T08:44:19.446437Z",
+  "status": "SUCCESS",
+  "requiredCapabilities": ["nodejs"],
+  "executables": [{
+    "id": "Count Down",
+    "path": "./countdown.js",
+    "runtime": "other",
+    "arguments": [{
+      "id": "input",
+      "type": "input",
+      "dataType": "file",
+      "variable": {
+        "id": "input_file",
+        "value": "input.txt"
+      }
+    }, {
+      "id": "output",
+      "type": "output",
+      "dataType": "fileOrEmptyList",
+      "variable": {
+        "id": "output_file",
+        "value": "output.txt"
+      }
+    }],
+    "runtimeArgs": []
+  }],
+  "results": {
+    "output_file": ["output.txt"]
+  }
+}
+```
+
+</CodeExample>

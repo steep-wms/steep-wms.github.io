@@ -1,0 +1,48 @@
+import CodeExample from "components/CodeExample"
+
+A for-each action has an input, a list of sub-actions, and an output. It clones
+the sub-actions as many times as there are items in its input, executes the
+actions, and then collects the results in the output.
+
+Although the action is called 'for-each', the execution order of the
+sub-actions is undefined (i.e. the execution is non-sequential and
+non-deterministic). Instead, Steep always tries to execute as many sub-actions
+as possible in parallel.
+
+For-each actions may contain execute actions but also nested for-each actions.
+
+| Property                       | Type   | Description
+| ------------------------------ | ------ | -----------
+| type<br/>*(required)*          | string | The type of the action. Must be `"for"`.
+| input<br/>*(required)*         | string | The ID of a variable containing the items to which to apply the sub-actions
+| enumerator<br/>*(required)*    | string | The ID of a variable that holds the current value from `input` for each iteration
+| output<br/>*(optional)*        | string | The ID of a variable that will collect output values from all iterations (see `yieldToOutput`)
+| actions<br/>*(optional)*       | array  | An array of sub-actions to execute in each iteration
+| yieldToOutput<br/>*(optional)* | string | The ID of a sub-action's output variable whose value should be appended to the for-each action's `output`
+| yieldToInput<br/>*(optional)*  | string | The ID of a sub-action's output variable whose value should be appended to the for-each action's `input` to generate further iterations
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "type": "for",
+  "input": "all_input_files",
+  "output": "all_output_files",
+  "enumerator": "i",
+  "yieldToOutput": "output_file",
+  "actions": [{
+    "type": "execute",
+    "service": "copy",
+    "inputs": [{
+      "id": "input",
+      "var": "i"
+    }],
+    "outputs": [{
+      "id": "output",
+      "var": "output_file"
+    }]
+  }]
+}
+```
+
+</CodeExample>
