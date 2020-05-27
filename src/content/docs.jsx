@@ -1,87 +1,172 @@
 import ScrollLink from "components/ScrollLink"
 import Sidebar from "components/Sidebar"
-import { cloneElement } from "react"
+import slugger from "github-slugger"
+import "./docs.scss"
 
-function spliceToc(currentToc, n) {
-  while (currentToc.length > n + 1) {
-    let last = currentToc.pop()
-    let l = currentToc.length
-    if (l > 0) {
-      currentToc[l - 1] = cloneElement(currentToc[l - 1], {
-        children: [...(currentToc[l - 1].props.children || []), last]
-      })
-    }
+function TocItem({ item, slugs }) {
+  let firstItem
+  let rest
+
+  if (Array.isArray(item)) {
+    firstItem = item[0]
+    rest = item.slice(1)
+  } else {
+    firstItem = item
+    rest = []
   }
+
+  let slug = slugs.slug(firstItem).toLowerCase()
+
+  return (<>
+    <li>
+      <ScrollLink href={`#${slug}`}>{firstItem}</ScrollLink>
+      {rest.length > 0 && (
+        <ol>
+          {rest.map((c, i) => <TocItem key={i} item={c} slugs={slugs} />)}
+        </ol>
+      )}
+    </li>
+  </>)
 }
 
-export default ({ children }) => {
-  let currentToc = []
-  let currentHeadingNumbers = []
+function ContentsItem({ item, n, level = 0, slugs }) {
+  let firstItem
+  let rest
 
-  let newChildren = children.map(c => {
-    let n = -1
-    if (c.props.mdxType === "h3") {
-      n = 0
-    } else if (c.props.mdxType === "h4") {
-      n = 1
-    } else if (c.props.mdxType === "h5") {
-      n = 2
-    }
+  if (Array.isArray(item)) {
+    firstItem = item[0]
+    rest = item.slice(1)
+  } else {
+    firstItem = item
+    rest = []
+  }
 
-    if (n >= 0) {
-      // generate heading number
-      while (currentHeadingNumbers.length <= n) {
-        currentHeadingNumbers.push(0)
-      }
+  let title = <>{n}{"\u2002"}{firstItem}</>
+  let slug = slugs.slug(firstItem).toLowerCase()
+  let Component = require(`./docs/${slug}.mdx`).default
 
-      currentHeadingNumbers[n]++
-      currentHeadingNumbers.splice(n + 1)
+  if (level === 0) {
+    title = <h3 id={slug}>{title}</h3>
+  } else if (level === 1) {
+    title = <h4 id={slug}>{title}</h4>
+  } else if (level === 2) {
+    title = <h5 id={slug}>{title}</h5>
+  } else {
+    title = <h6 id={slug}>{title}</h6>
+  }
 
-      let originalText = c.props.children
-      let text = currentHeadingNumbers.join(".") + "\u2002" + originalText
+  return (<>
+    {title}
+    <Component />
+    {rest.map((c, i) => <ContentsItem key={i} item={c} n={`${n}.${i + 1}`}
+      level={level + 1} slugs={slugs} />)}
+  </>)
+}
 
-      c = cloneElement(c, {
-        children: text,
-        key: c.props.id
-      })
+function Toc({ docs }) {
+  const tocSlugs = slugger()
+  return docs.map((item, index) =>
+    <TocItem key={index} item={item} slugs={tocSlugs} />)
+}
 
-      // generate toc entry
-      while (currentToc.length <= n) {
-        currentToc.push(<ol key={`toc-list-${c.props.id}`}></ol>)
-      }
+const DOCS = [
+  ["How does Steep work?",
+    "Workflow scheduling",
+    "Software architecture",
+    "Processing services"
+  ],
+  ["Example workflows",
+    "Running two services in parallel",
+    "Chaining two services",
+    "Splitting and joining results",
+    "Processing a dynamic number of results in parallel",
+    "Feeding results back into the workflow (cycles/loops)"
+  ],
+  ["Data models",
+    "Workflows",
+    "Variables",
+    ["Actions",
+      "Execute actions",
+      "For-each actions",
+      "Parameters",
+      "Output parameters"
+    ],
+    "Process chains",
+    ["Executables",
+      "Arguments",
+      "Argument variables"
+    ],
+    "Submissions",
+    "Submission status",
+    "Process chain status",
+    ["Service metadata",
+      "Runtime environments",
+      "Service parameters",
+      "Runtime arguments"
+    ],
+    "Agents",
+    "VMs",
+    "Setups"
+  ],
+  ["HTTP endpoints",
+    "GET information",
+    "GET submissions",
+    "GET submission by ID",
+    "PUT submission",
+    "POST workflow",
+    "GET process chains",
+    "GET process chain by ID",
+    "PUT process chain"
+    // "GET agents",
+    // "GET agent by ID",
+    // "GET VMs",
+    // "GET VM by ID",
+    // "GET services",
+    // "GET service by ID",
+    // "GET Prometheus metrics"
+  ]
+  // "Web-based user interface",
+  // ["Configuration",
+  //   "steep.yaml",
+  //   "setups.yaml",
+  //   "services/services.yaml",
+  //   "plugins/commons.yaml"
+  // ],
+  // ["Extending Steep through plugins",
+  //   "Custom runtime environments",
+  //   "Output adapters",
+  //   "Process chain adapters",
+  //   "Initializers"
+  // ]
+]
 
-      spliceToc(currentToc, n)
-
-      let newItem = (<li key={`toc-item-${c.props.id}`}>
-          <ScrollLink href={"#" + c.props.id}>{originalText}</ScrollLink>
-        </li>)
-      let l = currentToc.length
-      currentToc[l - 1] = cloneElement(currentToc[l - 1], {
-        children: [...(currentToc[l - 1].props.children || []), newItem]
-      })
-    }
-
-    return c
-  })
-
-  // collapse all remaining toc entries
-  spliceToc(currentToc, 0)
-
-  newChildren = newChildren.map(c => {
-    if (c.props.mdxType === "div" && c.props.className === "table-of-contents") {
-      c = cloneElement(c, {
-        children: currentToc[0],
-        key: "table-of-contents"
-      })
-    }
-    return c
-  })
+export default () => {
+  const contentSlugs = slugger()
+  const contents = DOCS.map((item, index) =>
+    <ContentsItem key={index} item={item} n={index + 1} slugs={contentSlugs} />)
 
   return (
     <section className="docs">
-      {newChildren}
+      <h2>Documentation</h2>
+      <p>
+        In this section, we describe the individual features of Steep. The
+        documentation always applies to the latest software version.
+      </p>
+
+      <h6>Table of contents</h6>
+
+      <div className="table-of-contents">
+        <ol>
+          <Toc docs={DOCS} />
+        </ol>
+      </div>
+
+      {contents}
+
       <Sidebar>
-        {currentToc[0]}
+        <ol>
+          <Toc docs={DOCS} />
+        </ol>
       </Sidebar>
     </section>
   )
