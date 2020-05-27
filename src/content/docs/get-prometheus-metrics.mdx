@@ -1,0 +1,54 @@
+Steep can provide metrics to [Prometheus](https://prometheus.io/). Besides
+statistics about the Java Virtual Machine that Steep is running in, the
+following metrics are included:
+
+| Metric                               | Description
+| ------------------------------------ | -----------
+| steep_remote_agents                  | The number of registered remote agents
+| steep_controller_process_chains      | The number of process chains the controller is currently waiting for
+
+| Resource URL |
+| ------------ |
+
+```http
+/metrics
+```
+
+| Parameters              |                              |
+| ----------------------- | ---------------------------- |
+| None                    |                              |
+
+| Status codes |                                                                |
+| ------------ | -------------------------------------------------------------- |
+| 200          | The operation was successful                                   |
+
+| Example request |
+| --------------- |
+
+```http
+GET /metrics HTTP/1.1
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+Content-Type: text/plain; version=0.0.4; charset=utf-8
+content-encoding: gzip
+content-length: 1674
+
+# HELP jvm_memory_bytes_used Used bytes of a given JVM memory area.
+# TYPE jvm_memory_bytes_used gauge
+jvm_memory_bytes_used{area="heap",} 2.1695392E8
+jvm_memory_bytes_used{area="nonheap",} 1.46509968E8
+…
+# HELP steep_remote_agents Number of registered remote agents
+# TYPE steep_remote_agents gauge
+steep_remote_agents 1.0
+…
+# HELP steep_controller_process_chains Number of process chains the controller is waiting for
+# TYPE steep_controller_process_chains gauge
+steep_controller_process_chains 0.0
+…
+```

@@ -91,21 +91,25 @@ const DOCS = [
       "Parameters",
       "Output parameters"
     ],
-    "Process chains",
+    ["Process chains",
+      "Process chain status"
+    ],
     ["Executables",
       "Arguments",
       "Argument variables"
     ],
-    "Submissions",
-    "Submission status",
-    "Process chain status",
+    ["Submissions",
+      "Submission status"
+    ],
     ["Service metadata",
       "Runtime environments",
       "Service parameters",
       "Runtime arguments"
     ],
     "Agents",
-    "VMs",
+    ["VMs",
+      "VM status"
+    ],
     "Setups"
   ],
   ["HTTP endpoints",
@@ -116,14 +120,14 @@ const DOCS = [
     "POST workflow",
     "GET process chains",
     "GET process chain by ID",
-    "PUT process chain"
-    // "GET agents",
-    // "GET agent by ID",
-    // "GET VMs",
-    // "GET VM by ID",
-    // "GET services",
-    // "GET service by ID",
-    // "GET Prometheus metrics"
+    "PUT process chain",
+    "GET agents",
+    "GET agent by ID",
+    "GET VMs",
+    "GET VM by ID",
+    "GET services",
+    "GET service by ID",
+    "GET Prometheus metrics"
   ]
   // "Web-based user interface",
   // ["Configuration",

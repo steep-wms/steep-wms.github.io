@@ -1,0 +1,90 @@
+import ScrollLink from "components/ScrollLink"
+
+Get information about all configured <ScrollLink href="#service-metadata">service metadata</ScrollLink>.
+To get metadata of a single service, use
+the <ScrollLink href="#get-service-by-id">GET service by ID endpoint</ScrollLink>.
+
+| Resource URL |
+| ------------ |
+
+```http
+/services
+```
+
+| Parameters              |                              |
+| ----------------------- | ---------------------------- |
+| None                    |                              |
+
+| Status codes |                                                                |
+| ------------ | -------------------------------------------------------------- |
+| 200          | The operation was successful                                   |
+
+| Example request |
+| --------------- |
+
+```http
+GET /services HTTP/1.1
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-encoding: gzip
+content-length: 2167
+content-type: application/json
+
+[
+  {
+    "id": "cp",
+    "name": "cp",
+    "description": "Copies files",
+    "path": "cp",
+    "runtime": "other",
+    "parameters": [{
+      "id": "no_overwrite",
+      "name": "No overwrite",
+      "description": "Do not overwrite existing file",
+      "type": "argument",
+      "cardinality": "1..1",
+      "data_type": "boolean",
+      "default": false,
+      "label": "-n"
+    }, {
+      "id": "input_file",
+      "name": "Input file name",
+      "description": "Input file name",
+      "type": "input",
+      "cardinality": "1..1",
+      "data_type": "file"
+    }, {
+      "id": "output_file",
+      "name": "Output file name",
+      "description": "Output file name",
+      "type": "output",
+      "cardinality": "1..1",
+      "data_type": "file"
+    }],
+    "runtime_args": [],
+    "required_capabilities": []
+  }, {
+    "id": "sleep",
+    "name": "sleep",
+    "description": "sleeps for the given amount of seconds",
+    "path": "sleep",
+    "runtime": "other",
+    "parameters": [{
+      "id": "seconds",
+      "name": "seconds to sleep",
+      "description": "The number of seconds to sleep",
+      "type": "argument",
+      "cardinality": "1..1",
+      "data_type": "integer"
+    }],
+    "runtime_args": [],
+    "required_capabilities": []
+  },
+  …
+]
+```

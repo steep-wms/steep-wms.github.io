@@ -1,0 +1,60 @@
+import ScrollLink from "components/ScrollLink"
+
+Get details about a single <ScrollLink href="#vms">VM</ScrollLink>
+from the database.
+
+| Resource URL |
+| ------------ |
+
+```http
+/vms/:id
+```
+
+| Parameters |                                    |
+| ---------- | ---------------------------------- |
+| id         | The ID of the VM to return |
+
+| Status codes |                              |
+| ------------ | ---------------------------- |
+| 200          | The operation was successful |
+| 404          | The VM was not found  |
+
+| Example request |
+| --------------- |
+
+```http
+GET /vms/akvn5rmvrozqzj5k3n7a HTTP/1.1
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-encoding: gzip
+content-length: 617
+content-type: application/json
+
+{
+  "id": "akvn5rmvrozqzj5k3n7a",
+  "externalId": "cc6bb115-5852-4646-87c0-d61a9e275722",
+  "ipAddress": "10.90.5.10",
+  "creationTime": "2020-05-27T12:17:01.861596Z",
+  "agentJoinTime": "2020-05-27T12:18:27.957192Z",
+  "status": "LEFT",
+  "setup": {
+    "id": "default",
+    "flavor": "7d217779-4d7b-4689-8a40-c12a377b946d",
+    "imageName": "Ubuntu 18.04",
+    "availabilityZone": "nova",
+    "blockDeviceSizeGb": 50,
+    "minVMs": 0,
+    "maxVMs": 4,
+    "provisioningScripts": [
+      "conf/setups/default/01_docker.sh",
+      "conf/setups/default/02_steep.sh"
+    ],
+    "providedCapabilities": ["docker"]
+  }
+}
+```

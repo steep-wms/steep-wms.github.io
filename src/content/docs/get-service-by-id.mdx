@@ -1,0 +1,54 @@
+import ScrollLink from "components/ScrollLink"
+
+Get configured metadata of a single <ScrollLink href="#service-metadata">service</ScrollLink>.
+
+| Resource URL |
+| ------------ |
+
+```http
+/services/:id
+```
+
+| Parameters |                                    |
+| ---------- | ---------------------------------- |
+| id         | The ID of the service to return |
+
+| Status codes |                              |
+| ------------ | ---------------------------- |
+| 200          | The operation was successful |
+| 404          | The service metadata was not found  |
+
+| Example request |
+| --------------- |
+
+```http
+GET /services/sleep HTTP/1.1
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-encoding: gzip
+content-length: 401
+content-type: application/json
+
+{
+  "id": "sleep",
+  "name": "sleep",
+  "description": "sleeps for the given amount of seconds",
+  "path": "sleep",
+  "runtime": "other",
+  "parameters": [{
+    "id": "seconds",
+    "name": "seconds to sleep",
+    "description": "The number of seconds to sleep",
+    "type": "argument",
+    "cardinality": "1..1",
+    "data_type": "integer"
+  }],
+  "runtime_args": [],
+  "required_capabilities": []
+}
+```
