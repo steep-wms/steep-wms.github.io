@@ -145,16 +145,16 @@ const DOCS = [
       "OpenStack cloud driver",
       "SSH connection to VMs"
     ],
-    "setups.yaml"
-  //   "services/services.yaml",
-  //   "plugins/commons.yaml"
-  ]
-  // ["Extending Steep through plugins",
+    "setups.yaml",
+    "services/services.yaml",
+    "plugins/common.yaml"
+  ],
+  ["Extending Steep through plugins"
   //   "Custom runtime environments",
   //   "Output adapters",
   //   "Process chain adapters",
   //   "Initializers"
-  // ]
+  ]
 ]
 
 export default () => {
