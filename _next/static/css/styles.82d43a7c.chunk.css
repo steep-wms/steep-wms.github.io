@@ -954,9 +954,18 @@ footer {
 
 .docs .docs-section-configuration blockquote {
   margin-top: -0.5rem;
-  margin-bottom: 2rem; }
+  margin-bottom: 2rem;
+  margin-right: 0; }
   .docs .docs-section-configuration blockquote + blockquote {
     margin-top: -1rem; }
+
+.docs .docs-section-configuration p {
+  max-width: 100%;
+  overflow-x: auto; }
+
+.docs #servicesservicesyaml, .docs #pluginscommonyaml {
+  max-width: 100%;
+  overflow-x: auto; }
 
 .code-example {
   margin: 2rem 0 3rem 0; }

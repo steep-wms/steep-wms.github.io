@@ -32,7 +32,7 @@ Steep treats parameters differently depending on the `type` and `data_type`:
 * If `type` is `"input"` and `data_type` is `"directory"`, Steep will find the
   common parent directory of the files from the parameter's value and pass it
   to the service. For example, if the parameter's value is an array with the
-  elements `["/tmp/a.txt", "/tmp/b.txt", "/tmp/subdir/c.txt"]`, Steep will pass
+  elements `["/tmp/a.txt", "/tmp/b.txt", "/tmp/`<wbr />`subdir/`<wbr />`c.txt"]`, Steep will pass
   `"/tmp/"` to the service.
 * If `type` is `"input"`, `data_type` *is not* `"directory"`, but the
   parameter's value is an array, Steep will duplicate the parameter as many

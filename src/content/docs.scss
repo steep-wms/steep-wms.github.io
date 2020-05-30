@@ -183,12 +183,25 @@
     margin-top: $spacer * 2;
   }
 
-  .docs-section-configuration blockquote {
-    margin-top: -$spacer / 2;
-    margin-bottom: $spacer * 2;
+  .docs-section-configuration {
+    blockquote {
+      margin-top: -$spacer / 2;
+      margin-bottom: $spacer * 2;
+      margin-right: 0;
 
-    & + blockquote {
-      margin-top: -$spacer;
+      & + blockquote {
+        margin-top: -$spacer;
+      }
     }
+
+    p {
+      max-width: 100%;
+      overflow-x: auto;
+    }
+  }
+
+  #servicesservicesyaml, #pluginscommonyaml {
+    max-width: 100%;
+    overflow-x: auto;
   }
 }
