@@ -1,0 +1,77 @@
+import ScrollLink from "../../components/ScrollLink"
+
+An output adapter plugin is a function that can manipulate the output of
+services depending on their produced data type (see the `data_type` property
+of the <ScrollLink href="#service-parameters">service parameter</ScrollLink>
+data model, as well as the `dataType` property of the <ScrollLink href="#arguments">process chain argument</ScrollLink> data model).
+
+In other words, if an <ScrollLink href="#output-parameters">output parameter</ScrollLink>
+of a processing service has a specific `data_type` defined in the <ScrollLink href="#service-metadata">service's metadata</ScrollLink>
+and this data type matches the one given in the output adapter's descriptor,
+then the plugin's function will be called after the service has been executed.
+Steep will pass the output argument and the whole process chain (for reference)
+to the plugin. The output argument's value will be the current result (i.e. the
+output file or directory). The plugin can modify this file or directory (if
+necessary) and return a new list of files that will then be used by Steep for
+further processing.
+
+Steep has a built-in output adapter for the data type `directory`. Whenever you
+specify this data type in the service metadata, Steep will pass the output
+directory to an internal function that recursively collects all files from this
+directory and returns them as a list.
+
+The example output adapter `fileOrEmptyList` described below is also included
+in Steep. It checks if an output file exists (i.e. if the processing service
+has actually created it) and either returns a list with a single element (the
+file) or an empty list. This is useful if a processing service has an optional
+output that you want to use as input of a subsequent <ScrollLink href="#for-each-actions">for-each action</ScrollLink>
+or of the current for-each action via `yieldToInput`.
+
+If required, the function can be a `suspend` function.
+
+| Type |
+| ---- |
+
+`outputAdapter`
+
+| Additional properties               |
+| ----------------------------------- | ----------------
+| supportedDataType<br />*(required)* | The `data_type` that this plugin can handle
+
+| Function interface |
+| ------------------ |
+
+```kotlin
+suspend fun myOutputAdapter(output: model.processchain.Argument,
+  processChain: model.processchain.ProcessChain,
+  vertx: io.vertx.core.Vertx): List<Any>
+```
+
+| Example descriptor |
+| ------------------ |
+
+```yaml
+- name: fileOrEmptyList
+  type: outputAdapter
+  scriptFile: conf/plugins/fileOrEmptyList.kts
+  supportedDataType: fileOrEmptyList
+```
+
+| Example plugin script |
+| --------------------- |
+
+```kotlin
+import io.vertx.core.Vertx
+import io.vertx.kotlin.core.file.existsAwait
+import model.processchain.Argument
+import model.processchain.ProcessChain
+
+suspend fun fileOrEmptyList(output: Argument, processChain: ProcessChain,
+    vertx: Vertx): List<String> {
+  return if (!vertx.fileSystem().existsAwait(output.variable.value)) {
+    emptyList()
+  } else {
+    listOf(output.variable.value)
+  }
+}
+```

@@ -149,11 +149,11 @@ const DOCS = [
     "services/services.yaml",
     "plugins/common.yaml"
   ],
-  ["Extending Steep through plugins"
-  //   "Custom runtime environments",
-  //   "Output adapters",
-  //   "Process chain adapters",
-  //   "Initializers"
+  ["Extending Steep through plugins",
+    "Initializers",
+    "Output adapters",
+    "Process chain adapters",
+    "Custom runtime environments"
   ]
 ]
 

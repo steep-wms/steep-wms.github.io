@@ -1,0 +1,56 @@
+import ScrollLink from "../../components/ScrollLink"
+
+A process chain adapter plugin is a function that can manipulate
+generated <ScrollLink href="#process-chains">process chains</ScrollLink>
+before they are executed.
+
+It takes a list of generated process chains and returns a new list of
+process chains to execute or the given list if no modification was made.
+If required, the function can be a suspend function.
+
+| Type |
+| ---- |
+
+`processChainAdapter`
+
+| Additional properties |
+| --------------------- |
+| None                  |
+
+| Function interface |
+| ------------------ |
+
+```kotlin
+suspend fun myProcessChainAdapter(processChains: List<model.processchain.ProcessChain>,
+  vertx: io.vertx.core.Vertx): List<model.processchain.ProcessChain>
+```
+
+| Example descriptor |
+| ------------------ |
+
+```yaml
+- name: myProcessChainAdapter
+  type: processChainAdapter
+  scriptFile: conf/plugins/myProcessChainAdapter.kts
+```
+
+| Example plugin script |
+| --------------------- |
+
+```kotlin
+import model.processchain.ProcessChain
+import io.vertx.core.Vertx
+
+suspend fun myProcessChainAdapter(processChains: List<ProcessChain>,
+    vertx: Vertx): List<ProcessChain> {
+  val result = mutableListOf<ProcessChain>()
+
+  for (pc in processChains) {
+    // never execute the 'sleep' service
+    val executables = pc.executables.filter { e -> e.id != "sleep" }
+    result.add(pc.copy(executables = executables))
+  }
+
+  return result
+}
+```

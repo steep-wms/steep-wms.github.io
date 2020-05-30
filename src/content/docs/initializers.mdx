@@ -1,0 +1,38 @@
+An initializer plugin is a function that will be called during the
+initialization phase of Steep just before components such as the controller or
+the scheduler are deployed. If required, the function can be a `suspend`
+function.
+
+| Type |
+| ---- |
+
+`initializer`
+
+| Additional properties |
+| --------------------- |
+| None                  |
+
+| Function interface |
+| ------------------ |
+
+```kotlin
+suspend fun myInitializer(vertx: io.vertx.core.Vertx)
+```
+
+| Example descriptor |
+| ------------------ |
+
+```yaml
+- name: myInitializer
+  type: initializer
+  scriptFile: conf/plugins/myInitializer.kts
+```
+
+| Example plugin script |
+| --------------------- |
+
+```kotlin
+suspend fun myInitializer(vertx: io.vertx.core.Vertx) {
+  println("Hello from my initializer plugin")
+}
+```

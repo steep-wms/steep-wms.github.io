@@ -1,0 +1,22 @@
+import ScrollLink from "../../components/ScrollLink"
+
+Steep can be extended through plugins. In this section, we will describe the
+interfaces of all plugins and how they need to be configured so Steep can
+compile and execute them at runtime.
+
+Each plugin is a [Kotlin](https://kotlinlang.org/) script with the file
+extension `.kts`. Inside this script, there should be a single function with
+the same name as the plugin and a signature that depends on the plugin type.
+Function interfaces are described in the sub-sections below.
+
+All plugins must be referenced in the <ScrollLink href="#pluginscommonyaml">plugins/common.yaml</ScrollLink> file. This file is an array of descriptor objects with at least the following
+properties:
+
+| Property                    | Type   | Description
+| --------------------------- | ------ | -----------
+| name<br/>*(required)*       | string | A unique name of the plugin (the function inside the plugin's script file must have the same name)
+| type<br/>*(required)*       | string | The plugin type. Valid values are: `initializer`, `outputAdapter`, `processChainAdapter`, and `runtime`.
+| scriptFile<br/>*(required)* | string | The path to the plugin's Kotlin script file. The file should have the extension `.kts`. The path is relative to Steep's application directory, so a valid example is `conf/plugins/fileOrEmptyList.kts`.
+
+Specific plugin types may require additional properties described in the
+sub-sections below.
