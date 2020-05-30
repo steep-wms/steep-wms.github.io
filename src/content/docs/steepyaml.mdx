@@ -1,0 +1,30 @@
+The file `steep.yaml` contains the main configuration of Steep. In this section,
+we describe all configuration keys and values you can set.
+
+Note that keys are specified using the dot notation. You can use them as
+they are given here or use YAML notation instead. For example, the following
+configuration item
+
+```yaml
+steep.cluster.eventBus.publicPort: 41187
+```
+
+is identical to:
+
+```yaml
+steep:
+  cluster:
+    eventBus:
+      publicPort: 41187
+```
+
+You may override items in your configuration file with environment variables.
+This is particularly useful if you are using Steep inside a Docker container.
+The environment variables use a slightly different naming scheme. All variables
+are in capital letters and dots are replaced by underscores. For example,
+the configuration key `steep.http.host` becomes `STEEP_HTTP_HOST` and
+`steep.cluster.eventBus.publicPort` becomes `STEEP_CLUSTER_EVENTBUS_PUBLICPORT`.
+You may use YAML syntax to specify environment variable values. For example,
+the array `steep.agent.capabilities` can be specified as follows:
+
+    STEEP_AGENT_CAPABILITIES=["docker", "python"]

@@ -1,0 +1,46 @@
+import ScrollLink from "../../components/ScrollLink"
+
+`steep.cloud.enabled`
+
+> `true` if Steep should connect to a cloud to acquire remote agents on demand
+
+> **Default:** `false`
+
+`steep.cloud.driver`
+
+> Defines which cloud driver to use
+
+> **Valid values:** `openstack` (see the <ScrollLink href="#openstack-cloud-driver">OpenStack cloud driver</ScrollLink> for more information)
+
+`steep.cloud.createdByTag`
+
+> A metadata tag that should be attached to virtual machines to indicate that
+> they have been created by Steep
+
+`steep.cloud.setupsFile`
+
+> The path to the file that describes all available <ScrollLink href="#setups">setups</ScrollLink>. See <ScrollLink href="setupsyaml">setups.yaml</ScrollLink>.
+
+`steep.cloud.syncIntervalSeconds`
+
+> The number of seconds that should pass before the cloud manager synchronizes
+> its internal state with the cloud again
+
+> **Default:** 120 (2 minutes)
+
+`steep.cloud.keepAliveIntervalSeconds`
+
+> The number of seconds that should pass before the cloud manager sends
+> keep-alive messages to a minimum of remote agents again (so that they
+> do not shut down themselves). See `minVMs` property of
+> the <ScrollLink href="#setups">setups</ScrollLink> data model.
+
+> **Default:** 30
+
+`steep.cloud.agentPool`
+
+> An array of <ScrollLink href="#agent-pool-parameters">agent pool parameters</ScrollLink>
+> describing how many remote agents the cloud manager should keep in its pool
+> how many it is allowed to create for each given set of capabilities.
+
+> **Default:** `[]` (empty list)

@@ -1,0 +1,48 @@
+`steep.cloud.openstack.endpoint`
+
+> OpenStack authentication endpoint
+
+`steep.cloud.openstack.username`
+
+> OpenStack username used for authentication
+
+`steep.cloud.openstack.password`
+
+> OpenStack password used for authentication
+
+`steep.cloud.openstack.domainName`
+
+> OpenStack domain name used for authentication
+
+`steep.cloud.openstack.projectId`
+
+> The ID of the OpenStack project to which to connect. Either this configuration
+> item or `steep.cloud.openstack.projectName` must be set but not both at the
+> same time.
+
+`steep.cloud.openstack.projectName`
+
+> The name of the OpenStack project to which to connect. This configuration item
+> will be used in combination with `steep.cloud.openstack.domainName`
+> if `steep.cloud.openstack.projectId` is not set.
+
+`steep.cloud.openstack.networkId`
+
+> The ID of the OpenStack network to attach new VMs to
+
+`steep.cloud.openstack.usePublicIp`
+
+> `true` if new VMs should have a public IP address
+
+> **Default:** `false`
+
+`steep.cloud.openstack.securityGroups`
+
+> The OpenStack security groups that should be attached to new VMs.
+
+> **Default:** `[]` (empty list)
+
+`steep.cloud.openstack.keypairName`
+
+> The name of the keypair to deploy to new VMs. The keypair must already
+> exist in OpenStack.

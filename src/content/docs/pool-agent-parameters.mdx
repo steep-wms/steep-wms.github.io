@@ -1,0 +1,24 @@
+import CodeExample from "../../components/CodeExample"
+
+Steep's cloud manager component is able to create virtual machines and to
+deploy remote agent instances to it. The cloud manager keeps every remote agent
+created in a pool. Use pool agent parameters to define a minimum and maximum
+number of instances per provided capability set.
+
+| Property                               | Type    | Description
+| -------------------------------------- | ------- | -----------
+| capabilities<br/>*(required)*          | array   | A set of strings spec­i­fy­ing ca­pa­bil­i­ties that a remote agent must provide so these parameters apply to it
+| min<br />*(optional)*                  | number  | An optional minimum number of remote agents that the cloud manager should create with the given capabilities
+| max<br />*(optional)*                  | number  | An optional maximum number of remote agents that the cloud manager is allowed to create with the given capabilities
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "capabilities": ["docker", "python"],
+  "min": 1,
+  "max": 5
+}
+```
+
+</CodeExample>

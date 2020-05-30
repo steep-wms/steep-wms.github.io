@@ -55,12 +55,12 @@ function ContentsItem({ item, n, level = 0, slugs }) {
     title = <h6 id={slug}>{title}</h6>
   }
 
-  return (<>
+  return (<div className={`docs-section-${slug}`}>
     {title}
     <Component />
     {rest.map((c, i) => <ContentsItem key={i} item={c} n={`${n}.${i + 1}`}
       level={level + 1} slugs={slugs} />)}
-  </>)
+  </div>)
 }
 
 function Toc({ docs }) {
@@ -110,7 +110,8 @@ const DOCS = [
     ["VMs",
       "VM status"
     ],
-    "Setups"
+    "Setups",
+    "Pool agent parameters"
   ],
   ["HTTP endpoints",
     "GET information",
@@ -128,14 +129,26 @@ const DOCS = [
     "GET services",
     "GET service by ID",
     "GET Prometheus metrics"
-  ]
-  // "Web-based user interface",
-  // ["Configuration",
-  //   "steep.yaml",
-  //   "setups.yaml",
+  ],
+  "Web-based user interface",
+  ["Configuration",
+    ["steep.yaml",
+      "General configuration",
+      "Cluster settings",
+      "HTTP configuration",
+      "Controller configuration",
+      "Scheduler configuration",
+      "Agent configuration",
+      "Runtime settings",
+      "Database connection",
+      "Cloud connection",
+      "OpenStack cloud driver",
+      "SSH connection to VMs"
+    ],
+    "setups.yaml"
   //   "services/services.yaml",
   //   "plugins/commons.yaml"
-  // ],
+  ]
   // ["Extending Steep through plugins",
   //   "Custom runtime environments",
   //   "Output adapters",

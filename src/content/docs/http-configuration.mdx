@@ -1,0 +1,63 @@
+`steep.http.enabled`
+
+> `true` if the HTTP interface should be enabled
+
+> **Default:** `true`
+
+`steep.http.host`
+
+> The host to bind the HTTP server to
+
+> **Default:** `localhost`
+
+`steep.http.port`
+
+> The port the HTTP server should listen on
+
+> **Default:** 8080
+
+`steep.http.postMaxSize`
+
+> The maximum size of HTTP POST bodies in bytes
+
+> **Default:** 1048576 (1 MB)
+
+`steep.http.basePath`
+
+> The path where the HTTP endpoints and the web-based user interface should be mounted
+
+> **Default:** `""` (empty string, i.e. no base path)
+
+`steep.http.cors.enable`
+
+> `true` if Cross-Origin Resource Sharing (CORS) should be enabled
+
+> **Default:** `false`
+
+`steep.http.cors.allowOrigin`
+
+> A regular expression specifying allowed CORS origins. Use `*`​ to allow all origins.
+
+> **Default:** `"$."` (match nothing by default)
+
+`steep.http.cors.allowCredentials`
+
+> `true` if the `Access-​Control-​Allow-​Credentials` response header should be returned.
+
+> **Default:** `false`
+
+`steep.http.cors.allowHeaders`
+
+> A string or an array indicating which header field names can be used in a request.
+
+`steep.http.cors.allowMethods`
+
+> A string or an array indicating which HTTP methods can be used in a request.
+
+`steep.http.cors.exposeHeaders`
+
+> A string or an array indicating which headers are safe to expose to the API of a CORS API specification.
+
+`steep.http.cors.maxAge`
+
+> The number of seconds the results of a preflight request can be cached in a preflight result cache.

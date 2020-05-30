@@ -1,0 +1,58 @@
+Use these configuration items to build up a cluster of Steep instances. Under
+the hood, Steep uses [Vert.x](https://vertx.io/) and [Hazelcast](https://hazelcast.com/),
+so these configuration items are very similar to the ones found in these two
+frameworks. To build up a cluster, you need to configure an event bus connection
+and a cluster connection. They should use different ports. `host` typically
+refers to the machine your instance is running on and `publicHost` or
+`publicAddress` specify the hostname or IP address that your Steep instance will
+use in your network to advertise itself so that other instances can connect to
+it.
+
+For more information, please read the documentation of [Vert.x](https://vertx.io/)
+and [Hazelcast](https://hazelcast.com/).
+
+`steep.cluster.eventBus.host`
+
+> The IP address (or hostname) to bind the clustered eventbus to
+
+> **Default:** Automatically detected local network interface
+
+`steep.cluster.eventBus.port`
+
+> The port the clustered eventbus should listen on
+
+> **Default:** A random port
+
+`steep.cluster.eventBus.publicHost`
+
+> The IP address (or hostname) the eventbus uses to announce itself within in the cluster
+
+> **Default:** Same as `steep.cluster.eventBus.host`
+
+`steep.cluster.eventBus.publicPort`
+
+> The port that the eventbus uses to announce itself within in the cluster
+
+> **Default:** Same as `steep.cluster.eventBus.port`
+
+`steep.cluster.hazelcast.publicAddress`
+
+> The IP address (or hostname) and port Hazelcast uses to announce itself within in the cluster
+
+`steep.cluster.hazelcast.port`
+
+> The port that Hazelcast should listen on
+
+`steep.cluster.hazelcast.interfaces`
+
+> A list of IP address patterns specifying valid interfaces Hazelcast should bind to
+
+`steep.cluster.hazelcast.members`
+
+> A list of IP addresses (or hostnames) of Hazelcast cluster members
+
+`steep.cluster.hazelcast.tcpEnabled`
+
+> `true` if Hazelcast should use TCP to connect to other instances, `false` if it should use multicast
+
+> **Default:** `false`
