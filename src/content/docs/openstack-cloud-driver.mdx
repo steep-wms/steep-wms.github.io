@@ -1,48 +1,48 @@
-`steep.cloud.`<wbr />`openstack.`<wbr />`endpoint`
+`steep.cloud.openstack.endpoint`
 
 > OpenStack authentication endpoint
 
-`steep.cloud.`<wbr />`openstack.`<wbr />`username`
+`steep.cloud.openstack.username`
 
 > OpenStack username used for authentication
 
-`steep.cloud.`<wbr />`openstack.`<wbr />`password`
+`steep.cloud.openstack.password`
 
 > OpenStack password used for authentication
 
-`steep.cloud.`<wbr />`openstack.`<wbr />`domainName`
+`steep.cloud.openstack.domainName`
 
 > OpenStack domain name used for authentication
 
-`steep.cloud.`<wbr />`openstack.`<wbr />`projectId`
+`steep.cloud.openstack.projectId`
 
 > The ID of the OpenStack project to which to connect. Either this configuration
-> item or `steep.`<wbr />`cloud.`<wbr />`openstack.`<wbr />`projectName` must be set but not both at the
+> item or `steep.cloud.openstack.projectName` must be set but not both at the
 > same time.
 
-`steep.cloud.`<wbr />`openstack.`<wbr />`projectName`
+`steep.cloud.openstack.projectName`
 
 > The name of the OpenStack project to which to connect. This configuration item
-> will be used in combination with `steep.`<wbr />`cloud.`<wbr />`openstack.`<wbr />`domainName`
-> if `steep.`<wbr />`cloud.`<wbr />`openstack.`<wbr />`projectId` is not set.
+> will be used in combination with `steep.cloud.openstack.domainName`
+> if `steep.cloud.openstack.projectId` is not set.
 
-`steep.cloud.`<wbr />`openstack.`<wbr />`networkId`
+`steep.cloud.openstack.networkId`
 
 > The ID of the OpenStack network to attach new VMs to
 
-`steep.cloud.`<wbr />`openstack.`<wbr />`usePublicIp`
+`steep.cloud.openstack.usePublicIp`
 
 > `true` if new VMs should have a public IP address
 
 > **Default:** `false`
 
-`steep.cloud.`<wbr />`openstack.`<wbr />`securityGroups`
+`steep.cloud.openstack.securityGroups`
 
 > The OpenStack security groups that should be attached to new VMs.
 
 > **Default:** `[]` (empty list)
 
-`steep.cloud.`<wbr />`openstack.`<wbr />`keypairName`
+`steep.cloud.openstack.keypairName`
 
 > The name of the keypair to deploy to new VMs. The keypair must already
 > exist in OpenStack.

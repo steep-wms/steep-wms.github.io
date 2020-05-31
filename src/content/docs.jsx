@@ -41,7 +41,12 @@ function ContentsItem({ item, n, level = 0, slugs }) {
     rest = []
   }
 
-  let title = <>{n}{"\u2002"}{firstItem}</>
+  // allow headings to break at slashes
+  let title = firstItem.replace(/\//g, "/\u200b")
+
+  // add heading number
+  title = <>{n}{"\u2002"}{title}</>
+
   let slug = slugs.slug(firstItem).toLowerCase()
   let Component = require(`./docs/${slug}.mdx`).default
 

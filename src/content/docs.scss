@@ -121,7 +121,7 @@
     }
 
     @media (max-width: $sm) {
-      th {
+      th:not(:first-child) {
         display: none;
       }
 
@@ -183,6 +183,14 @@
     margin-top: $spacer * 2;
   }
 
+  .docs-section-data-models {
+    @media (max-width: $sm) {
+      th {
+        display: none;
+      }
+    }
+  }
+
   .docs-section-configuration {
     blockquote {
       margin-top: -$spacer / 2;
@@ -203,5 +211,11 @@
   #servicesservicesyaml, #pluginscommonyaml {
     max-width: 100%;
     overflow-x: auto;
+  }
+
+  .docs-section-get-prometheus-metrics {
+    code {
+      white-space: normal;
+    }
   }
 }

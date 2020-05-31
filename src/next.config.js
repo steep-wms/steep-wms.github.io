@@ -1,6 +1,7 @@
 const bundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true"
 })
+const codeBreak = require("./plugins/remark-codebreak")
 const codeExample = require("./plugins/remark-codeexample")
 const hyphenate = require("./plugins/remark-hyphenate")
 const highlight = require("rehype-highlight")
@@ -12,7 +13,7 @@ const withPlugins = require("next-compose-plugins")
 
 const mdx = require("@next/mdx")({
   options: {
-    remarkPlugins: [hyphenate, smartypants, codeExample],
+    remarkPlugins: [hyphenate, smartypants, codeExample, codeBreak],
     rehypePlugins: [highlight, slug]
   }
 })
