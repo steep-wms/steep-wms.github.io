@@ -1,5 +1,8 @@
-import GenerateProcessChains from "../../assets/generate-process-chains.svg?include"
-import ScrollLink from "../../components/ScrollLink"
+import GenerateProcessChains from "assets/generate-process-chains.svg?include"
+import ScrollLink from "components/ScrollLink"
+import styles from "./workflow-scheduling.scss"
+
+<style jsx>{styles}</style>
 
 Steep is a scientific workflow management system that can be used to control
 the processing of very large data sets in a distributed environment.
@@ -12,7 +15,7 @@ gigabytes to terabytes. The following figure shows a simple example of such a
 workflow in an extended Petri Net notation proposed by
 [van der Aalst and van Hee (2004)](https://doi.org/10.7551/mitpress/7301.001.0001).
 
-<div className="docs-image docs-image-generate-process-chains"
+<div className="docs-image image-generate-process-chains"
   dangerouslySetInnerHTML={{ __html: GenerateProcessChains }} />
 
 In this example, an input file is first processed by a task A. This task
@@ -34,7 +37,7 @@ iteration, it finds the longest linear sequences of tasks and groups them to
 process chains. The following animation shows how this works for our example
 workflow:
 
-<div className="docs-image docs-image-generate-process-chains-animated"
+<div className="docs-image image-generate-process-chains-animated"
   dangerouslySetInnerHTML={{ __html: GenerateProcessChains }} />
 
 Task A will be put into a process chain in iteration 1. Steep then schedules

@@ -1,5 +1,8 @@
-import ScrollLink from "../../components/ScrollLink"
-import WebUI from "../../assets/webui.png"
+import ScrollLink from "components/ScrollLink"
+import WebUI from "assets/webui.png"
+import styles from "./web-based-user-interface.scss"
+
+<style jsx>{styles}</style>
 
 Steep has a web-based user interface that allows you to monitor the execution
 of running workflows, process chains, agents, and VMS, as well as to browse
@@ -8,4 +11,4 @@ the database contents.
 Start Steep and visit any of the above-mentioned <ScrollLink href="#http-endpoints">HTTP endpoints</ScrollLink>
 with your web browser to open the user interface.
 
-<img src={WebUI} className="docs-image docs-image-webui" />
+<img src={WebUI} className="docs-image image-webui" />

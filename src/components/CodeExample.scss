@@ -1,4 +1,4 @@
-@import "../css/variables";
+@import "css/variables";
 
 .code-example {
   margin: $spacer * 2 0 $spacer * 3 0;
@@ -34,18 +34,18 @@
   }
 
   .code-example-page {
-    pre {
+    :global(pre) {
       display: none;
       margin-top: 0;
       border-top-left-radius: 0;
     }
 
-    code {
+    :global(code) {
       margin-top: 0;
     }
 
     &.active {
-      pre {
+      :global(pre) {
         display: block;
       }
     }

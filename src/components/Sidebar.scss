@@ -1,4 +1,4 @@
-@import "../css/variables";
+@import "css/variables";
 
 .sidebar {
   opacity: 0;
@@ -9,8 +9,6 @@
   }
 
   .table-of-contents {
-    // inherits from .table-of-contents from docs.scss
-
     z-index: 10000;
     position: fixed;
     right: 0;
@@ -31,8 +29,12 @@
       transform: translateX(0%);
     }
 
-    ol {
+    :global(ol) {
       margin-top: 0;
+    }
+
+    & > :global(ol) {
+      padding-left: 0;
     }
   }
 
@@ -62,25 +64,25 @@
     .sidebar-button-icons {
       position: relative;
 
-      .feather {
+      :global(.feather) {
         transition: opacity 200ms ease-in-out;
         display: block;
+      }
 
-        &.collapse {
-          opacity: 0;
-        }
+      :global(.feather.collapse) {
+        opacity: 0;
+      }
 
-        &.feather-x {
-          position: absolute;
-          left: 0;
-          top: 0;
-          opacity: 0;
-          transform: scale(1.2);
+      :global(.feather.feather-x) {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        transform: scale(1.2);
+      }
 
-          &.collapse {
-            opacity: 1;
-          }
-        }
+      :global(.feather.feather-x.collapse) {
+        opacity: 1;
       }
     }
   }

@@ -4,7 +4,7 @@ import getScrollTop from "./lib/get-scroll-top"
 import { Children, cloneElement, useCallback, useEffect, useRef, useState } from "react"
 import { List, X } from "react-feather"
 import throttle from "lodash.throttle"
-import "./Sidebar.scss"
+import styles from "./Sidebar.scss"
 
 export default ({ children }) => {
   const ref = useRef()
@@ -100,6 +100,7 @@ export default ({ children }) => {
           <X className={classNames("feather", "feather-x", { "collapse": collapse })}/>
         </div>
       </div>
+      <style jsx>{styles}</style>
     </div>
   )
 }

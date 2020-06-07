@@ -1,0 +1,8 @@
+ol {
+  list-style-type: none;
+  counter-reset: item;
+
+  &:first-child {
+    padding-left: 0;
+  }
+}

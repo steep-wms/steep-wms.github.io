@@ -1,71 +1,6 @@
-@import "../css/variables";
-
-@keyframes show1 {
-  0% {
-    opacity: 0;
-  }
-  20% {
-    opacity: 0;
-  }
-  21% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes show2 {
-  0% {
-    opacity: 0;
-  }
-  40% {
-    opacity: 0;
-  }
-  41% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes show3 {
-  0% {
-    opacity: 0;
-  }
-  60% {
-    opacity: 0;
-  }
-  61% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 1;
-  }
-}
+@import "css/variables";
 
 .docs {
-  #table-of-contents {
-    margin-bottom: 0;
-  }
-
-  .table-of-contents {
-    ol {
-      list-style-type: none;
-      counter-reset: item;
-
-      li:before {
-        content: counters(item, ".") "\2002";
-        counter-increment: item;
-      }
-    }
-
-    & > ol:first-child {
-      padding-left: 0;
-    }
-  }
-
   table {
     border-collapse: collapse;
     width: 100%;
@@ -145,40 +80,6 @@
     margin: $spacer * 2 auto;
   }
 
-  .docs-image-generate-process-chains, .docs-image-generate-process-chains-animated {
-    width: 10rem;
-
-    #docs-image-generate-process-chains-box1, #docs-image-generate-process-chains-box2,
-    #docs-image-generate-process-chains-box3, #docs-image-generate-process-chains-box4 {
-      opacity: 0;
-      animation-duration: 5s;
-      animation-iteration-count: infinite;
-    }
-  }
-
-  .docs-image-generate-process-chains-animated {
-    #docs-image-generate-process-chains-box1 {
-      animation-name: show1;
-    }
-    #docs-image-generate-process-chains-box2, #docs-image-generate-process-chains-box3 {
-      animation-name: show2;
-    }
-    #docs-image-generate-process-chains-box4 {
-      animation-name: show3;
-    }
-  }
-
-  .docs-image-architecture {
-    width: 16rem;
-  }
-
-  .docs-image-webui {
-    width: 40rem;
-    max-width: 100%;
-    box-shadow: 0px 0px 10px rgba(0,0,0,.3);
-    margin-top: $spacer * 3;
-  }
-
   table + table, pre + table {
     margin-top: $spacer * 2;
   }
@@ -214,7 +115,7 @@
   }
 
   .docs-section-get-prometheus-metrics {
-    code {
+    table code {
       white-space: normal;
     }
   }

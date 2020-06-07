@@ -1,6 +1,6 @@
 import { Download, GitHub } from "react-feather"
 import { Docker } from "@icons-pack/react-simple-icons"
-import "./DownloadButtons.scss"
+import styles from "./DownloadButtons.scss"
 
 export default () => (
   <div className="download-btns">
@@ -10,5 +10,6 @@ export default () => (
       <Docker className="simple-icon"/> Docker image</a>
     <a href="https://github.com/steep-wms/steep" className="btn">
       <GitHub className="feather"/> Source code</a>
+    <style jsx>{styles}</style>
   </div>
 )

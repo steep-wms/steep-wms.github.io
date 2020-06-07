@@ -1,3 +1,5 @@
+import styles from "./ResearchItem.scss"
+
 export default ({ image, pdf, children }) => {
   let img = <img src={image} className="img-fluid"/>
   return (
@@ -12,6 +14,7 @@ export default ({ image, pdf, children }) => {
           </div>
         </div>
       </div>
+      <style jsx>{styles}</style>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import classNames from "classnames"
-import "./NavBar.scss"
+import styles from "./NavBar.scss"
 import Link from "next/link"
 import ScrollLink from "./ScrollLink"
 import { GitHub } from "react-feather"
@@ -129,6 +129,7 @@ export default () => {
           <GitHub className="feather" />
         </a>
       </div>
+      <style jsx>{styles}</style>
     </nav>
   )
 }

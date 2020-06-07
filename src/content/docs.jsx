@@ -1,33 +1,7 @@
-import ScrollLink from "../components/ScrollLink"
-import Sidebar from "../components/Sidebar"
+import Sidebar from "components/Sidebar"
+import Toc from "components/Toc"
 import slugger from "github-slugger"
-import "./docs.scss"
-
-function TocItem({ item, slugs }) {
-  let firstItem
-  let rest
-
-  if (Array.isArray(item)) {
-    firstItem = item[0]
-    rest = item.slice(1)
-  } else {
-    firstItem = item
-    rest = []
-  }
-
-  let slug = slugs.slug(firstItem).toLowerCase()
-
-  return (<>
-    <li>
-      <ScrollLink href={`#${slug}`}>{firstItem}</ScrollLink>
-      {rest.length > 0 && (
-        <ol>
-          {rest.map((c, i) => <TocItem key={i} item={c} slugs={slugs} />)}
-        </ol>
-      )}
-    </li>
-  </>)
-}
+import styles from "./docs.scss?type=global"
 
 function ContentsItem({ item, n, level = 0, slugs }) {
   let firstItem
@@ -66,12 +40,6 @@ function ContentsItem({ item, n, level = 0, slugs }) {
     {rest.map((c, i) => <ContentsItem key={i} item={c} n={`${n}.${i + 1}`}
       level={level + 1} slugs={slugs} />)}
   </div>)
-}
-
-function Toc({ docs }) {
-  const tocSlugs = slugger()
-  return docs.map((item, index) =>
-    <TocItem key={index} item={item} slugs={tocSlugs} />)
 }
 
 const DOCS = [
@@ -169,7 +137,7 @@ export default () => {
 
   return (
     <section className="docs">
-      <h2>Documentation</h2>
+      <h2 id="documentation">Documentation</h2>
       <p>
         In this section, we describe the individual features of Steep. The
         documentation always applies to the latest software version.
@@ -178,9 +146,7 @@ export default () => {
       <h6>Table of contents</h6>
 
       <div className="table-of-contents">
-        <ol>
-          <Toc docs={DOCS} />
-        </ol>
+        <Toc docs={DOCS} />
       </div>
 
       {contents}
@@ -190,6 +156,8 @@ export default () => {
           <Toc docs={DOCS} />
         </ol>
       </Sidebar>
+
+      <style jsx>{styles}</style>
     </section>
   )
 }

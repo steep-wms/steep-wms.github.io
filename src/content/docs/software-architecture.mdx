@@ -1,10 +1,13 @@
-import Architecture from "../../assets/architecture.svg"
-import ScrollLink from "../../components/ScrollLink"
+import Architecture from "assets/architecture.svg"
+import ScrollLink from "components/ScrollLink"
+import styles from "./software-architecture.scss"
+
+<style jsx>{styles}</style>
 
 The following figure shows the main components of Steep: the HTTP server,
 the controller, the scheduler, the agent, and the cloud manager.
 
-<img className="docs-image docs-image-architecture" src={Architecture} />
+<img className="docs-image image-architecture" src={Architecture} />
 
 Together, these components form an instance of Steep. In practice, a single
 instance typically runs on a separate virtual machine, but multiple instances

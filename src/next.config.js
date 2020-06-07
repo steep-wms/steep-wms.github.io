@@ -6,7 +6,6 @@ const codeExample = require("./plugins/remark-codeexample")
 const hyphenate = require("./plugins/remark-hyphenate")
 const highlight = require("rehype-highlight")
 const optimizedImages = require("next-optimized-images")
-const sass = require("@zeit/next-sass")
 const slug = require("rehype-slug")
 const smartypants = require("@silvenon/remark-smartypants")
 const withPlugins = require("next-compose-plugins")
@@ -40,7 +39,20 @@ const config = {
     }
   },
 
-  webpack: (config, { dev }) => {
+  webpack: (config, { dev, defaultLoaders }) => {
+    config.module.rules.push({
+      test: /\.scss$/,
+      use: [
+        defaultLoaders.babel,
+        {
+          loader: require("styled-jsx/webpack").loader,
+          options: {
+            type: (fileName, options) => options.query.type || "scoped"
+          }
+        }
+      ]
+    })
+
     if (dev) {
       config.module.rules.push({
         test: /\.jsx?$/,
@@ -58,7 +70,6 @@ const config = {
 
 module.exports = withPlugins([
   [optimizedImages],
-  [sass],
   [mdx],
   [bundleAnalyzer]
 ], config)

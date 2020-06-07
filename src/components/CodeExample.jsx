@@ -2,7 +2,7 @@ import classNames from "classnames"
 import getScrollTop from "./lib/get-scroll-top"
 import AutoScrollingContext from "./lib/AutoScrollingContext"
 import CodeLanguageContext from "./lib/CodeLanguageContext"
-import "./CodeExample.scss"
+import styles from "./CodeExample.scss"
 import { Children, useContext, useRef } from "react"
 
 function findCode(node, pres) {
@@ -73,6 +73,7 @@ export default ({ children, title }) => {
     let title = (
       <div className={titleClassName} onClick={() => onClick(lang)} key={`title-${lang}`}>
         {lang.toUpperCase()}
+        <style jsx>{styles}</style>
       </div>
     )
     titles.push(title)
@@ -81,6 +82,7 @@ export default ({ children, title }) => {
     let page = (
       <div className={pageClassName} key={`page-${lang}`}>
         {c}
+        <style jsx>{styles}</style>
       </div>
     )
     pages.push(page)
@@ -89,5 +91,6 @@ export default ({ children, title }) => {
   return (<>
     {title && <h6>{title}</h6>}
     <div className="code-example" ref={ref}>{titles}{pages}</div>
+    <style jsx>{styles}</style>
   </>)
 }

@@ -1,4 +1,4 @@
-import "./Features.scss"
+import styles from "./Features.scss"
 
 export default ({ children, title }) => (
   <div id="features" className="container">
@@ -6,5 +6,6 @@ export default ({ children, title }) => (
     <div className="features-grid">
       {children}
     </div>
+    <style jsx>{styles}</style>
   </div>
 )

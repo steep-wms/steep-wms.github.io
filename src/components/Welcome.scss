@@ -1,4 +1,4 @@
-@import "../css/mixins";
+@import "css/mixins";
 
 .welcome {
   background: #f5f8ff;
@@ -55,7 +55,7 @@
     }
 
     .buttons {
-      :global .btn {
+      :global(.btn) {
         font-family: "Roboto Condensed", sans-serif;
         border-radius: 1rem;
         padding: $spacer * 0.75 $spacer * 2;

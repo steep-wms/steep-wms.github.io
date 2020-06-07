@@ -1,4 +1,4 @@
-import "./Welcome.scss"
+import styles from "./Welcome.scss"
 import { Book } from "react-feather"
 import ScrollLink from "./ScrollLink"
 
@@ -20,5 +20,6 @@ export default () => (
         </div>
       </div>
     </div>
+    <style jsx>{styles}</style>
   </div>
 )

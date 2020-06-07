@@ -1,4 +1,4 @@
-@import "../css/variables";
+@import "css/variables";
 
 #main-navbar {
   max-height: 114px;
@@ -53,7 +53,7 @@
       flex: 1;
     }
 
-    a.nav-item {
+    :global(a.nav-item) {
       color: $gray-800;
       margin-right: $spacer * 2;
 
@@ -116,7 +116,7 @@
         }
       }
 
-      a.nav-item {
+      :global(a.nav-item) {
         margin: 0 $spacer / 4;
         padding: $spacer / 2 $spacer;
         background-color: #fff;
