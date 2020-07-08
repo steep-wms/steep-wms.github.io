@@ -1,5 +1,5 @@
-$font-size-base: 1.4rem;
-$font-size-sm: $font-size-base * .875;
+$font-size-base: 16px;
+$font-size-sm: .875rem;
 
 $line-height-base: 1.7;
 
@@ -14,9 +14,9 @@ $gray-600: #6c757d;
 $gray-700: #495057;
 $gray-800: #3c3c3b;
 
-$spacer: 1rem;
+$spacer: 1rem / 1.4;
 
-$border-radius: .75rem;
+$border-radius: .75rem / 1.4;
 
 $xs: 0;
 $sm: 576px;

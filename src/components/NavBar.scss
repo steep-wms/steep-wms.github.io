@@ -129,4 +129,12 @@
       }
     }
   }
+
+  @media (max-width: $md) {
+    max-height: 110px;
+  }
+
+  @media (max-width: $sm) {
+    max-height: 106px;
+  }
 }
