@@ -1,0 +1,24 @@
+@import "css/variables";
+
+.presentation {
+  display: grid;
+  grid-template-columns: 13rem 1fr;
+  grid-gap: $spacer * 1.25;
+}
+
+.image {
+  margin-top: $spacer / 2;
+  img {
+    max-width: 100%;
+  }
+}
+
+.description {
+  :global(p) {
+    margin: 0;
+  }
+}
+
+.slides-link {
+  margin-top: $spacer;
+}
