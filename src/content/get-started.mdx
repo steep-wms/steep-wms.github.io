@@ -1,4 +1,5 @@
 import DownloadButtons from "components/DownloadButtons"
+import pkg from "../package.json"
 
 ## Download and get started
 
@@ -9,18 +10,20 @@ Choose from one of the following options to download Steep:
 If you downloaded the binary package of Steep, extract the ZIP file and run the
 start script:
 
-```bash
-cd steep-5.1.0
+<pre>
+<code class="hljs language-bash"><span class="hljs-built_in">cd</span> steep-{pkg.version}<br />
 bin/steep
-```
+</code>
+</pre>
 
 Or, start the [Docker image](https://hub.docker.com/orgs/steep/steep) as
 follows:
 
-```bash
-docker run --name steep -d --rm -p 8080:8080 \
-    -e STEEP_HTTP_HOST=0.0.0.0 steep/steep:5.1.0
-```
+<pre>
+<code class="hljs language-bash">docker run --name steep -d --rm -p 8080:8080 \<br />
+<React.Fragment>&#32;&#32;&#32;&#32;</React.Fragment>-e STEEP_HTTP_HOST=0.0.0.0 steep/steep:{pkg.version}
+</code>
+</pre>
 
 After a few seconds, you can access Steep's web interface on
 <http://localhost:8080/>.
@@ -30,7 +33,7 @@ workflow consists of a single execute action that sleeps for 10 seconds and
 then quits. Execute the following command:
 
 ```bash
-curl -X POST http://localhost:8080/workflows -d 'api: 4.0.0
+curl -X POST http://localhost:8080/workflows -d 'api: 4.1.0
 vars:
   - id: sleep_seconds
     value: 10
