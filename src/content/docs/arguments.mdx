@@ -8,7 +8,7 @@ An argument is part of an <ScrollLink href="#executables">executable</ScrollLink
 | id<br/>*(required)*       | string | An argument identifier
 | label<br/>*(optional)*    | string | An optional label to use when the argument is passed to the service (e.g. `--input`).
 | variable<br/>*(required)* | object | A <ScrollLink href="#argument-variables">variable</ScrollLink> that holds the value of this argument.
-| type<br/>*(required)*     | string | The type of this argument. Valid values: `input`, `output`, `argument`
+| type<br/>*(required)*     | string | The type of this argument. Valid values: `input`, `output`
 | dataType<br/>*(required)* | string | The type of the argument value. If this property is `directory`, Steep will create a new directory for the service's output and recursively search it for result files after the service has been executed. Otherwise, this property can be an arbitrary string. New data types with special handling can be added through <ScrollLink href="#output-adapters">output adapter plugins</ScrollLink>.
 
 <CodeExample title="Example:">
@@ -16,7 +16,7 @@ An argument is part of an <ScrollLink href="#executables">executable</ScrollLink
 ```json code-example
 {
   "id": "akqcqqoedcsaoescyhgq",
-  "type": "argument",
+  "type": "input",
   "dataType": "string",
   "label": "-v",
   "variable": {

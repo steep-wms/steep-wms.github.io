@@ -2,7 +2,7 @@ import CodeExample from "components/CodeExample"
 import ScrollLink from "components/ScrollLink"
 
 An execute action instructs Steep to execute a certain service with given
-inputs, outputs, and generic parameters.
+inputs and outputs.
 
 | Property                    | Type   | Description
 | --------------------------- | ------ | -----------
@@ -10,7 +10,6 @@ inputs, outputs, and generic parameters.
 | service<br/>*(required)*    | string | The ID of the <ScrollLink href="#service-metadata">service</ScrollLink> to execute
 | inputs<br/>*(optional)*     | array  | An array of <ScrollLink href="#parameters">input parameters</ScrollLink>
 | outputs<br/>*(optional)*    | array  | An array of <ScrollLink href="#output-parameters">output parameters</ScrollLink>
-| parameters<br/>*(optional)* | array  | An array of <ScrollLink href="#parameters">generic parameters</ScrollLink>
 
 <CodeExample title="Example:">
 
@@ -19,6 +18,12 @@ inputs, outputs, and generic parameters.
   "type": "execute",
   "service": "my_service",
   "inputs": [{
+    "id": "verbose",
+    "var": "is_verbose"
+  }, {
+    "id": "resolution",
+    "var": "resolution_pixels"
+  }, {
     "id": "input_file",
     "var": "my_input_file"
   }],
@@ -26,13 +31,6 @@ inputs, outputs, and generic parameters.
     "id": "output_file",
     "var": "my_output_file",
     "store": true
-  }],
-  "parameters": [{
-    "id": "verbose",
-    "var": "is_verbose"
-  }, {
-    "id": "resolution",
-    "var": "resolution_pixels"
   }]
 }
 ```

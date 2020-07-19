@@ -35,13 +35,12 @@ The final `join` service merges these copies into a single file `outputFile2`.
   "actions": [{
     "type": "execute",
     "service": "split",
-    "parameters": [{
-      "id": "lines",
-      "var": "lines"
-    }],
     "inputs": [{
       "id": "file",
       "var": "inputFile"
+    }, {
+      "id": "lines",
+      "var": "lines"
     }],
     "outputs": [{
       "id": "output_directory",
@@ -95,7 +94,7 @@ The final `join` service merges these copies into a single file `outputFile2`.
     "id": "lines",
     "name": "Number of lines per file",
     "description": "Create smaller files n lines in length",
-    "type": "argument",
+    "type": "input",
     "cardinality": "0..1",
     "data_type": "integer",
     "label": "-l"
