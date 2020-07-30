@@ -1,6 +1,6 @@
 import styles from "./Feature.scss"
 
-export default ({ icon, title, children }) => {
+const Feature = ({ icon, title, children }) => {
   return (
     <div className="feature">
       <h6><span className="feature-icon">{icon}</span> {title}</h6>
@@ -9,3 +9,5 @@ export default ({ icon, title, children }) => {
     </div>
   )
 }
+
+export default Feature

@@ -6,7 +6,7 @@ import { List, X } from "react-feather"
 import throttle from "lodash.throttle"
 import styles from "./Sidebar.scss"
 
-export default ({ children }) => {
+const Sidebar = ({ children }) => {
   const ref = useRef()
   const tocRef = useRef()
   const autoHideTimer = useRef(null)
@@ -104,3 +104,5 @@ export default ({ children }) => {
     </div>
   )
 }
+
+export default Sidebar

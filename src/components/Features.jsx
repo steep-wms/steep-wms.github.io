@@ -1,6 +1,6 @@
 import styles from "./Features.scss"
 
-export default ({ children, title }) => (
+const Features = ({ children, title }) => (
   <div id="features" className="container">
     <h2 id="key-features">{title}</h2>
     <div className="features-grid">
@@ -9,3 +9,5 @@ export default ({ children, title }) => (
     <style jsx>{styles}</style>
   </div>
 )
+
+export default Features

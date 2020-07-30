@@ -22,7 +22,7 @@ function getLanguage(pre) {
   return arr[0].props.className.match(/language-(.+)/)[1]
 }
 
-export default ({ children, title }) => {
+const CodeExample = ({ children, title }) => {
   const setAutoScrolling = useContext(AutoScrollingContext.Dispatch)
   const setActive = useContext(CodeLanguageContext.Dispatch)
   const active = useContext(CodeLanguageContext.State)
@@ -94,3 +94,5 @@ export default ({ children, title }) => {
     <style jsx>{styles}</style>
   </>)
 }
+
+export default CodeExample

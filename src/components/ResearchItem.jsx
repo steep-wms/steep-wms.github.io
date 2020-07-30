@@ -1,6 +1,6 @@
 import styles from "./ResearchItem.scss"
 
-export default ({ image, pdf, children }) => {
+const ResearchItem = ({ image, pdf, children }) => {
   let img = <img src={image} className="img-fluid"/>
   return (
     <div className="research-item">
@@ -18,3 +18,5 @@ export default ({ image, pdf, children }) => {
     </div>
   )
 }
+
+export default ResearchItem

@@ -3,7 +3,7 @@ import AutoScrollingContext from "components/lib/AutoScrollingContext"
 import CodeLanguageContext from "components/lib/CodeLanguageContext"
 import NavBarContext from "components/lib/NavBarContext"
 
-export default ({ Component, pageProps }) => (
+const App = ({ Component, pageProps }) => (
   <AutoScrollingContext.Provider>
     <CodeLanguageContext.Provider>
       <NavBarContext.Provider>
@@ -13,3 +13,5 @@ export default ({ Component, pageProps }) => (
     </CodeLanguageContext.Provider>
   </AutoScrollingContext.Provider>
 )
+
+export default App

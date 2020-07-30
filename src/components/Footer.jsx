@@ -4,7 +4,7 @@ import styles from "./Footer.scss"
 const format = new Intl.DateTimeFormat("en", { year: "numeric" })
 const currentYear = format.format(new Date())
 
-export default () => (
+const Footer = () => (
   <footer>
     <div className="footer-background">
     </div>
@@ -24,3 +24,5 @@ export default () => (
     <style jsx>{styles}</style>
   </footer>
 )
+
+export default Footer

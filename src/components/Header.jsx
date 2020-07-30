@@ -1,7 +1,7 @@
 import Head from "next/head"
 import NavBar from "./NavBar"
 
-export default ({ title = "Steep Workflow Management System" }) => (
+const Header = ({ title = "Steep Workflow Management System" }) => (
   <header>
     <Head>
       <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
@@ -20,3 +20,5 @@ export default ({ title = "Steep Workflow Management System" }) => (
     <NavBar />
   </header>
 )
+
+export default Header

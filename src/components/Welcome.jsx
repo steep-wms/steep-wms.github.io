@@ -2,7 +2,7 @@ import styles from "./Welcome.scss"
 import { Book } from "react-feather"
 import ScrollLink from "./ScrollLink"
 
-export default () => (
+const Welcome = () => (
   <div id="welcome" className="welcome">
     <div className="container">
       <div className="welcome-row">
@@ -23,3 +23,5 @@ export default () => (
     <style jsx>{styles}</style>
   </div>
 )
+
+export default Welcome

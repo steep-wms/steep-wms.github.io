@@ -8,7 +8,7 @@ import AutoScrollingContext from "./lib/AutoScrollingContext"
 import NavBarContext from "./lib/NavBarContext"
 import { useContext, useEffect, useRef, useState } from "react"
 
-export default () => {
+const NavBar = () => {
   const [top, setTop] = useState(true)
   const [leaving, setLeaving] = useState(false)
   const [pinned, setPinned] = useState(false)
@@ -133,3 +133,5 @@ export default () => {
     </nav>
   )
 }
+
+export default NavBar

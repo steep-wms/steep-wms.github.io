@@ -3,7 +3,7 @@ import { Docker } from "@icons-pack/react-simple-icons"
 import styles from "./DownloadButtons.scss"
 import pkg from "../package.json"
 
-export default () => (
+const DownloadButtons = () => (
   <div className="download-btns">
     <a href={`https://github.com/steep-wms/steep/releases/download/v${pkg.version}/steep-${pkg.version}.zip`} className="btn btn-primary">
       <Download className="feather"/> Download Steep {pkg.version} (binaries)</a>
@@ -14,3 +14,5 @@ export default () => (
     <style jsx>{styles}</style>
   </div>
 )
+
+export default DownloadButtons

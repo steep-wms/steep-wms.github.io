@@ -9,7 +9,7 @@ function scrollTop(top) {
   }
 }
 
-export default (props) => {
+const ScrollLink = (props) => {
   const setAutoScrolling = useContext(AutoScrollingContext.Dispatch)
   const navBarState = useContext(NavBarContext.State)
 
@@ -77,3 +77,5 @@ export default (props) => {
 
   return <a {...props} onClick={handleClick}></a>
 }
+
+export default ScrollLink
