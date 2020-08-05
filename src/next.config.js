@@ -22,7 +22,6 @@ const config = {
   pageExtensions: ["js", "jsx", "md", "mdx"],
 
   // create a folder for each page
-  exportTrailingSlash: true,
   trailingSlash: true,
 
   // do not display static optimization indicator

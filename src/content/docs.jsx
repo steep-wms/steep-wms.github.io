@@ -130,7 +130,7 @@ const DOCS = [
   ]
 ]
 
-export default () => {
+const Docs = () => {
   const contentSlugs = slugger()
   const contents = DOCS.map((item, index) =>
     <ContentsItem key={index} item={item} n={index + 1} slugs={contentSlugs} />)
@@ -161,3 +161,5 @@ export default () => {
     </section>
   )
 }
+
+export default Docs
