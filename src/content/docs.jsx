@@ -126,7 +126,8 @@ const DOCS = [
     "Initializers",
     "Output adapters",
     "Process chain adapters",
-    "Custom runtime environments"
+    "Custom runtime environments",
+    "Progress estimators"
   ]
 ]
 

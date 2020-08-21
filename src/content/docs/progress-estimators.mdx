@@ -1,0 +1,64 @@
+import ScrollLink from "components/ScrollLink"
+
+A progress estimator plugin is a function that analyses the log output of a
+running processing service to estimate its current progress. For example, the
+plugin can look for percentages or number of bytes processed. The returned
+value contributes to the execution progress of a process chain (see the
+`estimatedProgress` property of the <ScrollLink href="#process-chains">process chain</ScrollLink>
+data model).
+
+The function takes the executable that is currently being run and a list of
+recently collected output lines. It returns an estimated progress between
+0.0 (0%) and 1.0 (100%) or `null` if the progress could not be determined. The
+function will be called for each output line collected and the newest line is
+always at the end of the given list. If required, the function can be a
+`suspend` function.
+
+| Type |
+| ---- |
+
+`progressEstimator`
+
+| Additional properties                |
+| ------------------------------------ | ----------------
+| supportedServiceId<br />*(required)* | The ID of the service this estimator plugin supports
+
+| Function interface |
+| ------------------ |
+
+```kotlin
+suspend fun myProgressEstimator(executable: model.processchain.Executable,
+  recentLines: List<String>, vertx: io.vertx.core.Vertx): Double?
+```
+
+| Example descriptor |
+| ------------------ |
+
+```yaml
+- name: extractArchiveProgressEstimator
+  type: progressEstimator
+  scriptFile: conf/plugins/extractArchiveProgressEstimator.kts
+  supportedServiceId: extract-archive
+```
+
+| Example plugin script |
+| --------------------- |
+
+```kotlin
+import model.processchain.Executable
+import io.vertx.core.Vertx
+
+suspend fun extractArchiveProgressEstimator(executable: Executable,
+    recentLines: List<String>, vertx: Vertx): Double? {
+  val lastLine = recentLines.last()
+  val percentSign = lastLine.indexOf('%')
+  if (percentSign > 0) {
+    val percentStr = lastLine.substring(0, percentSign)
+    val percent = percentStr.trim().toIntOrNull()
+    if (percent != null) {
+      return percent / 100.0
+    }
+  }
+  return null
+}
+```
