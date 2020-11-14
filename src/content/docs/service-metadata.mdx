@@ -14,6 +14,7 @@ it can be executed by Steep.
 | parameters<br/>*(required)*            | array  | A list of <ScrollLink href="#service-parameters">service parameters</ScrollLink>
 | runtime_args<br/>*(optional)*          | array  | An optional list of <ScrollLink href="#runtime-arguments">arguments</ScrollLink> to pass to the runtime
 | required_capabilities<br/>*(optional)* | array  | A set of strings specifying capabilities a host system must provide to be able to execute this service. See also <ScrollLink href="#setups">setups</ScrollLink>.
+| retries<br/>*(optional)*               | object | An optional <ScrollLink href="#retry-policies">retry policy</ScrollLink> specifying how often the execution of this service should be retried in case of an error. Can be overridden in an <ScrollLink href="#execute-actions">executable action</ScrollLink>.
 
 <CodeExample title="Example:">
 

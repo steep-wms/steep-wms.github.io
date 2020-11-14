@@ -79,6 +79,8 @@ const DOCS = [
       "Service parameters",
       "Runtime arguments"
     ],
+    "Retry policies",
+    "Durations",
     "Agents",
     ["VMs",
       "VM status"

@@ -1,0 +1,23 @@
+A duration consists of one or more number/unit pairs possibly
+separated by whitespace characters. Supported units are:
+
+* `milliseconds`, `millisecond`, `millis`, `milli`, `ms`
+* `seconds`, `second`, `secs`, `sec`, `s`
+* `minutes`, `minute`, `mins`, `min`, `m`
+* `hours`, `hour`, `hrs`, `hr`, `h`
+* `days`, `day`, `d`
+
+Numbers must be positive integers. The default unit is `milliseconds`
+
+<h6>Examples:</h6>
+
+```json
+1000ms
+3 secs
+5m
+20mins
+10h 30 minutes
+1 hour 10minutes 5s
+1d 5h
+10 days 1hrs 30m 15 secs
+```

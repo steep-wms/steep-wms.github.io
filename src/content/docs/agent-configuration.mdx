@@ -1,27 +1,38 @@
+import ScrollLink from "components/ScrollLink"
+
 `steep.agent.enabled`
 
 > `true` if this Steep instance should be able to execute process chains (i.e.
-> if an agent should be deployed)
+> if one or more agents should be deployed)
 
 > **Default:** `true`
 
+`steep.agent.instances`
+
+> The number of agents that should be deployed within this Steep instance (i.e.
+> how many <ScrollLink href="#executables">executables</ScrollLink> the Steep
+> instance can run in parallel)
+
+> **Default:** 1
+
 `steep.agent.id`
 
-> Unique identifier of this agent instance
+> Unique identifier for the first agent instance deployed. Subsequent agent
+> instances will have a consecutive number appended to their IDs.
 
-> **Default:** An automatically generated unique ID
+> **Default:** (an automatically generated unique ID)
 
 `steep.agent.capabilities`
 
-> List of capabilities that this agent provides
+> List of capabilities that the agents provide
 
 > **Default:** `[]` (empty list)
 
 `steep.agent.autoShutdownTimeoutMinutes`
 
-> The number of minutes an agent should remain idle until it shuts itself down
-> gracefully. By default, this value is `0`, which means the agent never shuts
-> itself down.
+> The number of minutes any agent instance can remain idle until Steep shuts
+> itself down gracefully. By default, this value is `0`, which means the Steep
+> never shuts itself down.
 
 > **Default:** 0
 

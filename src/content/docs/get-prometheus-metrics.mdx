@@ -1,3 +1,5 @@
+import ScrollLink from "components/ScrollLink"
+
 Steep can provide metrics to [Prometheus](https://prometheus.io/). Besides
 statistics about the Java Virtual Machine that Steep is running in, the
 following metrics are included:
@@ -6,6 +8,8 @@ following metrics are included:
 | --------------------------------- | -----------
 | `steep_remote_agents`             | The number of registered remote agents
 | `steep_controller_process_chains` | The number of process chains the controller is currently waiting for
+| `steep_scheduler_process_chains`  | The number of process chains with a given <ScrollLink href="#process-chain-status">status</ScrollLink> (indicated by the label `status`)
+| `steep_local_agent_retries`       | The total number of times an <ScrollLink href="#executables">executable</ScrollLink> with a given service ID (indicated by the label `serviceId`) had to be <ScrollLink href="#retry-policies">retried</ScrollLink>
 
 | Resource URL |
 | ------------ |

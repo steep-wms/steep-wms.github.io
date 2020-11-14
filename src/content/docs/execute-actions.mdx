@@ -10,6 +10,7 @@ inputs and outputs.
 | service<br/>*(required)*    | string | The ID of the <ScrollLink href="#service-metadata">service</ScrollLink> to execute
 | inputs<br/>*(optional)*     | array  | An array of <ScrollLink href="#parameters">input parameters</ScrollLink>
 | outputs<br/>*(optional)*    | array  | An array of <ScrollLink href="#output-parameters">output parameters</ScrollLink>
+| retries<br/>*(optional)*    | object | An optional <ScrollLink href="#retry-policies">retry policy</ScrollLink> specifying how often this action should be retried in case of an error. Overrides any default retry policy defined in the <ScrollLink href="#service-metadata">service metadata</ScrollLink>.
 
 <CodeExample title="Example:">
 
