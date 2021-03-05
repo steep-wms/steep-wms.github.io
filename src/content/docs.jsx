@@ -97,6 +97,7 @@ const DOCS = [
     "GET process chains",
     "GET process chain by ID",
     "GET process chain logs",
+    "HEAD process chain logs",
     "PUT process chain",
     "GET agents",
     "GET agent by ID",
