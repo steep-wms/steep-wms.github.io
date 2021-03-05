@@ -96,6 +96,7 @@ const DOCS = [
     "POST workflow",
     "GET process chains",
     "GET process chain by ID",
+    "GET process chain logs",
     "PUT process chain",
     "GET agents",
     "GET agent by ID",
@@ -118,7 +119,8 @@ const DOCS = [
       "Database connection",
       "Cloud connection",
       "OpenStack cloud driver",
-      "SSH connection to VMs"
+      "SSH connection to VMs",
+      "Log configuration"
     ],
     "setups.yaml",
     "services/services.yaml",
