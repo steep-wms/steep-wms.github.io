@@ -5,7 +5,7 @@ module.exports = () => (tree) => {
   visit(tree, "code", (node) => {
     if (node.meta === "code-example") {
       let jsonObj = JSON.parse(node.value)
-      let yamlStr = yaml.safeDump(jsonObj).trim()
+      let yamlStr = yaml.dump(jsonObj).trim()
 
       node.type = "parent"
       node.children = [{
