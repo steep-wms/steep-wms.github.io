@@ -10,14 +10,15 @@ manager.
 | flavor<br/>*(required)*                | string  | The flavor of the new VM
 | imageName<br/>*(required)*             | string  | The name of the VM image to deploy
 | availabilityZone<br/>*(required)*      | string  | The availability zone in which to create the VM
-| blockDeviceSizeGb<br/>*(required)*     | number  | The size of the VM's block device in gigabytes
-| blockDeviceVolumeType<br/>*(optional)* | string  | An optional type of the VM's block device. By default, the type will be selected automatically
+| blockDeviceSizeGb<br/>*(required)*     | number  | The size of the VM's main block device in gigabytes
+| blockDeviceVolumeType<br/>*(optional)* | string  | An optional type of the VM's main block device. By default, the type will be selected automatically.
 | minVMs<br/>*(optional)*                | number  | An optional minimum number of VMs to create with this setup. The default value is `0`.
 | maxVMs<br/>*(required)*                | number  | The maximum number of VMs to create with this setup
 | maxCreateConcurrent<br/>*(optional)*   | number  | The maximum number of VMs to create and provision concurrently. The default value is `1`.
 | provisioningScripts<br/>*(optional)*   | array   | An optional list of paths to scripts that should be executed on the VM after it has been created
 | providedCapabilities<br/>*(optional)*  | array   | An optional set of strings specifying capabilities that VMs with this setup will have
 | sshUsername<br/>*(optional)*           | string  | An optional username for the SSH connection to the created VM. Overrides the <ScrollLink href="#steepyaml">main configuration</ScrollLink> item `steep.cloud.ssh.username` if it is defined.
+| additionalVolumes                      | array   | An optional list of <ScrollLink href="#volumes">volumes</ScrollLink> that will be attached to the VM
 
 <CodeExample title="Example:">
 
@@ -34,7 +35,11 @@ manager.
     "conf/setups/default/01_docker.sh",
     "conf/setups/default/02_steep.sh"
   ],
-  "providedCapabilities": ["docker"]
+  "providedCapabilities": ["docker"],
+  "additionalVolumes": [{
+    "sizeGb": 50,
+    "type": "SSD"
+  }]
 }
 ```
 

@@ -85,7 +85,9 @@ const DOCS = [
     ["VMs",
       "VM status"
     ],
-    "Setups",
+    ["Setups",
+      "Volumes"
+    ],
     "Pool agent parameters"
   ],
   ["HTTP endpoints",
