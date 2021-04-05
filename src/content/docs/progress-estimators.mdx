@@ -19,9 +19,9 @@ always at the end of the given list. If required, the function can be a
 
 `progressEstimator`
 
-| Additional properties                |
-| ------------------------------------ | ----------------
-| supportedServiceId<br />*(required)* | The ID of the service this estimator plugin supports
+| Additional properties                 |
+| ------------------------------------- | ----------------
+| supportedServiceIds<br />*(required)* | An array of IDs of the services this estimator plugin supports
 
 | Function interface |
 | ------------------ |
@@ -38,7 +38,8 @@ suspend fun myProgressEstimator(executable: model.processchain.Executable,
 - name: extractArchiveProgressEstimator
   type: progressEstimator
   scriptFile: conf/plugins/extractArchiveProgressEstimator.kts
-  supportedServiceId: extract-archive
+  supportedServiceIds:
+    - extract-archive
 ```
 
 | Example plugin script |
