@@ -1,0 +1,42 @@
+import ScrollLink from "components/ScrollLink"
+
+Configurations for <ScrollLink href="#setups">Setups</ScrollLink>
+(<ScrollLink href="#setupsyaml">setups.yaml</ScrollLink>) and <ScrollLink href="#service-metadata">Service metadata</ScrollLink> (<ScrollLink href="#servicesservicesyaml">services/services.yaml</ScrollLink>)
+often contain repeated information (e.g. two setups might offer the same
+capabilities). You can use YAML anchors to simplify your configuration files.
+
+The following example shows two services sharing a parameter:
+
+```yaml
+- id: sleep
+  name: sleep
+  description: sleeps for the given amount of seconds
+  path: sleep
+  runtime: other
+
+  parameters:
+    - &sleep_seconds
+      id: seconds
+      name: seconds to sleep
+      description: The number of seconds to sleep
+      type: input
+      cardinality: 1..1
+      data_type: integer
+
+- id: docker_sleep
+  name: Docker sleep
+  description: Run sleep inside an alpine container
+  path: alpine
+  runtime: docker
+
+  parameters:
+    - id: sleep
+      name: sleep command
+      description: The sleep command
+      type: input
+      cardinality: 1..1
+      data_type: string
+      default: sleep
+
+    - *sleep_seconds
+```

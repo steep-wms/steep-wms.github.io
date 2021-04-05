@@ -127,7 +127,8 @@ const DOCS = [
     ],
     "setups.yaml",
     "services/services.yaml",
-    "plugins/common.yaml"
+    "plugins/common.yaml",
+    "Using YAML anchors"
   ],
   ["Extending Steep through plugins",
     "Initializers",
