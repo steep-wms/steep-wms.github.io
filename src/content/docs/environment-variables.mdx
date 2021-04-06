@@ -1,0 +1,15 @@
+Access any environment variable defined on the system where Steep is running
+(not the VM to be provisioned) as follows:
+
+```handlebars
+{{ env["name_of_the_environment_variable"] }}
+```
+
+| Example provisioning script |
+| --------------------------- |
+
+```handlebars
+#!/usr/bin/env bash
+
+echo "{{ env["TOKEN"] }}" > /etc/token.conf
+```

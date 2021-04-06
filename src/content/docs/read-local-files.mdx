@@ -1,0 +1,14 @@
+Insert the contents of a local file into the provisioning script.
+
+```handlebars
+{{ readFile("path_to_the_file_to_insert") }}
+```
+
+| Example provisioning script |
+| --------------------------- |
+
+```handlebars
+#!/usr/bin/env bash
+
+echo "{{ readFile("hello_world.txt") }}"
+```

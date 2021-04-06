@@ -1,0 +1,18 @@
+Use values from Steep's main configuration file (steep.yaml) as follows:
+
+```handlebars
+{{ config["name_of_the_configuration_item"] }}
+```
+
+| Example provisioning script |
+| --------------------------- |
+
+```handlebars
+#!/usr/bin/env bash
+
+docker run -u root -d -p 5701:5701 -p 41187:41187 \
+  --restart=on-failure --name steep \
+  -e "STEEP_OUTPATH={{ config["steep.outPath"] }}" \
+  -e "STEEP_TMPPATH={{ config["steep.tmpPath"] }}" \
+  steep:latest
+```

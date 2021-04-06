@@ -1,0 +1,19 @@
+Upload one or more local files to the remote VM.
+
+```handlebars
+{{ upload("source", "destination") }}
+```
+
+`source` may contain a glob pattern (e.g. `*.sh` or `**/*.yaml`) if you want to
+upload multiple files or if you want to recursively transfer a whole directory
+tree. In this case, `destination` should be a directory and it should exist.
+
+| Example provisioning script |
+| --------------------------- |
+
+```handlebars
+#!/usr/bin/env bash
+
+mkdir -p /etc/steep
+{{ upload("conf/**/*.yaml", "/etc/steep") }}
+```

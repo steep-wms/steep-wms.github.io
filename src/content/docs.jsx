@@ -128,7 +128,15 @@ const DOCS = [
     "setups.yaml",
     "services/services.yaml",
     "plugins/common.yaml",
-    "Using YAML anchors"
+    ["Advanced configuration topics",
+      ["Provisioning scripts",
+        "Environment variables",
+        "Configuration values",
+        "Read local files",
+        "Upload local files to remote"
+      ],
+      "Using YAML anchors"
+    ]
   ],
   ["Extending Steep through plugins",
     "Initializers",
