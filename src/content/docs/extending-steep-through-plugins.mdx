@@ -5,7 +5,7 @@ interfaces of all plugins and how they need to be configured so Steep can
 compile and execute them at runtime.
 
 Each plugin is a [Kotlin](https://kotlinlang.org/) script with the file
-extension `.kts`. Inside this script, there should be a single function with
+extension `.kt`. Inside this script, there should be a single function with
 the same name as the plugin and a signature that depends on the plugin type.
 Function interfaces are described in the sub-sections below.
 
@@ -20,3 +20,7 @@ properties:
 
 Specific plugin types may require additional properties described in the
 sub-sections below.
+
+Plugins are compiled on demand when Steep is starting. This can take some time
+depending on the number of the plugins and their size. For faster start times,
+you can also <ScrollLink href="#precompiling-plugins">precompile your plugins</ScrollLink>.
