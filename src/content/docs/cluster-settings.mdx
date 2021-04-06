@@ -56,3 +56,13 @@ and [Hazelcast](https://hazelcast.com/).
 > `true` if Hazelcast should use TCP to connect to other instances, `false` if it should use multicast
 
 > **Default:** `false`
+
+`steep.cluster.hazelcast.restoreMembersOnStartup.enabled`
+
+> `true` if Steep should try to load IP addresses of possibly still running VMs from its database during startup and add them to `steep.cluster.hazelcast.members`. This is useful if a Steep instance has crashed and should be reintegrated into an existing cluster when it's back.
+
+> **Default:** `false`
+
+`steep.cluster.hazelcast.restoreMembersOnStartup.defaultPort`
+
+> If `steep.cluster.hazelcast.restoreMembersOnStartup.enabled` is `true`, potential Hazelcast cluster members will be restored from database. This configuration item specifies on which Hazelcast port these members are listening.
