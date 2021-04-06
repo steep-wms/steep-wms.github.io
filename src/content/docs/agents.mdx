@@ -10,6 +10,7 @@ An agent represents an instance of Steep that can execute <ScrollLink href="#pro
 | capabilities<br/>*(required)*          | array   | A set of strings specifying capabilities the agent provides. See also <ScrollLink href="#setups">setups</ScrollLink>.
 | startTime<br/>*(required)*             | string  | An ISO 8601 timestamp denoting the date and time when the agent has started.
 | stateChangedTime<br/>*(required)*      | string  | An ISO 8601 timestamp denoting the date and time when the value of the `available` property changed from `true` to `false` (i.e. when the agent became busy) or from `false` to `true` (when it became available)
+| processChainId<br/>*(optional)*        | string  | The ID of the <ScrollLink href="#process-chains">process chain</ScrollLink> currently allocated to this agent. May be `null` if no process chain has been allocated to the agent (i.e. if it is currently `available`).
 
 <CodeExample title="Example:">
 
