@@ -15,7 +15,16 @@
 
 > The interval at which the controller looks for orphaned running submissions
 > (i.e. submissions that are in the status `RUNNING` but that are currently not
-> being processed by any Controller instance). If Steep finds such a submission
+> being processed by any controller instance). If Steep finds such a submission
 > it will try to resume it.
 
 > **Default:** 300000 (5 minutes)
+
+`steep.controller.lookupOrphansInitialDelayMilliseconds`
+
+> The number of milliseconds the controller should wait after startup before
+> it looks for orphaned running submissions for the first time. This property
+> is useful if you want to implement a rolling update from one Steep
+> instance to another.
+
+> **Default:** 0
