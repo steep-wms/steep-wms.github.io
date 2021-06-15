@@ -1,10 +1,12 @@
+@use "sass:math";
+
 @import "css/variables";
 @import "css/mixins";
 
 .research-item {
   display: flex;
   flex-direction: row;
-  padding: $spacer / 2 0;
+  padding: math.div($spacer, 2) 0;
 
   &:first-child {
     padding-top: 0;
@@ -40,7 +42,7 @@
   word-break: break-word;
 
   .bib-links {
-    padding-top: $spacer / 2;
+    padding-top: math.div($spacer, 2);
     display: block;
   }
 }

@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import "css/variables";
 
 .code-example {
@@ -7,7 +9,7 @@
     position: relative;
     cursor: pointer;
     display: inline-block;
-    padding: $spacer / 2 $spacer;
+    padding: math.div($spacer, 2) $spacer;
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
     border: 1px solid $gray-300;

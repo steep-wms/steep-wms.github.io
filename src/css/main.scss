@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import "normalize.css/normalize";
 @import "highlight.js/styles/zenburn";
 
@@ -184,7 +186,7 @@ pre {
   border-radius: $border-radius;
 
   code {
-    margin: $spacer / 2 $spacer;
+    margin: math.div($spacer, 2) $spacer;
     display: block;
   }
 }

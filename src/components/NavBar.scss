@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import "css/variables";
 
 #main-navbar {
@@ -117,11 +119,11 @@
       }
 
       :global(a.nav-item) {
-        margin: 0 $spacer / 4;
-        padding: $spacer / 2 $spacer;
+        margin: 0 math.div($spacer, 4);
+        padding: math.div($spacer, 2) $spacer;
         background-color: #fff;
         display: block;
-        width: calc(100% - #{$spacer / 2});
+        width: calc(100% - #{math.div($spacer, 2)});
 
         &:last-child {
           margin-bottom: $spacer;

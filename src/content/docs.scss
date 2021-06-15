@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import "css/variables";
 
 .docs {
@@ -7,7 +9,7 @@
 
     th, td {
       margin: 0;
-      padding: $spacer / 2;
+      padding: math.div($spacer, 2);
       text-align: left;
       border-bottom: 1px solid $gray-300;
       vertical-align: top;
@@ -94,7 +96,7 @@
 
   .docs-section-configuration {
     blockquote {
-      margin-top: -$spacer / 2;
+      margin-top: math.div(-$spacer, 2);
       margin-bottom: $spacer * 2;
       margin-right: 0;
 
