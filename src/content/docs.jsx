@@ -123,7 +123,8 @@ const DOCS = [
       "Cloud connection",
       "OpenStack cloud driver",
       "SSH connection to VMs",
-      "Log configuration"
+      "Log configuration",
+      "Garbage collector configuration"
     ],
     "setups.yaml",
     "services/services.yaml",

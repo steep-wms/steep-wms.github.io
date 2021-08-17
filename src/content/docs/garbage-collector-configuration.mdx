@@ -1,0 +1,31 @@
+import ScrollLink from "components/ScrollLink"
+
+`steep.garbageCollector.enabled`
+
+> `true` if the garbage collector should be enabled. The garbage collector runs in the background and removes outdated objects from the database at the interval specified with `steep.garbageCollector.cron`
+
+> **Default:** false
+
+`steep.garbageCollector.cron`
+
+> A UNIX-like cron expression specifying the interval at which the garbage collector should be executed. Cron expressions consist of six required fields and one optional field separated by a white space:
+
+> `SECONDS MINUTES HOURS DAY-OF-MONTH MONTH DAY-OF-WEEK [YEAR]`.
+
+> Use an asterisk `*` to specify all values (e.g. every second or every minute). Use a question mark `?` for `DAY-OF-MONTH` or `DAY-OF-WEEK` to specify no value (only one of `DAY-OF-MONTH` or `DAY-OF-WEEK` can be specified at the same time). Use a slash `/` to specify increments (e.g. `*/5` for every 5 minutes).
+
+> More information about the format can be found in the [javadoc of the `org.quartz.CronExpression` class](https://www.quartz-scheduler.org/api/2.3.0/org/quartz/CronExpression.html).
+
+> **Example:** `0 0 0 * * ?` (daily at 12am)
+
+`steep.garbageCollector.retention.submissions`
+
+> The maximum time a <ScrollLink href="#submissions">submission</ScrollLink> should be kept in the database after it has finished (regardless of whether it was successful or not). The time can be specified as a human-readable <ScrollLink href="#durations">duration</ScrollLink>.
+
+> **Default:** `null` (submissions will be kept indefinitely)
+
+`steep.garbageCollector.retention.vms`
+
+> The maximum time a <ScrollLink href="#vms">VM</ScrollLink> should be kept in the database after it has been destroyed (regardless of its status). The time can be specified as a human-readable <ScrollLink href="#durations">duration</ScrollLink>.
+
+> **Default:** `null` (VMs will be kept indefinitely)
