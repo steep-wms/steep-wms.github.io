@@ -112,7 +112,7 @@ const NavBar = () => {
         <div className="head">
           <Link href="/">
             <a className="navbar-brand">
-              <img src="/images/steep-logo.svg" width="200" />
+              <img src="/images/steep-logo.svg" width="200" alt="Steep" />
             </a>
           </Link>
           <div className="button" onClick={() => setCollapse(!collapse)}>

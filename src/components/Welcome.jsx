@@ -16,7 +16,7 @@ const Welcome = () => (
           </div>
         </div>
         <div className="welcome-right">
-          <img src="/images/workflow.svg" />
+          <img src="/images/workflow.svg" alt="Workflow teaser" />
         </div>
       </div>
     </div>

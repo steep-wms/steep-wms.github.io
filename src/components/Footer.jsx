@@ -12,7 +12,7 @@ const Footer = () => (
       <div className="container">
         <div className="footer-row">
           <div className="logo">
-            <a href="https://igd.fraunhofer.de"><img src="/images/fraunhofer-light.svg" className="img-fluid" /></a>
+            <a href="https://igd.fraunhofer.de"><img src="/images/fraunhofer-light.svg" className="img-fluid" alt="Fraunhofer IGD" /></a>
           </div>
           <div className="copyright">
             Copyright &copy; 2013-{currentYear} <a href="https://igd.fraunhofer.de">Fraunhofer Institute for Computer Graphics Research IGD</a><br/>

@@ -15,8 +15,10 @@ const Provider = ({ children }) => {
   )
 }
 
-export default {
+const CodeLanguageContext = {
   State,
   Dispatch,
   Provider
 }
+
+export default CodeLanguageContext

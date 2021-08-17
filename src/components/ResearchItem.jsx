@@ -1,7 +1,7 @@
 import styles from "./ResearchItem.scss"
 
 const ResearchItem = ({ image, pdf, children }) => {
-  let img = <img src={image} className="img-fluid"/>
+  let img = <img src={image} className="img-fluid" alt="Preview" />
   return (
     <div className="research-item">
       <div className="research-image">

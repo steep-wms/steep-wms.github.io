@@ -9,8 +9,6 @@ const Header = ({ title = "Steep Workflow Management System" }) => (
       <meta name="author" content="Michel Krämer"/>
       <meta name="description" content="Scientific Workflows in the Cloud"/>
       <meta name="robots" content="index,follow"/>
-      <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet"/>
-      <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400" rel="stylesheet"/>
       <link rel="shortcut icon" href="/favicons/favicon.ico"/>
       <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png"/>
       <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png"/>

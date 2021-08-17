@@ -15,8 +15,10 @@ const Provider = ({ children }) => {
   )
 }
 
-export default {
+const AutoScrollingContext = {
   State,
   Dispatch,
   Provider
 }
+
+export default AutoScrollingContext
