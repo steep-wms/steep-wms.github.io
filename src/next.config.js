@@ -30,9 +30,13 @@ const config = {
     autoPrerender: false
   },
 
-  // enable webpack 5
-  future: {
-    webpack5: true
+  eslint: {
+    dirs: ["components", "content", "pages", "plugins"]
+  },
+
+  images: {
+    // make build compatible with next-optimized-images
+    disableStaticImages: true
   },
 
   // list pages to export
