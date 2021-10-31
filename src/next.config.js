@@ -24,6 +24,9 @@ const config = {
   // create a folder for each page
   trailingSlash: true,
 
+  // opt-in to using SWC for minifying JavaScript
+  swcMinify: true,
+
   // do not display static optimization indicator
   // it gets in the way of the toc button
   devIndicators: {
