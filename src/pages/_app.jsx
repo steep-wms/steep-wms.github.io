@@ -1,4 +1,4 @@
-import styles from "css/main.scss?type=global"
+import styles from "css/main.nscss?type=global"
 import AutoScrollingContext from "components/lib/AutoScrollingContext"
 import CodeLanguageContext from "components/lib/CodeLanguageContext"
 import NavBarContext from "components/lib/NavBarContext"

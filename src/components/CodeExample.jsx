@@ -2,7 +2,7 @@ import classNames from "classnames"
 import getScrollTop from "./lib/get-scroll-top"
 import AutoScrollingContext from "./lib/AutoScrollingContext"
 import CodeLanguageContext from "./lib/CodeLanguageContext"
-import styles from "./CodeExample.scss"
+import styles from "./CodeExample.nscss"
 import { Children, useContext, useRef } from "react"
 
 function findCode(node, pres) {

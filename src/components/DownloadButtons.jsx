@@ -1,6 +1,6 @@
 import { Download, GitHub } from "react-feather"
 import { Docker } from "@icons-pack/react-simple-icons"
-import styles from "./DownloadButtons.scss"
+import styles from "./DownloadButtons.nscss"
 import pkg from "../package.json"
 
 const DownloadButtons = () => (

@@ -50,7 +50,7 @@ const config = {
 
   webpack: (config, { dev, defaultLoaders }) => {
     config.module.rules.push({
-      test: /\.scss$/,
+      test: /\.nscss$/,
       use: [
         defaultLoaders.babel,
         {
@@ -58,7 +58,8 @@ const config = {
           options: {
             type: (fileName, options) => options.query.type || "scoped"
           }
-        }
+        },
+        "sass-loader"
       ]
     })
 

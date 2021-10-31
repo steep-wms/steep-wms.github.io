@@ -1,4 +1,4 @@
-import styles from "./Presentation.scss"
+import styles from "./Presentation.nscss"
 
 const Presentation = ({ image, link, children }) => {
   return <div className="presentation">

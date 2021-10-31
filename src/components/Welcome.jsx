@@ -1,4 +1,4 @@
-import styles from "./Welcome.scss"
+import styles from "./Welcome.nscss"
 import { Book } from "react-feather"
 import ScrollLink from "./ScrollLink"
 

@@ -27,7 +27,6 @@
     "@next/bundle-analyzer": "^11.1.0",
     "@next/mdx": "^11.1.0",
     "@silvenon/remark-smartypants": "^1.0.0",
-    "@styled-jsx/plugin-sass": "^4.0.1",
     "body-scroll-lock": "^3.1.5",
     "classnames": "^2.3.1",
     "eslint-loader": "^4.0.2",
@@ -48,7 +47,8 @@
     "rehype-highlight": "^4.1.0",
     "rehype-slug": "^4.0.1",
     "rehype-toc": "^3.0.2",
-    "sass": "^1.38.0",
+    "sass": "^1.43.4",
+    "sass-loader": "^12.3.0",
     "unist-util-visit-parents": "^3.1.1",
     "webpack": "^5.50.0"
   },

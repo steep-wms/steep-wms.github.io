@@ -1,6 +1,6 @@
 import TocItem from "./TocItem"
 import slugger from "github-slugger"
-import styles from "./Toc.scss"
+import styles from "./Toc.nscss"
 
 const Toc = ({ docs, tocSlugs = slugger() }) => {
   return (<ol>

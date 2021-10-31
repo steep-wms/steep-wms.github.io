@@ -1,5 +1,5 @@
 import classNames from "classnames"
-import styles from "./NavBar.scss"
+import styles from "./NavBar.nscss"
 import Link from "next/link"
 import ScrollLink from "./ScrollLink"
 import { GitHub } from "react-feather"

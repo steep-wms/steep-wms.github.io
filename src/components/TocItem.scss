@@ -1,4 +1,0 @@
-li:before {
-  content: counters(item, ".") ${'"\2002"'};
-  counter-increment: item;
-}

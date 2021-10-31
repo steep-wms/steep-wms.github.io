@@ -1,6 +1,6 @@
 import ScrollLink from "./ScrollLink"
 import Toc from "./Toc"
-import styles from "./TocItem.scss"
+import styles from "./TocItem.nscss"
 
 const TocItem = ({ item, slugs }) => {
   let firstItem

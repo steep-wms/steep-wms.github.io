@@ -1,4 +1,4 @@
-import styles from "./Feature.scss"
+import styles from "./Feature.nscss"
 
 const Feature = ({ icon, title, children }) => {
   return (
