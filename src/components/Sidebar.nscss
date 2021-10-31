@@ -32,10 +32,6 @@
     :global(ol) {
       margin-top: 0;
     }
-
-    & > :global(ol) {
-      padding-left: 0;
-    }
   }
 
   .sidebar-button {

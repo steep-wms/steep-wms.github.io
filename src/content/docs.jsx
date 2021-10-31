@@ -165,15 +165,13 @@ const Docs = () => {
       <h6>Table of contents</h6>
 
       <div className="table-of-contents">
-        <Toc docs={DOCS} />
+        <Toc docs={DOCS} noPadding={true} />
       </div>
 
       {contents}
 
       <Sidebar>
-        <ol>
-          <Toc docs={DOCS} />
-        </ol>
+        <Toc docs={DOCS} noPadding={true} reduceIndent={true} />
       </Sidebar>
 
       <style jsx>{styles}</style>

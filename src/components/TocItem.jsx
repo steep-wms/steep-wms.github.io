@@ -2,7 +2,7 @@ import ScrollLink from "./ScrollLink"
 import Toc from "./Toc"
 import styles from "./TocItem.nscss"
 
-const TocItem = ({ item, slugs }) => {
+const TocItem = ({ item, reduceIndent = false, slugs }) => {
   let firstItem
   let rest
 
@@ -19,7 +19,7 @@ const TocItem = ({ item, slugs }) => {
   return (<>
     <li>
       <ScrollLink href={`#${slug}`}>{firstItem}</ScrollLink>
-      {rest.length > 0 && <Toc docs={rest} tocSlugs={slugs} />}
+      {rest.length > 0 && <Toc docs={rest} tocSlugs={slugs} reduceIndent={reduceIndent} />}
       <style jsx>{styles}</style>
     </li>
   </>)

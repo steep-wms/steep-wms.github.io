@@ -1,4 +1,9 @@
-li:before {
+li {
+  // prevent li::before from being tree-shaken
+  display: inherit;
+}
+
+li::before {
   content: counters(item, ".") "\2002";
   counter-increment: item;
 }
