@@ -1,0 +1,43 @@
+You can use a template engine in all of Steep's YAML-based configuration files
+(`steep.yaml`, `setups.yaml`, `services.yaml`, etc.) to dynamically generate a
+configuration at startup.
+
+You have to explicitly enable this feature by adding front matter to your YAML
+file and setting the attribute `template` to `true`:
+
+```yaml
+---
+template: true
+---
+```
+
+Steep uses <a href="https://pebbletemplates.io/">Pebble Templates</a> to compile
+your configuration files. Please refer to their website for a full documentation
+on the tags, functions, and filters you can use.
+
+Within your template, you may access the following variables:
+
+| Variable       | Description
+| -------------- | -----------
+| `env`          | A dictionary of environment variables. Use subscript notation (`[]`) to access its contents. Example: `{{ env["PATH"] }}`
+| `config`       | A dictionary of configuration properties. This variable is *not* available in `steep.yaml` (or any override configuration file). Use subscript notation (`[]`) to access its contents. Example: `{{ config["steep.cluster.hazelcast.publicAddress"] }}`
+
+Here is a full example of a `setups.yaml` file that uses the templating feature
+to create two setups with the same parameters, an image name from an environment
+variable, but different availability zones:
+
+```yaml
+---
+template: true
+---
+
+{% for az in ["us-east-1", "eu-central-1"] %}
+- id: my_setup_{{ az }}
+  flavor: m4.2xlarge
+  availabilityZone: {{ az }}
+  imageName: {{ env["MY_SETUP_IMAGE_NAME"] }
+  blockDeviceSizeGb: 50
+  minVMs: 0
+  maxVMs: 10
+{% endfor %}
+```

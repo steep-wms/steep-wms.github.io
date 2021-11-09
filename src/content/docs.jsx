@@ -136,7 +136,8 @@ const DOCS = [
         "Read local files",
         "Upload local files to remote"
       ],
-      "Using YAML anchors"
+      "Using YAML anchors",
+      "Using a template engine"
     ]
   ],
   ["Extending Steep through plugins",
