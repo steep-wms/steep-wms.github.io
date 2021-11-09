@@ -1,3 +1,5 @@
+import ScrollLink from "components/ScrollLink"
+
 Use these configuration items to build up a cluster of Steep instances. Under
 the hood, Steep uses [Vert.x](https://vertx.io/) and [Hazelcast](https://hazelcast.com/),
 so these configuration items are very similar to the ones found in these two
@@ -34,6 +36,14 @@ and [Hazelcast](https://hazelcast.com/).
 > The port that the eventbus uses to announce itself within in the cluster
 
 > **Default:** Same as `steep.cluster.eventBus.port`
+
+`steep.cluster.hazelcast.clusterName`
+
+> An optional cluster name that can be used to separate clusters of Steep instances. Two instances from different clusters (with different names) cannot connect to each other.
+
+> By default, no cluster name is set, which means all instances can connect to each other. However, a Steep instance without a cluster name cannot connect to a named cluster.
+
+> *Heads up:* if you have a cluster name set and you're using a <ScrollLink href="#cloud-connection">cloud connection</ScrollLink> to deploy remote agents on demand, make sure these Steep instances use the same cluster name. Otherwise, you won't be able to connect to them.
 
 `steep.cluster.hazelcast.publicAddress`
 
