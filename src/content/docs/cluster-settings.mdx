@@ -76,3 +76,9 @@ and [Hazelcast](https://hazelcast.com/).
 `steep.cluster.hazelcast.restoreMembersOnStartup.defaultPort`
 
 > If `steep.cluster.hazelcast.restoreMembersOnStartup.enabled` is `true`, potential Hazelcast cluster members will be restored from database. This configuration item specifies on which Hazelcast port these members are listening.
+
+`steep.cluster.lookupOrphansIntervalMilliseconds`
+
+> The interval at which Steep's main thread looks for orphaned entries in its internal remote agent registry. Such entries may (very rarely) happen if there is a network failure during deregistration of an agent. You normally do not have to change this configuration.
+
+> **Default:** 300000 (5 minutes)
