@@ -80,6 +80,7 @@ const DOCS = [
       "Runtime arguments"
     ],
     "Retry policies",
+    "Timeout policies",
     "Durations",
     "Agents",
     ["VMs",

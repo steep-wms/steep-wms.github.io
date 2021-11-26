@@ -1,0 +1,36 @@
+import CodeExample from "components/CodeExample"
+import ScrollLink from "components/ScrollLink"
+
+A timeout policy defines how long a service or an executable may run before it
+is automatically cancelled or aborted (with an error). Timeout policies can be
+specified with the `maxInactivity`, `maxRuntime` and `deadline` attributes, either
+per service in the <ScrollLink href="#service-metadata">service metadata</ScrollLink>
+or per <ScrollLink href="#execute-actions">executable action</ScrollLink> in the
+workflow.
+
+A timeout policy is either a string or an object. If it is a string, it
+represents a <ScrollLink href="#durations">duration</ScrollLink> specifying
+a maximum amount of time until the execution is cancelled.
+
+If specified as an object, the timeout policy has the following properties:
+
+| Property                        | Type     | Description
+| ------------------------------- | -------- | -----------
+| timeout                         | <ScrollLink href="#durations">duration</ScrollLink> | The maximum amount of time that may pass until the execution is cancelled or aborted.
+| errorOnTimeout<br/>*(optional)* | boolean   | `true` if an execution that is aborted due to a timeout should lead to an error (i.e. if the process chain's <ScrollLink href="#process-chain-status">status</ScrollLink> should be set to `ERROR`). `false` if it should just be cancelled (process chain status `CANCELLED`). By default, the execution will be cancelled.
+
+Multiple timeout policies can be combined. For example, a service may be cancelled after 5 minutes of inactivity and aborted with an error if its total execution takes longer than 1 hour.
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "maxInactivity": "5m",
+  "deadline": {
+    "timeout": "1h",
+    "errorOnTimeout": true
+  }
+}
+```
+
+</CodeExample>

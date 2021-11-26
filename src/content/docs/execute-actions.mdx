@@ -4,13 +4,16 @@ import ScrollLink from "components/ScrollLink"
 An execute action instructs Steep to execute a certain service with given
 inputs and outputs.
 
-| Property                    | Type   | Description
-| --------------------------- | ------ | -----------
-| type<br/>*(required)*       | string | The type of the action. Must be `"execute"`.
-| service<br/>*(required)*    | string | The ID of the <ScrollLink href="#service-metadata">service</ScrollLink> to execute
-| inputs<br/>*(optional)*     | array  | An array of <ScrollLink href="#parameters">input parameters</ScrollLink>
-| outputs<br/>*(optional)*    | array  | An array of <ScrollLink href="#output-parameters">output parameters</ScrollLink>
-| retries<br/>*(optional)*    | object | An optional <ScrollLink href="#retry-policies">retry policy</ScrollLink> specifying how often this action should be retried in case of an error. Overrides any default retry policy defined in the <ScrollLink href="#service-metadata">service metadata</ScrollLink>.
+| Property                       | Type   | Description
+| ------------------------------ | ------ | -----------
+| type<br/>*(required)*          | string | The type of the action. Must be `"execute"`.
+| service<br/>*(required)*       | string | The ID of the <ScrollLink href="#service-metadata">service</ScrollLink> to execute
+| inputs<br/>*(optional)*        | array  | An array of <ScrollLink href="#parameters">input parameters</ScrollLink>
+| outputs<br/>*(optional)*       | array  | An array of <ScrollLink href="#output-parameters">output parameters</ScrollLink>
+| retries<br/>*(optional)*       | object | An optional <ScrollLink href="#retry-policies">retry policy</ScrollLink> specifying how often this action should be retried in case of an error. Overrides any default retry policy defined in the <ScrollLink href="#service-metadata">service metadata</ScrollLink>.
+| maxInactivity<br/>*(optional)* | <ScrollLink href="#durations">duration</ScrollLink> or object | An optional <ScrollLink href="#durations">duration</ScrollLink> or <ScrollLink href="#timeout-policies">timeout policy</ScrollLink> that defines how long the execution of the service can take without producing any output (i.e. without writing anything to the standard output and error streams) before it is automatically cancelled or aborted. Can be combined with `maxRuntime` and `deadline` (see below). Overrides any default inactivity timeout defined in the <ScrollLink href="#service-metadata">service metadata</ScrollLink>. Note that a service cancelled due to inactivity is still subject to any configured <ScrollLink href="#retry-policies">retry policy</ScrollLink>, which means its execution may be retried even if one attempt timed out. If you want to cancel a long-running service immediately even if there is a retry policy configured, use a `deadline`.
+| maxRuntime<br/>*(optional)*    | <ScrollLink href="#durations">duration</ScrollLink> or object | An optional <ScrollLink href="#durations">duration</ScrollLink> or <ScrollLink href="#timeout-policies">timeout policy</ScrollLink> that defines how long the execution of the service can take before it is automatically cancelled or aborted, even if the service regularly writes to the standard output and error streams. Can be combined with `maxInactivity` (see above) and `deadline` (see below). Overrides any default maximum runtime defined in the <ScrollLink href="#service-metadata">service metadata</ScrollLink>. Note that a service cancelled due to a too long runtime is still subject to any configured <ScrollLink href="#retry-policies">retry policy</ScrollLink>, which means its execution may be retried even if one attempt timed out. If you want to cancel a long-running service immediately even if there is a retry policy configured, use a `deadline`.
+| deadline<br/>*(optional)*      | <ScrollLink href="#durations">duration</ScrollLink> or object | An optional <ScrollLink href="#durations">duration</ScrollLink> or <ScrollLink href="#timeout-policies">timeout policy</ScrollLink> that defines how long the execution of the service can take at all (including all retries and their associated delays) until it is cancelled or aborted. Can be combined with `maxInactivity` and `maxRuntime` (see above). Overrides any default deadline defined in the <ScrollLink href="#service-metadata">service metadata</ScrollLink>.
 
 <CodeExample title="Example:">
 

@@ -13,6 +13,9 @@ It describes how a processing service should be executed and with which paramete
 | runtimeArgs<br/>*(optional)*            | array  | A list of <ScrollLink href="#arguments">arguments</ScrollLink> to pass to the runtime. May be empty.
 | serviceId<br/>*(optional)*              | string | The ID of the processing service to be executed. May be `null` if the executable does not refer to a service.
 | retries<br/>*(optional)*                | object | An optional <ScrollLink href="#retry-policies">retry policy</ScrollLink> specifying how often this executable should be restarted in case of an error.
+| maxInactivity<br/>*(optional)*          | object | An optional <ScrollLink href="#timeout-policies">timeout policy</ScrollLink> that defines how long the executable can run without producing any output (i.e. without writing anything to the standard output and error streams) before it is automatically cancelled or aborted.
+| maxRuntime<br/>*(optional)*             | object | An optional <ScrollLink href="#timeout-policies">timeout policy</ScrollLink> that defines how long the executable can run before it is automatically cancelled or aborted, even if the service regularly writes to the standard output and error streams.
+| deadline<br/>*(optional)*               | object | An optional <ScrollLink href="#timeout-policies">timeout policy</ScrollLink> that defines how long the executable can run at all (including all retries and their associated delays) until it is cancelled or aborted.
 
 <CodeExample title="Example:">
 
