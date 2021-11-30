@@ -1,4 +1,4 @@
-import styles from "./Features.nscss"
+import styles from "./Features.scss"
 
 const Features = ({ children, title }) => (
   <div id="features" className="container">

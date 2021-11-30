@@ -53,7 +53,7 @@ const config = {
 
   webpack: (config, { dev, defaultLoaders }) => {
     config.module.rules.push({
-      test: /\.nscss$/,
+      test: /\.scss$/,
       use: [
         defaultLoaders.babel,
         {

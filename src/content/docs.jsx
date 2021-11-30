@@ -1,7 +1,7 @@
 import Sidebar from "components/Sidebar"
 import Toc from "components/Toc"
 import slugger from "github-slugger"
-import styles from "./docs.nscss?type=global"
+import styles from "./docs.scss?type=global"
 
 function ContentsItem({ item, n, level = 0, slugs }) {
   let firstItem

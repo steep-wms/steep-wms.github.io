@@ -1,4 +1,4 @@
-import styles from "./ResearchItem.nscss"
+import styles from "./ResearchItem.scss"
 
 const ResearchItem = ({ image, pdf, children }) => {
   let img = <img src={image} className="img-fluid" alt="Preview" />

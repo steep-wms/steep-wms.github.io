@@ -4,7 +4,7 @@ import getScrollTop from "./lib/get-scroll-top"
 import { Children, cloneElement, useCallback, useEffect, useRef, useState } from "react"
 import { List, X } from "react-feather"
 import throttle from "lodash.throttle"
-import styles from "./Sidebar.nscss"
+import styles from "./Sidebar.scss"
 
 const Sidebar = ({ children }) => {
   const ref = useRef()
