@@ -1,16 +1,15 @@
-const bundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true"
-})
-const codeBreak = require("./plugins/remark-codebreak")
-const codeExample = require("./plugins/remark-codeexample")
-const hyphenate = require("./plugins/remark-hyphenate")
-const highlight = require("rehype-highlight")
-const optimizedImages = require("next-optimized-images")
-const slug = require("rehype-slug")
-const smartypants = require("@silvenon/remark-smartypants")
-const withPlugins = require("next-compose-plugins")
+import codeBreak from "./plugins/remark-codebreak.mjs"
+import codeExample from "./plugins/remark-codeexample.mjs"
+import hyphenate from "./plugins/remark-hyphenate.mjs"
+import highlight from "rehype-highlight"
+import MDX from "@next/mdx"
+import optimizedImages from "next-optimized-images"
+import slug from "rehype-slug"
+import smartypants from "@silvenon/remark-smartypants"
+import styledJsx from "styled-jsx/webpack.js"
+import withPlugins from "next-compose-plugins"
 
-const mdx = require("@next/mdx")({
+const mdx = MDX({
   options: {
     remarkPlugins: [hyphenate, smartypants, codeExample, codeBreak],
     rehypePlugins: [highlight, slug]
@@ -57,7 +56,7 @@ const config = {
       use: [
         defaultLoaders.babel,
         {
-          loader: require("styled-jsx/webpack").loader,
+          loader: styledJsx.loader,
           options: {
             type: (fileName, options) => options.query.type || "scoped"
           }
@@ -81,8 +80,7 @@ const config = {
   }
 }
 
-module.exports = withPlugins([
+export default withPlugins([
   [optimizedImages],
-  [mdx],
-  [bundleAnalyzer]
+  [mdx]
 ], config)

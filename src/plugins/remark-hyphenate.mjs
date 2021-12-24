@@ -1,5 +1,5 @@
-const hyphenopoly = require("hyphenopoly")
-const visit = require("unist-util-visit-parents")
+import hyphenopoly from "hyphenopoly"
+import visit from "unist-util-visit-parents"
 
 const hyphenateText = hyphenopoly.config({
   "require": ["en-us"],
@@ -10,7 +10,7 @@ const hyphenateText = hyphenopoly.config({
   "sync": true
 })
 
-module.exports = () => (tree) => {
+const hyphenate = () => (tree) => {
   visit(tree, "text", (node, ancestors) => {
     if (node.value) {
       if (ancestors.findIndex(e => e.type === "heading") === -1) {
@@ -23,3 +23,5 @@ module.exports = () => (tree) => {
     }
   })
 }
+
+export default hyphenate

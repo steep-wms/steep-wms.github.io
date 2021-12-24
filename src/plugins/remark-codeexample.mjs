@@ -1,7 +1,7 @@
-const yaml = require("js-yaml")
-const visit = require("unist-util-visit-parents")
+import yaml from "js-yaml"
+import visit from "unist-util-visit-parents"
 
-module.exports = () => (tree) => {
+const codeExample = () => (tree) => {
   visit(tree, "code", (node) => {
     if (node.meta === "code-example") {
       let jsonObj = JSON.parse(node.value)
@@ -22,3 +22,5 @@ module.exports = () => (tree) => {
     }
   })
 }
+
+export default codeExample
