@@ -9,10 +9,20 @@ import smartypants from "@silvenon/remark-smartypants"
 import styledJsx from "styled-jsx/webpack.js"
 import withPlugins from "next-compose-plugins"
 
+import handlebars from "highlight.js/lib/languages/handlebars"
+import http from "highlight.js/lib/languages/http"
+
 const mdx = MDX({
   options: {
     remarkPlugins: [hyphenate, smartypants, codeExample, codeBreak],
-    rehypePlugins: [highlight, slug]
+    rehypePlugins: [
+      [highlight, {
+        languages: {
+          handlebars,
+          http
+        }
+      }],
+      slug]
   }
 })
 
