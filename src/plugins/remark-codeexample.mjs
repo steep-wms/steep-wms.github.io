@@ -1,8 +1,8 @@
 import yaml from "js-yaml"
-import visit from "unist-util-visit-parents"
+import { visitParents } from "unist-util-visit-parents"
 
 const codeExample = () => (tree) => {
-  visit(tree, "code", (node) => {
+  visitParents(tree, "code", (node) => {
     if (node.meta === "code-example") {
       let jsonObj = JSON.parse(node.value)
       let yamlStr = yaml.dump(jsonObj).trim()
