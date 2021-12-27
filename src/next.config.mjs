@@ -1,5 +1,6 @@
 import codeBreak from "./plugins/remark-codebreak.mjs"
 import codeExample from "./plugins/remark-codeexample.mjs"
+import ESLintPlugin from "eslint-webpack-plugin"
 import hyphenate from "./plugins/remark-hyphenate.mjs"
 import highlight from "rehype-highlight"
 import MDX from "@next/mdx"
@@ -102,15 +103,9 @@ const config = {
     })
 
     if (dev) {
-      config.module.rules.push({
-        test: /\.jsx?$/,
-        loader: "eslint-loader",
-        exclude: [/node_modules/, /\.next/, /out/],
-        enforce: "pre",
-        options: {
-          emitWarning: true
-        }
-      })
+      config.plugins.push(new ESLintPlugin({
+        extensions: ["js", "jsx"]
+      }))
     }
     return config
   }
