@@ -3,10 +3,10 @@ import codeExample from "./plugins/remark-codeexample.mjs"
 import hyphenate from "./plugins/remark-hyphenate.mjs"
 import highlight from "rehype-highlight"
 import MDX from "@next/mdx"
-import optimizedImages from "next-optimized-images"
 import slug from "rehype-slug"
 import smartypants from "@silvenon/remark-smartypants"
 import styledJsx from "styled-jsx/webpack.js"
+import svgToMiniDataURI from "mini-svg-data-uri"
 import withPlugins from "next-compose-plugins"
 
 import handlebars from "highlight.js/lib/languages/handlebars"
@@ -47,7 +47,7 @@ const config = {
   },
 
   images: {
-    // make build compatible with next-optimized-images
+    // disable built-in image support
     disableStaticImages: true
   },
 
@@ -75,6 +75,32 @@ const config = {
       ]
     })
 
+    config.module.rules.push({
+      test: /\.(gif|png|jpe?g)$/i,
+      type: "asset",
+      use: "image-webpack-loader"
+    })
+
+    config.module.rules.push({
+      test: /\.svg$/i,
+      resourceQuery: { not: [/source/] },
+      type: "asset",
+      use: "image-webpack-loader",
+      generator: {
+        dataUrl: content => {
+          content = content.toString()
+          return svgToMiniDataURI(content)
+        }
+      }
+    })
+
+    config.module.rules.push({
+      test: /\.svg$/i,
+      resourceQuery: /source/,
+      type: "asset/source",
+      use: "image-webpack-loader"
+    })
+
     if (dev) {
       config.module.rules.push({
         test: /\.jsx?$/,
@@ -91,6 +117,5 @@ const config = {
 }
 
 export default withPlugins([
-  [optimizedImages],
   [mdx]
 ], config)
