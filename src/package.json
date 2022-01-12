@@ -35,7 +35,7 @@
     "lodash.chunk": "^4.2.0",
     "lodash.throttle": "^4.1.1",
     "mini-svg-data-uri": "^1.4.3",
-    "next": "^12.0.5",
+    "next": "^12.0.8",
     "next-compose-plugins": "^2.2.1",
     "normalize.css": "^8.0.1",
     "postcss": "^8.4.5",
