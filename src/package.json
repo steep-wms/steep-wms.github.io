@@ -45,7 +45,7 @@
     "rehype-highlight": "^5.0.2",
     "rehype-slug": "^5.0.1",
     "rehype-toc": "^3.0.2",
-    "sass": "^1.48.0",
+    "sass": "^1.49.0",
     "sass-loader": "^12.4.0",
     "unist-util-visit-parents": "^5.1.0",
     "webpack": "^5.66.0"
