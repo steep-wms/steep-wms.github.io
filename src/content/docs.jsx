@@ -126,7 +126,8 @@ const DOCS = [
       "OpenStack cloud driver",
       "SSH connection to VMs",
       "Log configuration",
-      "Garbage collector configuration"
+      "Garbage collector configuration",
+      "Cache configuration"
     ],
     "setups.yaml",
     "services/services.yaml",
@@ -147,8 +148,7 @@ const DOCS = [
     "Output adapters",
     "Process chain adapters",
     "Custom runtime environments",
-    "Progress estimators",
-    "Precompiling plugins"
+    "Progress estimators"
   ]
 ]
 

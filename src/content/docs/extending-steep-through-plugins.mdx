@@ -5,8 +5,8 @@ interfaces of all plugins and how they need to be configured so Steep can
 compile and execute them at runtime.
 
 Each plugin is a [Kotlin](https://kotlinlang.org/) script with the file
-extension `.kt`. Inside this script, there should be a single function with
-the same name as the plugin and a signature that depends on the plugin type.
+extension `.kt` or `.kts`. Inside this script, there should be a single function
+with the same name as the plugin and a signature that depends on the plugin type.
 Function interfaces are described in the sub-sections below.
 
 All plugins must be referenced in the <ScrollLink href="#pluginscommonyaml">plugins/common.yaml</ScrollLink> file. This file is an array of descriptor objects with at least the following
@@ -16,11 +16,15 @@ properties:
 | --------------------------- | ------ | -----------
 | name<br/>*(required)*       | string | A unique name of the plugin (the function inside the plugin's script file must have the same name)
 | type<br/>*(required)*       | string | The plugin type. Valid values are: `initializer`, `outputAdapter`, `processChainAdapter`, and `runtime`.
-| scriptFile<br/>*(required)* | string | The path to the plugin's Kotlin script file. The file should have the extension `.kt`. The path is relative to Steep's application directory, so a valid example is `conf/plugins/fileOrEmptyList.kt`.
+| scriptFile<br/>*(required)* | string | The path to the plugin's Kotlin script file. The file should have the extension `.kt` or `.kts`. The path is relative to Steep's application directory, so a valid example is `conf/plugins/fileOrEmptyList.kt`.
 
 Specific plugin types may require additional properties described in the
 sub-sections below.
 
 Plugins are compiled on demand when Steep is starting. This can take some time
 depending on the number of the plugins and their size. For faster start times,
-you can also <ScrollLink href="#precompiling-plugins">precompile your plugins</ScrollLink>.
+you can configure a <ScrollLink href="#cache-configuration">persistent compiled plugin cache</ScrollLink>.
+Steep updates this cache on startup when it has first compiled a script or when
+it detects that a previously compiled script has changed. On subsequent startups,
+Steep can utilize the cache to skip compilation of known plugins and, therefore,
+to reduce startup time.
