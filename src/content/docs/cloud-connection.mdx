@@ -37,6 +37,30 @@ import ScrollLink from "components/ScrollLink"
 
 > **Default:** 30
 
+`steep.cloud.timeouts.sshReadySeconds`
+
+> The maximum number of seconds the cloud manager should try to log in to a new
+> VM via SSH. The cloud manager will make a login attempt every 2 seconds until
+> it is successful or until the maximum number of seconds have passed, in which
+> case it will destroy the VM.
+
+> **Default:** 300
+
+`steep.cloud.timeouts.agentReadySeconds`
+
+> The maximum number of seconds the cloud manager should wait for an agent on a
+> new VM to become available (i.e. how long a new Steep instance may take to
+> register with the cluster) before it destroys the VM again.
+
+> **Default:** 300
+
+`steep.cloud.timeouts.destroyVMSeconds`
+
+> The maximum number of seconds that destroying a VM may take before it is
+> aborted with an error.
+
+> **Default:** 300
+
 `steep.cloud.agentPool`
 
 > An array of <ScrollLink href="#agent-pool-parameters">agent pool parameters</ScrollLink>
