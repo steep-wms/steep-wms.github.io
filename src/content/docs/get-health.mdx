@@ -1,0 +1,63 @@
+An endpoint that can be used by external applications at regular intervals to
+monitor Steep's health, i.e. to check if it works correctly and if the
+underlying database as well as all remote agents are reachable.
+
+The response is a JSON object, which will always contain the attribute `health`.
+This attribute can be either `true` if Steep works correctly or `false` if
+some error has occurred. Apart from that, the response *may* contain additional
+information about data stored in the database (such as the number of submissions)
+as well as information about remote agents. However, these attributes are not
+defined and *may* change in future versions.
+
+| Resource URL |
+| ------------ |
+
+```http
+/health
+```
+
+| Parameters   |                              |
+| ------------ | ---------------------------- |
+| None         |                              |
+
+| Status codes |                              |
+| ------------ | ---------------------------- |
+| 200          | The operation was successful |
+| 503          | Service unavailable. Steep may not work as expected. |
+
+| Example request |
+| --------------- |
+
+```http
+GET /health HTTP/1.1
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-encoding: gzip
+content-length: 105
+content-type: application/json
+
+{
+    "agents": {
+        "count": 4,
+        "health": true
+    },
+    "health": true,
+    "services": {
+        "count": 14,
+        "health": true
+    },
+    "submissions": {
+        "count": 1960,
+        "health": true
+    },
+    "vms": {
+        "count": 4173,
+        "health": true
+    }
+}
+```

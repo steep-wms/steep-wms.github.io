@@ -93,6 +93,7 @@ const DOCS = [
   ],
   ["HTTP endpoints",
     "GET information",
+    "GET health",
     "GET submissions",
     "GET submission by ID",
     "PUT submission",
