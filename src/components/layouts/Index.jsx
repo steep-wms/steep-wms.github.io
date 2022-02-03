@@ -1,10 +1,10 @@
 import Header from "../Header"
 import Footer from "../Footer"
 
-const Layout = props => (
+const Layout = ({ title, children }) => (
   <main>
-    <Header title={props.meta.title}/>
-    {props.children}
+    <Header title={title}/>
+    {children}
     <Footer />
   </main>
 )

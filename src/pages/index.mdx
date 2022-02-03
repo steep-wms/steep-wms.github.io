@@ -1,4 +1,4 @@
-import Layout from "components/layouts/Index"
+import Index from "components/layouts/Index"
 import Welcome from "components/Welcome"
 
 import Features from "content/features.mdx"
@@ -6,11 +6,7 @@ import GetStarted from "content/get-started.mdx"
 import Docs from "content/docs.jsx"
 import About from "content/about.mdx"
 
-export default Layout
-
-export const meta = {
-  title: "Steep Workflow Management System"
-}
+<Index title="Steep Workflow Management System">
 
 <Welcome />
 <Features />
@@ -20,3 +16,5 @@ export const meta = {
   <Docs />
   <About />
 </div>
+
+</Index>

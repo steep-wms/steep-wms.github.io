@@ -11,22 +11,20 @@ If you downloaded the binary package of Steep, extract the ZIP file and run the
 start script:
 
 <pre>
-<code className="hljs language-bash"><span className="hljs-built_in">cd</span> steep-{pkg.version}<br />
-bin/steep
-</code>
+  <code className="hljs language-bash"><span className="hljs-built_in">cd</span> steep-{pkg.version}
+  bin/steep</code>
 </pre>
 
 Or, start the [Docker image](https://hub.docker.com/orgs/steep/steep) as
 follows:
 
 <pre>
-<code className="hljs language-bash">{`docker run --name steep -d --rm -p 8080:8080 \\
-    -e STEEP_HTTP_HOST=0.0.0.0 steep/steep:${pkg.version}`}
-</code>
+  <code className="hljs language-bash">docker run --name steep -d --rm -p 8080:8080 \\
+    {`    `}-e STEEP_HTTP_HOST=0.0.0.0 steep/steep:{pkg.version}</code>
 </pre>
 
 After a few seconds, you can access Steep's web interface on
-<http://localhost:8080/>.
+http://localhost:8080/.
 
 We will now submit a simple workflow to test if Steep is running correctly. The
 workflow consists of a single execute action that sleeps for 10 seconds and

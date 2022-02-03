@@ -6,7 +6,7 @@ import styles from "./CodeExample.scss"
 import { Children, useContext, useRef } from "react"
 
 function findCode(node, pres) {
-  if (node.props.mdxType === "pre") {
+  if (node.type === "pre") {
     pres.push(node)
   } else {
     findCodeInChildren(node.props.children, pres)
