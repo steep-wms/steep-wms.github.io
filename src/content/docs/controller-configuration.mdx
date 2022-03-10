@@ -11,6 +11,14 @@
 
 > **Default:** 2000 (2 seconds)
 
+`steep.controller.lookupMaxErrors`
+
+> The maximum number of consecutive errors (e.g. database connection issues) to
+> tolerate when looking up the status of process chains of a running submission.
+> If there are more errors, the submission will be aborted.
+
+> **Default:** 5
+
 `steep.controller.lookupOrphansIntervalMilliseconds`
 
 > The interval at which the controller looks for orphaned running submissions
