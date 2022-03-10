@@ -4,7 +4,8 @@ A process chain adapter plugin is a function that can manipulate
 generated <ScrollLink href="#process-chains">process chains</ScrollLink>
 before they are executed.
 
-It takes a list of generated process chains and returns a new list of
+It takes a list of generated process chains and a reference to the workflow
+from which the process chains have been generated. It returns a new list of
 process chains to execute or the given list if no modification was made.
 If required, the function can be a suspend function.
 
@@ -22,7 +23,7 @@ If required, the function can be a suspend function.
 
 ```kotlin
 suspend fun myProcessChainAdapter(processChains: List<model.processchain.ProcessChain>,
-  vertx: io.vertx.core.Vertx): List<model.processchain.ProcessChain>
+  workflow: model.workflow.Workflow, vertx: io.vertx.core.Vertx): List<model.processchain.ProcessChain>
 ```
 
 | Example descriptor |
@@ -39,10 +40,11 @@ suspend fun myProcessChainAdapter(processChains: List<model.processchain.Process
 
 ```kotlin
 import model.processchain.ProcessChain
+import model.workflow.Workflow
 import io.vertx.core.Vertx
 
 suspend fun myProcessChainAdapter(processChains: List<ProcessChain>,
-    vertx: Vertx): List<ProcessChain> {
+    workflow: Workflow, vertx: Vertx): List<ProcessChain> {
   val result = mutableListOf<ProcessChain>()
 
   for (pc in processChains) {
