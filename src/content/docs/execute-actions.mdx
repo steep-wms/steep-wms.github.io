@@ -6,6 +6,7 @@ inputs and outputs.
 
 | Property                       | Type   | Description
 | ------------------------------ | ------ | -----------
+| id<br />*(optional)*           | string | An optional string uniquely identifying the action within the workflow. If not given, a random identifier will be generated.
 | type<br/>*(required)*          | string | The type of the action. Must be `"execute"`.
 | service<br/>*(required)*       | string | The ID of the <ScrollLink href="#service-metadata">service</ScrollLink> to execute
 | inputs<br/>*(optional)*        | array  | An array of <ScrollLink href="#parameters">input parameters</ScrollLink>

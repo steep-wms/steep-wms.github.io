@@ -13,6 +13,7 @@ For-each actions may contain execute actions but also nested for-each actions.
 
 | Property                       | Type   | Description
 | ------------------------------ | ------ | -----------
+| id<br />*(optional)*           | string | An optional string uniquely identifying the action within the workflow. If not given, a random identifier will be generated.
 | type<br/>*(required)*          | string | The type of the action. Must be `"for"`.
 | input<br/>*(required)*         | string | The ID of a variable containing the items to which to apply the sub-actions
 | enumerator<br/>*(required)*    | string | The ID of a variable that holds the current value from `input` for each iteration
