@@ -1,4 +1,5 @@
 import CodeExample from "components/CodeExample"
+import ScrollLink from "components/ScrollLink"
 
 A for-each action has an input, a list of sub-actions, and an output. It clones
 the sub-actions as many times as there are items in its input, executes the
@@ -18,6 +19,7 @@ For-each actions may contain execute actions but also nested for-each actions.
 | input<br/>*(required)*         | string | The ID of a variable containing the items to which to apply the sub-actions
 | enumerator<br/>*(required)*    | string | The ID of a variable that holds the current value from `input` for each iteration
 | output<br/>*(optional)*        | string | The ID of a variable that will collect output values from all iterations (see `yieldToOutput`)
+| dependsOn<br/>*(optional)*     | array  | A list of identifiers of actions this action needs to finish first before it is ready to be executed. Note that Steep is able to identify dependencies between actions itself based on `outputs` and `inputs`, so this attribute is normally not needed. However, it may be useful if a preceding action does not have an output parameter or if the depending action does not have an input parameter. For-each actions may depend on <ScrollLink href="#execute-actions">execute actions</ScrollLink> but also on other for-each actions and vice versa.
 | actions<br/>*(optional)*       | array  | An array of sub-actions to execute in each iteration
 | yieldToOutput<br/>*(optional)* | string | The ID of a sub-action's output variable whose value should be appended to the for-each action's `output`
 | yieldToInput<br/>*(optional)*  | string | The ID of a sub-action's output variable whose value should be appended to the for-each action's `input` to generate further iterations
