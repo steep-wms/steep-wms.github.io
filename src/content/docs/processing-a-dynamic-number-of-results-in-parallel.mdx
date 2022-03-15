@@ -96,7 +96,7 @@ The final `join` service merges these copies into a single file `outputFile2`.
     "description": "Create smaller files n lines in length",
     "type": "input",
     "cardinality": "0..1",
-    "data_type": "integer",
+    "dataType": "integer",
     "label": "-l"
   }, {
     "id": "file",
@@ -104,15 +104,15 @@ The final `join` service merges these copies into a single file `outputFile2`.
     "description": "The input file to split",
     "type": "input",
     "cardinality": "1..1",
-    "data_type": "file"
+    "dataType": "file"
   }, {
     "id": "output_directory",
     "name": "Output directory",
     "description": "The output directory",
     "type": "output",
     "cardinality": "1..1",
-    "data_type": "directory",
-    "file_suffix": "/"
+    "dataType": "directory",
+    "fileSuffix": "/"
   }]
 }, {
   "id": "copy",
@@ -126,14 +126,14 @@ The final `join` service merges these copies into a single file `outputFile2`.
     "description": "Input file name",
     "type": "input",
     "cardinality": "1..1",
-    "data_type": "file"
+    "dataType": "file"
   }, {
     "id": "output_file",
     "name": "Output file name",
     "description": "Output file name",
     "type": "output",
     "cardinality": "1..1",
-    "data_type": "file"
+    "dataType": "file"
   }]
 }, {
   "id": "join",
@@ -147,14 +147,14 @@ The final `join` service merges these copies into a single file `outputFile2`.
     "description": "One or more input files to merge",
     "type": "input",
     "cardinality": "1..n",
-    "data_type": "file"
+    "dataType": "file"
   }, {
     "id": "o",
     "name": "Output file",
     "description": "The output file",
     "type": "output",
     "cardinality": "1..1",
-    "data_type": "file"
+    "dataType": "file"
   }]
 }]
 ```

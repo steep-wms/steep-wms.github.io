@@ -12,8 +12,8 @@ it can be executed by Steep.
 | path<br/>*(required)*                  | string | Relative path to the service executable in the service artefact (or a Docker image if `runtime` equals `docker`)
 | runtime<br/>*(required)*               | string | The <ScrollLink href="#runtime-environments">runtime environment</ScrollLink>
 | parameters<br/>*(required)*            | array  | A list of <ScrollLink href="#service-parameters">service parameters</ScrollLink>
-| runtime_args<br/>*(optional)*          | array  | An optional list of <ScrollLink href="#runtime-arguments">arguments</ScrollLink> to pass to the runtime
-| required_capabilities<br/>*(optional)* | array  | A set of strings specifying capabilities a host system must provide to be able to execute this service. See also <ScrollLink href="#setups">setups</ScrollLink>.
+| runtimeArgs<br/>*(optional)*           | array  | An optional list of <ScrollLink href="#runtime-arguments">arguments</ScrollLink> to pass to the runtime
+| requiredCapabilities<br/>*(optional)*  | array  | A set of strings specifying capabilities a host system must provide to be able to execute this service. See also <ScrollLink href="#setups">setups</ScrollLink>.
 | retries<br/>*(optional)*               | object | An optional <ScrollLink href="#retry-policies">retry policy</ScrollLink> specifying how often the execution of this service should be retried in case of an error. Can be overridden in an <ScrollLink href="#execute-actions">executable action</ScrollLink>.
 | maxInactivity<br/>*(optional)*         | <ScrollLink href="#durations">duration</ScrollLink> or object | An optional <ScrollLink href="#durations">duration</ScrollLink> or <ScrollLink href="#timeout-policies">timeout policy</ScrollLink> that defines how long the execution of this service can take without producing any output (i.e. without writing anything to the standard output and error streams) before it is automatically cancelled or aborted. Can be overridden in an <ScrollLink href="#execute-actions">executable action</ScrollLink> and can be combined with `maxRuntime` and `deadline` (see below). Note that a service cancelled due to inactivity is still subject to any configured <ScrollLink href="#retry-policies">retry policy</ScrollLink>, which means its execution may be retried even if one attempt timed out. If you want to cancel a long-running service immediately even if there is a retry policy configured, use a `deadline`.
 | maxRuntime<br/>*(optional)*            | <ScrollLink href="#durations">duration</ScrollLink> or object | An optional <ScrollLink href="#durations">duration</ScrollLink> or <ScrollLink href="#timeout-policies">timeout policy</ScrollLink> that defines how long the execution of this service can take before it is automatically cancelled or aborted, even if the service regularly writes to the standard output and error streams. Can be overridden in an <ScrollLink href="#execute-actions">executable action</ScrollLink> and can be combined with `maxInactivity` (see above) and `deadline` (see below). Note that a service cancelled due to a too long runtime is still subject to any configured <ScrollLink href="#retry-policies">retry policy</ScrollLink>, which means its execution may be retried even if one attempt timed out. If you want to cancel a long-running service immediately even if there is a retry policy configured, use a `deadline`.
@@ -35,7 +35,7 @@ it can be executed by Steep.
     "type": "input",
     "cardinality": "1..1",
     "label": "-n",
-    "data_type": "boolean",
+    "dataType": "boolean",
     "default": false
   }, {
     "id": "input_file",
@@ -43,14 +43,14 @@ it can be executed by Steep.
     "description": "Input file name",
     "type": "input",
     "cardinality": "1..1",
-    "data_type": "file"
+    "dataType": "file"
   }, {
     "id": "output_file",
     "name": "Output file name",
     "description": "Output file name",
     "type": "output",
     "cardinality": "1..1",
-    "data_type": "file"
+    "dataType": "file"
   }]
 }
 ```

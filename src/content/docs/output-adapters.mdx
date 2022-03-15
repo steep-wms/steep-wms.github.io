@@ -1,12 +1,12 @@
 import ScrollLink from "components/ScrollLink"
 
 An output adapter plugin is a function that can manipulate the output of
-services depending on their produced data type (see the `data_type` property
+services depending on their produced data type (see the `dataType` property
 of the <ScrollLink href="#service-parameters">service parameter</ScrollLink>
 data model, as well as the `dataType` property of the <ScrollLink href="#arguments">process chain argument</ScrollLink> data model).
 
 In other words, if an <ScrollLink href="#output-parameters">output parameter</ScrollLink>
-of a processing service has a specific `data_type` defined in the <ScrollLink href="#service-metadata">service's metadata</ScrollLink>
+of a processing service has a specific `dataType` defined in the <ScrollLink href="#service-metadata">service's metadata</ScrollLink>
 and this data type matches the one given in the output adapter's descriptor,
 then the plugin's function will be called after the service has been executed.
 Steep will pass the output argument and the whole process chain (for reference)
@@ -36,7 +36,7 @@ If required, the function can be a `suspend` function.
 
 | Additional properties               | Type   | |
 | ----------------------------------- | ------ | ----------------
-| supportedDataType<br />*(required)* | string | The `data_type` that this plugin can handle
+| supportedDataType<br />*(required)* | string | The `dataType` that this plugin can handle
 
 | Function interface |
 | ------------------ |
