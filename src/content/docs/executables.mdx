@@ -8,10 +8,10 @@ It describes how a processing service should be executed and with which paramete
 | --------------------------------------- | ------ | -----------
 | id<br/>*(required)*                     | string | An identifier (does not have to be unique). Typically refers to the `id` of the <ScrollLink href="#execute-actions">execute action</ScrollLink>, from which the executable was derived. Possibly suffixed with a dollar sign `$` and a number denoting the iteration of an enclosing <ScrollLink href="#for-each-actions">for-each action</ScrollLink> (e.g. `myaction$1`) or nested for-each actions (e.g. `myaction$2$1`).
 | path<br/>*(required)*                   | string | The path to the binary of the service to be executed. This property is specific to the `runtime`. For example, for the `docker` runtime, this property refers to the Docker image.
+| serviceId<br/>*(required)*              | string | The ID of the processing service to be executed.
 | arguments<br/>*(required)*              | array  | A list of <ScrollLink href="#arguments">arguments</ScrollLink> to pass to the service. May be empty.
 | runtime<br/>*(required)*                | string | The name of the runtime that will execute the service. Built-in runtimes are currently `other` (for any service that is executable on the target system) and `docker` for Docker containers. More runtimes can be added through <ScrollLink href="#custom-runtime-environments">plugins</ScrollLink>
 | runtimeArgs<br/>*(optional)*            | array  | A list of <ScrollLink href="#arguments">arguments</ScrollLink> to pass to the runtime. May be empty.
-| serviceId<br/>*(optional)*              | string | The ID of the processing service to be executed. May be `null` if the executable does not refer to a service.
 | retries<br/>*(optional)*                | object | An optional <ScrollLink href="#retry-policies">retry policy</ScrollLink> specifying how often this executable should be restarted in case of an error.
 | maxInactivity<br/>*(optional)*          | object | An optional <ScrollLink href="#timeout-policies">timeout policy</ScrollLink> that defines how long the executable can run without producing any output (i.e. without writing anything to the standard output and error streams) before it is automatically cancelled or aborted.
 | maxRuntime<br/>*(optional)*             | object | An optional <ScrollLink href="#timeout-policies">timeout policy</ScrollLink> that defines how long the executable can run before it is automatically cancelled or aborted, even if the service regularly writes to the standard output and error streams.
@@ -21,8 +21,9 @@ It describes how a processing service should be executed and with which paramete
 
 ```json code-example
 {
-  "id": "Count Down",
+  "id": "ayj5kiwaxngbglzlxica",
   "path": "my_docker_image:latest",
+  "serviceId": "countdown",
   "runtime": "docker",
   "arguments": [{
     "id": "input",
