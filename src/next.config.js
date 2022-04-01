@@ -2,7 +2,6 @@ import codeBreak from "./plugins/remark-codebreak.js"
 import codeExample from "./plugins/remark-codeexample.js"
 import ESLintPlugin from "eslint-webpack-plugin"
 import remarkGfm from "remark-gfm"
-import hyphenate from "./plugins/remark-hyphenate.js"
 import highlight from "rehype-highlight"
 import slug from "rehype-slug"
 import smartypants from "@silvenon/remark-smartypants"
@@ -95,7 +94,7 @@ const config = {
           loader: "@mdx-js/loader",
           options: {
             jsx: true, // Forward JSX elements as is. We need this for styled-jsx.
-            remarkPlugins: [remarkGfm, hyphenate, smartypants, codeExample, codeBreak],
+            remarkPlugins: [remarkGfm, smartypants, codeExample, codeBreak],
             rehypePlugins: [
               [highlight, {
                 languages: {
