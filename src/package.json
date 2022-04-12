@@ -24,7 +24,7 @@
   "homepage": "https://steep-wms.github.io/",
   "dependencies": {
     "@icons-pack/react-simple-icons": "4.6.1",
-    "@mdx-js/loader": "2.0.0",
+    "@mdx-js/loader": "2.1.1",
     "@silvenon/remark-smartypants": "2.0.0",
     "body-scroll-lock": "3.1.5",
     "classnames": "2.3.1",
