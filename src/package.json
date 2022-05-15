@@ -23,7 +23,7 @@
   },
   "homepage": "https://steep-wms.github.io/",
   "dependencies": {
-    "@icons-pack/react-simple-icons": "4.6.1",
+    "@icons-pack/react-simple-icons": "4.7.0",
     "@mdx-js/loader": "2.1.1",
     "@silvenon/remark-smartypants": "2.0.0",
     "body-scroll-lock": "3.1.5",
@@ -34,9 +34,9 @@
     "lodash.chunk": "4.2.0",
     "lodash.throttle": "4.1.1",
     "mini-svg-data-uri": "1.4.4",
-    "next": "12.1.5",
+    "next": "12.1.6",
     "normalize.css": "8.0.1",
-    "postcss": "8.4.12",
+    "postcss": "8.4.13",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-feather": "2.0.9",
@@ -47,11 +47,11 @@
     "sass": "1.51.0",
     "sass-loader": "12.6.0",
     "unist-util-visit-parents": "5.1.0",
-    "webpack": "5.72.0"
+    "webpack": "5.72.1"
   },
   "devDependencies": {
-    "eslint": "8.14.0",
-    "eslint-config-next": "12.1.5",
+    "eslint": "8.15.0",
+    "eslint-config-next": "12.1.6",
     "eslint-webpack-plugin": "3.1.1"
   }
 }
