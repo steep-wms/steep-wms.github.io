@@ -2,14 +2,20 @@ import ScrollLink from "components/ScrollLink"
 
 Update a <ScrollLink href="#submissions">submission</ScrollLink>. The request
 body is a JSON object with the <ScrollLink href="#submissions">submission properties</ScrollLink>
-to update. At the moment, only the `status` property can be updated.
+to update. At the moment, only the `status` and `priority` properties can be updated.
 
 If the operation was successful, the response body contains
 the updated submission without the properties `workflow`, `results`, and
 `errorMessage`.
 
-Note: You can use this endpoint to cancel the execution of a submission (see
-example below).
+Notes:
+* You can use this endpoint to cancel the execution of a submission (see
+  example below).
+* If you update a submission's priority, the priorities of all process chains 
+  that belong to this submission and have a <ScrollLink href="#process-chain-status">status</ScrollLink>
+  of either `REGISTERED` or `RUNNING` will be updated too. Also, all process
+  chains generated from this submission in the future will receive the updated
+  priority. Finished process chains will not be modified.
 
 | Resource URL |
 | ------------ |

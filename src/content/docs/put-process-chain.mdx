@@ -2,13 +2,16 @@ import ScrollLink from "components/ScrollLink"
 
 Update a <ScrollLink href="#process-chains">process chain</ScrollLink>. The request
 body is a JSON object with the process chain properties to update. At the
-moment, only the `status` property can be updated.
+moment, only the `status` and `priority` properties can be updated.
 
 If the operation was successful, the response body contains
 the updated process chain without the properties `executables` and `results`.
 
-Note: You can use this endpoint to cancel the execution of a process chain (see
-example below).
+Notes:
+* You can use this endpoint to cancel the execution of a process chain (see
+  example below).
+* The priority can only be modified if the <ScrollLink href="#process-chain-status">process chain status</ScrollLink>
+  is `REGISTERED` or `RUNNING`. Otherwise, the operation will result in HTTP error 422.
 
 | Resource URL |
 | ------------ |
@@ -26,6 +29,7 @@ example below).
 | 200          | The operation was successful |
 | 400          | The request body was invalid |
 | 404          | The process chain was not found  |
+| 422          | The process chain's priority could not be modified because the process chain is already finished, i.e. the <ScrollLink href="#process-chain-status">process chain status</ScrollLink> is not `REGISTERED` or `RUNNING` |
 
 | Example request |
 | --------------- |
