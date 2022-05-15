@@ -148,7 +148,8 @@ const DOCS = [
     "Output adapters",
     "Process chain adapters",
     "Custom runtime environments",
-    "Progress estimators"
+    "Progress estimators",
+    "Parameter injection"
   ]
 ]
 
