@@ -31,16 +31,13 @@ workflow consists of a single execute action that sleeps for 10 seconds and
 then quits. Execute the following command:
 
 ```bash
-curl -X POST http://localhost:8080/workflows -d 'api: 4.4.0
-vars:
-  - id: sleep_seconds
-    value: 10
+curl -X POST http://localhost:8080/workflows -d 'api: 4.5.0
 actions:
   - type: execute
     service: sleep
     inputs:
       - id: seconds
-        var: sleep_seconds'
+        value: 10'
 ```
 
 The command will return the ID of the submitted workflow. You can monitor the

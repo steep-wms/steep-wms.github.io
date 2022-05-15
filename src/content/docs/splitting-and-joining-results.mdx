@@ -11,25 +11,13 @@ action.
 
 ```json code-example
 {
-  "api": "4.4.0",
-  "vars": [{
-    "id": "inputFile",
-    "value": "example.txt"
-  }, {
-    "id": "outputFile1"
-  }, {
-    "id": "outputFile2"
-  }, {
-    "id": "outputFile3"
-  }, {
-    "id": "outputFile4"
-  }],
+  "api": "4.5.0",
   "actions": [{
     "type": "execute",
     "service": "copy",
     "inputs": [{
       "id": "input_file",
-      "var": "inputFile"
+      "value": "example.txt"
     }],
     "outputs": [{
       "id": "output_file",

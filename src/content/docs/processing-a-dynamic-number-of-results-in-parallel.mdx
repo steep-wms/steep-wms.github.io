@@ -2,7 +2,7 @@ import CodeExample from "components/CodeExample"
 
 This example demonstrates how to process the results of an action in parallel
 even if the number of result files is unknown during the design of the workflow.
-The workflow starts with an action that splits an input file `inputFile` into
+The workflow starts with an action that splits an input file `example.txt` into
 multiple files (e.g. one file per line) stored in a directory `outputDirectory`.
 A for-each action then iterates over these files and creates copies. The
 for-each action has an iterator `i` that serves as the input for the individual
@@ -14,33 +14,16 @@ The final `join` service merges these copies into a single file `outputFile2`.
 
 ```json code-example
 {
-  "api": "4.4.0",
-  "vars": [{
-    "id": "inputFile",
-    "value": "example.txt"
-  }, {
-    "id": "lines",
-    "value": 1
-  }, {
-    "id": "outputDirectory"
-  }, {
-    "id": "i"
-  }, {
-    "id": "outputFile1"
-  }, {
-    "id": "copies"
-  }, {
-    "id": "outputFile2"
-  }],
+  "api": "4.5.0",
   "actions": [{
     "type": "execute",
     "service": "split",
     "inputs": [{
       "id": "file",
-      "var": "inputFile"
+      "value": "example.txt"
     }, {
       "id": "lines",
-      "var": "lines"
+      "value": 1
     }],
     "outputs": [{
       "id": "output_directory",

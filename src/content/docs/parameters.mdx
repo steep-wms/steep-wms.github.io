@@ -6,7 +6,10 @@ This data model represents inputs and generic parameters of <ScrollLink href="#e
 | Property             | Type   | Description
 | -------------------- | ------ | -----------
 | id<br/>*(required)*  | string | The ID of the parameter as defined in the <ScrollLink href="#service-metadata">service metadata</ScrollLink>
-| var<br/>*(required)* | string | The ID of a variable that holds the value for this parameter
+| var<br/>*(optional)* | string | The ID of a variable that holds the value for this parameter (required if `value` is not given)
+| value<br />*(optional)* | any | The parameter value (required if `var` is not given)
+
+*Note: Either `var` or `value` must be given but not both!*
 
 <CodeExample title="Example:">
 
