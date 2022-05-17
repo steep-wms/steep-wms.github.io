@@ -15,7 +15,7 @@ properties:
 | Property                    | Type   | Description
 | --------------------------- | ------ | -----------
 | name<br/>*(required)*       | string | A unique name of the plugin (the function inside the plugin's script file must have the same name)
-| type<br/>*(required)*       | string | The plugin type. Valid values are: `initializer`, `outputAdapter`, `processChainAdapter`, and `runtime`.
+| type<br/>*(required)*       | string | The plugin type. Valid values are: `initializer`, `outputAdapter`, `processChainAdapter`, `processChainConsistencyChecker`, and `runtime`.
 | scriptFile<br/>*(required)* | string | The path to the plugin's Kotlin script file. The file should have the extension `.kt` or `.kts`. The path is relative to Steep's application directory, so a valid example is `conf/plugins/fileOrEmptyList.kt`.
 
 Specific plugin types may require additional properties described in the

@@ -1,0 +1,66 @@
+import ScrollLink from "components/ScrollLink"
+
+A process chain consistency checker plugin is a function that checks if
+an <ScrollLink href="#execute-actions">execute action</ScrollLink> can be added
+to a <ScrollLink href="#process-chains">process chain</ScrollLink> or if adding
+it would lead to inconsistencies that render the process chain inexecutable.
+
+The function is called before the execute action is converted to an
+<ScrollLink href="#executables">executable</ScrollLink> and before it is added
+to the process chain. It takes a list of executables that have been collected
+so far during process chain generation, the execute action that is about to be
+converted, the <ScrollLink href="#workflows">workflow</ScrollLink> from which
+the process chain is being created, and a Vert.x instance.
+
+It returns `true` if the execute action can safely be converted and added to
+the list of executables to make up a new process chain, or `false` if adding
+it would lead to a process chain that could not be executed later.
+
+Steep will not discard actions that a consistency checker plugin has rejected.
+Instead, it will try to add them to another process chain later. At this point,
+the plugin will be called again.
+
+If required, the function can be a suspend function.
+
+| Type |
+| ---- |
+
+`processChainConsistencyChecker`
+
+| Additional properties       | Type  | |
+| --------------------------- | ----- | ----------------
+| dependsOn<br />*(optional)* | array | An optional list of names of other process chain consistency checker plugins that need to be executed before this plugin. If this property is not given, the order in which consistency checkers are applied to process chains is undefined.
+
+| Function interface |
+| ------------------ |
+
+```kotlin
+suspend fun myProcessChainConsistencyChecker(processChain: List<model.processchain.Executable>,
+  action: model.workflow.ExecuteAction, workflow: model.workflow.Workflow,
+  vertx: io.vertx.core.Vertx): Boolean
+```
+
+| Example descriptor |
+| ------------------ |
+
+```yaml
+- name: myProcessChainConsistencyChecker
+  type: processChainConsistencyChecker
+  scriptFile: conf/plugins/myProcessChainConsistencyChecker.kt
+```
+
+| Example plugin script |
+| --------------------- |
+
+```kotlin
+import io.vertx.core.Vertx
+import model.processchain.Executable
+import model.workflow.ExecuteAction
+import model.workflow.Workflow
+
+fun dummyProcessChainConsistencyChecker(processChain: List<Executable>,
+    action: ExecuteAction, workflow: Workflow, vertx: Vertx): Boolean {
+  // do not add a service more than once to a process chain
+  return processChain.none { it.serviceId == action.service }
+}
+```

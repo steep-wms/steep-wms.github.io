@@ -147,6 +147,7 @@ const DOCS = [
     "Initializers",
     "Output adapters",
     "Process chain adapters",
+    "Process chain consistency checkers",
     "Custom runtime environments",
     "Progress estimators",
     "Parameter injection"
