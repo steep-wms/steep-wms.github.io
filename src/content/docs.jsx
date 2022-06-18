@@ -91,6 +91,10 @@ const DOCS = [
     ],
     "Pool agent parameters"
   ],
+  ["Full-text search",
+    "Query language",
+    "Search examples"
+  ],
   ["HTTP endpoints",
     "GET information",
     "GET health",
@@ -109,6 +113,7 @@ const DOCS = [
     "GET VM by ID",
     "GET services",
     "GET service by ID",
+    "GET search",
     "GET Prometheus metrics"
   ],
   "Web-based user interface",
