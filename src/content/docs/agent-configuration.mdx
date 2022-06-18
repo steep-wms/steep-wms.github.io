@@ -28,24 +28,25 @@ import ScrollLink from "components/ScrollLink"
 
 > **Default:** `[]` (empty list)
 
-`steep.agent.autoShutdownTimeoutMinutes`
+`steep.agent.autoShutdownTimeout`
 
-> The number of minutes any agent instance can remain idle until Steep shuts
-> itself down gracefully. By default, this value is `0`, which means the Steep
-> never shuts itself down.
+> The time any agent instance can remain idle until Steep shuts itself down
+> gracefully (specified as a <ScrollLink href="#durations">duration</ScrollLink>).
+> By default, this value is `0s`, which means Steep never shuts itself down.
 
-> **Default:** 0
+> **Default:** 0s
 
-`steep.agent.busyTimeoutSeconds`
+`steep.agent.busyTimeout`
 
-> The number of seconds that should pass before an idle agent decides that it
-> is not busy anymore. Normally, the scheduler allocates and agent, sends it a
-> process chain, and then deallocates it after the process chain execution has
-> finished. This value is important, if the scheduler crashes while the
-> process chain is being executed and does not deallocate the agent anymore. In
-> this case, the agent deallocates itself after the configured time has passed.
+> The time that should pass before an idle agent decides that it is not busy
+> anymore (specified as a <ScrollLink href="#durations">duration</ScrollLink>).
+> Normally, the scheduler allocates an agent, sends it a process chain, and
+> then deallocates it after the process chain execution has finished. This value
+> is important if the scheduler crashes while the process chain is being
+> executed and does not deallocate the agent anymore. In this case, the agent
+> deallocates itself after the configured time has passed.
 
-> **Default:** 60
+> **Default:** 1m
 
 `steep.agent.outputLinesToCollect`
 

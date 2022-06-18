@@ -1,3 +1,5 @@
+import ScrollLink from "components/ScrollLink"
+
 `steep.scheduler.enabled`
 
 > `true` if the scheduler should be enabled. Set this value to `false` if your
@@ -5,30 +7,33 @@
 
 > **Default:** `true`
 
-`steep.scheduler.lookupIntervalMilliseconds`
+`steep.scheduler.lookupInterval`
 
-> The interval in which the scheduler looks for registered process chains
+> The interval at which the scheduler looks for registered process chains,
+> specified as a <ScrollLink href="#durations">duration</ScrollLink>.
 
-> **Default:** 20000 (20 seconds)
+> **Default:** 20s
 
-`steep.scheduler.lookupOrphansIntervalMilliseconds`
+`steep.scheduler.lookupOrphansInterval`
 
 > The interval at which the scheduler looks for orphaned running process chains
 > (i.e. process chains that are in the status `RUNNING` but that are currently
-> not being processed by any scheduler instance). Note that the scheduler also
-> always looks for orphaned process chains when it detects that another
+> not being processed by any scheduler instance), specified as a
+> <ScrollLink href="#durations">duration</ScrollLink>. Note that the scheduler
+> also always looks for orphaned process chains when it detects that another
 > scheduler instance has just left the cluster (regardless of the configured
 > interval).
 
-> **Default:** 300000 (5 minutes)
+> **Default:** 5m
 
-`steep.scheduler.lookupOrphansInitialDelayMilliseconds`
+`steep.scheduler.lookupOrphansInitialDelay`
 
-> The number of milliseconds the scheduler should wait after startup before
-> it looks for orphaned running process chains for the first time. This
-> property is useful if you want to implement a rolling update from one Steep
-> instance to another. Note that the scheduler also looks for orphaned
-> process chains when another scheduler instance has just left the cluster,
-> even if the initial delay has not passed by yet.
+> The time the scheduler should wait after startup before it looks for orphaned
+> running process chains for the first time (specified as a
+> <ScrollLink href="#durations">duration</ScrollLink>). This property is useful
+> if you want to implement a rolling update from one Steep instance to another.
+> Note that the scheduler also looks for orphaned process chains when another
+> scheduler instance has just left the cluster, even if the initial delay has
+> not passed by yet.
 
-> **Default:** 0
+> **Default:** 0s

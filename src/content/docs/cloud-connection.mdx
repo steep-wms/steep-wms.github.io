@@ -19,54 +19,60 @@ import ScrollLink from "components/ScrollLink"
 
 `steep.cloud.setupsFile`
 
-> The path to the file that describes all available <ScrollLink href="#setups">setups</ScrollLink>. See <ScrollLink href="setupsyaml">setups.yaml</ScrollLink>.
+> The path to the file that describes all available
+> <ScrollLink href="#setups">setups</ScrollLink>. See
+> <ScrollLink href="setupsyaml">setups.yaml</ScrollLink>.
 
-`steep.cloud.syncIntervalSeconds`
+`steep.cloud.syncInterval`
 
-> The number of seconds that should pass before the cloud manager synchronizes
-> its internal state with the cloud again
+> The time that should pass before the cloud manager synchronizes its internal
+> state with the cloud again, specified as a
+> <ScrollLink href="#durations">duration</ScrollLink>.
 
-> **Default:** 120 (2 minutes)
+> **Default:** 2m
 
-`steep.cloud.keepAliveIntervalSeconds`
+`steep.cloud.keepAliveInterval`
 
-> The number of seconds that should pass before the cloud manager sends
-> keep-alive messages to a minimum of remote agents again (so that they
-> do not shut down themselves). See `minVMs` property of
-> the <ScrollLink href="#setups">setups</ScrollLink> data model.
+> The time that should pass before the cloud manager sends keep-alive messages
+> to a minimum of remote agents again (so that they do not shut down themselves),
+> specified as a <ScrollLink href="#durations">duration</ScrollLink>. See
+> `minVMs` property of the <ScrollLink href="#setups">setups</ScrollLink> data
+> model.
 
-> **Default:** 30
+> **Default:** 30s
 
-`steep.cloud.timeouts.sshReadySeconds`
+`steep.cloud.timeouts.sshReady`
 
-> The maximum number of seconds the cloud manager should try to log in to a new
-> VM via SSH. The cloud manager will make a login attempt every 2 seconds until
-> it is successful or until the maximum number of seconds have passed, in which
+> The maximum time the cloud manager should try to log in to a new VM via SSH
+> (specified as a <ScrollLink href="#durations">duration</ScrollLink>).
+> The cloud manager will make a login attempt every 2 seconds until it is
+> successful or until the maximum number of seconds have passed, in which
 > case it will destroy the VM.
 
-> **Default:** 300
+> **Default:** 5m
 
-`steep.cloud.timeouts.agentReadySeconds`
+`steep.cloud.timeouts.agentReady`
 
-> The maximum number of seconds the cloud manager should wait for an agent on a
-> new VM to become available (i.e. how long a new Steep instance may take to
-> register with the cluster) before it destroys the VM again.
+> The maximum time the cloud manager should wait for an agent on a new VM to
+> become available (i.e. how long a new Steep instance may take to register
+> with the cluster) before it destroys the VM again (specified as a
+> <ScrollLink href="#durations">duration</ScrollLink>).
 
-> **Default:** 300
+> **Default:** 5m
 
-`steep.cloud.timeouts.createVMSeconds`
+`steep.cloud.timeouts.createVM`
 
-> The maximum number of seconds that creating a VM may take before it is
-> aborted with an error.
+> The maximum time that creating a VM may take before it is aborted with an
+> error (specified as a <ScrollLink href="#durations">duration</ScrollLink>).
 
-> **Default:** 300
+> **Default:** 5m
 
-`steep.cloud.timeouts.destroyVMSeconds`
+`steep.cloud.timeouts.destroyVM`
 
-> The maximum number of seconds that destroying a VM may take before it is
-> aborted with an error.
+> The maximum time that destroying a VM may take before it is aborted with an
+> error (specified as a <ScrollLink href="#durations">duration</ScrollLink>).
 
-> **Default:** 300
+> **Default:** 5m
 
 `steep.cloud.agentPool`
 

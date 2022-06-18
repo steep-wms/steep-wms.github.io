@@ -1,3 +1,5 @@
+import ScrollLink from "components/ScrollLink"
+
 `steep.controller.enabled`
 
 > `true` if the controller should be enabled. Set this value to `false` if your
@@ -5,11 +7,12 @@
 
 > **Default:** `true`
 
-`steep.controller.lookupIntervalMilliseconds`
+`steep.controller.lookupInterval`
 
-> The interval at which the controller looks for accepted submissions
+> The interval at which the controller looks for accepted submissions,
+> specified as a <ScrollLink href="#durations">duration</ScrollLink>.
 
-> **Default:** 2000 (2 seconds)
+> **Default:** 2s
 
 `steep.controller.lookupMaxErrors`
 
@@ -19,20 +22,21 @@
 
 > **Default:** 5
 
-`steep.controller.lookupOrphansIntervalMilliseconds`
+`steep.controller.lookupOrphansInterval`
 
 > The interval at which the controller looks for orphaned running submissions
 > (i.e. submissions that are in the status `RUNNING` but that are currently not
-> being processed by any controller instance). If Steep finds such a submission
-> it will try to resume it.
+> being processed by any controller instance), specified as a
+> <ScrollLink href="#durations">duration</ScrollLink>. If Steep finds such a
+> submission it will try to resume it.
 
-> **Default:** 300000 (5 minutes)
+> **Default:** 5m
 
-`steep.controller.lookupOrphansInitialDelayMilliseconds`
+`steep.controller.lookupOrphansInitialDelay`
 
-> The number of milliseconds the controller should wait after startup before
-> it looks for orphaned running submissions for the first time. This property
-> is useful if you want to implement a rolling update from one Steep
-> instance to another.
+> The time the controller should wait after startup before it looks for
+> orphaned running submissions for the first time (specified as a
+> <ScrollLink href="#durations">duration</ScrollLink>). This property is useful
+> if you want to implement a rolling update from one Steep instance to another.
 
-> **Default:** 0
+> **Default:** 0s
