@@ -1,7 +1,6 @@
 import dayjs from "dayjs"
-import { Fragment } from "react"
 
-`fileneme highmemory`
+`filename highmemory`
 
 > Search for objects that contain the terms `filename` or `highmemory` in any of their attributes. Since results are sorted by relevance, objects matching both terms will appear at the top of the list.
 
@@ -31,19 +30,19 @@ import { Fragment } from "react"
 
 <code suppressHydrationWarning={true}>{dayjs().format("YYYY-MM-DD")}</code>
 
-> Search for workflows or process chains that have started or finished on <Fragment suppressHydrationWarning={true}>{dayjs().format("DD MMMM YYYY")}</Fragment>.
+> Search for workflows or process chains that have started or finished on <span suppressHydrationWarning={true}>{dayjs().format("DD MMMM YYYY")}</span>.
 
 <code suppressHydrationWarning={true}>&lt;{dayjs().format("YYYY-MM-DDTHH:mm")}</code>
 
-> Search for workflows or process chains that have started or finished before <Fragment suppressHydrationWarning={true}>{dayjs().format("HH:mm")}</Fragment> on <Fragment suppressHydrationWarning={true}>{dayjs().format("DD MMMM YYYY")}</Fragment>.
+> Search for workflows or process chains that have started or finished before <span suppressHydrationWarning={true}>{dayjs().format("HH:mm")}</span> on <span suppressHydrationWarning={true}>{dayjs().format("DD MMMM YYYY")}</span>.
 
 <code suppressHydrationWarning={true}>&gt;={dayjs().format("YYYY-MM-DDTHH:mm:ss")}</code>
 
-> Search for workflows or process chains that have started or finished at or after <Fragment suppressHydrationWarning={true}>{dayjs().format("HH:mm:ss")}</Fragment> on <Fragment suppressHydrationWarning={true}>{dayjs().format("DD MMMM YYYY")}</Fragment>.
+> Search for workflows or process chains that have started or finished at or after <span suppressHydrationWarning={true}>{dayjs().format("HH:mm:ss")}</span> on <span suppressHydrationWarning={true}>{dayjs().format("DD MMMM YYYY")}</span>.
 
 <code suppressHydrationWarning={true}>start:{dayjs().subtract(1, "day").format("YYYY-MM-DD")}..{dayjs().format("YYYY-MM-DD")}</code>
 
-> Search for workflows or process chains that have been started between <Fragment suppressHydrationWarning={true}>{dayjs().subtract(1, "day").format("DD MMMM YYYY")}</Fragment> and <Fragment suppressHydrationWarning={true}>{dayjs().format("DD MMMM YYYY")}</Fragment> (inclusive).
+> Search for workflows or process chains that have been started between <span suppressHydrationWarning={true}>{dayjs().subtract(1, "day").format("DD MMMM YYYY")}</span> and <span suppressHydrationWarning={true}>{dayjs().format("DD MMMM YYYY")}</span> (inclusive).
 
 `filename in:source is:workflow rcs:highmemory`
 
