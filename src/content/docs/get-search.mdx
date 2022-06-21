@@ -4,8 +4,8 @@ Perform a <ScrollLink href="#full-text-search">full-text search</ScrollLink> in 
 
 The response is a JSON object with the attributes `counts` and `results`:
 
-* `counts` is an object containing the total number of matches in the database for each possible object type (`workflow` and `processChain`) as well as a total sum (`total`). These counts may either be exact or estimated depending on the `count` parameter given in the request. The object might also be left off if `count` equals `none`.
-* `results` is a list of <ScrollLink href="#search-results">search result objects</ScrollLink>.
+* `counts` is an object containing the total number of matches in the database for each possible object type (`workflow` and `processChain`) as well as a total sum (`total`). The numbers may either be exact or estimated depending on the `count` parameter given in the request. The object might also be left off if `count` equals `none`.
+* `results` is a list of <ScrollLink href="#search-results">search result objects</ScrollLink> sorted by relevance.
 
 | Resource URL |
 | ------------ |

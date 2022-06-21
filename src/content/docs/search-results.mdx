@@ -1,1 +1,51 @@
-TODO
+import CodeExample from "components/CodeExample"
+import ScrollLink from "components/ScrollLink"
+
+The <ScrollLink href="#get-search">HTTP endpoint `/search`</ScrollLink> returns a list of search result objects. Each such object refers to an item found and contains information about which properties of this item have matched with which search term and where in these properties the search term has been found.
+
+The following list describes the properties of this object. For more information about each individual property, please refer to the description of the <ScrollLink href="#submissions">submission</ScrollLink> and <ScrollLink href="#process-chains">process chain</ScrollLink> data models.
+
+| Property                  | Type   | Description
+| ------------------------- | ------ | -----------
+| id                        | string | The ID of the found item
+| type                      | string | The item's type. Possible values are `workflow` and `processChain`.
+| requiredCapabilities      | array  | The capabilities required for this item to be executed.
+| status                    | string | The current status of the item
+| name<br/>*(optional)*     | string | An optional human-readable name (only included if `type` is `workflow` and if the workflow has a name)
+| startTime<br/>*(optional)* | string | An ISO 8601 timestamp denoting the date and time when the item was started. May be `null` if the execution has not started yet.
+| endTime<br/>*(optional)*  | string | An ISO 8601 timestamp denoting the date and time when the execution of the item has finished. May be `null` if the execution has not finished yet.
+| matches                   | array  | A list of <ScrollLink href="#matches">match objects</ScrollLink> denoting which properties have matched and what term was found at which location.
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "id": "az2ne7scskxqqzduorzq",
+  "type": "workflow",
+  "requiredCapabilities": [
+    "sleep",
+    "docker"
+  ],
+  "status": "SUCCESS",
+  "name": "Docker Sleep",
+  "startTime": "2022-06-02T05:43:10.397144Z",
+  "endTime": "2022-06-02T05:43:42.534494Z",
+  "matches": [{
+    "locator": "name",
+    "fragment": "Docker Sleep",
+    "termMatches": [{
+      "term": "docker",
+      "indices": [0]
+    }]
+  }, {
+    "locator": "requiredCapabilities",
+    "fragment": "docker",
+    "termMatches": [{
+      "term": "docker",
+      "indices": [0]
+    }]
+  }]
+}
+```
+
+</CodeExample>

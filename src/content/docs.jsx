@@ -94,7 +94,8 @@ const DOCS = [
   ["Full-text search",
     "Query language",
     "Search examples",
-    "Search results"
+    "Search results",
+    "Matches"
   ],
   ["HTTP endpoints",
     "GET information",
