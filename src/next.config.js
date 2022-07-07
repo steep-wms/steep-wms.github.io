@@ -7,6 +7,7 @@ import slug from "rehype-slug"
 import smartypants from "@silvenon/remark-smartypants"
 import styledJsx from "styled-jsx/webpack.js"
 import svgToMiniDataURI from "mini-svg-data-uri"
+import withBundleAnalyzer from "@next/bundle-analyzer"
 
 import handlebars from "highlight.js/lib/languages/handlebars"
 import http from "highlight.js/lib/languages/http"
@@ -118,4 +119,6 @@ const config = {
   }
 }
 
-export default config
+export default withBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true"
+})(config)

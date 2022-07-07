@@ -1,5 +1,6 @@
 import { Download, GitHub } from "react-feather"
-import { Docker } from "@icons-pack/react-simple-icons"
+import { siDocker } from "simple-icons/icons"
+import SimpleIcon from "./SimpleIcon"
 import styles from "./DownloadButtons.scss"
 import pkg from "../package.json"
 
@@ -8,7 +9,7 @@ const DownloadButtons = () => (
     <a href={`https://github.com/steep-wms/steep/releases/download/v${pkg.version}/steep-${pkg.version}.zip`} className="btn btn-primary">
       <Download className="feather"/> Download Steep {pkg.version} (binaries)</a>
     <a href="https://hub.docker.com/r/steep/steep/" className="btn">
-      <Docker className="simple-icon"/> Docker image</a>
+      <SimpleIcon icon={siDocker} className="simple-icon"/> Docker image</a>
     <a href="https://github.com/steep-wms/steep" className="btn">
       <GitHub className="feather"/> Source code</a>
     <style jsx>{styles}</style>
