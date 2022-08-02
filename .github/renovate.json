@@ -1,6 +1,0 @@
-{
-  "extends": [
-    ":autodetectPinVersions",
-    "group:all"
-  ]
-}
