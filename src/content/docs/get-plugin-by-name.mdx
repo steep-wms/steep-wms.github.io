@@ -1,0 +1,44 @@
+import ScrollLink from "components/ScrollLink"
+
+Get information about a single <ScrollLink href="#extending-steep-through-plugins">plugin</ScrollLink>.
+
+| Resource URL |
+| ------------ |
+
+```http
+/services/:name
+```
+
+| Parameters |                                    |
+| ---------- | ---------------------------------- |
+| name       | The name of the plugin to return   |
+
+| Status codes |                              |
+| ------------ | ---------------------------- |
+| 200          | The operation was successful |
+| 404          | The plugin was not found     |
+
+| Example request |
+| --------------- |
+
+```http
+GET /plugins/fileOrEmptyList HTTP/1.1
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-encoding: gzip
+content-length: 136
+content-type: application/json
+
+{
+    "type": "outputAdapter",
+    "name": "fileOrEmptyList",
+    "version": "1.0.0",
+    "scriptFile": "conf/plugins/fileOrEmptyList.kt",
+    "supportedDataType": "fileOrEmptyList"
+}
+```

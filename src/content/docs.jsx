@@ -113,6 +113,8 @@ const DOCS = [
     "GET agent by ID",
     "GET VMs",
     "GET VM by ID",
+    "GET plugins",
+    "GET plugin by name",
     "GET services",
     "GET service by ID",
     "GET search",
