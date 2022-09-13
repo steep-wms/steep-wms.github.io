@@ -27,7 +27,7 @@
     "@silvenon/remark-smartypants": "2.0.0",
     "animejs": "^3.2.1",
     "body-scroll-lock": "3.1.5",
-    "classnames": "2.3.1",
+    "classnames": "2.3.2",
     "dayjs": "^1.11.5",
     "favicons": "6.2.2",
     "image-webpack-loader": "8.1.0",
