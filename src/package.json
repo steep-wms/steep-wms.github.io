@@ -29,15 +29,15 @@
     "body-scroll-lock": "3.1.5",
     "classnames": "2.3.2",
     "dayjs": "^1.11.5",
-    "favicons": "7.0.0",
+    "favicons": "7.0.1",
     "image-webpack-loader": "8.1.0",
     "js-yaml": "4.1.0",
     "lodash.chunk": "4.2.0",
     "lodash.throttle": "4.1.1",
     "mini-svg-data-uri": "1.4.4",
-    "next": "12.3.0",
+    "next": "12.3.1",
     "normalize.css": "8.0.1",
-    "postcss": "8.4.16",
+    "postcss": "8.4.17",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-feather": "2.0.10",
@@ -45,17 +45,17 @@
     "rehype-slug": "5.0.1",
     "rehype-toc": "3.0.2",
     "remark-gfm": "3.0.1",
-    "sass": "1.54.9",
+    "sass": "1.55.0",
     "sass-loader": "13.0.2",
-    "simple-icons": "^7.11.0",
+    "simple-icons": "^7.13.0",
     "unist-util-visit-parents": "5.1.1",
     "webpack": "5.74.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^12.3.0",
-    "eslint": "8.23.1",
-    "eslint-config-next": "12.3.0",
+    "@next/bundle-analyzer": "^12.3.1",
+    "eslint": "8.24.0",
+    "eslint-config-next": "12.3.1",
     "eslint-webpack-plugin": "3.2.0",
-    "npm-check-updates": "^16.1.2"
+    "npm-check-updates": "^16.3.4"
   }
 }
