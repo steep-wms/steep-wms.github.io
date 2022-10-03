@@ -47,7 +47,7 @@
     "remark-gfm": "3.0.1",
     "sass": "1.55.0",
     "sass-loader": "13.0.2",
-    "simple-icons": "^7.13.0",
+    "simple-icons": "^7.14.0",
     "unist-util-visit-parents": "5.1.1",
     "webpack": "5.74.0"
   },
