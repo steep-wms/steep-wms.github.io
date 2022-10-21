@@ -28,7 +28,7 @@
     "animejs": "^3.2.1",
     "body-scroll-lock": "3.1.5",
     "classnames": "2.3.2",
-    "dayjs": "^1.11.5",
+    "dayjs": "^1.11.6",
     "favicons": "7.0.1",
     "image-webpack-loader": "8.1.0",
     "js-yaml": "4.1.0",
