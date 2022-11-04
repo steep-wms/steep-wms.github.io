@@ -18,7 +18,8 @@ manager.
 | provisioningScripts<br/>*(optional)*   | array   | An optional list of paths to <ScrollLink href="#provisioning-scripts">provisioning scripts</ScrollLink> that should be executed on the VM after it has been created
 | providedCapabilities<br/>*(optional)*  | array   | An optional set of strings specifying capabilities that VMs with this setup will have
 | sshUsername<br/>*(optional)*           | string  | An optional username for the SSH connection to the created VM. Overrides the <ScrollLink href="#steepyaml">main configuration</ScrollLink> item `steep.cloud.ssh.username` if it is defined.
-| additionalVolumes                      | array   | An optional list of <ScrollLink href="#volumes">volumes</ScrollLink> that will be attached to the VM
+| additionalVolumes<br/>*(optional)*     | array   | An optional list of <ScrollLink href="#volumes">volumes</ScrollLink> that will be attached to the VM
+| parameters<br/>*(optional)*            | object  | An optional custom object with user-defined properties. Use this object to pass arbitrary values to <ScrollLink href="#provisioning-scripts">provisioning scripts</ScrollLink> where they can be accessed through the <ScrollLink href="#global-variables">global variable</ScrollLink> `setup`.
 
 <CodeExample title="Example:">
 
