@@ -1,9 +1,9 @@
 import Sidebar from "components/Sidebar"
 import Toc from "components/Toc"
-import slugger from "github-slugger"
+import GithubSlugger from "github-slugger"
 import styles from "./docs.scss?type=global"
 
-function ContentsItem({ item, n, level = 0, slugs }) {
+function ContentsItem({ item, n, level = 0, slugger }) {
   let firstItem
   let rest
 
@@ -21,7 +21,7 @@ function ContentsItem({ item, n, level = 0, slugs }) {
   // add heading number
   title = <>{n}{"\u2002"}{title}</>
 
-  let slug = slugs.slug(firstItem).toLowerCase()
+  let slug = slugger.slug(firstItem).toLowerCase()
   let Component = require(`./docs/${slug}.mdx`).default
 
   if (level === 0) {
@@ -38,7 +38,7 @@ function ContentsItem({ item, n, level = 0, slugs }) {
     {title}
     <Component />
     {rest.map((c, i) => <ContentsItem key={i} item={c} n={`${n}.${i + 1}`}
-      level={level + 1} slugs={slugs} />)}
+      level={level + 1} slugger={slugger} />)}
   </div>)
 }
 
@@ -164,9 +164,8 @@ const DOCS = [
 ]
 
 const Docs = () => {
-  const contentSlugs = slugger()
   const contents = DOCS.map((item, index) =>
-    <ContentsItem key={index} item={item} n={index + 1} slugs={contentSlugs} />)
+    <ContentsItem key={index} item={item} n={index + 1} slugger={new GithubSlugger()} />)
 
   return (
     <section className="docs">

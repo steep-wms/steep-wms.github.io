@@ -16,7 +16,7 @@ const Footer = () => (
           </div>
           <div className="copyright" suppressHydrationWarning={true}>
             Copyright &copy; 2013-{currentYear} <a href="https://igd.fraunhofer.de">Fraunhofer Institute for Computer Graphics Research IGD</a><br/>
-            [ <Link href="/imprint/"><a>Imprint</a></Link> | <Link href="/privacy/"><a>Privacy</a></Link> ]
+            [ <Link href="/imprint/">Imprint</Link> | <Link href="/privacy/">Privacy</Link> ]
           </div>
         </div>
       </div>

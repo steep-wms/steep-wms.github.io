@@ -22,12 +22,6 @@ const config = {
   // opt-in to using SWC for minifying JavaScript
   swcMinify: true,
 
-  // do not display static optimization indicator
-  // it gets in the way of the toc button
-  devIndicators: {
-    autoPrerender: false
-  },
-
   eslint: {
     dirs: ["components", "content", "pages", "plugins"]
   },

@@ -2,7 +2,7 @@ import ScrollLink from "./ScrollLink"
 import Toc from "./Toc"
 import styles from "./TocItem.scss"
 
-const TocItem = ({ item, reduceIndent = false, slugs }) => {
+const TocItem = ({ item, reduceIndent = false, slugger }) => {
   let firstItem
   let rest
 
@@ -14,12 +14,12 @@ const TocItem = ({ item, reduceIndent = false, slugs }) => {
     rest = []
   }
 
-  let slug = slugs.slug(firstItem).toLowerCase()
+  let slug = slugger.slug(firstItem).toLowerCase()
 
   return (<>
     <li>
       <ScrollLink href={`#${slug}`}>{firstItem}</ScrollLink>
-      {rest.length > 0 && <Toc docs={rest} tocSlugs={slugs} reduceIndent={reduceIndent} />}
+      {rest.length > 0 && <Toc docs={rest} tocSlugger={slugger} reduceIndent={reduceIndent} />}
       <style jsx>{styles}</style>
     </li>
   </>)
