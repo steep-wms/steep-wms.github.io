@@ -143,6 +143,7 @@ const DOCS = [
     "plugins/common.yaml",
     ["Advanced configuration topics",
       ["Provisioning scripts",
+        "Global variables",
         "Environment variables",
         "Configuration values",
         "Read local files",
