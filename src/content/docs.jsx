@@ -81,6 +81,7 @@ const DOCS = [
     ],
     "Retry policies",
     "Timeout policies",
+    "Creation policies",
     "Durations",
     "Agents",
     ["VMs",

@@ -17,12 +17,6 @@ import ScrollLink from "components/ScrollLink"
 > A metadata tag that should be attached to virtual machines to indicate that
 > they have been created by Steep
 
-`steep.cloud.setupsFile`
-
-> The path to the file that describes all available
-> <ScrollLink href="#setups">setups</ScrollLink>. See
-> <ScrollLink href="setupsyaml">setups.yaml</ScrollLink>.
-
 `steep.cloud.syncInterval`
 
 > The time that should pass before the cloud manager synchronizes its internal
@@ -40,6 +34,38 @@ import ScrollLink from "components/ScrollLink"
 > model.
 
 > **Default:** 30s
+
+`steep.cloud.setups.file`
+
+> The path to the file that describes all available
+> <ScrollLink href="#setups">setups</ScrollLink>. See
+> <ScrollLink href="setupsyaml">setups.yaml</ScrollLink>.
+
+`steep.cloud.setups.creation.retries`
+
+> A <ScrollLink href="#retry-policies">retry policy</ScrollLink> that specifies
+> how many attempts should be made to create a VM from a certain
+> <ScrollLink href="#setups">setup</ScrollLink> (if creation fails) as well as
+> possible (exponential) delays between those attempts.
+
+> **Default:**
+
+> ```yaml
+> retries:
+>   maxAttempts: 5
+>   delay: 40s
+>   exponentialBackoff: 2
+> ```
+
+`steep.cloud.setups.lockAfterRetries`
+
+> When the maximum number of attempts to create a VM from a certain
+> <ScrollLink href="#setups">setup</ScrollLink> has been reached (see
+> `steep.cloud.setups.creation.retries`), the setup will be locked and no other
+> VM with this setup will be created. This parameter defines how long it will be
+> locked, specified as a <ScrollLink href="#durations">duration</ScrollLink>.
+
+> **Default:** 20m
 
 `steep.cloud.timeouts.sshReady`
 
