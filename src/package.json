@@ -49,7 +49,7 @@
     "sass-loader": "13.1.0",
     "simple-icons": "^7.18.0",
     "unist-util-visit-parents": "5.1.1",
-    "webpack": "5.74.0"
+    "webpack": "5.75.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^13.0.2",
