@@ -56,6 +56,6 @@
     "eslint": "8.34.0",
     "eslint-config-next": "13.2.1",
     "eslint-webpack-plugin": "4.0.0",
-    "npm-check-updates": "^16.7.9"
+    "npm-check-updates": "^16.7.10"
   }
 }
