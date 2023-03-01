@@ -52,7 +52,7 @@
     "webpack": "5.75.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^13.2.1",
+    "@next/bundle-analyzer": "^13.2.3",
     "eslint": "8.34.0",
     "eslint-config-next": "13.2.1",
     "eslint-webpack-plugin": "4.0.0",
