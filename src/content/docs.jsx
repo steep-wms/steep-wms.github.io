@@ -56,7 +56,9 @@ const DOCS = [
     "Feeding results back into the workflow (cycles/loops)"
   ],
   ["Data models",
-    "Workflows",
+    ["Workflows",
+      "Retry policy defaults"
+    ],
     "Variables",
     ["Actions",
       "Execute actions",

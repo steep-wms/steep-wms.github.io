@@ -1,0 +1,25 @@
+import CodeExample from "components/CodeExample"
+import ScrollLink from "components/ScrollLink"
+
+Default <ScrollLink href="#retry-policies">retry policies</ScrollLink> that
+should be used within a workflow unless more specific retry policies are
+defined elsewhere.
+
+| Property                            | Type     | Description
+| ----------------------------------- | -------- | -----------
+| processChains<br/>*(optional)*      | object   | An optional default <ScrollLink href="#retry-policies">retry policy</ScrollLink> that should be applied to every generated process chain
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "processChains": {
+    "maxAttempts": 5,
+    "delay": "1s",
+    "exponentialBackoff": 2,
+    "maxDelay": "10s"
+  }
+}
+```
+
+</CodeExample>
