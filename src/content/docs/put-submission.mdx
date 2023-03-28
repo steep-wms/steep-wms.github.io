@@ -13,7 +13,7 @@ Notes:
   example below).
 * If you update a submission's priority, the priorities of all process chains 
   that belong to this submission and have a <ScrollLink href="#process-chain-status">status</ScrollLink>
-  of either `REGISTERED` or `RUNNING` will be updated too. Also, all process
+  of either `REGISTERED`, `RUNNING`, or `PAUSED` will be updated too. Also, all process
   chains generated from this submission in the future will receive the updated
   priority. Finished process chains will not be modified.
 
@@ -63,6 +63,7 @@ content-type: application/json
   "status": "CANCELLED",
   "requiredCapabilities": [],
   "runningProcessChains": 0,
+  "pausedProcessChains": 0,
   "cancelledProcessChains": 314,
   "succeededProcessChains": 686,
   "failedProcessChains": 0,

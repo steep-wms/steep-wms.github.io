@@ -18,6 +18,7 @@ current <ScrollLink href="#submission-status">status</ScrollLink>.
 | requiredCapabilities<br/>*(required)*   | array  | A set of strings specifying capabilities a host system must provide to be able to execute this workflow. See also <ScrollLink href="#setups">setups</ScrollLink>.
 | source<br/>*(optional)*                 | string | The original, unaltered workflow source as it was submitted through the <ScrollLink href="#get-submissions">`/workflows`</ScrollLink> endpoint. May be `null` if the workflow was not submitted through the endpoint or if the source is unavailable.
 | runningProcessChains<br/>*(required)*   | number | The number of <ScrollLink href="#process-chains">process chains</ScrollLink> currently being executed
+| pausedProcessChains<br/>*(required)*    | number | The number of process chains whose execution is currently paused
 | cancelledProcessChains<br/>*(required)* | number | The number of process chains that have been cancelled
 | succeededProcessChains<br/>*(required)* | number | The number of process chains that have finished successfully
 | failedProcessChains<br/>*(required)*    | number | The number of process chains whose execution has failed
@@ -56,6 +57,7 @@ current <ScrollLink href="#submission-status">status</ScrollLink>.
   "endTime": "2020-02-13T15:39:00.807715Z",
   "status": "SUCCESS",
   "runningProcessChains": 0,
+  "pausedProcessChains": 0,
   "cancelledProcessChains": 0,
   "succeededProcessChains": 1,
   "failedProcessChains": 0,

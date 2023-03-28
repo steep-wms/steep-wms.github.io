@@ -11,7 +11,7 @@ Notes:
 * You can use this endpoint to cancel the execution of a process chain (see
   example below).
 * The priority can only be modified if the <ScrollLink href="#process-chain-status">process chain status</ScrollLink>
-  is `REGISTERED` or `RUNNING`. Otherwise, the operation will result in HTTP error 422.
+  is `REGISTERED`, `RUNNING`, or `PAUSED`. Otherwise, the operation will result in HTTP error 422.
 
 | Resource URL |
 | ------------ |
@@ -29,7 +29,7 @@ Notes:
 | 200          | The operation was successful |
 | 400          | The request body was invalid |
 | 404          | The process chain was not found  |
-| 422          | The process chain's priority could not be modified because the process chain is already finished, i.e. the <ScrollLink href="#process-chain-status">process chain status</ScrollLink> is not `REGISTERED` or `RUNNING` |
+| 422          | The process chain's priority could not be modified because the process chain is already finished, i.e. the <ScrollLink href="#process-chain-status">process chain status</ScrollLink> is not `REGISTERED`, `RUNNING`, or `PAUSED` |
 
 | Example request |
 | --------------- |
