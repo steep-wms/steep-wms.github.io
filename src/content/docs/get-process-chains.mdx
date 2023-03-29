@@ -2,12 +2,19 @@ import ScrollLink from "components/ScrollLink"
 
 Get information about all process chains in the database. The response is a JSON
 array consisting of <ScrollLink href="#process-chains">process chain objects</ScrollLink>
-without the properties `executables` and `results`. In order to
-get the complete details of a process chain, use
+without the properties `executables`, `results`, `totalRuns`, `runNumber`, and
+`autoResumeAfter`. In order to get the complete details of a process chain, use
 the <ScrollLink href="#get-process-chain-by-id">GET process chain by ID endpoint</ScrollLink>.
 
 The process chains are returned in the order in which they were added to the
 database with the newest ones at the top.
+
+Some properties such as `startTime`, `status`, or `endTime` depend on a specific
+process chain run (see the section on <ScrollLink href="#process-chains">process chains</ScrollLink>
+for more information about runs). This endpoint always displays the latest run
+(if available). You can get more information through
+the endpoints <ScrollLink href="#get-process-chain-runs">`/processchains/:id/runs`</ScrollLink>
+and <ScrollLink href="#get-process-chain-run-by-run-number">`/processchains/:id/runs/:runNumber`</ScrollLink>.
 
 | Resource URL |
 | ------------ |

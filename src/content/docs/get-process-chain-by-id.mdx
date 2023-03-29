@@ -3,6 +3,13 @@ import ScrollLink from "components/ScrollLink"
 Get details about a single <ScrollLink href="#process-chains">process chain</ScrollLink>
 from the database.
 
+Some properties such as `startTime`, `status`, or `endTime` depend on a specific
+process chain run (see the section on <ScrollLink href="#process-chains">process chains</ScrollLink>
+for more information about runs). This endpoint always displays the latest run
+(if available). You can get more information through
+the endpoints <ScrollLink href="#get-process-chain-runs">`/processchains/:id/runs`</ScrollLink>
+and <ScrollLink href="#get-process-chain-run-by-run-number">`/processchains/:id/runs/:runNumber`</ScrollLink>.
+
 | Resource URL |
 | ------------ |
 
@@ -32,7 +39,7 @@ GET /processchains/akukkcsv575splk3v2na HTTP/1.1
 ```http
 HTTP/1.1 200 OK
 content-encoding: gzip
-content-length: 535
+content-length: 566
 content-type: application/json
 
 {
@@ -43,6 +50,8 @@ content-type: application/json
   "status": "SUCCESS",
   "requiredCapabilities": [],
   "results": {},
+  "totalRuns": 1,
+  "runNumber": 1,
   "executables": [{
     "id": "ayj5kboaxngbglzlxiba",
     "path": "sleep",

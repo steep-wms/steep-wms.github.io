@@ -1,10 +1,37 @@
 import CodeExample from "components/CodeExample"
 import ScrollLink from "components/ScrollLink"
 
-As described <ScrollLink href="#workflow-scheduling">above</ScrollLink>, Steep
+As described in the section on <ScrollLink href="#workflow-scheduling">workflow scheduling</ScrollLink>, Steep
 transforms a workflow to one or more *process chains*. A process chain is a
 sequential list of instructions that will be sent to Steep's remote agents to
 execute processing services in a distributed environment.
+
+Some of the properties specified in the table below are only available once Steep has
+started executing a process chain (e.g. `startTime`) or after the execution has
+finished (e.g. `endTime`).
+
+Also, the <ScrollLink href="#get-process-chains">`/processchains` HTTP endpoint</ScrollLink>, which provides a list of process chains, omits some properties although they
+are marked as *required* in the table below (e.g. `executables` or `totalRuns`).
+If you want to get all required properties, you have to use the <ScrollLink href="#get-process-chain-by-id">`/processchains/:id` HTTP endpoint</ScrollLink>.
+
+Steep records each execution of a process chain in a separate &lsquo;run&rsquo;.
+The property `totalRuns` specifies how often a process chain has been executed
+(including any currently running execution). If a process chain has just been
+created and still has the status `REGISTERED`, `totalRuns` equals `0`, but as
+soon as the status switches to `RUNNING`, a new run is created and `totalRuns`
+is incremented to `1`. If a process chain fails and is later retried, for
+example, a new run will be created and `totalRuns` will be `2`, etc.
+
+Requesting a process chain through the HTTP endpoints <ScrollLink href="#get-process-chains">`/processchains`</ScrollLink> or
+<ScrollLink href="#get-process-chain-by-id">`/processchains/:id`</ScrollLink>,
+always renders the latest run. The properties `startTime`, `endTime`, `status`,
+`errorMessage`, and `autoResumeAfter` depend on the actual run rendered (e.g.
+different runs have different start times; or one run might have failed, while a
+newer one might have succeeded or is still running, so their statuses are
+different). If you want to list all runs of a process chain or retrieve
+information about a specific run, use the <ScrollLink href="#get-process-chain-runs">`/processchains/:id/runs`</ScrollLink> or <ScrollLink href="#get-process-chain-run-by-run-number">`/processchains/:id/runs/:runNumber`</ScrollLink>
+HTTP endpoints, respectively. The property `runNumber` from the table below
+specifies, which run out of `totalRuns` is rendered.
 
 | Property                              | Type   | Description
 | ------------------------------------- | ------ | -----------
@@ -18,6 +45,9 @@ execute processing services in a distributed environment.
 | priority<br />*(optional)*            | number | A priority used during scheduling. Process chains with higher priorities will be scheduled before those with lower priorities. Negative values are allowed. The default value is `0`.
 | retries<br />*(optional)*             | object | An optional <ScrollLink href="#retry-policies">retry policy</ScrollLink> specifying how often this process chain will be rescheduled in case an error has occurred.
 | results<br/>*(optional)*              | object | If `status` is `SUCCESS`, this property contains the list of process chain result files grouped by their output variable ID. Otherwise, it is `null`.
+| totalRuns<br/>*(required)*            | number | The number of times the process chain has been executed (including any currently running execution).
+| runNumber<br/>*(optional)*            | number | The number of the run currently rendered. May be `null` if the process chain has not been executed yet.
+| autoResumeAfter<br/>*(optional)*      | string | If the process chain's status is `PAUSED`, this optional property may specify a point in time (as an ISO 8601 timestamp) after which the process chain will be automatically resumed. It is typically only given, if a <ScrollLink href="#retry-policies">retry policy</ScrollLink> is configured (see `retries` property): if a process chain run has failed and there are still attempts left, `autoResumeAfter` specifies when the next attempt will be performed.
 | estimatedProgress<br />*(optional)*   | number | A floating point number between `0.0` (0%) and `1.0` (100%) indicating the current execution progress of this process chain. This property will only be provided if the process chain is currently being executed (i.e. if its `status` equals `RUNNING`) and if a progress could actually be estimated. Note that the value is an estimation based on various factors and does not have to represent the real progress. More precise values can be calculated with a <ScrollLink href="#progress-estimators">progress estimator plugin</ScrollLink>. Sometimes, progress cannot be estimated at all. In this case, the value will be `null`.
 | errorMessage<br/>*(optional)*         | string | If `status` is `ERROR`, this property contains a human-readable error message. Otherwise, it is `null`.
 
@@ -57,7 +87,9 @@ execute processing services in a distributed environment.
   }],
   "results": {
     "output_file": ["output.txt"]
-  }
+  },
+  "totalRuns": 1,
+  "runNumber": 1
 }
 ```
 

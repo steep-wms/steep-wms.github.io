@@ -110,6 +110,8 @@ const DOCS = [
     "GET process chains",
     "GET process chain by ID",
     "GET process chain logs",
+    "GET process chain runs",
+    "GET process chain run by run number",
     "HEAD process chain logs",
     "PUT process chain",
     "GET agents",
