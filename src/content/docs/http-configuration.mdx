@@ -28,6 +28,12 @@
 
 > **Default:** `""` (empty string, i.e. no base path)
 
+`steep.http.allowRoutes`
+
+> A regular expression specifying a whitelist of enabled HTTP routes. Non-matching routes will be disabled. For example, the expression `/processchains.*` enables all endpoints starting with `/processchains` but disables all others.
+
+> **Default:** `.*` (all routes are enabled)
+
 `steep.http.cors.enable`
 
 > `true` if Cross-Origin Resource Sharing (CORS) should be enabled
