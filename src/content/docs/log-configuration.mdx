@@ -55,7 +55,9 @@ import ScrollLink from "components/ScrollLink"
 
 > The path where process chain logs will be stored. Individual files will
 > will be named after the ID of the corresponding process chain (e.g.
-> `aprsqz6d5f4aiwsdzbsq.log`).
+> `aprsqz6d5f4aiwsdzbsq.log`). If a process chain has been executed more
+than once (for example, due to a retry), the file name will include the
+run number (e.g. `aprsqz6d5f4aiwsdzbsq.2.log`).
 
 > **Default:** `logs/processchains`
 
