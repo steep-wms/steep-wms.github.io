@@ -24,7 +24,7 @@ example, a new run will be created and `totalRuns` will be `2`, etc.
 
 Requesting a process chain through the HTTP endpoints <ScrollLink href="#get-process-chains">`/processchains`</ScrollLink> or
 <ScrollLink href="#get-process-chain-by-id">`/processchains/:id`</ScrollLink>,
-always renders the latest run. The properties `startTime`, `endTime`, `status`,
+always renders the latest run. The properties `agentId`, `startTime`, `endTime`, `status`,
 `errorMessage`, and `autoResumeAfter` depend on the actual run rendered (e.g.
 different runs have different start times; or one run might have failed, while a
 newer one might have succeeded or is still running, so their statuses are
@@ -38,6 +38,7 @@ specifies, which run out of `totalRuns` is rendered.
 | id<br/>*(required)*                   | string | Unique process chain identifier
 | executables<br/>*(required)*          | array  | A list of <ScrollLink href="#executables">executable objects</ScrollLink> that describe what processing services should be called and with which arguments
 | submissionId<br/>*(required)*         | string | The ID of the <ScrollLink href="#submissions">submission</ScrollLink> to which this process chain belongs
+| agentId<br/>*(optional)*              | string | The ID of the <ScrollLink href="#agents">agent</ScrollLink> that currently executes the process chain (if its `status` is `RUNNING`) or has executed it (if it is finished). May be `null` if the execution has not started yet.
 | startTime<br/>*(optional)*            | string | An ISO 8601 timestamp denoting the date and time when the process chain execution was started. May be `null` if the execution has not started yet.
 | endTime<br/>*(optional)*              | string | An ISO 8601 timestamp denoting the date and time when the process chain execution finished. May be `null` if the execution has not finished yet.
 | status<br/>*(required)*               | string | The current <ScrollLink href="#process-chain-status">status</ScrollLink> of the process chain
@@ -60,6 +61,7 @@ specifies, which run out of `totalRuns` is rendered.
   "startTime": "2020-05-18T08:44:19.221456Z",
   "endTime": "2020-05-18T08:44:19.446437Z",
   "status": "SUCCESS",
+  "agentId": "bakwqka7gk2vrjnxdo5a",
   "requiredCapabilities": ["nodejs"],
   "executables": [{
     "id": "ayj5kegaxngbglzlxibq",

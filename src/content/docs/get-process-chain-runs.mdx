@@ -3,7 +3,7 @@ import ScrollLink from "components/ScrollLink"
 Return an array of all runs of a <ScrollLink href="#process-chains">process chain</ScrollLink>.
 
 A *run* is represented by an object containing a subset of the properties of a
-process chain, namely `startTime`, `endTime`, `status`, `errorMessage`, and
+process chain, namely `agentId`, `startTime`, `endTime`, `status`, `errorMessage`, and
 `autoResumeAfter`. See the section on <ScrollLink href="#process-chains">process chains</ScrollLink>
 for more information about runs and these properties.
 
@@ -41,10 +41,11 @@ HTTP/1.1 200 OK
 vary: origin
 content-type: application/json
 content-encoding: gzip
-content-length: 372
+content-length: 474
 
 [
   {
+    "agentId": "bakwqka7gk2vrjnxdo5a",
     "startTime": "2023-01-24T13:26:04.294068Z",
     "endTime": "2023-01-24T13:26:14.724449Z",
     "status": "ERROR",
@@ -52,6 +53,7 @@ content-length: 372
     "autoResumeAfter": "2023-01-24T13:26:59.724445Z"
   },
   {
+    "agentId": "bakwqka7gk2vrjnxdo5a",
     "startTime": "2023-01-24T13:27:16.079864Z",
     "endTime": "2023-01-24T13:27:26.200881Z",
     "status": "ERROR",
@@ -59,6 +61,7 @@ content-length: 372
     "autoResumeAfter": "2023-01-24T13:28:11.200878Z"
   },
   {
+    "agentId": "bakwqvi7gk2vrjnxdo7q",
     "startTime": "2023-01-24T13:28:16.101778Z",
     "endTime": "2023-01-24T13:28:26.280940Z",
     "status": "SUCCESS"
