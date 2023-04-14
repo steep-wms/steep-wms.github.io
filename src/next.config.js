@@ -19,6 +19,9 @@ const config = {
   // create a folder for each page
   trailingSlash: true,
 
+  // export static website
+  output: "export",
+
   // opt-in to using SWC for minifying JavaScript
   swcMinify: true,
 
