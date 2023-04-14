@@ -122,6 +122,8 @@ const DOCS = [
     "GET plugin by name",
     "GET services",
     "GET service by ID",
+    "GET setups",
+    "GET setup by ID",
     "GET search",
     "GET Prometheus metrics"
   ],
