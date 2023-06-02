@@ -19,7 +19,13 @@ function ContentsItem({ item, n, level = 0, slugger }) {
   let title = firstItem.replace(/\//g, "/\u200b")
 
   // add heading number
-  title = <>{n}{"\u2002"}{title}</>
+  title = (
+    <>
+      {n}
+      {"\u2002"}
+      {title}
+    </>
+  )
 
   let slug = slugger.slug(firstItem).toLowerCase()
   let Component = require(`./docs/${slug}.mdx`).default
@@ -34,49 +40,54 @@ function ContentsItem({ item, n, level = 0, slugger }) {
     title = <h6 id={slug}>{title}</h6>
   }
 
-  return (<div className={`docs-section-${slug}`}>
-    {title}
-    <Component />
-    {rest.map((c, i) => <ContentsItem key={i} item={c} n={`${n}.${i + 1}`}
-      level={level + 1} slugger={slugger} />)}
-  </div>)
+  return (
+    <div className={`docs-section-${slug}`}>
+      {title}
+      <Component />
+      {rest.map((c, i) => (
+        <ContentsItem
+          key={i}
+          item={c}
+          n={`${n}.${i + 1}`}
+          level={level + 1}
+          slugger={slugger}
+        />
+      ))}
+    </div>
+  )
 }
 
 const DOCS = [
-  ["How does Steep work?",
+  [
+    "How does Steep work?",
     "Workflow scheduling",
     "Software architecture",
     "Processing services"
   ],
-  ["Example workflows",
+  [
+    "Example workflows",
     "Running two services in parallel",
     "Chaining two services",
     "Splitting and joining results",
     "Processing a dynamic number of results in parallel",
     "Feeding results back into the workflow (cycles/loops)"
   ],
-  ["Data models",
-    ["Workflows",
-      "Retry policy defaults"
-    ],
+  [
+    "Data models",
+    ["Workflows", "Retry policy defaults"],
     "Variables",
-    ["Actions",
+    [
+      "Actions",
       "Execute actions",
       "For-each actions",
       "Parameters",
       "Output parameters"
     ],
-    ["Process chains",
-      "Process chain status"
-    ],
-    ["Executables",
-      "Arguments",
-      "Argument variables"
-    ],
-    ["Submissions",
-      "Submission status"
-    ],
-    ["Service metadata",
+    ["Process chains", "Process chain status"],
+    ["Executables", "Arguments", "Argument variables"],
+    ["Submissions", "Submission status"],
+    [
+      "Service metadata",
       "Runtime environments",
       "Service parameters",
       "Runtime arguments"
@@ -86,21 +97,19 @@ const DOCS = [
     "Creation policies",
     "Durations",
     "Agents",
-    ["VMs",
-      "VM status"
-    ],
-    ["Setups",
-      "Volumes"
-    ],
+    ["VMs", "VM status"],
+    ["Setups", "Volumes"],
     "Pool agent parameters"
   ],
-  ["Full-text search",
+  [
+    "Full-text search",
     "Query language",
     "Search examples",
     "Search results",
     "Matches"
   ],
-  ["HTTP endpoints",
+  [
+    "HTTP endpoints",
     "GET information",
     "GET health",
     "GET submissions",
@@ -128,8 +137,10 @@ const DOCS = [
     "GET Prometheus metrics"
   ],
   "Web-based user interface",
-  ["Configuration",
-    ["steep.yaml",
+  [
+    "Configuration",
+    [
+      "steep.yaml",
       "General configuration",
       "Cluster settings",
       "HTTP configuration",
@@ -148,8 +159,10 @@ const DOCS = [
     "setups.yaml",
     "services/services.yaml",
     "plugins/common.yaml",
-    ["Advanced configuration topics",
-      ["Provisioning scripts",
+    [
+      "Advanced configuration topics",
+      [
+        "Provisioning scripts",
         "Global variables",
         "Environment variables",
         "Configuration values",
@@ -160,7 +173,8 @@ const DOCS = [
       "Using a template engine"
     ]
   ],
-  ["Extending Steep through plugins",
+  [
+    "Extending Steep through plugins",
     "Initializers",
     "Output adapters",
     "Process chain adapters",
@@ -172,8 +186,14 @@ const DOCS = [
 ]
 
 const Docs = () => {
-  const contents = DOCS.map((item, index) =>
-    <ContentsItem key={index} item={item} n={index + 1} slugger={new GithubSlugger()} />)
+  const contents = DOCS.map((item, index) => (
+    <ContentsItem
+      key={index}
+      item={item}
+      n={index + 1}
+      slugger={new GithubSlugger()}
+    />
+  ))
 
   return (
     <section className="docs">

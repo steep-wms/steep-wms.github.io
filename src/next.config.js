@@ -94,12 +94,15 @@ const config = {
             jsx: true, // Forward JSX elements as is. We need this for styled-jsx.
             remarkPlugins: [remarkGfm, smartypants, codeExample, codeBreak],
             rehypePlugins: [
-              [highlight, {
-                languages: {
-                  handlebars,
-                  http
+              [
+                highlight,
+                {
+                  languages: {
+                    handlebars,
+                    http
+                  }
                 }
-              }],
+              ],
               slug
             ]
           }
@@ -108,9 +111,11 @@ const config = {
     })
 
     if (dev) {
-      config.plugins.push(new ESLintPlugin({
-        extensions: ["js", "jsx"]
-      }))
+      config.plugins.push(
+        new ESLintPlugin({
+          extensions: ["js", "jsx"]
+        })
+      )
     }
     return config
   }

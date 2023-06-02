@@ -9,7 +9,7 @@ function scrollTop(top) {
   }
 }
 
-const ScrollLink = (props) => {
+const ScrollLink = props => {
   const setAutoScrolling = useContext(AutoScrollingContext.Dispatch)
   const navBarState = useContext(NavBarContext.State)
 
@@ -55,7 +55,7 @@ const ScrollLink = (props) => {
     requestAnimationFrame(step)
   }
 
-  const handleClick = (e) => {
+  const handleClick = e => {
     let id = props.href
     if (id.startsWith("/")) {
       id = id.substring(1)

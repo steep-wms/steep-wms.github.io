@@ -1,7 +1,7 @@
 @use "sass:math";
 
 $font-size-base: 16px;
-$font-size-sm: .875rem;
+$font-size-sm: 0.875rem;
 
 $line-height-base: 1.7;
 
@@ -18,7 +18,7 @@ $gray-800: #3c3c3b;
 
 $spacer: math.div(1rem, 1.4);
 
-$border-radius: math.div(.75rem, 1.4);
+$border-radius: math.div(0.75rem, 1.4);
 
 $xs: 0;
 $sm: 576px;

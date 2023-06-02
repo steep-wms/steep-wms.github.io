@@ -9,7 +9,9 @@ html {
   box-sizing: border-box;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
@@ -36,7 +38,11 @@ body {
   color: $gray-700;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   margin: 2rem 0 2rem 0;
   font-weight: 400;
 }
@@ -65,7 +71,7 @@ h5 {
 }
 
 h6 {
-  font-size: 1.10rem;
+  font-size: 1.1rem;
   font-weight: 400;
   margin-top: 1.4rem;
   margin-bottom: 0.7rem;
@@ -170,15 +176,18 @@ svg {
 }
 
 code {
-  font-size: .93em;
+  font-size: 0.93em;
   color: #cc6b6b;
 }
 
-code, pre {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+code,
+pre {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
 }
 
-.hljs, pre {
+.hljs,
+pre {
   background: $gray-700;
   color: #fff;
 }

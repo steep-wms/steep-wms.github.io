@@ -1,7 +1,18 @@
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock"
+import {
+  disableBodyScroll,
+  enableBodyScroll,
+  clearAllBodyScrollLocks
+} from "body-scroll-lock"
 import classNames from "classnames"
 import getScrollTop from "./lib/get-scroll-top"
-import { Children, cloneElement, useCallback, useEffect, useRef, useState } from "react"
+import {
+  Children,
+  cloneElement,
+  useCallback,
+  useEffect,
+  useRef,
+  useState
+} from "react"
 import { List, X } from "react-feather"
 import throttle from "lodash.throttle"
 import styles from "./Sidebar.scss"
@@ -10,8 +21,8 @@ const Sidebar = ({ children }) => {
   const ref = useRef()
   const tocRef = useRef()
   const autoHideTimer = useRef(null)
-  const [ collapse, setCollapse ] = useState(false)
-  const [ visible, setVisible ] = useState(false)
+  const [collapse, setCollapse] = useState(false)
+  const [visible, setVisible] = useState(false)
 
   const cancelAutoHideTimer = useCallback(() => {
     if (autoHideTimer.current) {
@@ -62,7 +73,7 @@ const Sidebar = ({ children }) => {
         let scrollBottom = scrollTop + window.innerHeight
         let docsTop = docsSection.offsetTop
         let docsBottom = docsTop + docsSection.offsetHeight
-        let visible = scrollBottom >= (docsTop + 100) && scrollTop <= docsBottom
+        let visible = scrollBottom >= docsTop + 100 && scrollTop <= docsBottom
         setVisible(visible)
       }
     }, 100)
@@ -90,14 +101,21 @@ const Sidebar = ({ children }) => {
   })
 
   return (
-    <div className={classNames("sidebar", { "visible": visible })} ref={ref}>
-      <div className={classNames("table-of-contents", { "collapse": collapse })} ref={tocRef}>
+    <div className={classNames("sidebar", { visible: visible })} ref={ref}>
+      <div
+        className={classNames("table-of-contents", { collapse: collapse })}
+        ref={tocRef}
+      >
         {newChildren}
       </div>
       <div className="sidebar-button" onClick={onToggle}>
         <div className="sidebar-button-icons">
-          <List className={classNames("feather", { "collapse": collapse })}/>
-          <X className={classNames("feather", "feather-x", { "collapse": collapse })}/>
+          <List className={classNames("feather", { collapse: collapse })} />
+          <X
+            className={classNames("feather", "feather-x", {
+              collapse: collapse
+            })}
+          />
         </div>
       </div>
       <style jsx>{styles}</style>

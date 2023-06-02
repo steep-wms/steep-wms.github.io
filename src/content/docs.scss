@@ -7,7 +7,8 @@
     border-collapse: collapse;
     width: 100%;
 
-    th, td {
+    th,
+    td {
       margin: 0;
       padding: math.div($spacer, 2);
       text-align: left;
@@ -19,11 +20,13 @@
       border-bottom: 2px solid $gray-300;
     }
 
-    td:first-child, td:nth-child(2):not(:last-child) {
+    td:first-child,
+    td:nth-child(2):not(:last-child) {
       hyphens: none;
     }
 
-    th, td:first-child {
+    th,
+    td:first-child {
       hyphens: none;
       white-space: nowrap;
     }
@@ -41,11 +44,13 @@
       text-align: justify;
     }
 
-    td:first-child, th:first-child {
+    td:first-child,
+    th:first-child {
       padding-left: 0;
     }
 
-    td:last-child, th:last-child {
+    td:last-child,
+    th:last-child {
       padding-right: 0;
     }
 
@@ -82,7 +87,8 @@
     margin: $spacer * 2 auto;
   }
 
-  table + table, pre + table {
+  table + table,
+  pre + table {
     margin-top: $spacer * 2;
   }
 
@@ -111,7 +117,8 @@
     }
   }
 
-  #servicesservicesyaml, #pluginscommonyaml {
+  #servicesservicesyaml,
+  #pluginscommonyaml {
     max-width: 100%;
     overflow-x: auto;
   }

@@ -11,9 +11,19 @@ class MyDocument extends Document {
       <Html lang="en-US">
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-          <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=fallback" rel="stylesheet" />
-          <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=fallback" rel="stylesheet" />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="anonymous"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=fallback"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=fallback"
+            rel="stylesheet"
+          />
         </Head>
         <body>
           <Main />

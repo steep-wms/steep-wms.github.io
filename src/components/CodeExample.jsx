@@ -32,16 +32,16 @@ const CodeExample = ({ children, title }) => {
   let newChildren = []
   findCodeInChildren(children, newChildren)
 
-  const onClick = (lang) => {
+  const onClick = lang => {
     if (active === lang) {
       return
     }
 
     // keep scroll position
     const lastDiff = ref.current.offsetTop - getScrollTop()
-    const observer = new MutationObserver((mutations) => {
+    const observer = new MutationObserver(mutations => {
       document.body.scrollTop = document.documentElement.scrollTop =
-          ref.current.offsetTop - lastDiff
+        ref.current.offsetTop - lastDiff
 
       for (let mutation of mutations) {
         if (mutation.target.parentNode === ref.current) {
@@ -68,10 +68,14 @@ const CodeExample = ({ children, title }) => {
   newChildren.forEach(c => {
     let lang = getLanguage(c)
 
-    let activeClassName = { "active": active === lang }
+    let activeClassName = { active: active === lang }
     let titleClassName = classNames("code-example-title", activeClassName)
     let title = (
-      <div className={titleClassName} onClick={() => onClick(lang)} key={`title-${lang}`}>
+      <div
+        className={titleClassName}
+        onClick={() => onClick(lang)}
+        key={`title-${lang}`}
+      >
         {lang.toUpperCase()}
         <style jsx>{styles}</style>
       </div>
@@ -88,11 +92,16 @@ const CodeExample = ({ children, title }) => {
     pages.push(page)
   })
 
-  return (<>
-    {title && <h6>{title}</h6>}
-    <div className="code-example" ref={ref}>{titles}{pages}</div>
-    <style jsx>{styles}</style>
-  </>)
+  return (
+    <>
+      {title && <h6>{title}</h6>}
+      <div className="code-example" ref={ref}>
+        {titles}
+        {pages}
+      </div>
+      <style jsx>{styles}</style>
+    </>
+  )
 }
 
 export default CodeExample

@@ -16,13 +16,17 @@ const TocItem = ({ item, reduceIndent = false, slugger }) => {
 
   let slug = slugger.slug(firstItem).toLowerCase()
 
-  return (<>
-    <li>
-      <ScrollLink href={`#${slug}`}>{firstItem}</ScrollLink>
-      {rest.length > 0 && <Toc docs={rest} tocSlugger={slugger} reduceIndent={reduceIndent} />}
-      <style jsx>{styles}</style>
-    </li>
-  </>)
+  return (
+    <>
+      <li>
+        <ScrollLink href={`#${slug}`}>{firstItem}</ScrollLink>
+        {rest.length > 0 && (
+          <Toc docs={rest} tocSlugger={slugger} reduceIndent={reduceIndent} />
+        )}
+        <style jsx>{styles}</style>
+      </li>
+    </>
+  )
 }
 
 export default TocItem

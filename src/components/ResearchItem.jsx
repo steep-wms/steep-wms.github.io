@@ -9,8 +9,16 @@ const ResearchItem = ({ image, pdf, children }) => {
       </div>
       <div className="research-body">
         <div className="csl-bib-body">
-          <div className="csl-entry">{children}
-            {pdf && <><br/><span className="bib-links">[ <a href={pdf}>PDF</a> ]</span></>}
+          <div className="csl-entry">
+            {children}
+            {pdf && (
+              <>
+                <br />
+                <span className="bib-links">
+                  [ <a href={pdf}>PDF</a> ]
+                </span>
+              </>
+            )}
           </div>
         </div>
       </div>

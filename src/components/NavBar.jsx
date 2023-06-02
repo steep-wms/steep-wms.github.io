@@ -106,8 +106,11 @@ const NavBar = () => {
   }, [top, leaving, pinned, collapse, autoScrolling, setNavBarState])
 
   return (
-    <nav className={classNames("navbar", { top, leaving, pinned, collapse })}
-        id="main-navbar" ref={ref}>
+    <nav
+      className={classNames("navbar", { top, leaving, pinned, collapse })}
+      id="main-navbar"
+      ref={ref}
+    >
       <div className="container">
         <div className="head">
           <Link href="/" className="navbar-brand">
@@ -119,10 +122,18 @@ const NavBar = () => {
             <span></span>
           </div>
         </div>
-        <ScrollLink className="nav-item" href="/#key-features">Features</ScrollLink>
-        <ScrollLink className="nav-item" href="/#download-and-get-started">Download</ScrollLink>
-        <ScrollLink className="nav-item" href="/#documentation">Docs</ScrollLink>
-        <ScrollLink className="nav-item" href="/#about">About</ScrollLink>
+        <ScrollLink className="nav-item" href="/#key-features">
+          Features
+        </ScrollLink>
+        <ScrollLink className="nav-item" href="/#download-and-get-started">
+          Download
+        </ScrollLink>
+        <ScrollLink className="nav-item" href="/#documentation">
+          Docs
+        </ScrollLink>
+        <ScrollLink className="nav-item" href="/#about">
+          About
+        </ScrollLink>
         <a className="nav-item" href="https://github.com/steep-wms/steep">
           <GitHub className="feather" />
         </a>

@@ -6,12 +6,14 @@ const Dispatch = createContext()
 const reducer = (state, { height, pinned }) => {
   if (typeof height !== "undefined" && height !== state.height) {
     state = {
-      ...state, height
+      ...state,
+      height
     }
   }
   if (typeof pinned !== "undefined" && pinned !== state.pinned) {
     state = {
-      ...state, pinned
+      ...state,
+      pinned
     }
   }
   return state
