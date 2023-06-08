@@ -45,7 +45,7 @@
     "rehype-slug": "5.1.0",
     "rehype-toc": "3.0.2",
     "remark-gfm": "3.0.1",
-    "sass": "1.62.1",
+    "sass": "1.63.2",
     "sass-loader": "13.2.2",
     "simple-icons": "^8.15.0",
     "unist-util-visit-parents": "5.1.3",
