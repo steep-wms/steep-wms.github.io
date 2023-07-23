@@ -6,12 +6,12 @@ const Home = () => {
     <Provider>
       <section
         id="hero"
-        className="min-h-screen flex justify-center items-center flex-col"
+        className="flex min-h-screen flex-col items-center justify-center pt-4"
       >
-        <h1 className="text-[2.6rem] leading-[5rem] font-black text-gray-900">
+        <h1 className="text-[3rem] font-black leading-[5.4rem] text-gray-900">
           Scale Your Data Workflows to New Heights
         </h1>
-        <p className="prose prose-lead max-w-2xl text-center text-xl leading-6 text-gray-600">
+        <p className="prose-lead prose max-w-4xl text-center text-[1.35rem] leading-[1.9rem] text-gray-600">
           <Balancer>
             <strong className="text-gray-700">Steep</strong> is a cloud-based
             workflow management system that orchestrates your microservices to
@@ -19,7 +19,7 @@ const Home = () => {
           </Balancer>
         </p>
 
-        <div className="max-w-full h-48 px-24 mt-12">
+        <div className="mt-10 h-64 max-w-full px-24">
           <HeroWorkflow />
         </div>
       </section>
