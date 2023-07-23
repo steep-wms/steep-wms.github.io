@@ -1,9 +1,11 @@
 import Balancer, { Provider } from "react-wrap-balancer"
 import HeroWorkflow from "./HeroWorkflow"
+import NavBar from "@/components/NavBar"
 
 const Home = () => {
   return (
     <Provider>
+      <NavBar />
       <section
         id="hero"
         className="flex min-h-screen flex-col items-center justify-center pt-4"
