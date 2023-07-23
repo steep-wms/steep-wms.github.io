@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: theme(colors.text);
+}
+
+@media screen(sm) {
+  :root {
+    font-size: 19.125px;
+  }
+}
+
+@media screen(md) {
+  :root {
+    font-size: 20.25px;
+  }
+}
+
+@media screen(lg) {
+  :root {
+    font-size: 21.375px;
+  }
+}
+
+@media screen(xl) {
+  :root {
+    font-size: 22.5px;
+  }
+}
+
+body {
+  background-color: theme(colors.bg);
+  @apply transition-colors;
+  @apply duration-300;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 300;
+}
+
+.lucide {
+  display: inline-block;
+}
