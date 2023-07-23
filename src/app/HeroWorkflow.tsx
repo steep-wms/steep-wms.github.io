@@ -9,11 +9,13 @@ import {
   easeOut,
   SequenceTime,
   useAnimate,
+  useReducedMotion,
 } from "framer-motion"
 import Link from "next/link"
 
 const HeroWorkflow = () => {
   const [scope, animate] = useAnimate()
+  const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
     let paths = scope.current.querySelectorAll("path[id^='path']")
@@ -144,10 +146,12 @@ const HeroWorkflow = () => {
     ])
     pushBoxOut("box5", 1.8)
 
-    animate(sequence, {
-      repeat: Infinity,
-    })
-  }, [scope, animate])
+    if (!prefersReducedMotion) {
+      animate(sequence, {
+        repeat: Infinity,
+      })
+    }
+  }, [scope, animate, prefersReducedMotion])
 
   let stroke = "#ced4da"
   let getStartedBox =
@@ -326,10 +330,16 @@ const HeroWorkflow = () => {
             dx={0}
             dy={0}
             stdDeviation={
-              c.props.id === "box4" || c.props.id === "box7" ? 8 : 0
+              !prefersReducedMotion &&
+              (c.props.id === "box4" || c.props.id === "box7")
+                ? 8
+                : 0
             }
             floodOpacity={
-              c.props.id === "box4" || c.props.id === "box7" ? 0.6 : 0
+              !prefersReducedMotion &&
+              (c.props.id === "box4" || c.props.id === "box7")
+                ? 0.6
+                : 0
             }
             floodColor="#63b3ed"
           />
@@ -346,7 +356,7 @@ const HeroWorkflow = () => {
         x="0px"
         y="0px"
         viewBox="-20 -20 1605 356"
-        className="w-full h-full"
+        className="h-full w-full"
         ref={scope}
       >
         {svgPaths}
@@ -362,7 +372,7 @@ const HeroWorkflow = () => {
               stroke: "none",
               strokeMiterlimit: 10,
             }}
-            className="blur-2xl -z-10"
+            className="-z-10 blur-2xl"
           />
           <Link href="#" className="group">
             <path
@@ -370,7 +380,7 @@ const HeroWorkflow = () => {
               key="get-started-button"
               d={getStartedBox}
               style={{ stroke: "#337ab7", strokeMiterlimit: 10 }}
-              className="z-10 fill-white group-hover:fill-[#337ab7] transition-colors"
+              className="z-10 fill-white transition-colors group-hover:fill-[#337ab7]"
               filter="url(#get-started-button-shadow)"
             />
             <text
@@ -378,9 +388,10 @@ const HeroWorkflow = () => {
               y="151"
               fill="#3c3c3b"
               fontWeight={400}
-              text-anchor="middle"
-              alignment-baseline="middle"
-              className="group-hover:fill-white transition-colors"
+              fontSize="22px"
+              textAnchor="middle"
+              alignmentBaseline="middle"
+              className="transition-colors group-hover:fill-white"
             >
               Get started
             </text>
