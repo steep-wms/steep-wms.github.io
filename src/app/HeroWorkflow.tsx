@@ -7,8 +7,10 @@ import {
   DOMKeyframesDefinition,
   DynamicAnimationOptions,
   easeOut,
+  motion,
   SequenceTime,
   useAnimate,
+  useMotionValue,
   useReducedMotion,
 } from "framer-motion"
 import Link from "next/link"
@@ -16,6 +18,7 @@ import Link from "next/link"
 const HeroWorkflow = () => {
   const [scope, animate] = useAnimate()
   const prefersReducedMotion = useReducedMotion()
+  const getStartedBgOpacity = useMotionValue(0.5)
 
   useEffect(() => {
     let paths = scope.current.querySelectorAll("path[id^='path']")
@@ -103,8 +106,8 @@ const HeroWorkflow = () => {
     pushBoxOut("box2", 2)
     pushBoxInHalf("box3", 2.4)
     sequence.push([
-      "#get-started-button-bg",
-      { fillOpacity: 0.8 },
+      getStartedBgOpacity,
+      0.8,
       { duration: 0.5, ease: "easeOut", at: 2.4 },
     ])
 
@@ -114,8 +117,8 @@ const HeroWorkflow = () => {
     pushBoxOut("box6", 2.6)
     pushBoxIn("box3", 3)
     sequence.push([
-      "#get-started-button-bg",
-      { fillOpacity: 1 },
+      getStartedBgOpacity,
+      1,
       { duration: 0.5, ease: "easeOut", at: 3 },
     ])
 
@@ -123,8 +126,8 @@ const HeroWorkflow = () => {
     pushPath("path9", 3.6)
     pushBoxOut("box3", 3.6)
     sequence.push([
-      "#get-started-button-bg",
-      { fillOpacity: 0.6 },
+      getStartedBgOpacity,
+      0.5,
       { duration: 1, ease: "easeInOut", at: 3.6 },
     ])
     pushBoxIn("box4", 4)
@@ -350,53 +353,16 @@ const HeroWorkflow = () => {
   })
 
   return (
-    <>
+    <div className="relative" ref={scope}>
       <svg
         version="1.1"
         x="0px"
         y="0px"
         viewBox="-20 -20 1605 356"
         className="h-full w-full"
-        ref={scope}
       >
         {svgPaths}
         {bulletPaths}
-        <g>
-          <path
-            id="get-started-button-bg"
-            key="get-started-button-bg"
-            d={getStartedBox}
-            fillOpacity={0.6}
-            style={{
-              fill: "#337ab7",
-              stroke: "none",
-              strokeMiterlimit: 10,
-            }}
-            className="-z-10 blur-2xl"
-          />
-          <Link href="#" className="group">
-            <path
-              id="get-started-button"
-              key="get-started-button"
-              d={getStartedBox}
-              style={{ stroke: "#337ab7", strokeMiterlimit: 10 }}
-              className="z-10 fill-white transition-colors group-hover:fill-[#337ab7]"
-              filter="url(#get-started-button-shadow)"
-            />
-            <text
-              x="782"
-              y="151"
-              fill="#3c3c3b"
-              fontWeight={400}
-              fontSize="22px"
-              textAnchor="middle"
-              alignmentBaseline="middle"
-              className="transition-colors group-hover:fill-white"
-            >
-              Get started
-            </text>
-          </Link>
-        </g>
         <defs>
           {gradients}
           {shadows}
@@ -422,25 +388,20 @@ const HeroWorkflow = () => {
             <stop offset="0%" stopColor={stroke} stopOpacity="1"></stop>
             <stop offset="100%" stopColor={stroke} stopOpacity="0"></stop>
           </linearGradient>
-          <filter
-            id="get-started-button-shadow"
-            key="get-started-button-shadow"
-            x="-20%"
-            y="-20%"
-            width="140%"
-            height="140%"
-          >
-            <feDropShadow
-              dx={0}
-              dy={0}
-              stdDeviation={8}
-              floodOpacity={0.6}
-              floodColor="#63b3ed"
-            />
-          </filter>
         </defs>
       </svg>
-    </>
+      <Link href="#" className="group">
+        <div className="absolute left-[24.5rem] top-[4.7rem] flex h-[2.4rem] w-[7rem] select-none items-center justify-center rounded-lg border border-primary bg-white text-sm font-normal shadow-[0px_0px_10px] shadow-primary/50 transition-colors group-hover:bg-primary">
+          <motion.div
+            className="absolute left-0 top-0 -z-10 h-full w-full bg-primary blur-xl"
+            style={{ opacity: getStartedBgOpacity }}
+          ></motion.div>
+          <div className="transition-colors group-hover:text-white">
+            Get started
+          </div>
+        </div>
+      </Link>
+    </div>
   )
 }
 

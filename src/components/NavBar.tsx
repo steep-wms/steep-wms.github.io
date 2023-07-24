@@ -39,11 +39,11 @@ const NavBar = () => {
   return (
     <div
       className={clsx(
-        "fixed top-0 flex h-14 w-full items-center justify-center border-b border-gray-200 bg-bg bg-opacity-80 px-14 backdrop-blur-sm transition-colors",
+        "fixed top-0 flex h-14 w-full items-center justify-center border-b border-gray-200 bg-bg bg-opacity-80 backdrop-blur-sm transition-colors",
         onTop ? "border-opacity-0" : "border-opacity-100",
       )}
     >
-      <div className="flex flex-1 items-center justify-between gap-8">
+      <div className="flex max-w-screen-2xl flex-1 items-center justify-between gap-8 px-2">
         <div className="mb-1">
           <Logo />
         </div>

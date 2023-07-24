@@ -81,9 +81,6 @@ module.exports = {
       lg: "992px",
       xl: "1200px",
       "2xl": "1440px",
-      "3xl": "1536px",
-      "4xl": "1900px",
-      "5xl": "2500px",
     },
     keyframes: {
       fadeIn: {
