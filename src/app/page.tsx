@@ -11,7 +11,11 @@ const Home = () => {
         className="mx-auto flex min-h-[840px] max-w-screen-2xl flex-col items-center justify-center px-2 pt-4"
       >
         <h1 className="mx-8 mb-4 text-center text-[3rem] font-black leading-[1.15] text-gray-900">
-          <Balancer>Scale Your Data Workflows to New Heights</Balancer>
+          <Balancer>
+            Scale <span style={{ letterSpacing: "-0.3rem" }}>Y</span>our Data{" "}
+            <span style={{ letterSpacing: "-0.12rem" }}>W</span>
+            orkflows to New Heights
+          </Balancer>
         </h1>
         <p className="prose-lead prose mx-6 text-center text-[1.35rem] leading-[1.4] text-gray-600">
           <Balancer>
