@@ -88,7 +88,10 @@ const NavBar = () => {
                 <div className="mb-1">
                   <Logo />
                 </div>
-                <Disclosure.Button className="inline-flex items-center justify-center text-gray-800">
+                <Disclosure.Button
+                  id="navbar-toggle-menu-button"
+                  className="inline-flex items-center justify-center text-gray-800"
+                >
                   <Hamburger toggled={open} />
                 </Disclosure.Button>
               </div>
