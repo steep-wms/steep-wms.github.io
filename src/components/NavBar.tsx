@@ -29,7 +29,7 @@ const Logo = () => {
       href="/"
       className="flex items-center gap-1 text-xl text-black text-opacity-90 dark:text-white"
     >
-      <img src="/images/steep-logo.svg" className="h-8" alt="Logo" />
+      <img src="/images/steep-logo.svg" className="h-10" alt="Logo" />
     </Link>
   )
 }
@@ -78,7 +78,7 @@ const NavBar = () => {
         <>
           <div
             className={clsx(
-              "fixed top-0 flex h-14 w-full items-center justify-center border-b border-gray-200 transition-colors",
+              "fixed top-0 flex h-16 w-full items-center justify-center border-b border-gray-200 transition-colors",
               !open ? "bg-bg bg-opacity-80 backdrop-blur-sm" : "bg-gray-100",
               open || onTop ? "border-opacity-0" : "border-opacity-100",
             )}
@@ -99,7 +99,7 @@ const NavBar = () => {
                 <div className="mb-1">
                   <Logo />
                 </div>
-                <div className="mt-1 flex gap-6 text-sm">
+                <div className="mt-1 flex gap-6">
                   {links.map(l => (
                     <Link
                       key={l.label}

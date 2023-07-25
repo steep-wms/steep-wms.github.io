@@ -4,9 +4,9 @@
 
 :root {
   font-size: clamp(
-    16px,
-    calc(1rem + (20.5 - 16) * ((100vw - 480px) / (1200 - 480))),
-    20.5px
+    13px,
+    calc(1rem + (18 - 13) * ((100vw - 480px) / (1200 - 480))),
+    18px
   );
   min-height: 0vw;
 }

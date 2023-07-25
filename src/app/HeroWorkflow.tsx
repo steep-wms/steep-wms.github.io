@@ -154,7 +154,7 @@ const HeroWorkflow = () => {
         repeat: Infinity,
       })
     }
-  }, [scope, animate, prefersReducedMotion])
+  }, [scope, animate, prefersReducedMotion, getStartedBgOpacity])
 
   let stroke = "#ced4da"
   let getStartedBox =
@@ -391,7 +391,7 @@ const HeroWorkflow = () => {
         </defs>
       </svg>
       <Link href="#" className="group">
-        <div className="absolute left-[24.5rem] top-[4.7rem] flex h-[2.4rem] w-[7rem] select-none items-center justify-center rounded-lg border border-primary bg-white text-sm font-normal shadow-[0px_0px_10px] shadow-primary/50 transition-colors group-hover:bg-primary">
+        <div className="text absolute left-[28rem] top-[5.4rem] flex h-[2.6rem] w-[8rem] select-none items-center justify-center rounded-lg border border-primary bg-white font-normal shadow-[0px_0px_10px] shadow-primary/50 transition-colors group-hover:bg-primary">
           <motion.div
             className="absolute left-0 top-0 -z-10 h-full w-full bg-primary blur-xl"
             style={{ opacity: getStartedBgOpacity }}
