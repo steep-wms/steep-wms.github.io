@@ -34,13 +34,47 @@ const Logo = () => {
   )
 }
 
-const NavBar = () => {
+interface NavBarProps {
+  fixed?: boolean
+}
+
+const NavBar = ({ fixed = true }: NavBarProps) => {
+  const lastScrollY = useRef(-1)
+  const [belowThreshold, setBelowThreshold] = useState(true)
+  const [needsTransition, setNeedsTransition] = useState(false)
+  const [visible, setVisible] = useState(false)
   const [onTop, setOnTop] = useState(true)
   const panelRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     function onScroll() {
+      let diff = window.scrollY - lastScrollY.current
+
+      if (window.scrollY > 100) {
+        if (diff <= -15) {
+          lastScrollY.current = window.scrollY
+          setVisible(true)
+        } else if (diff >= 15) {
+          lastScrollY.current = window.scrollY
+          setVisible(false)
+        }
+        setBelowThreshold(false)
+      } else if (window.scrollY > 80) {
+        if (diff <= -15) {
+          lastScrollY.current = window.scrollY
+          setVisible(true)
+        }
+      } else if (window.scrollY === 0) {
+        lastScrollY.current = window.scrollY
+        setVisible(false)
+        setBelowThreshold(true)
+      }
+
       setOnTop(window.scrollY < 5)
+    }
+
+    if (lastScrollY.current === -1) {
+      lastScrollY.current = window.scrollY
     }
 
     onScroll()
@@ -53,6 +87,13 @@ const NavBar = () => {
       window.removeEventListener("scroll", throttledOnScroll)
     }
   }, [])
+
+  useEffect(() => {
+    // delay transition a little bit to prevent flickering
+    setTimeout(() => {
+      setNeedsTransition(!belowThreshold)
+    }, 100)
+  }, [belowThreshold])
 
   const links = [
     {
@@ -72,15 +113,24 @@ const NavBar = () => {
   return (
     <Disclosure
       as="nav"
-      className="fixed left-0 right-0 top-0 z-50 flex flex-col"
+      className={clsx("left-0 right-0 top-0 z-50 flex flex-col", {
+        fixed,
+        sticky: !fixed && !belowThreshold,
+        "-translate-y-16": !belowThreshold && !fixed && !visible,
+        "translate-y-0": belowThreshold || (!fixed && visible),
+        "transition-transform": needsTransition,
+        "duration-200": needsTransition,
+      })}
     >
       {({ open, close }) => (
         <>
           <div
             className={clsx(
-              "fixed top-0 flex h-16 w-full items-center justify-center border-b border-gray-200 transition-colors",
+              "top-0 flex h-16 w-full items-center justify-center border-b border-gray-200 transition-colors",
               !open ? "bg-bg bg-opacity-80 backdrop-blur-sm" : "bg-gray-100",
-              open || onTop ? "border-opacity-0" : "border-opacity-100",
+              open || onTop || (!fixed && !visible)
+                ? "border-opacity-0"
+                : "border-opacity-100",
             )}
           >
             <div className="flex max-w-screen-2xl flex-1 items-center justify-between px-2">
