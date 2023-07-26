@@ -43,11 +43,6 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ["var(--font-roboto)", ...fallbackFonts],
-      condensed: [
-        "var(--font-roboto-condensed)",
-        "var(--font-roboto)",
-        ...fallbackFonts,
-      ],
       mono: 'SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace',
     },
     colors: {

@@ -1,6 +1,7 @@
 import "./themes.css"
 import "./main.css"
-import { Roboto, Roboto_Condensed } from "next/font/google"
+import "./code.css"
+import { Roboto } from "next/font/google"
 
 const roboto = Roboto({
   weight: ["300", "400", "900"],
@@ -12,24 +13,13 @@ const roboto = Roboto({
   variable: "--font-roboto",
 })
 
-const robotoCondensed = Roboto_Condensed({
-  weight: ["300"],
-  style: ["normal"],
-  subsets: ["latin"],
-  display: "swap", // force "swap" even in production mode
-  variable: "--font-roboto-condensed",
-})
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html
-      lang="en"
-      className={`${roboto.variable} ${robotoCondensed.variable}`}
-    >
+    <html lang="en" className={`${roboto.variable}`}>
       <body>{children}</body>
     </html>
   )

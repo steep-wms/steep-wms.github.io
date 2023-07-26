@@ -1,6 +1,7 @@
 import Balancer, { Provider } from "react-wrap-balancer"
 import HeroWorkflow from "./HeroWorkflow"
 import NavBar from "@/components/NavBar"
+import ExampleWorkflow from "@/components/home/ExampleWorkflow"
 
 const Home = () => {
   return (
@@ -29,6 +30,10 @@ const Home = () => {
           <HeroWorkflow />
         </div>
       </section>
+
+      <ExampleWorkflow />
+
+      <div className="mb-96"></div>
     </Provider>
   )
 }

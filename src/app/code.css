@@ -1,0 +1,122 @@
+:root {
+  --shiki-color-text: #f00;
+  --shiki-color-background: var(--bg-bg-code);
+  --shiki-token-constant: #f00;
+  --shiki-token-string: #f00;
+  --shiki-token-comment: #f00;
+  --shiki-token-keyword: var(--color-primary);
+  --shiki-token-parameter: #f00;
+  --shiki-token-function: #f00;
+  --shiki-token-string-expression: #f00;
+  --shiki-token-punctuation: #f00;
+  --shiki-token-link: #f00;
+
+  /* Only required if using ansiToHtml function */
+  --shiki-color-ansi-black: #000000;
+  --shiki-color-ansi-black-dim: #00000080;
+  --shiki-color-ansi-red: #bb0000;
+  --shiki-color-ansi-red-dim: #bb000080;
+  --shiki-color-ansi-green: #00bb00;
+  --shiki-color-ansi-green-dim: #00bb0080;
+  --shiki-color-ansi-yellow: #bbbb00;
+  --shiki-color-ansi-yellow-dim: #bbbb0080;
+  --shiki-color-ansi-blue: #0000bb;
+  --shiki-color-ansi-blue-dim: #0000bb80;
+  --shiki-color-ansi-magenta: #ff00ff;
+  --shiki-color-ansi-magenta-dim: #ff00ff80;
+  --shiki-color-ansi-cyan: #00bbbb;
+  --shiki-color-ansi-cyan-dim: #00bbbb80;
+  --shiki-color-ansi-white: #eeeeee;
+  --shiki-color-ansi-white-dim: #eeeeee80;
+  --shiki-color-ansi-bright-black: #555555;
+  --shiki-color-ansi-bright-black-dim: #55555580;
+  --shiki-color-ansi-bright-red: #ff5555;
+  --shiki-color-ansi-bright-red-dim: #ff555580;
+  --shiki-color-ansi-bright-green: #00ff00;
+  --shiki-color-ansi-bright-green-dim: #00ff0080;
+  --shiki-color-ansi-bright-yellow: #ffff55;
+  --shiki-color-ansi-bright-yellow-dim: #ffff5580;
+  --shiki-color-ansi-bright-blue: #5555ff;
+  --shiki-color-ansi-bright-blue-dim: #5555ff80;
+  --shiki-color-ansi-bright-magenta: #ff55ff;
+  --shiki-color-ansi-bright-magenta-dim: #ff55ff80;
+  --shiki-color-ansi-bright-cyan: #55ffff;
+  --shiki-color-ansi-bright-cyan-dim: #55ffff80;
+  --shiki-color-ansi-bright-white: #ffffff;
+  --shiki-color-ansi-bright-white-dim: #ffffff80;
+}
+
+pre {
+  @apply rounded;
+  @apply flex;
+  @apply bg-bg-code;
+}
+
+code {
+  @apply overflow-auto;
+  @apply text-alert;
+}
+
+.prose code {
+  @apply text-[0.95em];
+  overflow-wrap: break-word;
+}
+
+.prose [data-rehype-pretty-code-fragment] code {
+  @apply text-sm;
+}
+
+div[data-rehype-pretty-code-fragment] {
+  @apply bg-bg-code;
+  @apply rounded-md;
+  overflow: hidden;
+}
+
+[data-rehype-pretty-code-fragment] code {
+  @apply text-gray-300;
+  @apply bg-bg-code;
+  @apply py-1;
+  @apply px-2;
+  @apply rounded-md;
+  @apply leading-[1.5];
+}
+
+[data-rehype-pretty-code-fragment] pre code,
+pre code {
+  @apply p-0;
+  @apply my-3;
+  margin-left: 0.9rem;
+  margin-right: 0.9rem;
+  @apply block;
+  @apply flex-1;
+}
+
+div[data-rehype-pretty-code-title] {
+  @apply bg-bg-code;
+  @apply mt-3;
+  margin-left: 0.9rem;
+  margin-right: 0.9rem;
+  @apply text-gray-500;
+  @apply dark:text-gray-400;
+  overflow-x: auto;
+  @apply text-xs;
+}
+
+code[data-line-numbers] {
+  counter-reset: line;
+}
+
+code[data-line-numbers] > .line::before {
+  counter-increment: line;
+  content: counter(line);
+
+  display: inline-block;
+  width: 1.2rem;
+  margin-right: 0.9rem;
+  text-align: right;
+  @apply text-code;
+}
+
+[data-rehype-pretty-code-fragment] .highlighted {
+  @apply bg-gray-700;
+}
