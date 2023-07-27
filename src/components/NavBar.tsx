@@ -111,25 +111,25 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
   ]
 
   return (
-    <Disclosure
-      as="nav"
-      className={clsx("left-0 right-0 top-0 z-50 flex flex-col", {
-        fixed,
-        sticky: !fixed && !belowThreshold,
-        "-translate-y-16": !belowThreshold && !fixed && !visible,
-        "translate-y-0": belowThreshold || (!fixed && visible),
-        "transition-transform": needsTransition,
-        "duration-200": needsTransition,
-      })}
-    >
+    <Disclosure>
       {({ open, close }) => (
-        <>
+        <nav
+          className={clsx("left-0 right-0 top-0 z-50 flex flex-col", {
+            fixed,
+            sticky: !fixed && !belowThreshold,
+            relative: !fixed,
+            "-translate-y-16": !belowThreshold && !fixed && !visible,
+            "translate-y-0": open || belowThreshold || (!fixed && visible),
+            "transition-transform": needsTransition,
+            "duration-200": needsTransition,
+          })}
+        >
           <div
             className={clsx(
-              "top-0 flex h-16 w-full items-center justify-center border-b border-gray-200 transition-colors",
+              "top-0 flex h-16 w-full items-center justify-center border-b border-gray-200 transition-all",
               !open ? "bg-bg bg-opacity-80 backdrop-blur-sm" : "bg-gray-100",
               open || onTop || (!fixed && !visible)
-                ? "border-opacity-0"
+                ? "border-opacity-0 backdrop-blur-none"
                 : "border-opacity-100",
             )}
           >
@@ -178,7 +178,7 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
             leaveTo="opacity-0"
           >
             <Disclosure.Panel
-              className="mt-14 h-[calc(100vh-3rem)] overflow-scroll bg-gray-100 md:hidden"
+              className="absolute h-[calc(100vh-3rem)] w-screen overflow-scroll bg-gray-100 md:hidden"
               ref={panelRef}
             >
               <div className="flex flex-col divide-y divide-gray-500 px-2">
@@ -200,7 +200,7 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
 
           <ScrollLock locked={open} target={panelRef.current} />
           <ResizeObserver onResize={() => close()} />
-        </>
+        </nav>
       )}
     </Disclosure>
   )
