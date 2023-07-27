@@ -1,0 +1,30 @@
+{
+  "name": "Steep color theme",
+  "type": "dark",
+  "tokenColors": [
+    {
+      "scope": "entity.name",
+      "settings": {
+        "foreground": "#e16eaa"
+      }
+    },
+    {
+      "scope": "string",
+      "settings": {
+        "foreground": "#90cdf4"
+      }
+    },
+    {
+      "scope": "punctuation",
+      "settings": {
+        "foreground": "#6c758d"
+      }
+    },
+    {
+      "scope": "constant",
+      "settings": {
+        "foreground": "#e9ecef"
+      }
+    }
+  ]
+}
