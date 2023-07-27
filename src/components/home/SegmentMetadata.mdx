@@ -1,0 +1,28 @@
+```yaml
+- id: segment-geospatial
+  name: Segment Geospatial
+  description: >-
+    Segment geospatial data with the Segment Anything
+    Model (SAM)
+  path: segment.py
+  runtime: other
+
+  requiredCapabilities:
+    - python
+    - gpu
+
+  parameters:
+    - id: input_file
+      name: Input image
+      description: The input image to segment
+      type: input
+      cardinality: 1..1
+      dataType: string
+
+    - id: output_file
+      name: Output image
+      description: Output image with masks
+      type: output
+      cardinality: 1..1
+      dataType: string
+```

@@ -2,6 +2,7 @@ import Balancer, { Provider } from "react-wrap-balancer"
 import HeroWorkflow from "./HeroWorkflow"
 import NavBar from "@/components/NavBar"
 import ExampleWorkflow from "@/components/home/ExampleWorkflow"
+import Microservices from "@/components/home/Microservices"
 
 const Home = () => {
   return (
@@ -26,14 +27,22 @@ const Home = () => {
           </Balancer>
         </p>
 
-        <div className="overflow-x mb-4 mt-14 w-[76rem] px-24">
-          <HeroWorkflow />
+        <div className="relative mb-4 mt-14 h-60 w-screen overflow-hidden">
+          <div className="absolute left-1/2 top-0 w-[76rem] -translate-x-1/2 px-24">
+            <HeroWorkflow />
+          </div>
         </div>
       </section>
 
-      <ExampleWorkflow />
+      <section id="example-workflow">
+        <ExampleWorkflow />
+      </section>
 
-      <div className="mb-96"></div>
+      <section id="microservices" className="mt-32">
+        <Microservices />
+      </section>
+
+      <div className="mt-96"></div>
     </Provider>
   )
 }

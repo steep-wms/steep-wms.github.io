@@ -6,7 +6,7 @@ pre {
 
 code {
   @apply overflow-auto;
-  @apply text-alert;
+  @apply text-inline-code;
 }
 
 .prose code {

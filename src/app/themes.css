@@ -24,6 +24,7 @@
 
   --color-text: 40 40 35;
   --color-code: var(--color-gray-600);
+  --color-inline-code: 222 82 154;
 
   --color-green-500: 104 211 145;
 }

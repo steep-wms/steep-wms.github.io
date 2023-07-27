@@ -68,6 +68,7 @@ module.exports = {
       "gray-800": withOpacity("color-gray-800"),
       "gray-900": withOpacity("color-gray-900"),
       "green-500": withOpacity("color-green-500"),
+      "inline-code": withOpacity("color-inline-code"),
     },
     screens: {
       xs: "480px",
@@ -96,7 +97,7 @@ module.exports = {
           css: {
             "--tw-prose-body": theme("colors.text"),
             "--tw-prose-headings": theme("colors.gray-800"),
-            "--tw-prose-lead": theme("colors.text"),
+            "--tw-prose-lead": theme("colors.gray-600"),
             "--tw-prose-links": theme("colors.primary"),
             "--tw-prose-bold": theme("colors.text"),
             "--tw-prose-counters": theme("colors.text"),

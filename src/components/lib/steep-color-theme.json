@@ -25,6 +25,15 @@
       "settings": {
         "foreground": "#e9ecef"
       }
+    },
+    {
+      "scope": [
+        "keyword.control.flow.block-scalar.folded.yaml",
+        "storage.modifier.chomping-indicator.yaml"
+      ],
+      "settings": {
+        "foreground": "#adb5bd"
+      }
     }
   ]
 }
