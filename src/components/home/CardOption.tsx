@@ -5,6 +5,7 @@ interface CardOptionProps {
   title?: string
   children?: React.ReactNode
   active: boolean
+  placement: "left" | "right"
   onActivate?: () => void
 }
 
@@ -12,6 +13,7 @@ const CardOption = ({
   title,
   children,
   active,
+  placement,
   onActivate,
 }: CardOptionProps) => {
   return (
@@ -29,7 +31,15 @@ const CardOption = ({
         {children}
       </Card>
       {active ? (
-        <hr className="absolute -right-8 top-1/2 m-0 hidden w-8 border-gray-500 lg:block" />
+        <hr
+          className={clsx(
+            "absolute top-1/2 m-0 hidden w-8 border-gray-500 lg:block",
+            {
+              "-right-8": placement === "left",
+              "-left-8": placement === "right",
+            },
+          )}
+        />
       ) : undefined}
     </div>
   )

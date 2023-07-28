@@ -1,0 +1,28 @@
+{/* Must have the same number of lines as Kubernetes.mdx !!! */}
+```yaml
+- id: ml-gpu
+  flavor: p2.xlarge
+  imageName: ami-050096f31d010b533  # Ubuntu 22.04
+  availabilityZone: eu-central-1
+  blockDeviceSizeGb: 50
+  blockDeviceVolumeType: gp3  # SSD
+  maxVMs: 10
+
+  creation:
+    retries:
+      maxAttempts: 5
+      delay: 10s
+      exponentialBackoff: 2
+
+  provisioningScripts:
+    - conf/setups/cuda.sh
+    - conf/setups/python.sh
+    - conf/setups/pip-samgeo.sh
+    - conf/setups/docker.sh
+    - conf/setups/steep.sh
+
+  providedCapabilities:
+    - docker
+    - python
+    - gpu
+```

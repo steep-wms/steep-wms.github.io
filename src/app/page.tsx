@@ -3,6 +3,7 @@ import HeroWorkflow from "./HeroWorkflow"
 import NavBar from "@/components/NavBar"
 import ExampleWorkflow from "@/components/home/ExampleWorkflow"
 import Microservices from "@/components/home/Microservices"
+import CloudSupport from "@/components/home/CloudSupport"
 
 const Home = () => {
   return (
@@ -40,6 +41,10 @@ const Home = () => {
 
       <section id="microservices" className="mt-32">
         <Microservices />
+      </section>
+
+      <section id="cloud-support" className="mt-24">
+        <CloudSupport />
       </section>
 
       <div className="mt-96"></div>

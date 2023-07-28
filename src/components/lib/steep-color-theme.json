@@ -34,6 +34,13 @@
       "settings": {
         "foreground": "#adb5bd"
       }
+    },
+    {
+      "scope": ["comment", "punctuation.definition.comment"],
+      "settings": {
+        "foreground": "#68d391",
+        "fontStyle": "italic"
+      }
     }
   ]
 }

@@ -12,7 +12,7 @@ const Microservices = () => {
   const [activeOption, setActiveOption] = useState<ActiveOption>("metadata")
 
   return (
-    <div className="bg-gradient-to-b from-bg/0 via-gray-200/40 to-bg/0">
+    <div className="bg-gradient-to-b from-gray-200/0 via-gray-200/40 to-gray-200/0">
       <Container id="features" type="xl">
         <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-2">
           <div className="text-md prose text-gray-800">
@@ -24,6 +24,7 @@ const Microservices = () => {
             <div className="mt-9 flex flex-col gap-4">
               <CardOption
                 title="Service metadata"
+                placement="left"
                 active={activeOption === "metadata"}
                 onActivate={() => setActiveOption("metadata")}
               >
@@ -36,6 +37,7 @@ const Microservices = () => {
               </CardOption>
               <CardOption
                 title="Capability-based scheduling"
+                placement="left"
                 active={activeOption === "scheduling"}
                 onActivate={() => setActiveOption("scheduling")}
               >
