@@ -18,8 +18,8 @@ const Microservices = () => {
           <div className="text-md prose text-gray-800">
             <h3 className="mb-0 font-normal">Microservices</h3>
             <p className="lead">
-              Steep is able to orchestrate microservices with almost arbitrary
-              interfaces.
+              Steep is able to orchestrate microservices with arbitrary
+              interfaces and written in any programming language.
             </p>
             <div className="mt-9 flex flex-col gap-4">
               <CardOption
@@ -40,10 +40,10 @@ const Microservices = () => {
                 onActivate={() => setActiveOption("scheduling")}
               >
                 <p>
-                  A services may require certain capabilities. During
-                  scheduling, Steep matches these capabilities with those of
-                  available agents in the distributed environment and assigns
-                  the service accordingly.
+                  Services may require certain capabilities. During scheduling,
+                  Steep matches these capabilities with those of available
+                  agents in the distributed environment and assigns the services
+                  accordingly.
                 </p>
               </CardOption>
             </div>
