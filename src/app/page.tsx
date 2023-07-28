@@ -4,6 +4,7 @@ import NavBar from "@/components/NavBar"
 import ExampleWorkflow from "@/components/home/ExampleWorkflow"
 import Microservices from "@/components/home/Microservices"
 import CloudSupport from "@/components/home/CloudSupport"
+import MoreFeatures from "@/components/home/MoreFeatures"
 
 const Home = () => {
   return (
@@ -45,6 +46,10 @@ const Home = () => {
 
       <section id="cloud-support" className="mt-24">
         <CloudSupport />
+      </section>
+
+      <section id="more-features" className="mt-24">
+        <MoreFeatures />
       </section>
 
       <div className="mt-96"></div>
