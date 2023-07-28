@@ -21,7 +21,7 @@ const ExampleWorkflow = () => {
 
   return (
     <div className="relative">
-      <Container id="features" type="xl">
+      <Container type="xl">
         <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-2">
           <div
             className="text-sm lg:mb-8 lg:mt-16 [&_[data-line]]:opacity-0"

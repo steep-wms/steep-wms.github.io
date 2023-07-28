@@ -3,13 +3,13 @@ import Container from "../Container"
 
 const MoreFeatures = () => {
   return (
-    <Container id="features" type="xl" className="prose">
-      <h3 className="text-center font-normal">There is more</h3>
+    <Container type="xl" className="prose">
+      <h3 className="text-center font-normal">Wait, there is more!</h3>
       <p className="lead text-center">
         See what other features Steep has to offer.
       </p>
       <div className="prose-sm mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <Card>
+        <Card className="bg-bg">
           <h4 className="mt-0 font-normal">Automatic failover</h4>
           <p>
             Workflows or individual services can automatically be retried in
@@ -17,7 +17,7 @@ const MoreFeatures = () => {
             information loss.
           </p>
         </Card>
-        <Card>
+        <Card className="bg-bg">
           <h4 className="mt-0 font-normal">Cyclic workflows</h4>
           <p>
             Submit cyclic workflow graphs without a priori runtime knowledge.
@@ -25,7 +25,7 @@ const MoreFeatures = () => {
             process chains.
           </p>
         </Card>
-        <Card>
+        <Card className="bg-bg">
           <h4 className="mt-0 font-normal">Languages and runtimes</h4>
           <p>
             Custom runtimes allow your team to develop microservices in various
@@ -33,7 +33,7 @@ const MoreFeatures = () => {
             to focus on the task at hand.
           </p>
         </Card>
-        <Card>
+        <Card className="bg-bg">
           <h4 className="mt-0 font-normal">Interfaces and extensibility</h4>
           <p>
             Use the REST-like HTTP interface in your applications to submit
@@ -41,7 +41,7 @@ const MoreFeatures = () => {
             plugins to customize Steep.
           </p>
         </Card>
-        <Card>
+        <Card className="bg-bg">
           <h4 className="mt-0 font-normal">Production-ready</h4>
           <p>
             Steep is very reliable and has been used in production for many
@@ -49,7 +49,7 @@ const MoreFeatures = () => {
             a very high test coverage.
           </p>
         </Card>
-        <Card>
+        <Card className="bg-bg">
           <h4 className="mt-0 font-normal">Open-Source</h4>
           <p>
             Steep is free and open-source. It is released under the{" "}

@@ -5,6 +5,8 @@ import ExampleWorkflow from "@/components/home/ExampleWorkflow"
 import Microservices from "@/components/home/Microservices"
 import CloudSupport from "@/components/home/CloudSupport"
 import MoreFeatures from "@/components/home/MoreFeatures"
+import WebUI from "@/components/home/WebUI"
+import Showcases from "@/components/home/Showcases"
 
 const Home = () => {
   return (
@@ -48,8 +50,19 @@ const Home = () => {
         <CloudSupport />
       </section>
 
-      <section id="more-features" className="mt-24">
+      <section id="web-ui" className="mt-24">
+        <WebUI />
+      </section>
+
+      <section
+        id="more-features"
+        className="mt-28 bg-gradient-to-b from-gray-100/0 to-gray-100 pb-32"
+      >
         <MoreFeatures />
+      </section>
+
+      <section id="web-ui" className="mt-24">
+        <Showcases />
       </section>
 
       <div className="mt-96"></div>
