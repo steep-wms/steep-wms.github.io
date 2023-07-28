@@ -21,18 +21,6 @@ const ExampleWorkflow = () => {
 
   return (
     <div className="relative">
-      <div className="absolute left-0 top-0 -z-50 h-full w-screen overflow-hidden">
-        <div
-          className="absolute left-1/2 top-0 h-full w-[6000px] -translate-x-1/2 overflow-hidden opacity-40"
-          style={{
-            backgroundImage: "url(/images/home/bg2.jpg)",
-            backgroundSize: "3000px 100%",
-            backgroundPosition: "50%",
-            backgroundRepeat: "no-repeat",
-            filter: "blur(50px)",
-          }}
-        ></div>
-      </div>
       <Container id="features" type="xl">
         <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-2">
           <div
