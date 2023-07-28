@@ -4,7 +4,7 @@ import Container from "../Container"
 const MoreFeatures = () => {
   return (
     <Container type="xl" className="prose">
-      <h3 className="text-center font-normal">Wait, there is more!</h3>
+      <h3 className="text-center font-normal">But wait, there’s more!</h3>
       <p className="lead text-center">
         See what other features Steep has to offer.
       </p>
