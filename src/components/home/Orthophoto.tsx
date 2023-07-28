@@ -15,7 +15,7 @@ const Orthophoto = ({ t0 }: OrthophotoProps) => {
         <svg
           viewBox="0 0 130 130"
           key={`${x}_${y}_mask`}
-          className="shadow-lg shadow-gray-700/30"
+          className="h-full w-full shadow-lg shadow-gray-700/30"
         >
           <foreignObject width={650} height={650} y={-y * 130} x={-x * 130}>
             <img alt="Tile" src="/images/home/tiles.jpg" />
@@ -39,7 +39,7 @@ const Orthophoto = ({ t0 }: OrthophotoProps) => {
           }}
           transition={{ delay: t0 + 1 + delay }}
         >
-          <svg viewBox="0 0 130 130">
+          <svg viewBox="0 0 130 130" className="h-full w-full">
             <foreignObject width={650} height={650} y={-y * 130} x={-x * 130}>
               <picture>
                 <source srcSet="/images/home/masks.webp" type="image/webp" />
