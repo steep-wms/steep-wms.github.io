@@ -4,11 +4,11 @@ import Container from "../Container"
 const MoreFeatures = () => {
   return (
     <Container type="xl" className="prose">
-      <h3 className="text-center font-normal">But wait, there’s more!</h3>
+      <h3 className="mb-0 text-center font-normal">But wait, there’s more!</h3>
       <p className="lead text-center">
         See what other features Steep has to offer.
       </p>
-      <div className="prose-sm mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="prose-sm mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <Card className="bg-bg">
           <h4 className="mt-0 font-normal">Automatic failover</h4>
           <p>

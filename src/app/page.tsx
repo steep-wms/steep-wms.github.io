@@ -56,7 +56,7 @@ const Home = () => {
 
       <section
         id="more-features"
-        className="mt-28 bg-gradient-to-b from-gray-100/0 to-gray-100 pb-32"
+        className="mt-32 bg-gradient-to-b from-gray-100/0 to-gray-100 pb-32"
       >
         <MoreFeatures />
       </section>
