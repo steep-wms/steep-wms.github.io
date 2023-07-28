@@ -91,6 +91,14 @@ module.exports = {
     extend: {
       animation: {
         "delay-100": "fadeIn 1ms linear 100ms backwards",
+        "spin-4s": "spin 4s linear infinite",
+      },
+      keyframes: {
+        spin: {
+          "100%": {
+            transform: "rotate(360deg)",
+          },
+        },
       },
       typography: ({ theme }) => ({
         DEFAULT: {
