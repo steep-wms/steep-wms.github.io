@@ -31,7 +31,7 @@ const WebUI = () => {
             <rect x={2050} y={340} width={130} height={110} fill="#fff" />
             <g transform="translate(2065 340)">
               <g className="origin-center animate-spin-4s [transform-box:fill-box]">
-                <RotateCw size={105} stroke="#6e757c"></RotateCw>
+                <RotateCw size={110} stroke="#6e757c"></RotateCw>
               </g>
             </g>
           </svg>
