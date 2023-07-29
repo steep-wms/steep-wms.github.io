@@ -1,6 +1,7 @@
 import Container from "../Container"
 import Window from "../Window"
 import { RotateCw } from "lucide-react"
+import { Children, ReactElement } from "react"
 
 const WebUI = () => {
   return (
@@ -28,11 +29,11 @@ const WebUI = () => {
               </picture>
             </foreignObject>
             <rect x={2050} y={340} width={130} height={110} fill="#fff" />
-            <foreignObject width={115} height={115} x={2065} y={340}>
-              <div className="flex h-full w-full animate-spin-4s items-center justify-center">
-                <RotateCw size={105} stroke="#6e757c" />
-              </div>
-            </foreignObject>
+            <g transform="translate(2065 340)">
+              <g className="origin-center animate-spin-4s [transform-box:fill-box]">
+                <RotateCw size={105} stroke="#6e757c"></RotateCw>
+              </g>
+            </g>
           </svg>
         </Window>
         <div className="text-md prose text-gray-800 lg:col-span-3 lg:mt-16">
