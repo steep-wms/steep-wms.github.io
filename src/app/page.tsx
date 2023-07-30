@@ -7,6 +7,7 @@ import CloudSupport from "@/components/home/CloudSupport"
 import MoreFeatures from "@/components/home/MoreFeatures"
 import WebUI from "@/components/home/WebUI"
 import Showcases from "@/components/home/Showcases"
+import Footer from "@/components/Footer"
 
 const Home = () => {
   return (
@@ -65,7 +66,7 @@ const Home = () => {
         <Showcases />
       </section>
 
-      <div className="mt-96"></div>
+      <Footer />
     </Provider>
   )
 }

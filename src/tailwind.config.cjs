@@ -138,19 +138,19 @@ module.exports = {
             lineHeight: null,
             maxWidth: null,
             h1: {
-              fontWeight: null,
+              fontWeight: 400,
               fontSize: "2.5em",
             },
             h2: {
-              fontWeight: null,
+              fontWeight: 400,
               fontSize: "2em",
             },
             h3: {
-              fontWeight: null,
+              fontWeight: 400,
               fontSize: "1.8em",
             },
             h4: {
-              fontWeight: null,
+              fontWeight: 400,
               fontSize: "1.4em",
             },
             "h1 a,h2 a,h3 a,h4 a,h5 a,h1 a:hover,h2 a:hover,h3 a:hover,h4 a:hover,h5 a:hover":

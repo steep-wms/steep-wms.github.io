@@ -1,7 +1,6 @@
 import Container from "../Container"
 import Window from "../Window"
 import { RotateCw } from "lucide-react"
-import { Children, ReactElement } from "react"
 
 const WebUI = () => {
   return (
