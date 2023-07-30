@@ -49,7 +49,7 @@
     "hamburger-react": "^2.5.0",
     "lodash": "^4.17.21",
     "lucide-react": "^0.263.1",
-    "next": "^13.4.11",
+    "next": "^13.4.12",
     "postcss": "^8.4.26",
     "prettier-plugin-tailwindcss": "^0.4.1",
     "pure-rand": "^6.0.2",
