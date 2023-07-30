@@ -16,6 +16,8 @@ const ExampleWorkflow = () => {
   useEffect(() => {
     if (codeInView) {
       animate("[data-line]", { opacity: 1 }, { delay: stagger(0.025) })
+    } else {
+      animate("[data-line]", { opacity: 0 }, { duration: 0 })
     }
   }, [animate, codeInView])
 

@@ -1,6 +1,8 @@
 import { motion } from "framer-motion"
 import prand from "pure-rand"
 
+const reset = { duration: 0 }
+
 interface OrthophotoProps {
   t0: number
 }
@@ -34,10 +36,9 @@ const Orthophoto = ({ t0 }: OrthophotoProps) => {
           className="relative flex"
           key={`${x}_${y}_mask`}
           variants={{
-            initial: { opacity: 0 },
-            inView: { opacity: 1 },
+            initial: { opacity: 0, transition: reset },
+            inView: { opacity: 1, transition: { delay: t0 + 1 + delay } },
           }}
-          transition={{ delay: t0 + 1 + delay }}
         >
           <svg viewBox="0 0 130 130" className="h-full w-full">
             <foreignObject width={650} height={650} y={-y * 130} x={-x * 130}>
@@ -56,24 +57,25 @@ const Orthophoto = ({ t0 }: OrthophotoProps) => {
                   scale: 1,
                   translateX: "0%",
                   translateY: "0%",
+                  transition: reset,
                 },
                 inView: {
                   opacity: [0, 0.5, 0, 0.5, 0, 0.5, 0.5, 0],
                   scale: 5,
                   translateX: "560%",
                   translateY: "110%",
+                  transition: {
+                    opacity: {
+                      delay: t0 + 2.3,
+                      times: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.9, 1],
+                      duration: 1.5,
+                      ease: "linear",
+                    },
+                    scale: { delay: t0 + 3, duration: 1, ease: "easeOut" },
+                    translateX: { delay: t0 + 3, duration: 1, ease: "easeOut" },
+                    translateY: { delay: t0 + 3, duration: 1, ease: "easeOut" },
+                  },
                 },
-              }}
-              transition={{
-                opacity: {
-                  delay: t0 + 2.3,
-                  times: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.9, 1],
-                  duration: 1.5,
-                  ease: "linear",
-                },
-                scale: { delay: t0 + 3, duration: 1, ease: "easeOut" },
-                translateX: { delay: t0 + 3, duration: 1, ease: "easeOut" },
-                translateY: { delay: t0 + 3, duration: 1, ease: "easeOut" },
               }}
             ></motion.div>
           ) : undefined}
@@ -88,19 +90,18 @@ const Orthophoto = ({ t0 }: OrthophotoProps) => {
       initial="initial"
       whileInView="inView"
       animate="initial"
-      viewport={{ amount: 0.6, once: true }}
+      viewport={{ amount: 0.6, once: false }}
     >
       <motion.div
         className="relative"
         variants={{
-          initial: { padding: "1rem" },
-          inView: { padding: 0 },
+          initial: { padding: "1rem", transition: reset },
+          inView: { padding: 0, transition: { delay: t0 + 0.5 } },
         }}
-        transition={{ delay: t0 + 0.5 }}
       >
         <motion.div
           variants={{
-            initial: { opacity: 0 },
+            initial: { opacity: 0, transition: reset },
             inView: { opacity: 1 },
           }}
           transition={{ delay: t0 }}
@@ -108,10 +109,9 @@ const Orthophoto = ({ t0 }: OrthophotoProps) => {
           <motion.div
             className="grid grid-cols-5"
             variants={{
-              initial: { gap: 0 },
-              inView: { gap: "0.25rem" },
+              initial: { gap: 0, transition: reset },
+              inView: { gap: "0.25rem", transition: { delay: t0 + 0.5 } },
             }}
-            transition={{ delay: t0 + 0.5 }}
           >
             {tiles}
           </motion.div>
@@ -126,20 +126,24 @@ const Orthophoto = ({ t0 }: OrthophotoProps) => {
           alt="Large image tile"
           className="shadow-lg shadow-gray-800/30"
           variants={{
-            initial: { opacity: 0 },
-            inView: { opacity: 1 },
+            initial: { opacity: 0, transition: reset },
+            inView: {
+              opacity: 1,
+              transition: { delay: t0 + 3.3, duration: 1, ease: "easeOut" },
+            },
           }}
-          transition={{ delay: t0 + 3.3, duration: 1, ease: "easeOut" }}
         />
         <motion.img
           src="/images/home/2_1.jpg"
           alt="Large image tile mask"
           className="absolute left-0 top-0 opacity-50"
           variants={{
-            initial: { opacity: 0 },
-            inView: { opacity: 0.5 },
+            initial: { opacity: 0, transition: reset },
+            inView: {
+              opacity: 0.5,
+              transition: { delay: t0 + 4.1, duration: 1, ease: "easeOut" },
+            },
           }}
-          transition={{ delay: t0 + 4.1, duration: 1, ease: "easeOut" }}
         />
       </div>
     </motion.div>
