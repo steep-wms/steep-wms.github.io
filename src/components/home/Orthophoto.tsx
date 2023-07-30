@@ -1,5 +1,7 @@
 import { motion } from "framer-motion"
 import prand from "pure-rand"
+import { useRef } from "react"
+import useInViewEx from "../lib/useInViewEx"
 
 const reset = { duration: 0 }
 
@@ -9,6 +11,8 @@ interface OrthophotoProps {
 
 const Orthophoto = ({ t0 }: OrthophotoProps) => {
   const rng = prand.xoroshiro128plus(1302)
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInViewEx(ref, { amount: 0.6 }, { amount: 0 })
 
   let tiles = []
   for (let y = 0; y < 5; ++y) {
@@ -88,9 +92,8 @@ const Orthophoto = ({ t0 }: OrthophotoProps) => {
     <motion.div
       className="grid grid-cols-2 gap-6"
       initial="initial"
-      whileInView="inView"
-      animate="initial"
-      viewport={{ amount: 0.6, once: false }}
+      animate={inView ? "inView" : "initial"}
+      ref={ref}
     >
       <motion.div
         className="relative"

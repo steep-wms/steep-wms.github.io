@@ -6,12 +6,13 @@ import SegmentWorkflow from "./SegmentWorkflow.mdx"
 import Orthophoto from "./Orthophoto"
 import { Button } from "@/components/Button"
 import { ChevronRight } from "lucide-react"
-import { useAnimate, useInView, stagger } from "framer-motion"
+import { useAnimate, stagger } from "framer-motion"
 import Container from "../Container"
+import useInViewEx from "../lib/useInViewEx"
 
 const ExampleWorkflow = () => {
   const [scope, animate] = useAnimate()
-  const codeInView = useInView(scope, { amount: 0.5 })
+  const codeInView = useInViewEx(scope, { amount: 0.5 }, { amount: 0 })
 
   useEffect(() => {
     if (codeInView) {
