@@ -1,20 +1,34 @@
-import codeBreak from "./plugins/remark-codebreak.js"
-import codeExample from "./plugins/remark-codeexample.js"
 import ESLintPlugin from "eslint-webpack-plugin"
-import remarkGfm from "remark-gfm"
-import highlight from "rehype-highlight"
-import slug from "rehype-slug"
-import smartypants from "@silvenon/remark-smartypants"
-import styledJsx from "styled-jsx/webpack.js"
 import svgToMiniDataURI from "mini-svg-data-uri"
-import withBundleAnalyzer from "@next/bundle-analyzer"
+import nextMDX from "@next/mdx"
+import rehypePrettyCode from "rehype-pretty-code"
+import steepColorTheme from "./components/lib/steep-color-theme.json" assert { type: "json" }
 
-import handlebars from "highlight.js/lib/languages/handlebars"
-import http from "highlight.js/lib/languages/http"
+const basePath = "/preview"
+
+const withMDX = nextMDX({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [
+      [
+        rehypePrettyCode,
+        {
+          theme: steepColorTheme,
+          keepBackground: false,
+        },
+      ],
+    ],
+  },
+})
 
 const config = {
+  env: {
+    basePath,
+  },
+
   // also render markdown pages
-  pageExtensions: ["js", "jsx", "md", "mdx"],
+  pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
 
   // create a folder for each page
   trailingSlash: true,
@@ -22,46 +36,36 @@ const config = {
   // export static website
   output: "export",
 
-  // opt-in to using SWC for minifying JavaScript
-  swcMinify: true,
+  // configure base path
+  basePath,
+  assetPrefix: basePath === "" ? undefined : basePath,
 
   eslint: {
-    dirs: ["components", "content", "pages", "plugins"]
+    dirs: ["app", "components", "content", "pages", "plugins"],
   },
 
   images: {
     // disable built-in image support
-    disableStaticImages: true
+    disableStaticImages: true,
   },
 
-  // list pages to export
-  exportPathMap() {
-    return {
-      "/": { page: "/" },
-      "/imprint": { page: "/imprint" },
-      "/privacy": { page: "/privacy" }
-    }
+  modularizeImports: {
+    lodash: {
+      transform: "lodash/{{member}}",
+      preventFullImport: true,
+    },
+    "simple-icons": {
+      transform: "simple-icons/icons",
+      preventFullImport: true,
+      skipDefaultConversion: true,
+    },
   },
 
   webpack: (config, { dev, defaultLoaders }) => {
     config.module.rules.push({
-      test: /\.scss$/,
-      use: [
-        defaultLoaders.babel,
-        {
-          loader: styledJsx.loader,
-          options: {
-            type: (fileName, options) => options.query.type || "scoped"
-          }
-        },
-        "sass-loader"
-      ]
-    })
-
-    config.module.rules.push({
       test: /\.(gif|png|jpe?g)$/i,
       type: "asset",
-      use: "image-webpack-loader"
+      use: "image-webpack-loader",
     })
 
     config.module.rules.push({
@@ -73,54 +77,26 @@ const config = {
         dataUrl: content => {
           content = content.toString()
           return svgToMiniDataURI(content)
-        }
-      }
+        },
+      },
     })
 
     config.module.rules.push({
       test: /\.svg$/i,
       resourceQuery: /source/,
       type: "asset/source",
-      use: "image-webpack-loader"
-    })
-
-    config.module.rules.push({
-      test: /\.mdx?$/,
-      use: [
-        defaultLoaders.babel,
-        {
-          loader: "@mdx-js/loader",
-          options: {
-            jsx: true, // Forward JSX elements as is. We need this for styled-jsx.
-            remarkPlugins: [remarkGfm, smartypants, codeExample, codeBreak],
-            rehypePlugins: [
-              [
-                highlight,
-                {
-                  languages: {
-                    handlebars,
-                    http
-                  }
-                }
-              ],
-              slug
-            ]
-          }
-        }
-      ]
+      use: "image-webpack-loader",
     })
 
     if (dev) {
       config.plugins.push(
         new ESLintPlugin({
-          extensions: ["js", "jsx"]
-        })
+          extensions: ["js", "jsx"],
+        }),
       )
     }
     return config
-  }
+  },
 }
 
-export default withBundleAnalyzer({
-  enabled: process.env.ANALYZE === "true"
-})(config)
+export default withMDX(config)
