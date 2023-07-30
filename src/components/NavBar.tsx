@@ -8,6 +8,11 @@ import { throttle } from "lodash"
 import clsx from "clsx"
 import { Disclosure, Transition } from "@headlessui/react"
 import ScrollLock from "./ScrollLock"
+import SimpleIcon from "./SimpleIcon"
+import { siGithub } from "simple-icons"
+import DarkModeToggle from "./DarkModeToggle"
+import { Tooltip } from "./Tooltip"
+import { useTheme } from "./hooks/useTheme"
 
 interface ResizeObserverProps {
   onResize: () => void
@@ -45,6 +50,7 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
   const [visible, setVisible] = useState(false)
   const [onTop, setOnTop] = useState(true)
   const panelRef = useRef<HTMLDivElement>(null)
+  const { theme, setTheme } = useTheme()
 
   useEffect(() => {
     function onScroll() {
@@ -134,7 +140,7 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
             )}
           >
             <div className="flex max-w-screen-2xl flex-1 items-center justify-between px-2">
-              <div className="flex flex-1 items-center justify-between md:hidden">
+              <div className="flex flex-1 items-center justify-between lg:hidden">
                 <div className="mb-1">
                   <Logo />
                 </div>
@@ -145,7 +151,7 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
                   <Hamburger toggled={open} />
                 </Disclosure.Button>
               </div>
-              <div className="hidden flex-1 items-center justify-between gap-8 md:flex">
+              <div className="hidden flex-1 items-center justify-between gap-8 lg:flex">
                 <div className="mb-1">
                   <Logo />
                 </div>
@@ -161,8 +167,27 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
                   ))}
                 </div>
                 <div className="flex-1"></div>
-                <div>
+                <div className="flex items-center gap-4">
                   <QuickSearch />
+                  <Tooltip
+                    content={theme === "dark" ? "Light mode" : "Dark mode"}
+                  >
+                    <div className="flex">
+                      <DarkModeToggle />
+                    </div>
+                  </Tooltip>
+                  <Tooltip content="GitHub">
+                    <Link
+                      href="https://github.com/steep-wms/steep"
+                      className="group"
+                    >
+                      <SimpleIcon
+                        icon={siGithub}
+                        className="fill-gray-600 transition-colors group-hover:fill-gray-800"
+                        title=""
+                      />
+                    </Link>
+                  </Tooltip>
                 </div>
               </div>
             </div>
@@ -178,7 +203,7 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
             leaveTo="opacity-0"
           >
             <Disclosure.Panel
-              className="absolute h-[calc(100vh-3rem)] w-screen overflow-scroll bg-gray-100 md:hidden"
+              className="absolute h-[calc(100vh-3rem)] w-screen overflow-scroll bg-gray-100 lg:hidden"
               ref={panelRef}
             >
               <div className="flex flex-col divide-y divide-gray-500 px-2">
@@ -194,6 +219,18 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
                     {l.label}
                   </Link>
                 ))}
+              </div>
+              <div className="mt-8 flex items-center justify-end gap-4 px-4">
+                <DarkModeToggle />
+                <Link
+                  href="https://github.com/steep-wms/steep"
+                  className="group"
+                >
+                  <SimpleIcon
+                    icon={siGithub}
+                    className="fill-gray-600 transition-colors group-hover:fill-gray-800"
+                  />
+                </Link>
               </div>
             </Disclosure.Panel>
           </Transition>

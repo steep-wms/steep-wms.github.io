@@ -1,8 +1,11 @@
+"use client"
+
 import "./themes.css"
 import "./main.css"
 import "./code.css"
 import { Roboto } from "next/font/google"
 import localFont from "next/font/local"
+import * as Tooltip from "@radix-ui/react-tooltip"
 
 const roboto = Roboto({
   weight: ["300", "400", "900"],
@@ -28,7 +31,24 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${roboto.variable} ${dejaVuFont.variable}`}>
-      <body>{children}</body>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                if (localStorage.theme === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+                  document.documentElement.classList.add("dark")
+                } else {
+                  document.documentElement.classList.remove("dark")
+                }
+              } catch (_) {}
+            `,
+          }}
+        />
+      </head>
+      <body>
+        <Tooltip.Provider>{children}</Tooltip.Provider>
+      </body>
     </html>
   )
 }

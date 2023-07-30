@@ -31,6 +31,9 @@ const Footer = () => {
               <li>
                 <Link href="/about">About</Link>
               </li>
+              <li>
+                <Link href="https://github.com/steep-wms/steep">GitHub</Link>
+              </li>
             </ul>
           </div>
           <div>
@@ -50,16 +53,6 @@ const Footer = () => {
             &copy; 2013&ndash;<span suppressHydrationWarning>{now}</span>{" "}
             <Link href="https://igd.fraunhofer.de/">
               Fraunhofer Institute for Computer Graphics Research IGD
-            </Link>
-            <br />
-            <Link
-              href="https://github.com/steep-wms/steep"
-              className="group mt-4 inline-block"
-            >
-              <SimpleIcon
-                icon={siGithub}
-                className="fill-gray-600 transition-colors group-hover:fill-gray-800"
-              />
             </Link>
           </div>
           <div>

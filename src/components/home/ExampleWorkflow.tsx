@@ -8,7 +8,7 @@ import { Button } from "@/components/Button"
 import { ChevronRight } from "lucide-react"
 import { useAnimate, stagger } from "framer-motion"
 import Container from "../Container"
-import useInViewEx from "../lib/useInViewEx"
+import useInViewEx from "../hooks/useInViewEx"
 
 const ExampleWorkflow = () => {
   const [scope, animate] = useAnimate()
