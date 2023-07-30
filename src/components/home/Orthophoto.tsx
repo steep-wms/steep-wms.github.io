@@ -21,7 +21,7 @@ const Orthophoto = ({ t0 }: OrthophotoProps) => {
         <svg
           viewBox="0 0 130 130"
           key={`${x}_${y}_mask`}
-          className="h-full w-full shadow-lg shadow-gray-700/30"
+          className="h-full w-full shadow-lg shadow-gray-700/30 dark:shadow-gray-100/30"
         >
           <foreignObject width={650} height={650} y={-y * 130} x={-x * 130}>
             <img alt="Tile" src="/images/home/tiles.jpg" />
@@ -127,7 +127,7 @@ const Orthophoto = ({ t0 }: OrthophotoProps) => {
         <motion.img
           src="/images/home/2_1_mask.jpg"
           alt="Large image tile"
-          className="shadow-lg shadow-gray-800/30"
+          className="shadow-lg shadow-gray-800/30 dark:shadow-gray-100/30"
           variants={{
             initial: { opacity: 0, transition: reset },
             inView: {

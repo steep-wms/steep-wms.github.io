@@ -1,6 +1,4 @@
 import Container from "./Container"
-import SimpleIcon from "./SimpleIcon"
-import { siGithub } from "simple-icons"
 import Link from "next/link"
 
 const now = new Date().getFullYear()
@@ -14,7 +12,12 @@ const Footer = () => {
             <Link href="/" className="group">
               <img
                 src="/images/steep-logo.svg"
-                className="h-10 opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0"
+                className="h-10 opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:hidden"
+                alt="Steep Logo"
+              />
+              <img
+                src="/images/steep-logo-white.svg"
+                className="hidden h-10 opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:block"
                 alt="Steep Logo"
               />
             </Link>
@@ -59,7 +62,12 @@ const Footer = () => {
             <Link href="https://igd.fraunhofer.de/" className="group">
               <img
                 src="/images/fraunhofer.svg"
-                className="w-44 opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0"
+                className="w-44 opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:hidden"
+                alt="Fraunhofer Logo"
+              />
+              <img
+                src="/images/fraunhofer-light.svg"
+                className="hidden w-44 opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:block"
                 alt="Fraunhofer Logo"
               />
             </Link>

@@ -1,6 +1,6 @@
 import Balancer, { Provider } from "react-wrap-balancer"
-import HeroWorkflow from "./HeroWorkflow"
 import NavBar from "@/components/NavBar"
+import HeroWorkflow from "@/components/home/HeroWorkflow"
 import ExampleWorkflow from "@/components/home/ExampleWorkflow"
 import Microservices from "@/components/home/Microservices"
 import CloudSupport from "@/components/home/CloudSupport"

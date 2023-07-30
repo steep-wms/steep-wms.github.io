@@ -2,6 +2,7 @@
 
 import { cloneElement, Children, ReactNode, useEffect } from "react"
 import {
+  AnimationPlaybackControls,
   AnimationSequence,
   At,
   DOMKeyframesDefinition,
@@ -149,10 +150,17 @@ const HeroWorkflow = () => {
     ])
     pushBoxOut("box5", 1.8)
 
+    let controls: AnimationPlaybackControls | undefined = undefined
     if (!prefersReducedMotion) {
-      animate(sequence, {
+      controls = animate(sequence, {
         repeat: Infinity,
       })
+    }
+
+    return () => {
+      if (controls !== undefined) {
+        controls.stop()
+      }
     }
   }, [scope, animate, prefersReducedMotion, getStartedBgOpacity])
 
@@ -238,45 +246,50 @@ const HeroWorkflow = () => {
       key="box1"
       d="M335.3 65.2H186.5c-7.6 0-13.7-6.1-13.7-13.7V14.2c0-7.6 6.1-13.7 13.7-13.7h148.8c7.6 0 13.7 6.1 13.7 13.7v37.3c0 7.6-6.1 13.7-13.7 13.7z"
       style={{
-        fill: "#fff",
         stroke: "url(#fadeOutLeft)",
         strokeMiterlimit: 10,
       }}
+      className="fill-bg"
       filter="url(#box1-shadow)"
     />,
     <path
       id="box2"
       key="box2"
       d="M622.3 65.2H473.5c-7.6 0-13.7-6.1-13.7-13.7V14.2c0-7.6 6.1-13.7 13.7-13.7h148.8c7.6 0 13.7 6.1 13.7 13.7v37.3c0 7.6-6.1 13.7-13.7 13.7z"
-      style={{ fill: "#fff", stroke, strokeMiterlimit: 10 }}
+      style={{ stroke, strokeMiterlimit: 10 }}
+      className="fill-bg"
       filter="url(#box2-shadow)"
     />,
     <path
       id="box6"
       key="box6"
       d="M505.9 180.9H357.1c-7.6 0-13.7-6.1-13.7-13.7v-37.3c0-7.6 6.1-13.7 13.7-13.7h148.8c7.6 0 13.7 6.1 13.7 13.7v37.3c0 7.5-6.1 13.7-13.7 13.7z"
-      style={{ fill: "#fff", stroke, strokeMiterlimit: 10 }}
+      style={{ stroke, strokeMiterlimit: 10 }}
+      className="fill-bg"
       filter="url(#box6-shadow)"
     />,
     <path
       id="box3"
       key="box3"
       d={getStartedBox}
-      style={{ fill: "#fff", stroke, strokeMiterlimit: 10 }}
+      style={{ stroke, strokeMiterlimit: 10 }}
+      className="fill-bg"
       filter="url(#box3-shadow)"
     />,
     <path
       id="box4"
       key="box4"
       d="M1105.9 65.2H957.1c-7.6 0-13.7-6.1-13.7-13.7V14.2c0-7.6 6.1-13.7 13.7-13.7h148.8c7.6 0 13.7 6.1 13.7 13.7v37.3c0 7.6-6.1 13.7-13.7 13.7z"
-      style={{ fill: "#fff", stroke, strokeMiterlimit: 10 }}
+      style={{ stroke, strokeMiterlimit: 10 }}
+      className="fill-bg"
       filter="url(#box4-shadow)"
     />,
     <path
       id="box7"
       key="box7"
       d="M1105.9 325.5H957.1c-7.6 0-13.7-6.1-13.7-13.7v-37.3c0-7.6 6.1-13.7 13.7-13.7h148.8c7.6 0 13.7 6.1 13.7 13.7v37.3c0 7.5-6.1 13.7-13.7 13.7z"
-      style={{ fill: "#fff", stroke, strokeMiterlimit: 10 }}
+      style={{ stroke, strokeMiterlimit: 10 }}
+      className="fill-bg"
       filter="url(#box7-shadow)"
     />,
     <path
@@ -284,10 +297,10 @@ const HeroWorkflow = () => {
       key="box5"
       d="M1348.8 180.9H1200c-7.6 0-13.7-6.1-13.7-13.7v-37.3c0-7.6 6.1-13.7 13.7-13.7h148.8c7.6 0 13.7 6.1 13.7 13.7v37.3c0 7.5-6.1 13.7-13.7 13.7z"
       style={{
-        fill: "#fff",
         stroke: "url(#fadeOutRight)",
         strokeMiterlimit: 10,
       }}
+      className="fill-bg"
       filter="url(#box5-shadow)"
     />,
   ]
@@ -315,12 +328,12 @@ const HeroWorkflow = () => {
       gradients.push(g)
 
       return cloneElement(c, {
-        strokeWidth: 4,
         style: {
           fill: "none",
           stroke: `url(#${gid})`,
           strokeMiterlimit: 10,
         },
+        className: "[stroke-width:4] dark:[stroke-width:5]",
         id: c.props.id + "-bullet",
         key: c.key + "-bullet",
       })
@@ -344,7 +357,7 @@ const HeroWorkflow = () => {
                 ? 0.6
                 : 0
             }
-            floodColor="#63b3ed"
+            className="[flood-color:#63b3ed] dark:[flood-color:#90cdf4]"
           />
         </filter>
       )
@@ -391,12 +404,12 @@ const HeroWorkflow = () => {
         </defs>
       </svg>
       <Link href="#" className="group">
-        <div className="text absolute left-[28rem] top-[5.4rem] flex h-[2.6rem] w-[8rem] select-none items-center justify-center rounded-lg border border-primary bg-white font-normal shadow-[0px_0px_10px] shadow-primary/50 transition-colors group-hover:bg-primary">
+        <div className="text absolute left-[28rem] top-[5.4rem] flex h-[2.63rem] w-[8rem] select-none items-center justify-center rounded-lg border border-primary bg-bg font-normal shadow-[0px_0px_10px] shadow-primary/50 transition-colors group-hover:bg-primary">
           <motion.div
             className="absolute left-0 top-0 -z-10 h-full w-full bg-primary blur-xl"
             style={{ opacity: getStartedBgOpacity }}
           ></motion.div>
-          <div className="transition-colors group-hover:text-white">
+          <div className="transition-colors group-hover:text-bg">
             Get started
           </div>
         </div>

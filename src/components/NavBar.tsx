@@ -34,7 +34,16 @@ const Logo = () => {
       href="/"
       className="flex items-center gap-1 text-xl text-black text-opacity-90 dark:text-white"
     >
-      <img src="/images/steep-logo.svg" className="h-10" alt="Logo" />
+      <img
+        src="/images/steep-logo.svg"
+        className="h-10 dark:hidden"
+        alt="Logo"
+      />
+      <img
+        src="/images/steep-logo-white.svg"
+        className="hidden h-10 dark:block"
+        alt="Logo"
+      />
     </Link>
   )
 }
@@ -50,7 +59,7 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
   const [visible, setVisible] = useState(false)
   const [onTop, setOnTop] = useState(true)
   const panelRef = useRef<HTMLDivElement>(null)
-  const { theme, setTheme } = useTheme()
+  const { theme } = useTheme()
 
   useEffect(() => {
     function onScroll() {
