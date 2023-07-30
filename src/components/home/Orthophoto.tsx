@@ -24,7 +24,10 @@ const Orthophoto = ({ t0 }: OrthophotoProps) => {
           className="h-full w-full shadow-lg shadow-gray-700/30 dark:shadow-gray-100/30"
         >
           <foreignObject width={650} height={650} y={-y * 130} x={-x * 130}>
-            <img alt="Tile" src="/images/home/tiles.jpg" />
+            <img
+              alt="Tile"
+              src={`${process.env.basePath}/images/home/tiles.jpg`}
+            />
           </foreignObject>
         </svg>,
       )
@@ -47,8 +50,14 @@ const Orthophoto = ({ t0 }: OrthophotoProps) => {
           <svg viewBox="0 0 130 130" className="h-full w-full">
             <foreignObject width={650} height={650} y={-y * 130} x={-x * 130}>
               <picture>
-                <source srcSet="/images/home/masks.webp" type="image/webp" />
-                <img alt="Tile" src="/images/home/masks.jpg" />
+                <source
+                  srcSet={`${process.env.basePath}/images/home/masks.webp`}
+                  type="image/webp"
+                />
+                <img
+                  alt="Tile"
+                  src={`${process.env.basePath}/images/home/masks.jpg`}
+                />
               </picture>
             </foreignObject>
           </svg>
@@ -125,7 +134,7 @@ const Orthophoto = ({ t0 }: OrthophotoProps) => {
       </motion.div>
       <div className="relative z-20">
         <motion.img
-          src="/images/home/2_1_mask.jpg"
+          src={`${process.env.basePath}/images/home/2_1_mask.jpg`}
           alt="Large image tile"
           className="shadow-lg shadow-gray-800/30 dark:shadow-gray-100/30"
           variants={{
@@ -137,7 +146,7 @@ const Orthophoto = ({ t0 }: OrthophotoProps) => {
           }}
         />
         <motion.img
-          src="/images/home/2_1.jpg"
+          src={`${process.env.basePath}/images/home/2_1.jpg`}
           alt="Large image tile mask"
           className="absolute left-0 top-0 opacity-50"
           variants={{

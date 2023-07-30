@@ -11,12 +11,12 @@ const Footer = () => {
           <div>
             <Link href="/" className="group">
               <img
-                src="/images/steep-logo.svg"
+                src={`${process.env.basePath}/images/steep-logo.svg`}
                 className="h-10 opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:hidden"
                 alt="Steep Logo"
               />
               <img
-                src="/images/steep-logo-white.svg"
+                src={`${process.env.basePath}/images/steep-logo-white.svg`}
                 className="hidden h-10 opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:block"
                 alt="Steep Logo"
               />
@@ -61,12 +61,12 @@ const Footer = () => {
           <div>
             <Link href="https://igd.fraunhofer.de/" className="group">
               <img
-                src="/images/fraunhofer.svg"
+                src={`${process.env.basePath}/images/fraunhofer.svg`}
                 className="w-44 opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:hidden"
                 alt="Fraunhofer Logo"
               />
               <img
-                src="/images/fraunhofer-light.svg"
+                src={`${process.env.basePath}/images/fraunhofer-light.svg`}
                 className="hidden w-44 opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:block"
                 alt="Fraunhofer Logo"
               />
