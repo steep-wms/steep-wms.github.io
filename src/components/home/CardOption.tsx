@@ -23,7 +23,8 @@ const CardOption = ({
         className={clsx(
           "cursor-pointer select-none transition-colors hover:bg-bg",
           {
-            "bg-bg shadow-sm": active,
+            "opacity-80 hover:opacity-100": !active,
+            "bg-bg opacity-100 shadow": active,
           },
         )}
         onClick={onActivate}

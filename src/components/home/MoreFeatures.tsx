@@ -28,7 +28,7 @@ const MoreFeatures = () => {
         <Card className="bg-bg">
           <h4 className="mt-0 font-normal">Languages and runtimes</h4>
           <p>
-            Custom runtimes allow your team to develop microservices in various
+            Custom runtimes enable your team to develop microservices in various
             programming languages and with different frameworks. This allows you
             to focus on the task at hand.
           </p>
