@@ -25,7 +25,7 @@ export function Tooltip({
       <TooltipPrimitive.Content
         side="top"
         align="center"
-        className="select-none rounded-sm bg-gray-800 px-2 py-1 text-sm text-gray-100"
+        className="select-none rounded-sm bg-gray-800 px-2 py-1 text-sm text-gray-100 [&[data-state='closed']]:animate-fade-out [&[data-state='delayed-open']]:animate-fade-in"
         collisionPadding={5}
         {...props}
       >

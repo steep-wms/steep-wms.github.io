@@ -87,11 +87,21 @@ module.exports = {
           opacity: 1,
         },
       },
+      fadeOut: {
+        "0%": {
+          opacity: 1,
+        },
+        "100%": {
+          opacity: 0,
+        },
+      },
     },
     extend: {
       animation: {
         "delay-100": "fadeIn 1ms linear 100ms backwards",
         "spin-4s": "spin 4s linear infinite",
+        "fade-in": "fadeIn 100ms ease-out",
+        "fade-out": "fadeOut 100ms ease-out",
       },
       keyframes: {
         spin: {
