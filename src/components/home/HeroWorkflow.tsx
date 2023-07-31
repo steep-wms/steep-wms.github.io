@@ -249,7 +249,7 @@ const HeroWorkflow = () => {
         stroke: "url(#fadeOutLeft)",
         strokeMiterlimit: 10,
       }}
-      className="fill-bg"
+      className="fill-bg transition-colors duration-300"
       filter="url(#box1-shadow)"
     />,
     <path
@@ -257,7 +257,7 @@ const HeroWorkflow = () => {
       key="box2"
       d="M622.3 65.2H473.5c-7.6 0-13.7-6.1-13.7-13.7V14.2c0-7.6 6.1-13.7 13.7-13.7h148.8c7.6 0 13.7 6.1 13.7 13.7v37.3c0 7.6-6.1 13.7-13.7 13.7z"
       style={{ stroke, strokeMiterlimit: 10 }}
-      className="fill-bg"
+      className="fill-bg transition-colors duration-300"
       filter="url(#box2-shadow)"
     />,
     <path
@@ -265,7 +265,7 @@ const HeroWorkflow = () => {
       key="box6"
       d="M505.9 180.9H357.1c-7.6 0-13.7-6.1-13.7-13.7v-37.3c0-7.6 6.1-13.7 13.7-13.7h148.8c7.6 0 13.7 6.1 13.7 13.7v37.3c0 7.5-6.1 13.7-13.7 13.7z"
       style={{ stroke, strokeMiterlimit: 10 }}
-      className="fill-bg"
+      className="fill-bg transition-colors duration-300"
       filter="url(#box6-shadow)"
     />,
     <path
@@ -273,7 +273,7 @@ const HeroWorkflow = () => {
       key="box3"
       d={getStartedBox}
       style={{ stroke, strokeMiterlimit: 10 }}
-      className="fill-bg"
+      className="fill-bg transition-colors duration-300"
       filter="url(#box3-shadow)"
     />,
     <path
@@ -281,7 +281,7 @@ const HeroWorkflow = () => {
       key="box4"
       d="M1105.9 65.2H957.1c-7.6 0-13.7-6.1-13.7-13.7V14.2c0-7.6 6.1-13.7 13.7-13.7h148.8c7.6 0 13.7 6.1 13.7 13.7v37.3c0 7.6-6.1 13.7-13.7 13.7z"
       style={{ stroke, strokeMiterlimit: 10 }}
-      className="fill-bg"
+      className="fill-bg transition-colors duration-300"
       filter="url(#box4-shadow)"
     />,
     <path
@@ -289,7 +289,7 @@ const HeroWorkflow = () => {
       key="box7"
       d="M1105.9 325.5H957.1c-7.6 0-13.7-6.1-13.7-13.7v-37.3c0-7.6 6.1-13.7 13.7-13.7h148.8c7.6 0 13.7 6.1 13.7 13.7v37.3c0 7.5-6.1 13.7-13.7 13.7z"
       style={{ stroke, strokeMiterlimit: 10 }}
-      className="fill-bg"
+      className="fill-bg transition-colors duration-300"
       filter="url(#box7-shadow)"
     />,
     <path
@@ -300,7 +300,7 @@ const HeroWorkflow = () => {
         stroke: "url(#fadeOutRight)",
         strokeMiterlimit: 10,
       }}
-      className="fill-bg"
+      className="fill-bg transition-colors duration-300"
       filter="url(#box5-shadow)"
     />,
   ]

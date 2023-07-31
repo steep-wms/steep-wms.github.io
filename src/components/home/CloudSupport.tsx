@@ -13,7 +13,7 @@ const CloudSupport = () => {
   const [activeOption, setActiveOption] = useState<ActiveOption>("kubernetes")
 
   return (
-    <div className="bg-gradient-to-b from-gray-200/0 via-gray-200/40 to-gray-200/0">
+    <div className="bg-gradient-to-b from-gray-200/0 via-gray-200/40 to-gray-200/0 dark:from-gray-200/0 dark:via-gray-200/30 dark:to-gray-200/0">
       <Container type="xl">
         <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-2">
           <div className="relative text-sm lg:mb-8 lg:mt-14">
