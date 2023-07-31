@@ -32,7 +32,7 @@ const Home = () => {
           </Balancer>
         </p>
 
-        <div className="relative mb-4 mt-14 h-60 w-screen overflow-hidden">
+        <div className="relative mb-4 mt-14 h-60 w-full overflow-hidden">
           <div className="absolute left-1/2 top-0 w-[76rem] -translate-x-1/2 px-24">
             <HeroWorkflow />
           </div>
