@@ -1,5 +1,6 @@
 import Container from "./Container"
 import Link from "next/link"
+import { Balancer } from "react-wrap-balancer"
 
 const now = new Date().getFullYear()
 
@@ -7,7 +8,7 @@ const Footer = () => {
   return (
     <footer className="border-t border-gray-200 bg-gray-100 pb-20 pt-16 [&_a:hover]:text-gray-800 [&_a:hover]:underline [&_a]:text-gray-600">
       <Container type="xl">
-        <div className="grid w-[40rem] max-w-full grid-cols-3 justify-items-start gap-8 self-start">
+        <div className="grid w-[40rem] max-w-full grid-cols-1 justify-items-center gap-8 self-start text-center sm:grid-cols-3 sm:justify-items-start sm:text-left">
           <div>
             <Link href="/" className="group">
               <img
@@ -51,23 +52,25 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="mt-12 flex justify-between gap-8 text-gray-600">
+        <div className="mt-12 flex flex-col items-center gap-x-16 gap-y-8 text-center text-gray-600 sm:flex-row sm:justify-between sm:text-left">
           <div className="mt-1">
-            &copy; 2013&ndash;<span suppressHydrationWarning>{now}</span>{" "}
-            <Link href="https://igd.fraunhofer.de/">
-              Fraunhofer Institute for Computer Graphics Research IGD
-            </Link>
+            <Balancer>
+              &copy; 2013&ndash;<span suppressHydrationWarning>{now}</span>{" "}
+              <Link href="https://igd.fraunhofer.de/">
+                Fraunhofer Institute for Computer Graphics Research IGD
+              </Link>
+            </Balancer>
           </div>
           <div>
             <Link href="https://igd.fraunhofer.de/" className="group">
               <img
                 src={`${process.env.basePath}/images/fraunhofer.svg`}
-                className="w-44 opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:hidden"
+                className="w-48 opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:hidden"
                 alt="Fraunhofer Logo"
               />
               <img
                 src={`${process.env.basePath}/images/fraunhofer-light.svg`}
-                className="hidden w-44 opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:block"
+                className="hidden w-48 opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:block"
                 alt="Fraunhofer Logo"
               />
             </Link>
