@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock"
+import { lock, clearBodyLocks } from "tua-body-scroll-lock"
 
 interface ScrollLockProps {
   locked: boolean
@@ -9,9 +9,9 @@ interface ScrollLockProps {
 const ScrollLock = ({ locked, target }: ScrollLockProps) => {
   useEffect(() => {
     if (target !== null && locked) {
-      disableBodyScroll(target)
+      lock(target)
     } else {
-      clearAllBodyScrollLocks()
+      clearBodyLocks()
     }
   }, [target, locked])
 
