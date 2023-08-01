@@ -44,10 +44,10 @@ const Footer = () => {
             <h2 className="mb-2 font-normal">Legal</h2>
             <ul className="text-gray-600">
               <li>
-                <Link href="legal-notice">Legal notice</Link>
+                <Link href="/legal-notice">Legal notice</Link>
               </li>
               <li>
-                <Link href="privacy-policy">Privacy policy</Link>
+                <Link href="/privacy-policy">Privacy policy</Link>
               </li>
             </ul>
           </div>
