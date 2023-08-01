@@ -6,6 +6,7 @@ import "./code.css"
 import { Roboto } from "next/font/google"
 import localFont from "next/font/local"
 import * as Tooltip from "@radix-ui/react-tooltip"
+import clsx from "clsx"
 
 const roboto = Roboto({
   weight: ["300", "400", "700", "900"],
@@ -30,7 +31,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${roboto.variable} ${dejaVuFont.variable}`}>
+    <html
+      lang="en"
+      className={clsx(
+        `${roboto.variable} ${dejaVuFont.variable}`,
+        /* navbar height + a bit of additional space */ "scroll-pt-20",
+      )}
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{
