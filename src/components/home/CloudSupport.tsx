@@ -16,7 +16,7 @@ const CloudSupport = () => {
     <div className="bg-gradient-to-b from-gray-200/0 via-gray-200/40 to-gray-200/0 dark:from-gray-200/0 dark:via-gray-200/30 dark:to-gray-200/0">
       <Container type="xl">
         <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-2">
-          <div className="relative text-sm lg:mb-8 lg:mt-14">
+          <div className="relative row-start-2 text-sm lg:row-start-1 lg:mb-8 lg:mt-14">
             <Setup />
             <div
               className={clsx(
@@ -27,7 +27,7 @@ const CloudSupport = () => {
               <Kubernetes />
             </div>
           </div>
-          <div className="text-md prose text-gray-800">
+          <div className="text-md prose row-start-1 text-gray-800 lg:row-start-1">
             <h3 className="mb-0 font-normal">Cloud support</h3>
             <p className="lead">
               Deploy Steep to Kubernetes and automatically manage your cloud

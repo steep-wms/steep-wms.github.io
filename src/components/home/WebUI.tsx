@@ -57,7 +57,7 @@ const WebUI = () => {
             </g>
           </svg>
         </Window>
-        <div className="text-md prose text-gray-800 lg:col-span-3 lg:mt-16">
+        <div className="text-md prose text-center text-gray-800 lg:col-span-3 lg:mt-16 lg:text-left">
           <h3 className="mb-0 font-normal">Web user interface</h3>
           <p className="lead">
             Submit workflows, monitor their progress, and review Steep’s
