@@ -8,7 +8,7 @@ import localFont from "next/font/local"
 import * as Tooltip from "@radix-ui/react-tooltip"
 
 const roboto = Roboto({
-  weight: ["300", "400", "900"],
+  weight: ["300", "400", "700", "900"],
   // might remove italic if necessary (i.e. if page size becomes too large),
   // browser-generated italic looks OK too
   style: ["normal", "italic"],
