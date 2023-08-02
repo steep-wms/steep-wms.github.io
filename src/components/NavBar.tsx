@@ -126,129 +126,156 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
   ]
 
   return (
-    <Disclosure>
-      {({ open, close }) => (
-        <nav
-          className={clsx("left-0 right-0 top-0 z-50 flex flex-col", {
-            fixed,
-            sticky: !fixed && !belowThreshold,
-            relative: !fixed,
-            "-translate-y-16": !belowThreshold && !fixed && !visible,
-            "translate-y-0": open || belowThreshold || (!fixed && visible),
-            "transition-transform": needsTransition,
-            "duration-200": needsTransition,
-          })}
-        >
-          <div
-            className={clsx(
-              "top-0 flex h-16 w-full items-center justify-center border-b border-gray-200 transition-all",
-              !open ? "bg-bg bg-opacity-80 backdrop-blur-sm" : "bg-gray-100",
-              open || onTop || (!fixed && !visible)
-                ? "border-opacity-0 backdrop-blur-none"
-                : "border-opacity-100",
-            )}
+    <>
+      {/*
+        The following div is necessary so that the browser scrolls to top
+        after navigating to a new page. Explanation:
+
+        * Next.js's InnerScrollAndFocusHandler handles scrolling after
+          navigation (see https://github.com/vercel/next.js/blob/12e77cae30f61bd94182931b836ec46a1d79a888/packages/next/src/client/components/layout-router.tsx)
+        * For this, it receives a ref to the element to scroll to
+        * If the element is not `null`, it just scrolls to it
+        * But if the element is `null`, it tries to find the first element on
+          the page and scrolls to that instead:
+          https://github.com/vercel/next.js/blob/12e77cae30f61bd94182931b836ec46a1d79a888/packages/next/src/client/components/layout-router.tsx#L191-L193
+        * If the first element is our navbar and it is fixed, it is already
+          in view and InnerScrollAndFocusHandler will do nothing!
+          https://github.com/vercel/next.js/blob/12e77cae30f61bd94182931b836ec46a1d79a888/packages/next/src/client/components/layout-router.tsx#L231-L234
+        * We therefore have to have an artifical element that always comes
+          before the navbar in the DOM and that is always at the top of the
+          page so InnerScrollAndFocusHandler can find it and correctly scroll
+          to it.
+
+        What would happen if we removed this element:
+        * Whenever you click on a link that leads to a page with a fixed navbar,
+          scrolling will not work correctly. Instead, the scroll position will
+          stay the same as before the navigation.
+      */}
+      <div className="absolute top-0 h-0" id="__top-before-navbar"></div>
+      <Disclosure>
+        {({ open, close }) => (
+          <nav
+            className={clsx("left-0 right-0 top-0 z-50 flex flex-col", {
+              fixed,
+              sticky: !fixed && !belowThreshold,
+              relative: !fixed,
+              "-translate-y-16": !belowThreshold && !fixed && !visible,
+              "translate-y-0": open || belowThreshold || (!fixed && visible),
+              "transition-transform": needsTransition,
+              "duration-200": needsTransition,
+            })}
           >
-            <div className="flex max-w-screen-2xl flex-1 items-center justify-between px-2">
-              <div className="flex flex-1 items-center justify-between lg:hidden">
-                <div className="mb-1">
-                  <Logo />
+            <div
+              className={clsx(
+                "top-0 flex h-16 w-full items-center justify-center border-b border-gray-200 transition-all",
+                !open ? "bg-bg bg-opacity-80 backdrop-blur-sm" : "bg-gray-100",
+                open || onTop || (!fixed && !visible)
+                  ? "border-opacity-0 backdrop-blur-none"
+                  : "border-opacity-100",
+              )}
+            >
+              <div className="flex max-w-screen-2xl flex-1 items-center justify-between px-2">
+                <div className="flex flex-1 items-center justify-between lg:hidden">
+                  <div className="mb-1">
+                    <Logo />
+                  </div>
+                  <Disclosure.Button
+                    id="navbar-toggle-menu-button"
+                    className="inline-flex items-center justify-center text-gray-800"
+                  >
+                    <Hamburger toggled={open} />
+                  </Disclosure.Button>
                 </div>
-                <Disclosure.Button
-                  id="navbar-toggle-menu-button"
-                  className="inline-flex items-center justify-center text-gray-800"
-                >
-                  <Hamburger toggled={open} />
-                </Disclosure.Button>
+                <div className="hidden flex-1 items-center justify-between gap-8 lg:flex">
+                  <div className="mb-1">
+                    <Logo />
+                  </div>
+                  <div className="mt-1 flex gap-6">
+                    {links.map(l => (
+                      <Link
+                        key={l.label}
+                        href={l.href}
+                        className="text-gray-600 hover:text-gray-900"
+                      >
+                        {l.label}
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="flex-1"></div>
+                  <div className="flex items-center gap-4">
+                    <QuickSearch />
+                    <Tooltip
+                      content={theme === "dark" ? "Light mode" : "Dark mode"}
+                    >
+                      <div className="flex">
+                        <DarkModeToggle />
+                      </div>
+                    </Tooltip>
+                    <Tooltip content="GitHub">
+                      <Link
+                        href="https://github.com/steep-wms/steep"
+                        className="group"
+                      >
+                        <SimpleIcon
+                          icon={siGithub}
+                          className="fill-gray-600 transition-colors group-hover:fill-gray-800"
+                          title=""
+                        />
+                      </Link>
+                    </Tooltip>
+                  </div>
+                </div>
               </div>
-              <div className="hidden flex-1 items-center justify-between gap-8 lg:flex">
-                <div className="mb-1">
-                  <Logo />
-                </div>
-                <div className="mt-1 flex gap-6">
+            </div>
+
+            <Transition
+              show={open}
+              enter="transition duration-250 ease-out"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="transition duration-100 ease-out"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <Disclosure.Panel
+                className="absolute h-[calc(100vh-3rem)] w-screen overflow-scroll bg-gray-100 lg:hidden"
+                ref={panelRef}
+              >
+                <div className="flex flex-col divide-y divide-gray-500 px-2">
                   {links.map(l => (
                     <Link
                       key={l.label}
                       href={l.href}
-                      className="text-gray-600 hover:text-gray-900"
+                      className={clsx(
+                        "text-gray-800 hover:text-gray-500",
+                        "block px-2 py-3",
+                      )}
                     >
                       {l.label}
                     </Link>
                   ))}
                 </div>
-                <div className="flex-1"></div>
-                <div className="flex items-center gap-4">
-                  <QuickSearch />
-                  <Tooltip
-                    content={theme === "dark" ? "Light mode" : "Dark mode"}
-                  >
-                    <div className="flex">
-                      <DarkModeToggle />
-                    </div>
-                  </Tooltip>
-                  <Tooltip content="GitHub">
-                    <Link
-                      href="https://github.com/steep-wms/steep"
-                      className="group"
-                    >
-                      <SimpleIcon
-                        icon={siGithub}
-                        className="fill-gray-600 transition-colors group-hover:fill-gray-800"
-                        title=""
-                      />
-                    </Link>
-                  </Tooltip>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <Transition
-            show={open}
-            enter="transition duration-250 ease-out"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transition duration-100 ease-out"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <Disclosure.Panel
-              className="absolute h-[calc(100vh-3rem)] w-screen overflow-scroll bg-gray-100 lg:hidden"
-              ref={panelRef}
-            >
-              <div className="flex flex-col divide-y divide-gray-500 px-2">
-                {links.map(l => (
+                <div className="mt-8 flex items-center justify-end gap-4 px-4">
+                  <DarkModeToggle />
                   <Link
-                    key={l.label}
-                    href={l.href}
-                    className={clsx(
-                      "text-gray-800 hover:text-gray-500",
-                      "block px-2 py-3",
-                    )}
+                    href="https://github.com/steep-wms/steep"
+                    className="group"
                   >
-                    {l.label}
+                    <SimpleIcon
+                      icon={siGithub}
+                      className="fill-gray-600 transition-colors group-hover:fill-gray-800"
+                    />
                   </Link>
-                ))}
-              </div>
-              <div className="mt-8 flex items-center justify-end gap-4 px-4">
-                <DarkModeToggle />
-                <Link
-                  href="https://github.com/steep-wms/steep"
-                  className="group"
-                >
-                  <SimpleIcon
-                    icon={siGithub}
-                    className="fill-gray-600 transition-colors group-hover:fill-gray-800"
-                  />
-                </Link>
-              </div>
-            </Disclosure.Panel>
-          </Transition>
+                </div>
+              </Disclosure.Panel>
+            </Transition>
 
-          <ScrollLock locked={open} target={panelRef.current} />
-          <ResizeObserver onResize={() => close()} />
-        </nav>
-      )}
-    </Disclosure>
+            <ScrollLock locked={open} target={panelRef.current} />
+            <ResizeObserver onResize={() => close()} />
+          </nav>
+        )}
+      </Disclosure>
+    </>
   )
 }
 
