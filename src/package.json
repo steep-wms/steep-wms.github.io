@@ -28,7 +28,7 @@
     "npm-check-updates": "^16.10.15"
   },
   "dependencies": {
-    "@fontsource/dejavu-mono": "^5.0.5",
+    "@fontsource/dejavu-mono": "^5.0.6",
     "@headlessui/react": "^1.7.15",
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
