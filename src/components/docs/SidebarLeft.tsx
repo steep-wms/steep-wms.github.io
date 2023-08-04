@@ -2,8 +2,9 @@ import GithubSlugger from "github-slugger"
 import Link from "next/link"
 import { Toc } from "@/components/docs/Toc"
 import Sidebar from "./Sidebar"
+import clsx from "clsx"
 
-function createToc() {
+function createToc(activeSlug?: string) {
   let slugger = new GithubSlugger()
 
   let result = []
@@ -16,8 +17,15 @@ function createToc() {
           {group.pages.map(p => {
             let ps = slugger.slug(p.title)
             return (
-              <li key={ps}>
-                <Link href={`/docs/${ps}`}>{p.title}</Link>
+              <li
+                key={ps}
+                className={clsx({
+                  "font-normal text-primary": ps === activeSlug,
+                })}
+              >
+                <Link href={`/docs/${ps}`} className="hover:text-primary-hover">
+                  {p.title}
+                </Link>
               </li>
             )
           })}
@@ -28,8 +36,12 @@ function createToc() {
   return result
 }
 
-const SidebarLeft = () => {
-  let toc = createToc()
+interface SidebarLeftProps {
+  activeSlug?: string
+}
+
+const SidebarLeft = ({ activeSlug }: SidebarLeftProps) => {
+  let toc = createToc(activeSlug)
 
   return (
     <Sidebar>

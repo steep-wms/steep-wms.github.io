@@ -1,8 +1,6 @@
-import Container from "@/components/Container"
 import Footer from "@/components/Footer"
 import NavBar from "@/components/NavBar"
-import SidebarLeft from "@/components/docs/SidebarLeft"
-import SidebarRight from "@/components/docs/SidebarRight"
+import DocsContent from "@/components/docs/DocsContent"
 import { Index } from "@/components/docs/Toc"
 import GithubSlugger from "github-slugger"
 
@@ -33,13 +31,13 @@ const DocsPage = ({ params }: { params: { slug: string[] } }) => {
     if ("sections" in entry) {
       sections = entry.sections?.map(s => {
         let sectionSlug = slugger.slug(s)
-        let Section =
+        let SectionContents =
           require(`../../../content/docs/${sectionSlug}.mdx`).default
         return (
-          <>
+          <section key={sectionSlug} data-slug={sectionSlug}>
             <h3 id={sectionSlug}>{s}</h3>
-            <Section key={sectionSlug} />
-          </>
+            <SectionContents />
+          </section>
         )
       })
     }
@@ -56,14 +54,7 @@ const DocsPage = ({ params }: { params: { slug: string[] } }) => {
   return (
     <>
       <NavBar />
-      <Container
-        type="2xl"
-        className="mb-10 grid gap-10 px-2 [grid-template-columns:16rem_1fr_16rem]"
-      >
-        <SidebarLeft />
-        <main className="prose mt-24">{Main}</main>
-        {slug !== undefined ? <SidebarRight slug={slug} /> : undefined}
-      </Container>
+      <DocsContent slug={slug}>{Main}</DocsContent>
       <Footer />
     </>
   )
