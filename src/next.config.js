@@ -2,6 +2,8 @@ import ESLintPlugin from "eslint-webpack-plugin"
 import svgToMiniDataURI from "mini-svg-data-uri"
 import nextMDX from "@next/mdx"
 import rehypePrettyCode from "rehype-pretty-code"
+import remarkGfm from "remark-gfm"
+import remarkSmartypants from "remark-smartypants"
 import steepColorTheme from "./components/lib/steep-color-theme.json" assert { type: "json" }
 
 const basePath = "/preview"
@@ -9,7 +11,7 @@ const basePath = "/preview"
 const withMDX = nextMDX({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [],
+    remarkPlugins: [remarkGfm, remarkSmartypants],
     rehypePlugins: [
       [
         rehypePrettyCode,

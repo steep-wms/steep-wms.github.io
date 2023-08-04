@@ -1,0 +1,76 @@
+import DocsLink from "components/DocsLink"
+
+Create a new <DocsLink href="#submissions">submission</DocsLink>. The
+request body contains the <DocsLink href="#workflows">workflow</DocsLink>
+to execute.
+
+If the operation was successful, the response body contains submission.
+
+| Resource URL |
+| ------------ |
+
+```http
+/workflows
+```
+
+| Status codes |                              |
+| ------------ | ---------------------------- |
+| 202          | The workflow has been accepted (i.e. stored in the database) and is scheduled for execution. |
+| 400          | The posted workflow was invalid. See response body for more information. |
+
+| Example request |
+| --------------- |
+
+```http
+POST /workflows HTTP/1.1
+Content-Length: 231
+Content-Type: application/json
+
+{
+  "api": "4.6.0",
+  "vars": [{
+    "id": "sleep_seconds",
+    "value": 3
+  }],
+  "actions": [{
+    "type": "execute",
+    "service": "sleep",
+    "inputs": [{
+      "id": "seconds",
+      "var": "sleep_seconds"
+    }]
+  }]
+}
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 202 Accepted
+content-encoding: gzip
+content-length: 374
+content-type: application/json
+
+{
+  "id": "akukkcsv575splk3v2ma",
+  "status": "ACCEPTED",
+  "workflow": {
+    "api": "4.6.0",
+    "vars": [{
+      "id": "sleep_seconds",
+      "value": 3
+    }],
+    "actions": [{
+      "type": "execute",
+      "service": "sleep",
+      "inputs": [],
+      "outputs": [],
+      "inputs": [{
+        "id": "seconds",
+        "var": "sleep_seconds"
+      }]
+    }]
+  }
+}
+```

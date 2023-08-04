@@ -1,0 +1,44 @@
+import CodeExample from "components/CodeExample"
+import DocsLink from "components/DocsLink"
+
+An execute action instructs Steep to execute a certain service with given
+inputs and outputs.
+
+| Property                       | Type   | Description
+| ------------------------------ | ------ | -----------
+| id<br/>*(optional)*            | string | An optional string uniquely identifying the action within the workflow. If not given, a random identifier will be generated.
+| type<br/>*(required)*          | string | The type of the action. Must be `"execute"`.
+| service<br/>*(required)*       | string | The ID of the <DocsLink href="#service-metadata">service</DocsLink> to execute
+| inputs<br/>*(optional)*        | array  | An array of <DocsLink href="#parameters">input parameters</DocsLink>
+| outputs<br/>*(optional)*       | array  | An array of <DocsLink href="#output-parameters">output parameters</DocsLink>
+| dependsOn<br/>*(optional)*     | array  | A list of identifiers of actions this action needs to finish first before it is ready to be executed. Note that Steep is able to identify dependencies between actions itself based on `outputs` and `inputs`, so this attribute is normally not needed. However, it may be useful if a preceding action does not have an output parameter or if the depending action does not have an input parameter. Execute actions may depend on other execute actions but also on <DocsLink href="#for-each-actions">for-each actions</DocsLink> and vice versa.
+| retries<br/>*(optional)*       | object | An optional <DocsLink href="#retry-policies">retry policy</DocsLink> specifying how often this action should be retried in case of an error. Overrides any default retry policy defined in the <DocsLink href="#service-metadata">service metadata</DocsLink>.
+| maxInactivity<br/>*(optional)* | <DocsLink href="#durations">duration</DocsLink> or object | An optional <DocsLink href="#durations">duration</DocsLink> or <DocsLink href="#timeout-policies">timeout policy</DocsLink> that defines how long the execution of the service can take without producing any output (i.e. without writing anything to the standard output and error streams) before it is automatically cancelled or aborted. Can be combined with `maxRuntime` and `deadline` (see below). Overrides any default inactivity timeout defined in the <DocsLink href="#service-metadata">service metadata</DocsLink>. Note that a service cancelled due to inactivity is still subject to any configured <DocsLink href="#retry-policies">retry policy</DocsLink>, which means its execution may be retried even if one attempt timed out. If you want to cancel a long-running service immediately even if there is a retry policy configured, use a `deadline`.
+| maxRuntime<br/>*(optional)*    | <DocsLink href="#durations">duration</DocsLink> or object | An optional <DocsLink href="#durations">duration</DocsLink> or <DocsLink href="#timeout-policies">timeout policy</DocsLink> that defines how long the execution of the service can take before it is automatically cancelled or aborted, even if the service regularly writes to the standard output and error streams. Can be combined with `maxInactivity` (see above) and `deadline` (see below). Overrides any default maximum runtime defined in the <DocsLink href="#service-metadata">service metadata</DocsLink>. Note that a service cancelled due to a too long runtime is still subject to any configured <DocsLink href="#retry-policies">retry policy</DocsLink>, which means its execution may be retried even if one attempt timed out. If you want to cancel a long-running service immediately even if there is a retry policy configured, use a `deadline`.
+| deadline<br/>*(optional)*      | <DocsLink href="#durations">duration</DocsLink> or object | An optional <DocsLink href="#durations">duration</DocsLink> or <DocsLink href="#timeout-policies">timeout policy</DocsLink> that defines how long the execution of the service can take at all (including all retries and their associated delays) until it is cancelled or aborted. Can be combined with `maxInactivity` and `maxRuntime` (see above). Overrides any default deadline defined in the <DocsLink href="#service-metadata">service metadata</DocsLink>.
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "type": "execute",
+  "service": "my_service",
+  "inputs": [{
+    "id": "verbose",
+    "var": "is_verbose"
+  }, {
+    "id": "resolution",
+    "value": 10
+  }, {
+    "id": "input_file",
+    "var": "my_input_file"
+  }],
+  "outputs": [{
+    "id": "output_file",
+    "var": "my_output_file",
+    "store": true
+  }]
+}
+```
+
+</CodeExample>

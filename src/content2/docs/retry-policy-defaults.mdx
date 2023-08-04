@@ -1,0 +1,25 @@
+import CodeExample from "components/CodeExample"
+import DocsLink from "components/DocsLink"
+
+Default <DocsLink href="#retry-policies">retry policies</DocsLink> that
+should be used within a workflow unless more specific retry policies are
+defined elsewhere.
+
+| Property                            | Type     | Description
+| ----------------------------------- | -------- | -----------
+| processChains<br/>*(optional)*      | object   | An optional default <DocsLink href="#retry-policies">retry policy</DocsLink> that should be applied to every generated process chain
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "processChains": {
+    "maxAttempts": 5,
+    "delay": "1s",
+    "exponentialBackoff": 2,
+    "maxDelay": "10s"
+  }
+}
+```
+
+</CodeExample>

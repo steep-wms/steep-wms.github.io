@@ -1,0 +1,47 @@
+import DocsLink from "components/DocsLink"
+
+Get information about all configured <DocsLink href="#extending-steep-through-plugins">plugins</DocsLink>.
+To get information about a single plugin, use
+the <DocsLink href="#get-plugin-by-name">GET plugin by name endpoint</DocsLink>.
+
+| Resource URL |
+| ------------ |
+
+```http
+/plugins
+```
+
+| Parameters              |                              |
+| ----------------------- | ---------------------------- |
+| None                    |                              |
+
+| Status codes |                                                                |
+| ------------ | -------------------------------------------------------------- |
+| 200          | The operation was successful                                   |
+
+| Example request |
+| --------------- |
+
+```http
+GET /plugins HTTP/1.1
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-encoding: gzip
+content-length: 159
+content-type: application/json
+
+[
+    {
+        "type": "outputAdapter",
+        "name": "fileOrEmptyList",
+        "version": "1.0.0",
+        "scriptFile": "conf/plugins/fileOrEmptyList.kt",
+        "supportedDataType": "fileOrEmptyList"
+    }
+]
+```

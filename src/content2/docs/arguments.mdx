@@ -1,0 +1,29 @@
+import CodeExample from "components/CodeExample"
+import DocsLink from "components/DocsLink"
+
+An argument is part of an <DocsLink href="#executables">executable</DocsLink>.
+
+| Property                  | Type   | Description
+| ------------------------- | ------ | -----------
+| id<br/>*(required)*       | string | An argument identifier
+| label<br/>*(optional)*    | string | An optional label to use when the argument is passed to the service (e.g. `--input`).
+| variable<br/>*(required)* | object | A <DocsLink href="#argument-variables">variable</DocsLink> that holds the value of this argument.
+| type<br/>*(required)*     | string | The type of this argument. Valid values: `input`, `output`
+| dataType<br/>*(required)* | string | The type of the argument value. If this property is `directory`, Steep will create a new directory for the service's output and recursively search it for result files after the service has been executed. Otherwise, this property can be an arbitrary string. New data types with special handling can be added through <DocsLink href="#output-adapters">output adapter plugins</DocsLink>.
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "id": "akqcqqoedcsaoescyhgq",
+  "type": "input",
+  "dataType": "string",
+  "label": "-v",
+  "variable": {
+    "id": "data_mount",
+    "value": "/data:/data"
+  }
+}
+```
+
+</CodeExample>

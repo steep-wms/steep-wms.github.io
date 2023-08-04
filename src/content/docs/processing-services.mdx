@@ -1,4 +1,4 @@
-import ScrollLink from "components/ScrollLink"
+import DocsLink from "components/DocsLink"
 
 Steep is very flexible and allows a wide range of processing services (or
 microservices) to be integrated. A typical processing service is a program
@@ -22,7 +22,7 @@ guidelines:
   recommend using the `curl` command or something similar.
 * Steep does not require the processing services to implement a specific
   interface. Instead, the service's input and output parameters should be
-  described in a special data model called <ScrollLink href="#service-metadata">service metadata</ScrollLink>.
+  described in a special data model called <DocsLink href="#service-metadata">service metadata</DocsLink>.
 * According to common conventions for exit codes, a processing service should
   return 0 (zero) upon successful execution and any number but zero in case an
   error has occurred (e.g. 1, 2, 128, 255, etc.).

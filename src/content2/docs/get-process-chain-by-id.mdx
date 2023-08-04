@@ -1,0 +1,73 @@
+import DocsLink from "components/DocsLink"
+
+Get details about a single <DocsLink href="#process-chains">process chain</DocsLink>
+from the database.
+
+Some properties such as `startTime`, `status`, or `endTime` depend on a specific
+process chain run (see the section on <DocsLink href="#process-chains">process chains</DocsLink>
+for more information about runs). This endpoint always displays the latest run
+(if available). You can get more information through
+the endpoints <DocsLink href="#get-process-chain-runs">`/processchains/:id/runs`</DocsLink>
+and <DocsLink href="#get-process-chain-run-by-run-number">`/processchains/:id/runs/:runNumber`</DocsLink>.
+
+| Resource URL |
+| ------------ |
+
+```http
+/processchains/:id
+```
+
+| Parameters |                                    |
+| ---------- | ---------------------------------- |
+| id         | The ID of the process chain to return |
+
+| Status codes |                              |
+| ------------ | ---------------------------- |
+| 200          | The operation was successful |
+| 404          | The process chain was not found  |
+
+| Example request |
+| --------------- |
+
+```http
+GET /processchains/akukkcsv575splk3v2na HTTP/1.1
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-encoding: gzip
+content-length: 603
+content-type: application/json
+
+{
+  "id": "akukkcsv575splk3v2na",
+  "submissionId": "akukkcsv575splk3v2ma",
+  "startTime": "2020-05-25T19:46:02.532829Z",
+  "endTime": "2020-05-25T19:46:05.546807Z",
+  "status": "SUCCESS",
+  "agentId": "bakwqka7gk2vrjnxdo5a",
+  "requiredCapabilities": [],
+  "results": {},
+  "totalRuns": 1,
+  "runNumber": 1,
+  "executables": [{
+    "id": "ayj5kboaxngbglzlxiba",
+    "path": "sleep",
+    "serviceId": "sleep",
+    "runtime": "other",
+    "runtimeArgs": [],
+    "arguments": [{
+      "id": "seconds",
+      "type": "input",
+      "dataType": "integer",
+      "variable": {
+        "id": "sleep_seconds",
+        "value": "3"
+      }
+    }]
+  }]
+}
+```

@@ -1,0 +1,58 @@
+import CodeExample from "components/CodeExample"
+import DocsLink from "components/DocsLink"
+
+Service metadata is used to describe the interface of a processing service so
+it can be executed by Steep.
+
+| Property                               | Type   | Description
+| -------------------------------------- | ------ | -----------
+| id<br/>*(required)*                    | string | A unique service identifier
+| name<br/>*(required)*                  | string | A human-readable name
+| description<br/>*(required)*           | string | A human-readable description
+| path<br/>*(required)*                  | string | Relative path to the service executable in the service artefact (or a Docker image if `runtime` equals `docker`)
+| runtime<br/>*(required)*               | string | The <DocsLink href="#runtime-environments">runtime environment</DocsLink>
+| parameters<br/>*(required)*            | array  | A list of <DocsLink href="#service-parameters">service parameters</DocsLink>
+| runtimeArgs<br/>*(optional)*           | array  | An optional list of <DocsLink href="#runtime-arguments">arguments</DocsLink> to pass to the runtime
+| requiredCapabilities<br/>*(optional)*  | array  | A set of strings specifying capabilities a host system must provide to be able to execute this service. See also <DocsLink href="#setups">setups</DocsLink>.
+| retries<br/>*(optional)*               | object | An optional <DocsLink href="#retry-policies">retry policy</DocsLink> specifying how often the execution of this service should be retried in case of an error. Can be overridden in an <DocsLink href="#execute-actions">executable action</DocsLink>.
+| maxInactivity<br/>*(optional)*         | <DocsLink href="#durations">duration</DocsLink> or object | An optional <DocsLink href="#durations">duration</DocsLink> or <DocsLink href="#timeout-policies">timeout policy</DocsLink> that defines how long the execution of this service can take without producing any output (i.e. without writing anything to the standard output and error streams) before it is automatically cancelled or aborted. Can be overridden in an <DocsLink href="#execute-actions">executable action</DocsLink> and can be combined with `maxRuntime` and `deadline` (see below). Note that a service cancelled due to inactivity is still subject to any configured <DocsLink href="#retry-policies">retry policy</DocsLink>, which means its execution may be retried even if one attempt timed out. If you want to cancel a long-running service immediately even if there is a retry policy configured, use a `deadline`.
+| maxRuntime<br/>*(optional)*            | <DocsLink href="#durations">duration</DocsLink> or object | An optional <DocsLink href="#durations">duration</DocsLink> or <DocsLink href="#timeout-policies">timeout policy</DocsLink> that defines how long the execution of this service can take before it is automatically cancelled or aborted, even if the service regularly writes to the standard output and error streams. Can be overridden in an <DocsLink href="#execute-actions">executable action</DocsLink> and can be combined with `maxInactivity` (see above) and `deadline` (see below). Note that a service cancelled due to a too long runtime is still subject to any configured <DocsLink href="#retry-policies">retry policy</DocsLink>, which means its execution may be retried even if one attempt timed out. If you want to cancel a long-running service immediately even if there is a retry policy configured, use a `deadline`.
+| deadline<br/>*(optional)*              | <DocsLink href="#durations">duration</DocsLink> or object | An optional <DocsLink href="#durations">duration</DocsLink> or <DocsLink href="#timeout-policies">timeout policy</DocsLink> that defines how long the execution of this service can take at all (including all retries and their associated delays) until it is cancelled or aborted. Can be overridden in an <DocsLink href="#execute-actions">executable action</DocsLink> and can be combined with `maxInactivity` and `maxRuntime` (see above).
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "id": "cp",
+  "name": "cp",
+  "description": "Copies files",
+  "path": "cp",
+  "runtime": "other",
+  "parameters": [{
+    "id": "no_overwrite",
+    "name": "No overwrite",
+    "description": "Do not overwrite existing file",
+    "type": "input",
+    "cardinality": "1..1",
+    "label": "-n",
+    "dataType": "boolean",
+    "default": false
+  }, {
+    "id": "input_file",
+    "name": "Input file name",
+    "description": "Input file name",
+    "type": "input",
+    "cardinality": "1..1",
+    "dataType": "file"
+  }, {
+    "id": "output_file",
+    "name": "Output file name",
+    "description": "Output file name",
+    "type": "output",
+    "cardinality": "1..1",
+    "dataType": "file"
+  }]
+}
+```
+
+</CodeExample>

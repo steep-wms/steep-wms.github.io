@@ -1,8 +1,5 @@
 import Architecture from "assets/architecture.svg"
-import ScrollLink from "components/ScrollLink"
-import styles from "./software-architecture.scss"
-
-<style jsx>{styles}</style>
+import DocsLink from "components/DocsLink"
 
 The following figure shows the main components of Steep: the HTTP server,
 the controller, the scheduler, the agent, and the cloud manager.
@@ -12,7 +9,7 @@ the controller, the scheduler, the agent, and the cloud manager.
 Together, these components form an instance of Steep. In practice, a single
 instance typically runs on a separate virtual machine, but multiple instances
 can also be started on the same machine. Each component can be enabled or
-disabled in a given instance (see the <ScrollLink href="#configuration">configuration options</ScrollLink> 
+disabled in a given instance (see the <DocsLink href="#configuration">configuration options</DocsLink> 
 for more information). That means, in a cluster, there can be instances
 that have all five components enabled, and others that have only an agent,
 for example.
@@ -28,7 +25,7 @@ of the instances of the controller.
 
 The controller receives this message, loads the workflow from the database,
 and starts transforming it iteratively to process chains as
-described <ScrollLink href="#workflow-scheduling">above</ScrollLink>.
+described <DocsLink href="#workflow-scheduling">above</DocsLink>.
 Whenever it has generated new process chains, it puts them into the database
 and sends a message to all instances of the scheduler.
 

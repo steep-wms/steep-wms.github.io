@@ -1,0 +1,18 @@
+import DocsLink from "components/DocsLink"
+
+Here is a list of the global variables defined in provisioning scripts:
+
+| Variable    | Description |
+| ----------- | ----------- |
+| `agentId`   | The ID of the agent that is about to be deployed on the provisioned VM |
+| `ipAddress` | The IP address of the provisioned VM |
+| `setup`     | A <DocsLink href="#setups">Setup</DocsLink> object that describes the configuration of the provisioned VM |
+
+| Example provisioning script |
+| --------------------------- |
+
+```handlebars
+#!/usr/bin/env bash
+
+echo {{ ipAddress }}
+```

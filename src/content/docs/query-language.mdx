@@ -1,4 +1,4 @@
-import ScrollLink from "components/ScrollLink"
+import DocsLink from "components/DocsLink"
 import dayjs from "dayjs"
 
 The focus of Steep's query language is on the end users. It is lightweight and contains only a few operators. There are no logical combinators such as `AND` or `OR`. The main idea is that Steep tries to find as many objects matching the query as possible and then sorts them by relevance so the best matches are on the top of the list. It is assumed that workflows have a higher relevance than process chains. If you are using the search through the web interface, you will typically find what you are looking for on one of the first pages. You rarely have to access any page after the second or third one. This is similar to how a web search engine works.
@@ -78,4 +78,4 @@ A search query consists of one or more of the following elements:
 > * `start`, `startTime`
 > * `end`, `endTime`
 
-> See the <ScrollLink href="#submissions">submission</ScrollLink> and <ScrollLink href="#process-chains">process chain</ScrollLink> data models for more information about these attributes.
+> See the <DocsLink href="#submissions">submission</DocsLink> and <DocsLink href="#process-chains">process chain</DocsLink> data models for more information about these attributes.

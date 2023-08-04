@@ -1,15 +1,15 @@
-import ScrollLink from "components/ScrollLink"
+import DocsLink from "components/DocsLink"
 
 A process chain consistency checker plugin is a function that checks if
-an <ScrollLink href="#execute-actions">execute action</ScrollLink> can be added
-to a <ScrollLink href="#process-chains">process chain</ScrollLink> or if adding
+an <DocsLink href="#execute-actions">execute action</DocsLink> can be added
+to a <DocsLink href="#process-chains">process chain</DocsLink> or if adding
 it would lead to inconsistencies that render the process chain inexecutable.
 
 The function is called before the execute action is converted to an
-<ScrollLink href="#executables">executable</ScrollLink> and before it is added
+<DocsLink href="#executables">executable</DocsLink> and before it is added
 to the process chain. It takes a list of executables that have been collected
 so far during process chain generation, the execute action that is about to be
-converted, the <ScrollLink href="#workflows">workflow</ScrollLink> from which
+converted, the <DocsLink href="#workflows">workflow</DocsLink> from which
 the process chain is being created, and a Vert.x instance.
 
 It returns `true` if the execute action can safely be converted and added to

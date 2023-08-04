@@ -1,8 +1,5 @@
 import GenerateProcessChains from "assets/generate-process-chains.svg?source"
-import ScrollLink from "components/ScrollLink"
-import styles from "./workflow-scheduling.scss"
-
-<style jsx>{styles}</style>
+import DocsLink from "components/DocsLink"
 
 Steep is a scientific workflow management system that can be used to control
 the processing of very large data sets in a distributed environment.
@@ -29,7 +26,7 @@ hybrid scheduling approach that applies heuristics on the level of the workflow
 graph and later on the level of individual executable units. We assume that
 tasks that access the same data should be executed on the same machine to
 reduce the communication overhead and to improve file reuse. We therefore
-group tasks into so-called <ScrollLink href="#process-chains">process chains</ScrollLink>,
+group tasks into so-called <DocsLink href="#process-chains">process chains</DocsLink>,
 which are linear sequential lists (without branches and loops).
 
 Steep transforms workflows to process chains in an iterative manner. In each

@@ -3,7 +3,7 @@
   "type": "dark",
   "tokenColors": [
     {
-      "scope": "entity.name",
+      "scope": ["entity.name", "storage.modifier"],
       "settings": {
         "foreground": "#e16eaa"
       }

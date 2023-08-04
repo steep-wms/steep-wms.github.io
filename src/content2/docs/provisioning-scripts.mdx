@@ -1,0 +1,13 @@
+import DocsLink from "components/DocsLink"
+
+After Steep's cloud manager has created a VM, it uploads the provisioning
+scripts defined in the corresponding <DocsLink href="#setups">setup</DocsLink>
+to the VM and executes them. The scripts can be used to deploy software to the
+VM and to make sure all required services (including Steep) are running.
+
+Each provisioning script is a simple executable script file with a valid UNIX
+shebang at the beginning.
+
+Script files will be processed by a [template engine](https://pebbletemplates.io/)
+before they are uploaded. The following sections describe supported template
+instructions.

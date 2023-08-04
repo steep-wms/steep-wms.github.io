@@ -1,0 +1,48 @@
+import CodeExample from "components/CodeExample"
+import DocsLink from "components/DocsLink"
+
+A setup describes how a virtual machine (VM) should be created by Steep's cloud
+manager.
+
+| Property                               | Type    | Description
+| -------------------------------------- | ------- | -----------
+| id<br/>*(required)*                    | string  | A unique setup identifier
+| flavor<br/>*(required)*                | string  | The flavor of the new VM
+| imageName<br/>*(required)*             | string  | The name of the VM image to deploy
+| availabilityZone<br/>*(required)*      | string  | The availability zone in which to create the VM
+| blockDeviceSizeGb<br/>*(required)*     | number  | The size of the VM's main block device in gigabytes
+| blockDeviceVolumeType<br/>*(optional)* | string  | An optional type of the VM's main block device. By default, the type will be selected automatically.
+| minVMs<br/>*(optional)*                | number  | An optional minimum number of VMs to create with this setup. The default value is `0`.
+| maxVMs<br/>*(required)*                | number  | The maximum number of VMs to create with this setup
+| maxCreateConcurrent<br/>*(optional)*   | number  | The maximum number of VMs to create and provision concurrently. The default value is `1`.
+| provisioningScripts<br/>*(optional)*   | array   | An optional list of paths to <DocsLink href="#provisioning-scripts">provisioning scripts</DocsLink> that should be executed on the VM after it has been created
+| providedCapabilities<br/>*(optional)*  | array   | An optional set of strings specifying capabilities that VMs with this setup will have
+| sshUsername<br/>*(optional)*           | string  | An optional username for the SSH connection to the created VM. Overrides the <DocsLink href="#steepyaml">main configuration</DocsLink> item `steep.cloud.ssh.username` if it is defined.
+| additionalVolumes<br/>*(optional)*     | array   | An optional list of <DocsLink href="#volumes">volumes</DocsLink> that will be attached to the VM
+| parameters<br/>*(optional)*            | object  | An optional custom object with user-defined properties. Use this object to pass arbitrary values to <DocsLink href="#provisioning-scripts">provisioning scripts</DocsLink> where they can be accessed through the <DocsLink href="#global-variables">global variable</DocsLink> `setup`.
+| creation<br/>*(optional)*              | object  | An optional <DocsLink href="#creation-policies">creation policy</DocsLink> that defines rules for creating VMs from this setup. Default values for this parameter are defined in the <DocsLink href="#steepyaml">main configuration</DocsLink>.
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "id": "default",
+  "flavor": "7d217779-4d7b-4689-8a40-c12a377b946d",
+  "imageName": "Ubuntu 18.04",
+  "availabilityZone": "nova",
+  "blockDeviceSizeGb": 50,
+  "minVMs": 0,
+  "maxVMs": 4,
+  "provisioningScripts": [
+    "conf/setups/default/01_docker.sh",
+    "conf/setups/default/02_steep.sh"
+  ],
+  "providedCapabilities": ["docker"],
+  "additionalVolumes": [{
+    "sizeGb": 50,
+    "type": "SSD"
+  }]
+}
+```
+
+</CodeExample>

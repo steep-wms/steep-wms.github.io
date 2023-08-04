@@ -1,4 +1,4 @@
-import ScrollLink from "components/ScrollLink"
+import DocsLink from "components/DocsLink"
 
 For compatibility reasons, the plugin function signatures described above are
 not fixed. Whenever a plugin function is called, its arguments are injected
@@ -12,7 +12,7 @@ This feature allows us as developers to add new parameters in the future to
 the function signatures without requiring all users to change their plugins.
 It also allows plugin developers to specify parameters in any order and
 to even leave out parameters if they are not needed. For example,
-a <ScrollLink href="#process-chain-adapters">process chain adapter</ScrollLink>
+a <DocsLink href="#process-chain-adapters">process chain adapter</DocsLink>
 could also have the following signature:
 
 ```kotlin
@@ -21,7 +21,7 @@ fun myProcessChainAdapter(workflow: Workflow)
 
 Note that a parameter can only be injected into a plugin of a certain type,
 if it is described in the function signature of this plugin type above. For
-example, the function signature of a <ScrollLink href="#custom-runtime-environments">runtime plugin</ScrollLink>
-does not specify a <ScrollLink href="#workflows">workflow</ScrollLink>, so a
+example, the function signature of a <DocsLink href="#custom-runtime-environments">runtime plugin</DocsLink>
+does not specify a <DocsLink href="#workflows">workflow</DocsLink>, so a
 workflow cannot be injected. Trying to define a runtime plugin with such a
 parameter will result in an error.

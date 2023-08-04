@@ -1,0 +1,14 @@
+import DocsLink from "components/DocsLink"
+
+The following table shows the statuses a <DocsLink href="#vms">VM</DocsLink>
+can have:
+
+| Status          | Description
+| --------------- | -----------
+| CREATING        | The VM is currently being created
+| PROVISIONING    | The VM has been created and is currently being provisioned (i.e. <DocsLink href="#provisioning-scripts">provisioning scripts</DocsLink> defined in the VM's <DocsLink href="#setups">setup</DocsLink> are being executed and the Steep agent is being deployed)
+| RUNNING         | The VM has been created and provisioned successfully. It is currently running and registered as a remote agent.
+| LEFT            | The remote agent on this VM has left. It will be destroyed eventually.
+| DESTROYING      | The VM is currently being destroyed
+| DESTROYED       | The VM has been destroyed
+| ERROR           | The VM could not be created, provisioned, or failed otherwise. See the VM's `reason` property for more information.

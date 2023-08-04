@@ -1,0 +1,27 @@
+import CodeExample from "components/CodeExample"
+import DocsLink from "components/DocsLink"
+
+An agent represents an instance of Steep that can execute <DocsLink href="#process-chains">process chains</DocsLink>.
+
+| Property                               | Type    | Description
+| -------------------------------------- | ------- | -----------
+| id<br/>*(required)*                    | string  | A unique agent identifier
+| available<br/>*(required)*             | boolean | `true` if the agent is currently idle and new process chains can be assigned to it, `false` if it is busy executing a process chain
+| capabilities<br/>*(required)*          | array   | A set of strings specifying capabilities the agent provides. See also <DocsLink href="#setups">setups</DocsLink>.
+| startTime<br/>*(required)*             | string  | An ISO 8601 timestamp denoting the date and time when the agent has started.
+| stateChangedTime<br/>*(required)*      | string  | An ISO 8601 timestamp denoting the date and time when the value of the `available` property changed from `true` to `false` (i.e. when the agent became busy) or from `false` to `true` (when it became available)
+| processChainId<br/>*(optional)*        | string  | The ID of the <DocsLink href="#process-chains">process chain</DocsLink> currently allocated to this agent. May be `null` if no process chain has been allocated to the agent (i.e. if it is currently `available`).
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "id": "akuxryerojbw7mnvovaa",
+  "available": true,
+  "capabilities": ["docker"],
+  "startTime": "2020-05-26T10:50:02.001998Z",
+  "stateChangedTime": "2020-05-26T11:06:52.367121Z"
+}
+```
+
+</CodeExample>

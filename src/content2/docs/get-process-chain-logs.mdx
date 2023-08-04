@@ -1,0 +1,66 @@
+import DocsLink from "components/DocsLink"
+
+Get contents of the log file of a <DocsLink href="#process-chains">process chain</DocsLink>.
+
+This endpoint will only return something if process chain logging is enabled in
+the <DocsLink href="#log-configuration">log configuration</DocsLink>.
+Otherwise, the endpoint will always return HTTP status code 404.
+
+Also note that process chain logs are stored on the machine where the Steep
+agent that has executed the process chain is running. The log files will only
+be available as long as the machine exists and the agent is still available. If
+you want to persist log files, define a location on a shared file system in
+the <DocsLink href="#log-configuration">log configuration</DocsLink>.
+
+This endpoint supports <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests">HTTP range requests</a>,
+which allows you to only fetch a portion of a process chain's log file.
+
+| Resource URL |
+| ------------ |
+
+```http
+/logs/processchains/:id
+```
+
+| Parameters |                                    |
+| ---------- | ---------------------------------- |
+| id         | The ID of the process chain whose log file to return |
+| forceDownload<br/>*(optional)* | `true` if the `Content-Disposition` header should be set in the response. This is useful if you link to a log file from a web page and want the browser to download the file instead of displaying its contents. The default value is `false`. |
+| runNumber<br />*(optional)*  | Specifies the actual run of the process chain whose log file to return (see the section on <DocsLink href="#process-chains">process chains</DocsLink> for details on runs). If no run number is given, the endpoint will return the log file of the latest run. Note that a process chain that currently has the <DocsLink href="#process-chain-status">status</DocsLink> `PAUSED` or `REGISTERED`, does not have a latest run. In this case, the endpoint will return HTTP status code 404.
+
+| Request headers  |                                                                |
+| ---------------- | -------------------------------------------------------------- |
+| Range<br/>*(optional)* | The part of the log file that should be returned (see <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range">HTTP Range header</a>) |
+
+| Response headers |                                                                |
+| ---------------- | -------------------------------------------------------------- |
+| Accept-Ranges    | A marker to advertise support of <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests">range requests</a> (see <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Ranges">HTTP Accept-Ranges header</a>) |
+| Content-Range<br/>*(optional)* | Indicates what part of the log file is delivered (see <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Range">HTTP Content-Range header</a>) |
+
+| Status codes |                              |
+| ------------ | ---------------------------- |
+| 200          | The operation was successful |
+| 206          | Partial content will be delivered in response to a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests">range request</a> |
+| 400          | The given run number is invalid (either not a number or less than `1`)
+| 404          | a) Process chain log file could not be found. Possible reasons: (1) the process chain has not produced any output (yet), (2) the agent that has executed the process chain is not available anymore, (3) process chain logging is disabled in Steep's configuration, (4) the process chain has the status `PAUSED` or `REGISTERED`, (5) the given run number was out of range
+| 416          | Range not satisfiable        |
+
+| Example request |
+| --------------- |
+
+```http
+GET /logs/processchains/akukkcsv575splk3v2na HTTP/1.1
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-type: text/plain
+accept-ranges: bytes
+content-encoding: gzip
+transfer-encoding: chunked
+
+2021-03-04 15:34:17 - Hello world!
+```

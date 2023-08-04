@@ -1,0 +1,54 @@
+import DocsLink from "components/DocsLink"
+
+Get information about all <DocsLink href="#agents">agents</DocsLink>
+currently connected to the cluster. In order to get details about a single agent,
+use the <DocsLink href="#get-agent-by-id">GET agent by ID endpoint</DocsLink>.
+
+| Resource URL |
+| ------------ |
+
+```http
+/agents
+```
+
+| Parameters              |                              |
+| ----------------------- | ---------------------------- |
+| None                    |
+
+| Status codes |                                                                |
+| ------------ | -------------------------------------------------------------- |
+| 200          | The operation was successful                                   |
+
+| Example request |
+| --------------- |
+
+```http
+GET /agents HTTP/1.1
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-encoding: gzip
+content-length: 195
+content-type: application/json
+
+[
+  {
+    "id": "akuxryerojbw7mnvovaa",
+    "available": false,
+    "capabilities": [],
+    "startTime": "2020-05-26T10:50:02.001998Z",
+    "stateChangedTime": "2020-05-26T11:06:52.367121Z"
+  },
+  {
+    "id": "akvn7r3szw5wiztrnotq",
+    "available": true,
+    "capabilities": [],
+    "startTime": "2020-05-27T12:21:24.548640Z",
+    "stateChangedTime": "2020-05-27T12:21:24.548640Z"
+  }
+]
+```

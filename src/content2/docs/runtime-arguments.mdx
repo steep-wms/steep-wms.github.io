@@ -1,0 +1,29 @@
+import CodeExample from "components/CodeExample"
+import DocsLink from "components/DocsLink"
+
+Runtime arguments are similar to <DocsLink href="#service-parameters">service parameters</DocsLink>,
+except they are passed to the runtime that executes the service (e.g. Docker)
+instead of the service itself.
+
+| Property                     | Type   | Description
+| ---------------------------- | ------ | -----------
+| id<br/>*(required)*          | string | A unique argument identifier
+| name<br/>*(required)*        | string | A human-readable name
+| description<br/>*(required)* | string | A human-readable description
+| dataType<br/>*(optional)*    | string | The type of the parameter value. Typically `"string"` or `"boolean"`. The same rules apply as for <DocsLink href="#service-parameters">service parameters</DocsLink>.
+| label<br/>*(optional)*       | string | An optional string that will be used as a label for the parameter. Examples are `-v`, `--volume`, `--entrypoint`, etc.
+| value<br/>*(optional)*       | string | An optional value for this parameter.
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "id": "volume",
+  "name": "Volume mount",
+  "description": "Mount data directory",
+  "label": "-v",
+  "value": "/data:/data"
+}
+```
+
+</CodeExample>

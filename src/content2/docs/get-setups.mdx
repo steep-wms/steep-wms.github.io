@@ -1,0 +1,60 @@
+import DocsLink from "components/DocsLink"
+
+Get information about all configured <DocsLink href="#setups">setups</DocsLink>.
+To get a single setup, use
+the <DocsLink href="#get-setup-by-id">GET setup by ID endpoint</DocsLink>.
+
+| Resource URL |
+| ------------ |
+
+```http
+/setups
+```
+
+| Parameters              |                              |
+| ----------------------- | ---------------------------- |
+| None                    |                              |
+
+| Status codes |                                                                |
+| ------------ | -------------------------------------------------------------- |
+| 200          | The operation was successful                                   |
+| 404          | Setups are unavailable because <DocsLink href="#cloud-connection">cloud configuration</DocsLink> is disabled |
+
+| Example request |
+| --------------- |
+
+```http
+GET /setups HTTP/1.1
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-encoding: gzip
+content-length: 3526
+content-type: application/json
+
+[
+  {
+    "id": "default",
+    "flavor": "7d217779-4d7b-4689-8a40-c12a377b946d",
+    "imageName": "Ubuntu 18.04",
+    "availabilityZone": "nova",
+    "blockDeviceSizeGb": 50,
+    "minVMs": 0,
+    "maxVMs": 4,
+    "provisioningScripts": [
+      "conf/setups/default/01_docker.sh",
+      "conf/setups/default/02_steep.sh"
+    ],
+    "providedCapabilities": ["docker"],
+    "additionalVolumes": [{
+      "sizeGb": 50,
+      "type": "SSD"
+    }]
+  },
+  …
+]
+```

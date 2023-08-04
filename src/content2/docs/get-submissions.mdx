@@ -1,0 +1,82 @@
+import DocsLink from "components/DocsLink"
+
+Get information about all submissions in the database. The response is a JSON
+array consisting of <DocsLink href="#submissions">submission objects</DocsLink>
+without the properties `workflow`, `results`, and `errorMessage`. In order to
+get the complete details of a submission, use
+the <DocsLink href="#get-submission-by-id">GET submission by ID endpoint</DocsLink>.
+
+The submissions are returned in the order in which they were added to the
+database with the newest ones at the top.
+
+| Resource URL |
+| ------------ |
+
+```http
+/workflows
+```
+
+| Parameters              |                              |
+| ----------------------- | ---------------------------- |
+| size<br/>*(optional)*   | The maximum number of submissions to return. The default value is 10.  |
+| offset<br/>*(optional)* | The offset of the first submission to return. The default value is 0. |
+| status<br/>*(optional)* | If this parameter is defined, Steep will only return submissions with the given status. Otherwise, it will return all submissions from the database. See the list of <DocsLink href="#submission-status">submission statuses</DocsLink> for valid values. |
+
+| Response headers |                                                                |
+| ---------------- | -------------------------------------------------------------- |
+| x-page-size      | The size of the current page (i.e. the maximum number of submission objects returned). See `size` request parameter. |
+| x-page-offset    | The offset of the first submission returned. See `offset` request parameter |
+| x-page-total     | The total number of submissions in the database matching the given request parameters. |
+
+| Status codes |                                                                |
+| ------------ | -------------------------------------------------------------- |
+| 200          | The operation was successful                                   |
+| 400          | One of the parameters was invalid. See response body for error message. |
+
+| Example request |
+| --------------- |
+
+```http
+GET /workflows HTTP/1.1
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-encoding: gzip
+content-length: 662
+content-type: application/json
+x-page-offset: 0
+x-page-size: 10
+x-page-total: 2
+
+[
+  {
+    "id": "akpm6yojjigral4cdxgq",
+    "startTime": "2020-05-18T08:44:01.045710Z",
+    "endTime": "2020-05-18T08:44:21.218425Z",
+    "status": "SUCCESS",
+    "requiredCapabilities": [],
+    "runningProcessChains": 0,
+    "pausedProcessChains": 0,
+    "cancelledProcessChains": 0,
+    "succeededProcessChains": 10,
+    "failedProcessChains": 0,
+    "totalProcessChains": 10
+  },
+  {
+    "id": "akttc5kv575splk3ameq",
+    "startTime": "2020-05-24T17:20:37.343072Z",
+    "status": "RUNNING",
+    "requiredCapabilities": [],
+    "runningProcessChains": 1,
+    "pausedProcessChains": 0,
+    "cancelledProcessChains": 0,
+    "succeededProcessChains": 391,
+    "failedProcessChains": 0,
+    "totalProcessChains": 1000
+  }
+]
+```

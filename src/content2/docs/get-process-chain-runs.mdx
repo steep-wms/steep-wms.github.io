@@ -1,0 +1,70 @@
+import DocsLink from "components/DocsLink"
+
+Return an array of all runs of a <DocsLink href="#process-chains">process chain</DocsLink>.
+
+A *run* is represented by an object containing a subset of the properties of a
+process chain, namely `agentId`, `startTime`, `endTime`, `status`, `errorMessage`, and
+`autoResumeAfter`. See the section on <DocsLink href="#process-chains">process chains</DocsLink>
+for more information about runs and these properties.
+
+Runs are ordered by their run number from `1` to `n` where `n` is the total
+number of runs (see process chain property `totalRuns`).
+
+| Resource URL |
+| ------------ |
+
+```http
+/processchains/:id/runs
+```
+
+| Parameters |                                    |
+| ---------- | ---------------------------------- |
+| id         | The ID of the process chain whose runs should be returned |
+
+| Status codes |                              |
+| ------------ | ---------------------------- |
+| 200          | The operation was successful |
+| 404          | The process chain was not found  |
+
+| Example request |
+| --------------- |
+
+```http
+GET /processchains/a6wgb7gwpbzr2p6rdlma/runs HTTP/1.1
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+vary: origin
+content-type: application/json
+content-encoding: gzip
+content-length: 474
+
+[
+  {
+    "agentId": "bakwqka7gk2vrjnxdo5a",
+    "startTime": "2023-01-24T13:26:04.294068Z",
+    "endTime": "2023-01-24T13:26:14.724449Z",
+    "status": "ERROR",
+    "errorMessage": "Failed to run. Exit code: 1",
+    "autoResumeAfter": "2023-01-24T13:26:59.724445Z"
+  },
+  {
+    "agentId": "bakwqka7gk2vrjnxdo5a",
+    "startTime": "2023-01-24T13:27:16.079864Z",
+    "endTime": "2023-01-24T13:27:26.200881Z",
+    "status": "ERROR",
+    "errorMessage": "Failed to run. Exit code: 1",
+    "autoResumeAfter": "2023-01-24T13:28:11.200878Z"
+  },
+  {
+    "agentId": "bakwqvi7gk2vrjnxdo7q",
+    "startTime": "2023-01-24T13:28:16.101778Z",
+    "endTime": "2023-01-24T13:28:26.280940Z",
+    "status": "SUCCESS"
+  }
+]
+```

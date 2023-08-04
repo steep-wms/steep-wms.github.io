@@ -1,0 +1,102 @@
+import DocsLink from "components/DocsLink"
+
+Get information about all <DocsLink href="#vms">VMs</DocsLink> in the database.
+To get details about a single VM, use
+the <DocsLink href="#get-vm-by-id">GET VM by ID endpoint</DocsLink>.
+
+The VMs are returned in the order in which they were added to the
+database with the newest ones at the top.
+
+| Resource URL |
+| ------------ |
+
+```http
+/vms
+```
+
+| Parameters              |                              |
+| ----------------------- | ---------------------------- |
+| size<br/>*(optional)*   | The maximum number of VMs to return. The default value is 10.  |
+| offset<br/>*(optional)* | The offset of the first VM to return. The default value is 0. |
+| status<br/>*(optional)* | If this parameter is defined, Steep will only return VMs with the given status. Otherwise, it will return all VMs from the database. See the list of <DocsLink href="#vm-status">VM statuses</DocsLink> for valid values. |
+
+| Response headers |                                                                |
+| ---------------- | -------------------------------------------------------------- |
+| x-page-size      | The size of the current page (i.e. the maximum number of VM objects returned). See `size` request parameter. |
+| x-page-offset    | The offset of the first VM returned. See `offset` request parameter |
+| x-page-total     | The total number of VMs in the database matching the given request parameters. |
+
+| Status codes |                                                                |
+| ------------ | -------------------------------------------------------------- |
+| 200          | The operation was successful                                   |
+| 400          | One of the parameters was invalid. See response body for error message. |
+
+| Example request |
+| --------------- |
+
+```http
+GET /vms HTTP/1.1
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+content-encoding: gzip
+content-length: 2402
+content-type: application/json
+x-page-offset: 0
+x-page-size: 10
+x-page-total: 614
+
+[
+  {
+    "id": "akvn5rmvrozqzj5k3n7a",
+    "externalId": "cc6bb115-5852-4646-87c0-d61a9e275722",
+    "ipAddress": "10.90.5.10",
+    "creationTime": "2020-05-27T12:17:01.861596Z",
+    "agentJoinTime": "2020-05-27T12:18:27.957192Z",
+    "status": "LEFT",
+    "setup": {
+      "id": "default",
+      "flavor": "7d217779-4d7b-4689-8a40-c12a377b946d",
+      "imageName": "Ubuntu 18.04",
+      "availabilityZone": "nova",
+      "blockDeviceSizeGb": 50,
+      "minVMs": 0,
+      "maxVMs": 4,
+      "provisioningScripts": [
+        "conf/setups/default/01_docker.sh",
+        "conf/setups/default/02_steep.sh"
+      ],
+      "providedCapabilities": ["docker"]
+    }
+  },
+  {
+    "id": "akvnmkuvrozqzj5k3mza",
+    "externalId": "f9ecfb9c-d0a1-45c9-87fc-3595bebc85c6",
+    "ipAddress": "10.90.5.24",
+    "creationTime": "2020-05-27T11:40:19.142991Z",
+    "agentJoinTime": "2020-05-27T11:41:42.349354Z",
+    "destructionTime": "2020-05-27T11:50:58.961455Z",
+    "status": "DESTROYED",
+    "reason": "Agent has left the cluster",
+    "setup": {
+      "id": "default",
+      "flavor": "7d217779-4d7b-4689-8a40-c12a377b946d",
+      "imageName": "Ubuntu 18.04",
+      "availabilityZone": "nova",
+      "blockDeviceSizeGb": 50,
+      "minVMs": 0,
+      "maxVMs": 4,
+      "provisioningScripts": [
+        "conf/setups/default/01_docker.sh",
+        "conf/setups/default/02_steep.sh"
+      ],
+      "providedCapabilities": ["docker"]
+    }
+  },
+  …
+]
+```

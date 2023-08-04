@@ -1,0 +1,25 @@
+import CodeExample from "components/CodeExample"
+import DocsLink from "components/DocsLink"
+
+Output parameters of <DocsLink href="#execute-actions">execute actions</DocsLink> have
+additional properties compared to inputs.
+
+| Property                | Type    | Description
+| ----------------------- | ------- | -----------
+| id<br/>*(required)*     | string  | The ID of the parameter as defined in the <DocsLink href="#service-metadata">service metadata</DocsLink>
+| var<br/>*(required)*    | string  | The ID of a variable to which Steep will assign the generated name of the output file. This variable can then be used, for example, as an input parameter of a subsequent action.
+| prefix<br/>*(optional)* | string  | An optional string to prepend to the generated name of the output file. For example, if Steep generates the name `"name123abc"` and the prefix is `"my/dir/"`, the output filename will be `"my/dir/name123abc"`. Note that the prefix must end with a slash if you want to create a directory. The output filename will be relative to the <DocsLink href="#steepyaml">configured temporary directory or output directory</DocsLink> (depending on the `store` property). You may even specify an absolute path: if the generated name is `"name456fgh"` and the prefix is `"/absolute/dir/"`, the output filename will be `"/absolute/dir/name456fgh"`.
+| store<br/>*(optional)*  | boolean | If this property is `true`, Steep will generate an output filename that is relative to the <DocsLink href="#steepyaml">configured output directory</DocsLink> instead of the <DocsLink href="#steepyaml">temporary directory</DocsLink>. The default value is `false`.
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "id": "output",
+  "var": "o",
+  "prefix": "some_directory/",
+  "store": false
+}
+```
+
+</CodeExample>

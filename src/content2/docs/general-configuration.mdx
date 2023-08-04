@@ -1,0 +1,21 @@
+import DocsLink from "components/DocsLink"
+
+`steep.tmpPath`
+
+> The path to a directory where temporary files should be stored during processing. Steep generates names for the outputs of <DocsLink href="#execute-actions">execute actions</DocsLink> in a workflow. If the `store` flag of an <DocsLink href="#output-parameters">output parameter</DocsLink> is `false` (which is the default), the generated filename will be relative to this temporary directory.
+
+`steep.outPath`
+
+> The path to a directory where output files should be stored. This path will be used instead of `steep.tmpPath` to generate a filename for an <DocsLink href="#output-parameters">output parameter</DocsLink> if its `store` flag is `true`.
+
+`steep.overrideConfigFile`
+
+> The path to a file that keeps additional configuration. The values of the `overrideConfigFile` will be merged into the main configuration file, so it basically overrides the default values. Note that configuration items in this file can still be overridden with environment variables. This configuration item is useful if you don't want to change the main configuration file (or if you cannot do so) but still want to set different configuration values. Use it if you run Steep in a Docker container and bind mount the `overrideConfigFile` as a volume.
+
+`steep.services`
+
+> The path to the <DocsLink href="#servicesservicesyaml">configuration files containing service metadata</DocsLink>. Either a string pointing to a single file, a glob pattern (e.g. `**/*.yaml`), or an array of files or glob patterns.
+
+`steep.plugins`
+
+> The path to the <DocsLink href="#pluginscommonyaml">configuration file(s) containing plugin descriptors</DocsLink>. Either a string pointing to a single file, a glob pattern (e.g. `**/*.yaml`), or an array of files or glob patterns.

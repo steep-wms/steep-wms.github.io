@@ -1,11 +1,11 @@
 import CodeExample from "components/CodeExample"
-import ScrollLink from "components/ScrollLink"
+import DocsLink from "components/DocsLink"
 
 A match object specifies a which property of an item has matched with which search term and where the match has occurred.
 
 | Property                  | Type   | Description
 | ------------------------- | ------ | -----------
-| locator                   | string | The property in which the match was found. Possible values are `errorMessage`, `id`, `name`, `requiredCapabilities`, `source`, `status`, `startTime`, `endTime`. See the description of the <ScrollLink href="#submissions">submission</ScrollLink> and <ScrollLink href="#process-chains">process chain</ScrollLink> data models for more information about these properties.
+| locator                   | string | The property in which the match was found. Possible values are `errorMessage`, `id`, `name`, `requiredCapabilities`, `source`, `status`, `startTime`, `endTime`. See the description of the <DocsLink href="#submissions">submission</DocsLink> and <DocsLink href="#process-chains">process chain</DocsLink> data models for more information about these properties.
 | fragment                  | string | A fragment of the property's value (an 'excerpt' or a 'preview'). If the property's value is small enough, the fragment might even contain the whole value.
 | termMatches               | array  | A list of matches within `fragment` (see below)
 

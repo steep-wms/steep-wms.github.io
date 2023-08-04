@@ -1,0 +1,42 @@
+import DocsLink from "components/DocsLink"
+
+`steep.controller.enabled`
+
+> `true` if the controller should be enabled. Set this value to `false` if your
+> Steep instance does not have access to the shared database.
+
+> **Default:** `true`
+
+`steep.controller.lookupInterval`
+
+> The interval at which the controller looks for accepted submissions,
+> specified as a <DocsLink href="#durations">duration</DocsLink>.
+
+> **Default:** 2s
+
+`steep.controller.lookupMaxErrors`
+
+> The maximum number of consecutive errors (e.g. database connection issues) to
+> tolerate when looking up the status of process chains of a running submission.
+> If there are more errors, the submission will be aborted.
+
+> **Default:** 5
+
+`steep.controller.lookupOrphansInterval`
+
+> The interval at which the controller looks for orphaned running submissions
+> (i.e. submissions that are in the status `RUNNING` but that are currently not
+> being processed by any controller instance), specified as a
+> <DocsLink href="#durations">duration</DocsLink>. If Steep finds such a
+> submission it will try to resume it.
+
+> **Default:** 5m
+
+`steep.controller.lookupOrphansInitialDelay`
+
+> The time the controller should wait after startup before it looks for
+> orphaned running submissions for the first time (specified as a
+> <DocsLink href="#durations">duration</DocsLink>). This property is useful
+> if you want to implement a rolling update from one Steep instance to another.
+
+> **Default:** 0s

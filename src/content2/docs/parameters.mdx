@@ -1,0 +1,23 @@
+import CodeExample from "components/CodeExample"
+import DocsLink from "components/DocsLink"
+
+This data model represents inputs and generic parameters of <DocsLink href="#execute-actions">execute actions</DocsLink>.
+
+| Property             | Type   | Description
+| -------------------- | ------ | -----------
+| id<br/>*(required)*  | string | The ID of the parameter as defined in the <DocsLink href="#service-metadata">service metadata</DocsLink>
+| var<br/>*(optional)* | string | The ID of a variable that holds the value for this parameter (required if `value` is not given)
+| value<br />*(optional)* | any | The parameter value (required if `var` is not given)
+
+*Note: Either `var` or `value` must be given but not both!*
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "id": "input",
+  "var": "i"
+}
+```
+
+</CodeExample>

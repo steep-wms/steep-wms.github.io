@@ -1,0 +1,25 @@
+import CodeExample from "components/CodeExample"
+import DocsLink from "components/DocsLink"
+
+A creation policy defines rules for creating VMs from a
+certain <DocsLink href="#setups">setup</DocsLink>.
+
+| Property                            | Type     | Description
+| ----------------------------------- | -------- | -----------
+| retries<br/>*(optional)*            | object   | An optional <DocsLink href="#retry-policies">retry policy</DocsLink> that specifies how many attempts should be made to create a VM (if creation fails) as well as possible (exponential) delays between those attempts. If this property is `null`, default values from the <DocsLink href="#steepyaml">`steep.yaml`</DocsLink> file will be used.
+| lockAfterRetries<br/>*(optional)*   | <DocsLink href="#durations">duration</DocsLink> | When the maximum number of attempts to create a VM from a certain <DocsLink href="#setups">setup</DocsLink> has been reached, the setup will be locked and no other VM with this setup will be created. This property defines how long it will stay locked.
+
+<CodeExample title="Example:">
+
+```json code-example
+{
+  "retries": {
+    "maxAttempts": 5,
+    "delay": "40s",
+    "exponentialBackoff": 2
+  },
+  "lockAfterRetries": "20m"
+}
+```
+
+</CodeExample>

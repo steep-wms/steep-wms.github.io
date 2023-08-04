@@ -1,0 +1,79 @@
+import DocsLink from "components/DocsLink"
+
+`steep.logs.level`
+
+> The default log level for all loggers (console as well as file-based)
+
+> **Valid values:** `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `OFF`.
+
+> **Default:** `DEBUG`
+
+`steep.logs.main.enabled`
+
+> `true` if logging to the main log file should be enabled
+
+> **Default:** false
+
+`steep.logs.main.logFile`
+
+> The name of the main log file
+
+> **Default:** `logs/steep.log`
+
+`steep.logs.main.dailyRollover.enabled`
+
+> `true` if main log files should be renamed every day. The file name will be
+> based on `steep.logs.main.logFile` and the file's date in the form
+> `YYYY-MM-DD` (e.g. `steep.2020-11-19.log`)
+
+> **Default:** `true`
+
+`steep.logs.main.dailyRollover.maxDays`
+
+> The maximum number of days' worth of main log files to keep
+
+> **Default**: 7
+
+`steep.logs.main.dailyRollover.maxSize`
+
+> The total maximum size of all main log files in bytes. Oldest log files will
+> deleted when this size is reached.
+
+> **Default**: 104857600 (100 MB)
+
+`steep.logs.processChains.enabled`
+
+> `true` if the output of process chains should be logged separately to disk.
+> The output will still also appear on the console and in the main log file
+> (if enabled), but there, it's not separated by process chain. This feature
+> is useful if you want to record the output of individual process chains
+> and make it available through the <DocsLink href="#get-process-chain-logs">process chain logs endpoint</DocsLink>.
+
+> **Default:** `false`
+
+`steep.logs.processChains.path`
+
+> The path where process chain logs will be stored. Individual files will
+> will be named after the ID of the corresponding process chain (e.g.
+> `aprsqz6d5f4aiwsdzbsq.log`). If a process chain has been executed more
+than once (for example, due to a retry), the file name will include the
+run number (e.g. `aprsqz6d5f4aiwsdzbsq.2.log`).
+
+> **Default:** `logs/processchains`
+
+`steep.logs.processChains.groupByPrefix`
+
+> Set this configuration item to a value greater than `0` to group process
+> chain log files by prefix in subdirectories under the directory configured
+> through `steep.logs.processChains.path`. For example, if this configuration
+> item is set to `3`, Steep will create a separate subdirectory for all process
+> chains whose ID starts with the same three characters. The name of this
+> subdirectory will be these three characters. The process chains
+> `apomaokjbk3dmqovemwa` and `apomaokjbk3dmqovemsq` will be put into a
+> subdirectory called `apo`, and the process chain `ao344a53oyoqwhdelmna`
+> will be put into `ao3`. Note that in practice, `3` is a reasonable value,
+> which will create a new directory about every day. A value of `0` disables
+> grouping.
+
+> **Default:** 0
+
