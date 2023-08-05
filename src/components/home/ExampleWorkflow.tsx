@@ -9,6 +9,7 @@ import { ChevronRight } from "lucide-react"
 import { useAnimate, stagger } from "framer-motion"
 import Container from "../Container"
 import useInViewEx from "../hooks/useInViewEx"
+import Link from "next/link"
 
 const ExampleWorkflow = () => {
   const [scope, animate] = useAnimate()
@@ -47,10 +48,12 @@ const ExampleWorkflow = () => {
               executes them in parallel if possible.
             </p>
 
-            <Button className="text-sm">
-              Read full tutorial
-              <ChevronRight size="16" className="ml-1" />
-            </Button>
+            <Link href="/docs/tutorial-segment-aerial-images">
+              <Button className="text-sm">
+                Read full tutorial
+                <ChevronRight size="16" className="ml-1" />
+              </Button>
+            </Link>
           </div>
           <div className="bottom-0 right-0 md:mx-auto md:w-4/5 lg:absolute lg:mx-0 lg:w-3/5">
             <Orthophoto t0={0.5} />
