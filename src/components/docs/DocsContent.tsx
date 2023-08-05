@@ -19,7 +19,7 @@ const DocsContent = ({ slug, children }: DocsContentProps) => {
   return (
     <Container
       type="2xl"
-      className="mb-10 grid gap-10 px-2 [grid-template-columns:16rem_1fr_16rem]"
+      className="mb-10 grid gap-10 px-2 [grid-template-columns:16rem_minmax(0,1fr)_16rem]"
     >
       <SidebarLeft activeSlug={slug} />
       <ScrollObserver onChangeSlug={slug => setActiveSection(slug)}>
