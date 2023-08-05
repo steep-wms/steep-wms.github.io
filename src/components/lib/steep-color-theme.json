@@ -15,6 +15,11 @@ Changes:
   "semanticHighlighting": true,
   "tokenColors": [
     {
+      "settings": {
+        "foreground": "#edf2f8ff"
+      }
+    },
+    {
       "scope": "emphasis",
       "settings": {
         "fontStyle": "italic"
