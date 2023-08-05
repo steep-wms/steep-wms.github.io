@@ -11,6 +11,7 @@ interface Page {
   readonly type: "page"
   readonly title: string
   readonly slug: string
+  readonly chapter: string
   readonly sections?: Section[]
 }
 
@@ -18,12 +19,13 @@ interface Section {
   readonly type: "section"
   readonly title: string
   readonly slug: string
+  readonly page: string
 }
 
 type DraftSection =
   | string
-  | (Omit<Section, "type" | "slug"> & { slug?: string })
-type DraftPage = Omit<Page, "type" | "slug" | "sections"> & {
+  | (Omit<Section, "type" | "slug" | "page"> & { slug?: string })
+type DraftPage = Omit<Page, "type" | "slug" | "sections" | "chapter"> & {
   slug?: string
   readonly sections?: DraftSection[]
 }
@@ -178,8 +180,12 @@ function makeToc() {
   let result: Chapter[] = []
 
   for (let chapter of toc) {
+    let chapterSlug = slug(chapter.title)
+
     let pages: Page[] = []
     for (let p of chapter.pages) {
+      let pageSlug = p.slug ?? slug(p.title)
+
       let sections: Section[] | undefined = undefined
       if (p.sections !== undefined) {
         sections = []
@@ -193,20 +199,24 @@ function makeToc() {
             title = s.title
             sectionSlug = s.slug ?? slug(title)
           }
-          sections.push({ title, type: "section", slug: sectionSlug })
+          sections.push({
+            title,
+            type: "section",
+            slug: sectionSlug,
+            page: pageSlug,
+          })
         }
       }
 
-      let pageSlug = slug(p.title)
       pages.push({
         ...p,
         type: "page",
-        slug: p.slug ?? pageSlug,
+        slug: pageSlug,
         sections,
+        chapter: chapterSlug,
       })
     }
 
-    let chapterSlug = slug(chapter.title)
     result.push({
       ...chapter,
       type: "chapter",

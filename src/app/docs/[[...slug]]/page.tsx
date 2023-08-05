@@ -24,8 +24,10 @@ const DocsPage = ({ params }: { params: { slug: string[] } }) => {
 
     let Content = require(`../../../content/docs/${slug}.mdx`).default
 
+    let parentChapter = undefined
     let sections = undefined
     if (entry.type === "page") {
+      parentChapter = Index[entry.chapter]
       sections = entry.sections?.map(s => {
         let SectionContents =
           require(`../../../content/docs/${s.slug}.mdx`).default
@@ -40,7 +42,14 @@ const DocsPage = ({ params }: { params: { slug: string[] } }) => {
 
     Main = (
       <>
-        <h2 id={slug}>{entry.title}</h2>
+        {parentChapter !== undefined ? (
+          <div className="text-sm font-normal text-primary">
+            {parentChapter.title}
+          </div>
+        ) : undefined}
+        <h2 className="mt-2" id={slug}>
+          {entry.title}
+        </h2>
         <Content />
         {sections}
       </>
