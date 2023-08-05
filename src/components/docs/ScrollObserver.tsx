@@ -10,7 +10,7 @@ interface Top {
 
 interface ScrollObserverProps {
   children: React.ReactNode
-  onChangeSlug?: (slug: string) => void
+  onChangeSlug?: (slug: string | undefined) => void
 }
 
 const ScrollObserver = ({ children, onChangeSlug }: ScrollObserverProps) => {
@@ -35,9 +35,6 @@ const ScrollObserver = ({ children, onChangeSlug }: ScrollObserverProps) => {
         }
       })
       tops.sort((a, b) => a.top - b.top)
-      if (tops.length > 0) {
-        tops[0].top = 0
-      }
       tops = tops
     }
 
@@ -53,7 +50,15 @@ const ScrollObserver = ({ children, onChangeSlug }: ScrollObserverProps) => {
         }
         current = tops[i].slug
       }
-      if (current !== undefined && current !== currentSlug) {
+      if (
+        current === undefined &&
+        tops.length > 0 &&
+        tops[0].top < window.scrollY + window.innerHeight
+      ) {
+        current = tops[0].slug
+      }
+
+      if (current !== currentSlug) {
         currentSlug = current
         onChangeSlug?.(current)
       }
