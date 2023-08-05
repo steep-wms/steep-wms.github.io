@@ -1,32 +1,27 @@
-{/* import DownloadButtons from "components/DownloadButtons" */}
-import pkg from "../../package.json"
+import DownloadButtons from "components/get-started/DownloadButtons"
+import RunBinary from "components/get-started/RunBinary"
+import RunDocker from "components/get-started/RunDocker"
 
 Choose from one of the following options to download Steep:
 
-{/* <DownloadButtons /> */}
+<DownloadButtons />
 
-If you downloaded the binary package of Steep, extract the ZIP file and run the
+If you've downloaded the binary package of Steep, extract the ZIP file and run the
 start script:
 
-<pre>
-  <code className="hljs language-bash"><span className="hljs-built_in">cd</span> steep-{pkg.version}
-  bin/steep</code>
-</pre>
+<RunBinary />
 
 Or, start the [Docker image](https://hub.docker.com/orgs/steep/steep) as
 follows:
 
-<pre>
-  <code className="hljs language-bash">docker run -{}-name steep -d -{}-rm -p 8080:8080 \\
-    {`    `}-e STEEP_HTTP_HOST=0.0.0.0 steep/steep:{pkg.version}</code>
-</pre>
+<RunDocker />
 
 After a few seconds, you can access Steep's web interface on
 http://localhost:8080/.
 
 We will now submit a simple workflow to test if Steep is running correctly. The
 workflow consists of a single execute action that sleeps for 10 seconds and
-then quits. Execute the following command:
+then quits. Run the following command:
 
 ```bash
 curl -X POST http://localhost:8080/workflows -d 'api: 4.6.0
@@ -42,9 +37,9 @@ The command will return the ID of the submitted workflow. You can monitor the
 execution in the web interface or by issuing the following command:
 
 ```bash
-curl http://localhost:8080/workflows/<workflow-id>
+curl http://localhost:8080/workflows/[WORKFLOW ID]
 ```
 
-Replace `<workflow-id>` with the returned ID.
+Replace `[WORKFLOW ID]` with the returned ID.
 
-*Congratulations! You successfully installed Steep and ran your first workflow.*
+*Congratulations! You've successfully installed Steep and ran your first workflow.*

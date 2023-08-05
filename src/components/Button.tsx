@@ -29,13 +29,25 @@ interface ButtonProps {
   onClick?: MouseEventHandler<HTMLButtonElement>
   children: React.ReactNode
   className?: string
+  type?: "primary" | "secondary"
 }
 
-const Button = ({ onClick = undefined, children, className }: ButtonProps) => {
+const Button = ({
+  onClick = undefined,
+  children,
+  type = "primary",
+  className,
+}: ButtonProps) => {
   return (
     <BaseButton
       className={clsx(
-        "bg-primary text-white hover:bg-primary-hover dark:border-2 dark:border-primary dark:bg-bg dark:bg-opacity-0 dark:text-primary dark:hover:border-primary-hover dark:hover:text-primary-hover",
+        "text-white dark:border-2 dark:bg-bg dark:bg-opacity-0",
+        {
+          "bg-primary hover:bg-primary-hover dark:border-primary dark:text-primary dark:hover:border-primary-hover dark:hover:text-primary-hover":
+            type === "primary",
+          "bg-gray-600 hover:bg-gray-700 dark:border-gray-400 dark:text-gray-400 dark:hover:border-gray-600 dark:hover:text-gray-600":
+            type === "secondary",
+        },
         className,
       )}
       onClick={onClick}

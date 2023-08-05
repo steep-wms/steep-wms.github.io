@@ -1127,6 +1127,22 @@ Changes:
       "settings": {
         "foreground": "#a0aec0"
       }
+    },
+    {
+      "scope": [
+        "source.shell entity.name.command.shell",
+        "source.shell entity.name.function.call.shell",
+        "source.shell support.function.builtin.shell"
+      ],
+      "settings": {
+        "foreground": "#edf2f8"
+      }
+    },
+    {
+      "scope": ["source.shell string.unquoted.argument"],
+      "settings": {
+        "foreground": "#e16eaa"
+      }
     }
   ]
 }
