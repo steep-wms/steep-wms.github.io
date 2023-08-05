@@ -61,6 +61,11 @@ const SidebarRight = ({ slug, activeSection }: SidebarRightProps) => {
     }
   }, [activeSection])
 
+  let githubFilename = slug
+  if (slug === "") {
+    githubFilename = "get-started"
+  }
+
   return (
     <Sidebar ref={sidebarRef}>
       {sections !== undefined ? (
@@ -75,7 +80,7 @@ const SidebarRight = ({ slug, activeSection }: SidebarRightProps) => {
         </>
       ) : undefined}
       <Link
-        href={`https://github.com/steep-wms/steep-wms.github.io/blob/master/src/content/docs/${slug}.mdx`}
+        href={`https://github.com/steep-wms/steep-wms.github.io/blob/master/src/content/docs/${githubFilename}.mdx`}
         className="text-gray-600 hover:text-primary-hover"
       >
         Edit this page on GitHub{" "}
