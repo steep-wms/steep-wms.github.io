@@ -2,7 +2,6 @@ import Footer from "@/components/Footer"
 import NavBar from "@/components/NavBar"
 import DocsContent from "@/components/docs/DocsContent"
 import { Index } from "@/components/docs/Toc"
-import GithubSlugger from "github-slugger"
 
 export async function generateStaticParams() {
   return [
@@ -13,8 +12,6 @@ export async function generateStaticParams() {
 }
 
 const DocsPage = ({ params }: { params: { slug: string[] } }) => {
-  let slugger = new GithubSlugger()
-
   let slug = undefined
   let Main = undefined
   if (
@@ -28,14 +25,13 @@ const DocsPage = ({ params }: { params: { slug: string[] } }) => {
     let Content = require(`../../../content/docs/${slug}.mdx`).default
 
     let sections = undefined
-    if ("sections" in entry) {
+    if (entry.type === "page") {
       sections = entry.sections?.map(s => {
-        let sectionSlug = slugger.slug(s)
         let SectionContents =
-          require(`../../../content/docs/${sectionSlug}.mdx`).default
+          require(`../../../content/docs/${s.slug}.mdx`).default
         return (
-          <section key={sectionSlug} data-slug={sectionSlug}>
-            <h3 id={sectionSlug}>{s}</h3>
+          <section key={s.slug} data-slug={s.slug}>
+            <h3 id={s.slug}>{s.title}</h3>
             <SectionContents />
           </section>
         )

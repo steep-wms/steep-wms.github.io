@@ -1,29 +1,29 @@
-import GithubSlugger from "github-slugger"
 import Link from "next/link"
 import { Toc } from "@/components/docs/Toc"
 import Sidebar from "./Sidebar"
 import clsx from "clsx"
 
 function createToc(activeSlug?: string) {
-  let slugger = new GithubSlugger()
-
   let result = []
-  for (let group of Toc) {
-    let titleSlug = slugger.slug(group.title)
+  for (let chapter of Toc) {
+    let titleSlug = chapter.slug
     result.push(
       <li key={titleSlug}>
-        <div className="mb-2 font-normal">{group.title}</div>
+        <div className="mb-2 font-normal">{chapter.title}</div>
         <ul className="flex flex-col gap-2 border-l border-gray-200 pl-3">
-          {group.pages.map(p => {
-            let ps = slugger.slug(p.title)
+          {chapter.pages.map(p => {
             return (
               <li
-                key={ps}
+                key={p.slug}
                 className={clsx({
-                  "font-normal text-primary": ps === activeSlug,
+                  "text-gray-700": p.slug !== activeSlug,
+                  "font-normal text-primary": p.slug === activeSlug,
                 })}
               >
-                <Link href={`/docs/${ps}`} className="hover:text-primary-hover">
+                <Link
+                  href={`/docs/${p.slug}`}
+                  className="hover:text-primary-hover"
+                >
                   {p.title}
                 </Link>
               </li>

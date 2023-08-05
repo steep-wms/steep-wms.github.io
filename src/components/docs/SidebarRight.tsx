@@ -1,7 +1,6 @@
 import Link from "next/link"
 import Sidebar from "./Sidebar"
 import { Index } from "@/components/docs/Toc"
-import GithubSlugger from "github-slugger"
 import { ExternalLink } from "lucide-react"
 import clsx from "clsx"
 
@@ -11,21 +10,20 @@ interface SidebarRightProps {
 }
 
 const SidebarRight = ({ slug, activeSection }: SidebarRightProps) => {
-  let slugger = new GithubSlugger()
   let entry = Index[slug]
   let sections = undefined
-  if ("sections" in entry) {
+  if (entry.type === "page") {
     sections = entry.sections?.map(s => {
-      let sectionSlug = slugger.slug(s)
       return (
-        <li key={sectionSlug}>
+        <li key={s.slug}>
           <Link
-            href={`#${sectionSlug}`}
+            href={`#${s.slug}`}
             className={clsx("hover:text-primary-hover", {
-              "text-primary": activeSection === sectionSlug,
+              "text-gray-700": activeSection !== s.slug,
+              "font-normal text-primary": activeSection === s.slug,
             })}
           >
-            {s}
+            {s.title}
           </Link>
         </li>
       )
@@ -44,7 +42,7 @@ const SidebarRight = ({ slug, activeSection }: SidebarRightProps) => {
       ) : undefined}
       <Link
         href={`https://github.com/steep-wms/steep-wms.github.io/blob/master/src/content/docs/${slug}.mdx`}
-        className="hover:text-primary-hover"
+        className="text-gray-600 hover:text-primary-hover"
       >
         Edit this page on GitHub{" "}
         <ExternalLink size="0.9em" className="mb-[3px] inline-flex" />

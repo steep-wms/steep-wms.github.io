@@ -1,16 +1,37 @@
-import GithubSlugger from "github-slugger"
+import { slug } from "github-slugger"
 
-interface Group {
-  title: string
-  pages: Page[]
+interface Chapter {
+  readonly type: "chapter"
+  readonly title: string
+  readonly slug: string
+  readonly pages: Page[]
 }
 
 interface Page {
-  title: string
-  sections?: string[]
+  readonly type: "page"
+  readonly title: string
+  readonly slug: string
+  readonly sections?: Section[]
 }
 
-const toc: Group[] = [
+interface Section {
+  readonly type: "section"
+  readonly title: string
+  readonly slug: string
+}
+
+type DraftSection =
+  | string
+  | (Omit<Section, "type" | "slug"> & { slug?: string })
+type DraftPage = Omit<Page, "type" | "slug" | "sections"> & {
+  slug?: string
+  readonly sections?: DraftSection[]
+}
+type DraftChapter = Omit<Chapter, "type" | "slug" | "pages"> & {
+  readonly pages: DraftPage[]
+}
+
+const toc: DraftChapter[] = [
   {
     title: "Introduction",
     pages: [
@@ -153,20 +174,74 @@ const toc: Group[] = [
   },
 ]
 
-function makeIndex() {
-  let result: Record<string, Group | Page> = {}
-  let slugger = new GithubSlugger()
-  for (let group of toc) {
-    let titleSlug = slugger.slug(group.title)
-    result[titleSlug] = group
+function makeToc() {
+  let result: Chapter[] = []
 
-    for (let p of group.pages) {
-      let pageSlug = slugger.slug(p.title)
-      result[pageSlug] = p
+  for (let chapter of toc) {
+    let pages: Page[] = []
+    for (let p of chapter.pages) {
+      let sections: Section[] | undefined = undefined
+      if (p.sections !== undefined) {
+        sections = []
+        for (let s of p.sections) {
+          let title
+          let sectionSlug
+          if (typeof s === "string") {
+            title = s
+            sectionSlug = slug(title)
+          } else {
+            title = s.title
+            sectionSlug = s.slug ?? slug(title)
+          }
+          sections.push({ title, type: "section", slug: sectionSlug })
+        }
+      }
+
+      let pageSlug = slug(p.title)
+      pages.push({
+        ...p,
+        type: "page",
+        slug: p.slug ?? pageSlug,
+        sections,
+      })
     }
+
+    let chapterSlug = slug(chapter.title)
+    result.push({
+      ...chapter,
+      type: "chapter",
+      slug: chapterSlug,
+      pages,
+    })
   }
+
   return result
 }
 
-export const Toc = toc
-export const Index = makeIndex()
+function makeIndex(indexedToc: Chapter[]) {
+  let result: Record<string, Chapter | Page | Section> = {}
+
+  function add(e: Chapter | Page | Section) {
+    if (result[e.slug] !== undefined) {
+      throw new Error(`Duplicate slug: ${e.slug}`)
+    }
+    result[e.slug] = e
+  }
+
+  for (let chapter of indexedToc) {
+    for (let p of chapter.pages) {
+      if (p.sections !== undefined) {
+        for (let s of p.sections) {
+          add(s)
+        }
+      }
+      add(p)
+    }
+    add(chapter)
+  }
+
+  return result
+}
+
+export const Toc = makeToc()
+export const Index = makeIndex(Toc)
