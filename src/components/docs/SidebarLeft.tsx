@@ -3,6 +3,9 @@ import { Toc } from "@/components/docs/Toc"
 import Sidebar from "./Sidebar"
 import { useEffect, useRef } from "react"
 import clsx from "clsx"
+import { create } from "zustand"
+
+const useScrollStore = create(() => ({ top: 0 }))
 
 function createToc(activeSlug?: string) {
   let result = []
@@ -49,6 +52,26 @@ const SidebarLeft = ({ activeSlug }: SidebarLeftProps) => {
   let toc = createToc(activeSlug)
 
   useEffect(() => {
+    if (sidebarRef.current === null) {
+      return
+    }
+    let sidebar = sidebarRef.current
+
+    // restore scroll position from last time the component was mounted
+    sidebar.scrollTop = useScrollStore.getState().top
+
+    function onScroll() {
+      useScrollStore.setState({ top: sidebar.scrollTop })
+    }
+
+    sidebar.addEventListener("scroll", onScroll, { passive: true })
+
+    return () => {
+      sidebar.removeEventListener("scroll", onScroll)
+    }
+  }, [])
+
+  useEffect(() => {
     if (sectionsRef.current === null || sidebarRef.current === null) {
       return
     }
@@ -61,9 +84,10 @@ const SidebarLeft = ({ activeSlug }: SidebarLeftProps) => {
       let parent = sectionsRef.current.parentElement!
       let prect = parent.getBoundingClientRect()
 
+      // center active item in view if necessary
       if (erect.bottom > prect.bottom || erect.top < prect.top) {
         let top = erect.top - srect.top
-        sidebarRef.current.scrollTo({ top })
+        sidebarRef.current.scrollTop = top - prect.height / 2 + erect.height / 2
       }
     }
   }, [activeSlug])
