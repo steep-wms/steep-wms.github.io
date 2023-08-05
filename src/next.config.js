@@ -4,10 +4,14 @@ import nextMDX from "@next/mdx"
 import rehypePrettyCode from "rehype-pretty-code"
 import remarkGfm from "remark-gfm"
 import remarkSmartypants from "remark-smartypants"
-import steepColorTheme from "./components/lib/steep-color-theme.json" assert { type: "json" }
+import JSON5 from "json5"
+import fs from "fs"
 
 const basePath = "/preview"
 
+const steepColorTheme = JSON5.parse(
+  fs.readFileSync("./components/lib/steep-color-theme.json", "utf8"),
+)
 const withMDX = nextMDX({
   extension: /\.mdx?$/,
   options: {
