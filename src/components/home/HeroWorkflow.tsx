@@ -403,7 +403,7 @@ const HeroWorkflow = () => {
           </linearGradient>
         </defs>
       </svg>
-      <Link href="#" className="group">
+      <Link href="/docs" className="group">
         <div className="text absolute left-[28rem] top-[5.4rem] flex h-[2.63rem] w-[8rem] select-none items-center justify-center rounded-lg border border-primary bg-bg font-normal shadow-[0px_0px_10px] shadow-primary/50 transition-colors group-hover:bg-primary">
           <motion.div
             className="absolute left-0 top-0 -z-10 h-full w-full bg-primary blur-xl"
