@@ -1,8 +1,4 @@
 import DocsLink from "components/DocsLink"
-import WebUI from "assets/webui.png"
-import styles from "./web-based-user-interface.scss"
-
-<style jsx>{styles}</style>
 
 Steep has a web-based user interface that allows you to monitor the execution
 of running workflows, process chains, agents, and VMS, as well as to browse
@@ -11,4 +7,4 @@ the database contents.
 Start Steep and visit any of the above-mentioned <DocsLink href="#http-endpoints">HTTP endpoints</DocsLink>
 with your web browser to open the user interface.
 
-<img src={WebUI} className="docs-image image-webui" />
+<img src={`${process.env.basePath}/images/webui-light-800.png`} />
