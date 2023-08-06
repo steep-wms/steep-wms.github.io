@@ -57,6 +57,7 @@ module.exports = {
       alert: withOpacity("color-alert"),
       text: withOpacity("color-text"),
       code: withOpacity("color-code"),
+      "code-container-header": withOpacity("color-code-container-header"),
       black: withOpacity("color-black"),
       white: withOpacity("color-white"),
       "gray-100": withOpacity("color-gray-100"),

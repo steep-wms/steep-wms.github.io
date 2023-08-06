@@ -25,6 +25,7 @@
   --color-text: 40 40 35;
   --color-code: var(--color-gray-600);
   --color-inline-code: 222 82 154;
+  --color-code-container-header: var(--color-gray-200);
 
   --color-green-500: 104 211 145;
 }
@@ -56,4 +57,5 @@
 
   --color-text: var(--color-gray-500);
   --color-code: var(--color-gray-300);
+  --color-code-container-header: var(--color-gray-700);
 }

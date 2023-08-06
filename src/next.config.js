@@ -4,6 +4,7 @@ import nextMDX from "@next/mdx"
 import rehypePrettyCode from "rehype-pretty-code"
 import remarkGfm from "remark-gfm"
 import remarkSmartypants from "remark-smartypants"
+import rehypeCodeContainer from "./plugins/rehype-codecontainer.js"
 import JSON5 from "json5"
 import fs from "fs"
 
@@ -17,6 +18,7 @@ const withMDX = nextMDX({
   options: {
     remarkPlugins: [remarkGfm, remarkSmartypants],
     rehypePlugins: [
+      rehypeCodeContainer,
       [
         rehypePrettyCode,
         {

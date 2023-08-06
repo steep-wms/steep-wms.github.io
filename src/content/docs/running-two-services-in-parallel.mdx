@@ -1,5 +1,3 @@
-import CodeExample from "components/CodeExample"
-
 This example workflow consists of two execute actions that each copy a file.
 Since both actions do not depend on each other (i.e. they do not share any
 variable), Steep converts them to two independent process chains and executes
@@ -12,12 +10,12 @@ one time (`cardinality` equals `1..1`).
 
 The input parameters are given (`example1.txt` and `example2.txt`). The output
 parameters refer to the variables `outputFile1` and `outputFile2` and have no
-value. Steep will create unique values (output file names) for them during the
+value. Steep will create unique values (output file names) for them during
 workflow execution.
 
-<CodeExample title="Workflow:">
+<CodeContainer title="Workflow">
 
-```json code-example
+```json code-container
 {
   "api": "4.6.0",
   "actions": [{
@@ -46,11 +44,11 @@ workflow execution.
 }
 ```
 
-</CodeExample>
+</CodeContainer>
 
-<CodeExample title="Service metadata:">
+<CodeContainer title="conf/steep.yaml">
 
-```json code-example
+```json code-container
 [{
   "id": "copy",
   "name": "Copy",
@@ -75,4 +73,4 @@ workflow execution.
 }]
 ```
 
-</CodeExample>
+</CodeContainer>

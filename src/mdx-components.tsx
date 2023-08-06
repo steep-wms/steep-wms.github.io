@@ -1,6 +1,7 @@
 // import Balancer from "react-wrap-balancer"
 import { createElement } from "react"
 import Link from "next/link"
+import CodeContainer, { CodeContainerProps } from "./components/CodeContainer"
 
 // const balanceHeadings =
 //   (type: string) => (props: React.HTMLAttributes<HTMLHeadingElement>) => {
@@ -26,6 +27,8 @@ export function useMDXComponents(components: {
     // h2: balanceHeadings("h2"),
     // h3: balanceHeadings("h3"),
     // h4: balanceHeadings("h4"),
+
+    CodeContainer: (props: CodeContainerProps) => <CodeContainer {...props} />,
 
     ...components,
   }
