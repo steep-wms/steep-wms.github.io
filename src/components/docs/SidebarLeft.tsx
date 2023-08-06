@@ -2,12 +2,10 @@ import Link from "next/link"
 import { Toc } from "@/components/docs/Toc"
 import Sidebar from "./Sidebar"
 import { useEffect, useRef } from "react"
+import { useSelectedLayoutSegment } from "next/navigation"
 import clsx from "clsx"
-import { create } from "zustand"
 
-const useScrollStore = create(() => ({ top: 0 }))
-
-function createToc(activeSlug?: string) {
+function createToc(activeSlug: string) {
   let result = []
   for (let chapter of Toc) {
     let titleSlug = chapter.slug
@@ -41,35 +39,13 @@ function createToc(activeSlug?: string) {
   return result
 }
 
-interface SidebarLeftProps {
-  activeSlug?: string
-}
-
-const SidebarLeft = ({ activeSlug }: SidebarLeftProps) => {
+const SidebarLeft = () => {
   const sidebarRef = useRef<HTMLDivElement>(null)
   const sectionsRef = useRef<HTMLUListElement>(null)
+  const segment = useSelectedLayoutSegment()
 
+  let activeSlug = segment ?? ""
   let toc = createToc(activeSlug)
-
-  useEffect(() => {
-    if (sidebarRef.current === null) {
-      return
-    }
-    let sidebar = sidebarRef.current
-
-    // restore scroll position from last time the component was mounted
-    sidebar.scrollTop = useScrollStore.getState().top
-
-    function onScroll() {
-      useScrollStore.setState({ top: sidebar.scrollTop })
-    }
-
-    sidebar.addEventListener("scroll", onScroll, { passive: true })
-
-    return () => {
-      sidebar.removeEventListener("scroll", onScroll)
-    }
-  }, [])
 
   useEffect(() => {
     if (sectionsRef.current === null || sidebarRef.current === null) {

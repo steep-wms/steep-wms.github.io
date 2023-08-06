@@ -1,6 +1,3 @@
-import Footer from "@/components/Footer"
-import NavBar from "@/components/NavBar"
-import DocsContent from "@/components/docs/DocsContent"
 import { Toc, Index } from "@/components/docs/Toc"
 
 export async function generateStaticParams() {
@@ -26,7 +23,8 @@ const DocsPage = ({ params }: { params: { slug: string[] } }) => {
   if (moduleFilename === "") {
     moduleFilename = "get-started"
   }
-  let Content = require(`../../../content/docs/${moduleFilename}.mdx`).default
+  let Content =
+    require(`../../../../content/docs/${moduleFilename}.mdx`).default
 
   let parentChapter = undefined
   let sections = undefined
@@ -34,7 +32,7 @@ const DocsPage = ({ params }: { params: { slug: string[] } }) => {
     parentChapter = Index[entry.chapter]
     sections = entry.sections?.map(s => {
       let SectionContents =
-        require(`../../../content/docs/${s.slug}.mdx`).default
+        require(`../../../../content/docs/${s.slug}.mdx`).default
       return (
         <section key={s.slug} data-slug={s.slug}>
           <h3 id={s.slug}>{s.title}</h3>
@@ -59,13 +57,7 @@ const DocsPage = ({ params }: { params: { slug: string[] } }) => {
     </>
   )
 
-  return (
-    <>
-      <NavBar />
-      <DocsContent slug={slug}>{Main}</DocsContent>
-      <Footer />
-    </>
-  )
+  return <main className="prose mt-24">{Main}</main>
 }
 
 export default DocsPage

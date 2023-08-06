@@ -1,7 +1,6 @@
-"use client"
-
 import { useEffect, useRef } from "react"
 import { throttle } from "lodash"
+import { useSelectedLayoutSegment } from "next/navigation"
 
 interface Top {
   slug: string
@@ -15,6 +14,7 @@ interface ScrollObserverProps {
 
 const ScrollObserver = ({ children, onChangeSlug }: ScrollObserverProps) => {
   const ref = useRef<HTMLDivElement>(null)
+  const segment = useSelectedLayoutSegment()
 
   useEffect(() => {
     let sections = ref.current!.querySelectorAll("section")
@@ -74,7 +74,7 @@ const ScrollObserver = ({ children, onChangeSlug }: ScrollObserverProps) => {
       resizeObserver.disconnect()
       window.removeEventListener("scroll", throttledOnScroll)
     }
-  }, [onChangeSlug])
+  }, [segment, onChangeSlug])
 
   return <div ref={ref}>{children}</div>
 }

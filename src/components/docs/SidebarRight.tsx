@@ -2,20 +2,22 @@ import Link from "next/link"
 import Sidebar from "./Sidebar"
 import { Index } from "@/components/docs/Toc"
 import { ExternalLink } from "lucide-react"
-import { useEffect, useRef } from "react"
+import { useEffect, useLayoutEffect, useRef } from "react"
+import { useSelectedLayoutSegment } from "next/navigation"
 import clsx from "clsx"
 
 interface SidebarRightProps {
-  slug: string
   activeSection?: string
 }
 
-const SidebarRight = ({ slug, activeSection }: SidebarRightProps) => {
+const SidebarRight = ({ activeSection }: SidebarRightProps) => {
   const firstScroll = useRef<boolean>(true)
   const sidebarRef = useRef<HTMLDivElement>(null)
   const sectionsRef = useRef<HTMLUListElement>(null)
+  const segment = useSelectedLayoutSegment()
 
-  let entry = Index[slug]
+  let activeSlug = segment ?? ""
+  let entry = Index[activeSlug]
   let sections = undefined
   if (entry.type === "page") {
     sections = entry.sections?.map(s => {
@@ -35,6 +37,12 @@ const SidebarRight = ({ slug, activeSection }: SidebarRightProps) => {
       )
     })
   }
+
+  useLayoutEffect(() => {
+    if (sidebarRef.current !== null) {
+      sidebarRef.current.scrollTop = 0
+    }
+  }, [activeSlug])
 
   useEffect(() => {
     if (sectionsRef.current === null || sidebarRef.current === null) {
@@ -61,8 +69,8 @@ const SidebarRight = ({ slug, activeSection }: SidebarRightProps) => {
     }
   }, [activeSection])
 
-  let githubFilename = slug
-  if (slug === "") {
+  let githubFilename = activeSection
+  if (activeSection === "") {
     githubFilename = "get-started"
   }
 
