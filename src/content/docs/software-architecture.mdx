@@ -4,14 +4,14 @@ import DocsLink from "components/DocsLink"
 The following figure shows the main components of Steep: the HTTP server,
 the controller, the scheduler, the agent, and the cloud manager.
 
-<img className="docs-image image-architecture" src={Architecture} />
+<img className="max-w-[16rem] mx-auto" src={Architecture} />
 
-Together, these components form an instance of Steep. In practice, a single
+Together, these components form an instance of Steep. In practice, each
 instance typically runs on a separate virtual machine, but multiple instances
 can also be started on the same machine. Each component can be enabled or
-disabled in a given instance (see the <DocsLink href="#configuration">configuration options</DocsLink> 
-for more information). That means, in a cluster, there can be instances
-that have all five components enabled, and others that have only an agent,
+disabled in a given instance (see <DocsLink href="#configuration">configuration options</DocsLink> 
+for more information). This means, in a cluster, there can be instances
+that have all five components enabled, and others that only have an agent,
 for example.
 
 All components of all instances communicate with each other through messages
@@ -19,7 +19,7 @@ sent over an event bus. Further, the HTTP server, the controller, and the
 scheduler are able to connect to a shared database.
 
 The HTTP server provides information about scheduled, running, and finished
-workflows to clients. Clients can also upload a new workflow. In this case,
+workflows to clients. Clients can also upload a new workflow. In such a case,
 the HTTP server puts the workflow into the database and sends a message to one
 of the instances of the controller.
 

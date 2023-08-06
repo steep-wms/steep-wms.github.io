@@ -1,41 +1,36 @@
-import GenerateProcessChains from "assets/generate-process-chains.svg?source"
+import GenerateProcessChainsExample from "components/docs/workflow-scheduling/GenerateProcessChainsExample"
 import DocsLink from "components/DocsLink"
 
-Steep is a scientific workflow management system that can be used to control
-the processing of very large data sets in a distributed environment.
-
-A scientific workflow is typically represented by a directed acyclic graph that
+In literature, a workflow is typically represented by a directed graph that
 describes how an input data set is processed by certain tasks in a given order
-to produce a desired outcome. Such workflows can become very large with
-hundreds up to several thousands of tasks processing data volumes ranging from
-gigabytes to terabytes. The following figure shows a simple example of such a
-workflow in an extended Petri Net notation proposed by
+to produce a desired outcome. The following figure shows a simple example
+in the extended Petri Net notation proposed by
 [van der Aalst and van Hee (2004)](https://doi.org/10.7551/mitpress/7301.001.0001).
 
-<div className="docs-image image-generate-process-chains"
-  dangerouslySetInnerHTML={{ __html: GenerateProcessChains }} />
+<GenerateProcessChainsExample />
 
-In this example, an input file is first processed by a task A. This task
+The workflow starts with an input file that is read by a task A. This task
 produces two results. The first one is processed by task B whose result is in
 turn sent to C. The second result of A is processed by D. The outcomes of C and
-D are finally processed by task E.
+D are finally processed by task E. This is a very simple example. In practice,
+workflows can become very large with hundreds up to several thousands of tasks
+processing large numbers of input files.
 
 In order to be able to schedule such a workflow in a distributed environment,
 the graph has to be transformed to individual executable units. Steep follows a
 hybrid scheduling approach that applies heuristics on the level of the workflow
-graph and later on the level of individual executable units. We assume that
+graph and later on the level of individual executable units. It assumes that
 tasks that access the same data should be executed on the same machine to
-reduce the communication overhead and to improve file reuse. We therefore
-group tasks into so-called <DocsLink href="#process-chains">process chains</DocsLink>,
+reduce the communication overhead and to improve file reuse. Steep therefore
+groups tasks into so-called <DocsLink href="#process-chains">process chains</DocsLink>,
 which are linear sequential lists (without branches and loops).
 
-Steep transforms workflows to process chains in an iterative manner. In each
-iteration, it finds the longest linear sequences of tasks and groups them to
+Transforming workflows into process chains is an iterative process. In each
+iteration, Steep finds the longest linear sequences of tasks and groups them to
 process chains. The following animation shows how this works for our example
 workflow:
 
-<div className="docs-image image-generate-process-chains-animated"
-  dangerouslySetInnerHTML={{ __html: GenerateProcessChains }} />
+<GenerateProcessChainsExample animated={true} />
 
 Task A will be put into a process chain in iteration 1. Steep then schedules
 the execution of this process chain. After the execution has finished,
