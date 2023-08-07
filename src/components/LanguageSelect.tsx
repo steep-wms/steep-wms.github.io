@@ -18,7 +18,7 @@ const LanguageSelect = ({
     <Select.Root value={current} onValueChange={onChange}>
       <Select.Trigger
         aria-label="Language"
-        className="flex items-center justify-center gap-[.1em] rounded-sm px-2 py-1 outline-none hover:bg-gray-700 dark:hover:bg-gray-200"
+        className="flex h-full items-center justify-center gap-[.1em] rounded-sm px-2 py-1 outline-none hover:bg-gray-700 dark:hover:bg-gray-200"
       >
         <div className="uppercase">
           <Select.Value />
