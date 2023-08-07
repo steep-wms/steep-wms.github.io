@@ -1,6 +1,7 @@
 import DownloadButtons from "components/get-started/DownloadButtons"
 import RunBinary from "components/get-started/RunBinary"
 import RunDocker from "components/get-started/RunDocker"
+import CodeContainer from "components/CodeContainer"
 
 Choose from one of the following options to download Steep:
 
@@ -23,7 +24,8 @@ We will now submit a simple workflow to test if Steep is running correctly. The
 workflow consists of a single execute action that sleeps for 10 seconds and
 then quits. Run the following command:
 
-```bash
+<CodeContainer title="Terminal">
+```shell
 curl -X POST http://localhost:8080/workflows -d 'api: 4.6.0
 actions:
   - type: execute
@@ -32,13 +34,16 @@ actions:
       - id: seconds
         value: 10'
 ```
+</CodeContainer>
 
 The command will return the ID of the submitted workflow. You can monitor the
 execution in the web interface or by issuing the following command:
 
-```bash
+<CodeContainer title="Terminal">
+```shell
 curl http://localhost:8080/workflows/[WORKFLOW ID]
 ```
+</CodeContainer>
 
 Replace `[WORKFLOW ID]` with the returned ID.
 

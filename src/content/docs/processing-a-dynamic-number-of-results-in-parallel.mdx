@@ -1,7 +1,7 @@
-import CodeExample from "components/CodeExample"
+import CodeContainer from "components/CodeContainer"
 
 This example demonstrates how to process the results of an action in parallel
-even if the number of result files is unknown during the design of the workflow.
+even if the number of result files is unknown during design of the workflow.
 The workflow starts with an action that splits an input file `example.txt` into
 multiple files (e.g. one file per line) stored in a directory `outputDirectory`.
 A for-each action then iterates over these files and creates copies. The
@@ -10,9 +10,8 @@ instances of the `copy` service. The output files (`outputFile1`) of this servic
 are collected via the `yieldToOutput` property in a variable called `copies`.
 The final `join` service merges these copies into a single file `outputFile2`.
 
-<CodeExample title="Workflow:">
-
-```json code-example
+<CodeContainer title="Workflow">
+```json code-container
 {
   "api": "4.6.0",
   "actions": [{
@@ -61,85 +60,73 @@ The final `join` service merges these copies into a single file `outputFile2`.
   }]
 }
 ```
+</CodeContainer>
 
-</CodeExample>
+<CodeContainer title="conf/services.yaml">
+```yaml
+- id: split
+  name: Split
+  description: Split a file into pieces
+  path: split
+  runtime: other
+  parameters:
+    - id: lines
+      name: Number of lines per file
+      description: Create smaller files n lines in length
+      type: input
+      cardinality: 0..1
+      dataType: integer
+      label: '-l'
+    - id: file
+      name: Input file
+      description: The input file to split
+      type: input
+      cardinality: 1..1
+      dataType: file
+    - id: output_directory
+      name: Output directory
+      description: The output directory
+      type: output
+      cardinality: 1..1
+      dataType: directory
+      fileSuffix: /
 
-<CodeExample title="Service metadata:">
+- id: copy
+  name: Copy
+  description: Copy files
+  path: cp
+  runtime: other
+  parameters:
+    - id: input_file
+      name: Input file name
+      description: Input file name
+      type: input
+      cardinality: 1..1
+      dataType: file
+    - id: output_file
+      name: Output file name
+      description: Output file name
+      type: output
+      cardinality: 1..1
+      dataType: file
 
-```json code-example
-[{
-  "id": "split",
-  "name": "Split",
-  "description": "Split a file into pieces",
-  "path": "split",
-  "runtime": "other",
-  "parameters": [{
-    "id": "lines",
-    "name": "Number of lines per file",
-    "description": "Create smaller files n lines in length",
-    "type": "input",
-    "cardinality": "0..1",
-    "dataType": "integer",
-    "label": "-l"
-  }, {
-    "id": "file",
-    "name": "Input file",
-    "description": "The input file to split",
-    "type": "input",
-    "cardinality": "1..1",
-    "dataType": "file"
-  }, {
-    "id": "output_directory",
-    "name": "Output directory",
-    "description": "The output directory",
-    "type": "output",
-    "cardinality": "1..1",
-    "dataType": "directory",
-    "fileSuffix": "/"
-  }]
-}, {
-  "id": "copy",
-  "name": "Copy",
-  "description": "Copy files",
-  "path": "cp",
-  "runtime": "other",
-  "parameters": [{
-    "id": "input_file",
-    "name": "Input file name",
-    "description": "Input file name",
-    "type": "input",
-    "cardinality": "1..1",
-    "dataType": "file"
-  }, {
-    "id": "output_file",
-    "name": "Output file name",
-    "description": "Output file name",
-    "type": "output",
-    "cardinality": "1..1",
-    "dataType": "file"
-  }]
-}, {
-  "id": "join",
-  "name": "Join",
-  "description": "Merge one or more files into one",
-  "path": "join.sh",
-  "runtime": "other",
-  "parameters": [{
-    "id": "i",
-    "name": "Input files",
-    "description": "One or more input files to merge",
-    "type": "input",
-    "cardinality": "1..n",
-    "dataType": "file"
-  }, {
-    "id": "o",
-    "name": "Output file",
-    "description": "The output file",
-    "type": "output",
-    "cardinality": "1..1",
-    "dataType": "file"
-  }]
-}]
+- id: join
+  name: Join
+  description: Merge one or more files into one
+  path: join.sh
+  runtime: other
+  parameters:
+    - id: i
+      name: Input files
+      description: One or more input files to merge
+      type: input
+      cardinality: 1..n
+      dataType: file
+    - id: o
+      name: Output file
+      description: The output file
+      type: output
+      cardinality: 1..1
+      dataType: file
 ```
-
-</CodeExample>
+</CodeContainer>

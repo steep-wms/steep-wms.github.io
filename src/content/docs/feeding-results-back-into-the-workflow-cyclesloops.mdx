@@ -1,4 +1,4 @@
-import CodeExample from "components/CodeExample"
+import CodeContainer from "components/CodeContainer"
 
 The following example shows how to create loops with a dynamic number of
 iterations. Suppose there is a processing service called `countdown.js` that
@@ -6,6 +6,7 @@ reads a number from an input file, decreases this number by 1, and then writes
 the result to an output file. The service could be implemented in Node.js
 as follows:
 
+<CodeContainer title="countdown.js">
 ```javascript
 #!/usr/bin/env node
 
@@ -26,6 +27,7 @@ async function countDown(input, output) {
 
 countDown(process.argv[2], process.argv[3])
 ```
+</CodeContainer>
 
 The following workflow uses this service in a for-each action to continuously
 reprocess a file and decrease the number in it until it reaches 0.
@@ -46,9 +48,8 @@ process. Think of the `input` of a for-each action as a queue. If nothing is
 pushed into the queue and all elements have already been processed, the for-each
 action can finish.
 
-<CodeExample title="Workflow:">
-
-```json code-example
+<CodeContainer title="Workflow">
+```json code-container
 {
   "api": "4.6.0",
   "vars": [{
@@ -75,34 +76,27 @@ action can finish.
   }]
 }
 ```
+</CodeContainer>
 
-</CodeExample>
-
-<CodeExample title="Service metadata:">
-
-```json code-example
-[{
-  "id": "countdown",
-  "name": "Count Down",
-  "description": "Read a number, subtract 1, and write the result",
-  "path": "./countdown.js",
-  "runtime": "other",
-  "parameters": [{
-    "id": "input",
-    "name": "Input file",
-    "description": "The input file containing the number to decrease",
-    "type": "input",
-    "cardinality": "1..1",
-    "dataType": "file"
-  }, {
-    "id": "output",
-    "name": "Output file",
-    "description": "The path to the output file",
-    "type": "output",
-    "cardinality": "1..1",
-    "dataType": "fileOrEmptyList"
-  }]
-}]
+<CodeContainer title="conf/services.yaml">
+```yaml
+- id: countdown
+  name: Count Down
+  description: Read a number, subtract 1, and write the result
+  path: ./countdown.js
+  runtime: other
+  parameters:
+    - id: input
+      name: Input file
+      description: The input file containing the number to decrease
+      type: input
+      cardinality: 1..1
+      dataType: file
+    - id: output
+      name: Output file
+      description: The path to the output file
+      type: output
+      cardinality: 1..1
+      dataType: fileOrEmptyList
 ```
-
-</CodeExample>
+</CodeContainer>

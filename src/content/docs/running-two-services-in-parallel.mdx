@@ -14,7 +14,6 @@ value. Steep will create unique values (output file names) for them during
 workflow execution.
 
 <CodeContainer title="Workflow">
-
 ```json code-container
 {
   "api": "4.6.0",
@@ -43,34 +42,27 @@ workflow execution.
   }]
 }
 ```
-
 </CodeContainer>
 
 <CodeContainer title="conf/steep.yaml">
-
-```json code-container
-[{
-  "id": "copy",
-  "name": "Copy",
-  "description": "Copy files",
-  "path": "cp",
-  "runtime": "other",
-  "parameters": [{
-    "id": "input_file",
-    "name": "Input file name",
-    "description": "Input file name",
-    "type": "input",
-    "cardinality": "1..1",
-    "dataType": "file"
-  }, {
-    "id": "output_file",
-    "name": "Output file name",
-    "description": "Output file name",
-    "type": "output",
-    "cardinality": "1..1",
-    "dataType": "file"
-  }]
-}]
+```yaml
+- id: copy
+  name: Copy
+  description: Copy files
+  path: cp
+  runtime: other
+  parameters:
+    - id: input_file
+      name: Input file name
+      description: Input file name
+      type: input
+      cardinality: 1..1
+      dataType: file
+    - id: output_file
+      name: Output file name
+      description: Output file name
+      type: output
+      cardinality: 1..1
+      dataType: file
 ```
-
 </CodeContainer>

@@ -1,4 +1,4 @@
-import CodeExample from "components/CodeExample"
+import CodeContainer from "components/CodeContainer"
 
 This example starts with an action that copies a file. Two other actions then
 run in parallel and make copies of the result of the first action. A final
@@ -7,9 +7,8 @@ split-and-join pattern because the graph is split into two branches after the
 first action. These branches are then joined into a single one with the final
 action.
 
-<CodeExample title="Workflow:">
-
-```json code-example
+<CodeContainer title="Workflow">
+```json code-container
 {
   "api": "4.6.0",
   "actions": [{
@@ -62,55 +61,46 @@ action.
   }]
 }
 ```
+</CodeContainer>
 
-</CodeExample>
+<CodeContainer title="conf/services.yaml">
+```yaml
+- id: copy
+  name: Copy
+  description: Copy files
+  path: cp
+  runtime: other
+  parameters:
+    - id: input_file
+      name: Input file name
+      description: Input file name
+      type: input
+      cardinality: 1..1
+      dataType: file
+    - id: output_file
+      name: Output file name
+      description: Output file name
+      type: output
+      cardinality: 1..1
+      dataType: file
 
-<CodeExample title="Service metadata:">
-
-```json code-example
-[{
-  "id": "copy",
-  "name": "Copy",
-  "description": "Copy files",
-  "path": "cp",
-  "runtime": "other",
-  "parameters": [{
-    "id": "input_file",
-    "name": "Input file name",
-    "description": "Input file name",
-    "type": "input",
-    "cardinality": "1..1",
-    "dataType": "file"
-  }, {
-    "id": "output_file",
-    "name": "Output file name",
-    "description": "Output file name",
-    "type": "output",
-    "cardinality": "1..1",
-    "dataType": "file"
-  }]
-}, {
-  "id": "join",
-  "name": "Join",
-  "description": "Merge one or more files into one",
-  "path": "join.sh",
-  "runtime": "other",
-  "parameters": [{
-    "id": "i",
-    "name": "Input files",
-    "description": "One or more input files to merge",
-    "type": "input",
-    "cardinality": "1..n",
-    "dataType": "file"
-  }, {
-    "id": "o",
-    "name": "Output file",
-    "description": "The output file",
-    "type": "output",
-    "cardinality": "1..1",
-    "dataType": "file"
-  }]
-}]
+- id: join
+  name: Join
+  description: Merge one or more files into one
+  path: join.sh
+  runtime: other
+  parameters:
+    - id: i
+      name: Input files
+      description: One or more input files to merge
+      type: input
+      cardinality: 1..n
+      dataType: file
+    - id: o
+      name: Output file
+      description: The output file
+      type: output
+      cardinality: 1..1
+      dataType: file
 ```
-
-</CodeExample>
+</CodeContainer>
