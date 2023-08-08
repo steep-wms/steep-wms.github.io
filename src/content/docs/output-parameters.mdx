@@ -1,4 +1,3 @@
-import CodeExample from "components/CodeExample"
 import DocsLink from "components/DocsLink"
 
 Output parameters of <DocsLink href="#execute-actions">execute actions</DocsLink> have
@@ -11,9 +10,8 @@ additional properties compared to inputs.
 | prefix<br/>*(optional)* | string  | An optional string to prepend to the generated name of the output file. For example, if Steep generates the name `"name123abc"` and the prefix is `"my/dir/"`, the output filename will be `"my/dir/name123abc"`. Note that the prefix must end with a slash if you want to create a directory. The output filename will be relative to the <DocsLink href="#steepyaml">configured temporary directory or output directory</DocsLink> (depending on the `store` property). You may even specify an absolute path: if the generated name is `"name456fgh"` and the prefix is `"/absolute/dir/"`, the output filename will be `"/absolute/dir/name456fgh"`.
 | store<br/>*(optional)*  | boolean | If this property is `true`, Steep will generate an output filename that is relative to the <DocsLink href="#steepyaml">configured output directory</DocsLink> instead of the <DocsLink href="#steepyaml">temporary directory</DocsLink>. The default value is `false`.
 
-<CodeExample title="Example:">
-
-```json code-example
+<CodeContainer title="Example">
+```json generate-yaml
 {
   "id": "output",
   "var": "o",
@@ -21,5 +19,4 @@ additional properties compared to inputs.
   "store": false
 }
 ```
-
-</CodeExample>
+</CodeContainer>
