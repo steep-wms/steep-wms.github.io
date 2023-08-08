@@ -2,11 +2,11 @@ import yaml from "js-yaml"
 import { visit, CONTINUE, SKIP } from "unist-util-visit"
 import _ from "lodash"
 
-const rehypeCodeContainer = () => tree => {
+const rehypeGenerateYaml = () => tree => {
   visit(tree, "element", node => {
     if (
       node.tagName === "pre" &&
-      node.children?.[0]?.data?.meta === "code-container"
+      node.children?.[0]?.data?.meta === "generate-yaml"
     ) {
       // convert JSON to YAML
       let code = node.children[0].children[0].value
@@ -36,4 +36,4 @@ const rehypeCodeContainer = () => tree => {
   })
 }
 
-export default rehypeCodeContainer
+export default rehypeGenerateYaml
