@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Sidebar from "./Sidebar"
-import { Index } from "@/components/docs/Toc"
+import { Index, Section, Subsection } from "@/components/docs/Toc"
 import { ExternalLink } from "lucide-react"
 import { useEffect, useLayoutEffect, useRef } from "react"
 import { useSelectedLayoutSegment } from "next/navigation"
@@ -8,6 +8,23 @@ import clsx from "clsx"
 
 interface SidebarRightProps {
   activeSection?: string
+}
+
+function sectionToLi(s: Section | Subsection, activeSection?: string) {
+  return (
+    <li key={s.slug}>
+      <Link
+        href={`#${s.slug}`}
+        data-sidebar-section-slug={s.slug}
+        className={clsx("hover:text-primary-hover", {
+          "text-gray-700": activeSection !== s.slug,
+          "font-normal text-primary": activeSection === s.slug,
+        })}
+      >
+        {s.title}
+      </Link>
+    </li>
+  )
 }
 
 const SidebarRight = ({ activeSection }: SidebarRightProps) => {
@@ -20,21 +37,22 @@ const SidebarRight = ({ activeSection }: SidebarRightProps) => {
   let entry = Index[activeSlug]
   let sections = undefined
   if (entry.type === "page") {
-    sections = entry.sections?.map(s => {
-      return (
-        <li key={s.slug}>
-          <Link
-            href={`#${s.slug}`}
-            data-sidebar-section-slug={s.slug}
-            className={clsx("hover:text-primary-hover", {
-              "text-gray-700": activeSection !== s.slug,
-              "font-normal text-primary": activeSection === s.slug,
-            })}
+    sections = entry.sections?.flatMap(s => {
+      let sli = sectionToLi(s, activeSection)
+      if (s.subsections === undefined) {
+        return [sli]
+      } else {
+        let sslis = s.subsections.map(ss => sectionToLi(ss, activeSection))
+        let ssl = (
+          <ul
+            key={`${s.slug}-subsections`}
+            className="flex flex-col gap-2 border-l border-gray-200 pl-3"
           >
-            {s.title}
-          </Link>
-        </li>
-      )
+            {sslis}
+          </ul>
+        )
+        return [sli, ssl]
+      }
     })
   }
 

@@ -1,13 +1,13 @@
 import { slug } from "github-slugger"
 
-interface Chapter {
+export interface Chapter {
   readonly type: "chapter"
   readonly title: string
   readonly slug: string
   readonly pages: Page[]
 }
 
-interface Page {
+export interface Page {
   readonly type: "page"
   readonly title: string
   readonly slug: string
@@ -15,18 +15,33 @@ interface Page {
   readonly sections?: Section[]
 }
 
-interface Section {
+export interface Section {
   readonly type: "section"
   readonly title: string
   readonly slug: string
   readonly page: string
+  readonly subsections?: Subsection[]
 }
 
+export interface Subsection {
+  readonly type: "subsection"
+  readonly title: string
+  readonly slug: string
+  readonly page: string
+  readonly section: string
+}
+
+type DraftSubsection =
+  | string
+  | (Omit<Subsection, "type" | "slug" | "page"> & { slug?: string })
 type DraftSection =
   | string
-  | (Omit<Section, "type" | "slug" | "page"> & { slug?: string })
+  | (Omit<Section, "type" | "slug" | "page" | "subsections"> & {
+      readonly slug?: string
+      readonly subsections?: DraftSubsection[]
+    })
 type DraftPage = Omit<Page, "type" | "slug" | "sections" | "chapter"> & {
-  slug?: string
+  readonly slug?: string
   readonly sections?: DraftSection[]
 }
 type DraftChapter = Omit<Chapter, "type" | "slug" | "pages"> & {
@@ -64,16 +79,18 @@ const toc: DraftChapter[] = [
     pages: [
       {
         title: "Workflows",
-        sections: ["Retry policy defaults"],
-      },
-      { title: "Variables" },
-      {
-        title: "Actions",
         sections: [
-          "Execute actions",
-          "For-each actions",
-          "Parameters",
-          "Output parameters",
+          "Variables",
+          {
+            title: "Actions",
+            subsections: [
+              "Execute actions",
+              "For-each actions",
+              "Parameters",
+              "Output parameters",
+            ],
+          },
+          "Retry policy defaults",
         ],
       },
       {
@@ -251,18 +268,44 @@ function makeToc() {
         for (let s of p.sections) {
           let title
           let sectionSlug
+          let subsections: Subsection[] | undefined = undefined
           if (typeof s === "string") {
             title = s
             sectionSlug = slug(title)
           } else {
             title = s.title
             sectionSlug = s.slug ?? slug(title)
+
+            if (s.subsections !== undefined) {
+              subsections = []
+              for (let ss of s.subsections) {
+                let title
+                let subsectionSlug
+                if (typeof ss === "string") {
+                  title = ss
+                  subsectionSlug = slug(title)
+                } else {
+                  title = ss.title
+                  subsectionSlug = ss.slug ?? slug(title)
+                }
+
+                subsections.push({
+                  title,
+                  type: "subsection",
+                  slug: subsectionSlug,
+                  page: pageSlug,
+                  section: sectionSlug,
+                })
+              }
+            }
           }
+
           sections.push({
             title,
             type: "section",
             slug: sectionSlug,
             page: pageSlug,
+            subsections,
           })
         }
       }
@@ -288,9 +331,9 @@ function makeToc() {
 }
 
 function makeIndex(indexedToc: Chapter[]) {
-  let result: Record<string, Chapter | Page | Section> = {}
+  let result: Record<string, Chapter | Page | Section | Subsection> = {}
 
-  function add(e: Chapter | Page | Section) {
+  function add(e: Chapter | Page | Section | Subsection) {
     if (result[e.slug] !== undefined) {
       throw new Error(`Duplicate slug: ${e.slug}`)
     }
@@ -301,6 +344,11 @@ function makeIndex(indexedToc: Chapter[]) {
     for (let p of chapter.pages) {
       if (p.sections !== undefined) {
         for (let s of p.sections) {
+          if (s.subsections !== undefined) {
+            for (let ss of s.subsections) {
+              add(ss)
+            }
+          }
           add(s)
         }
       }

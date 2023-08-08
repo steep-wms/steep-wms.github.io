@@ -33,10 +33,24 @@ const DocsPage = ({ params }: { params: { slug: string[] } }) => {
     sections = entry.sections?.map(s => {
       let SectionContents =
         require(`../../../../content/docs/${s.slug}.mdx`).default
+
+      let subsections = s.subsections?.map(ss => {
+        let SubsectionContents =
+          require(`../../../../content/docs/${ss.slug}.mdx`).default
+
+        return (
+          <section key={ss.slug} data-slug={ss.slug}>
+            <h4 id={ss.slug}>{ss.title}</h4>
+            <SubsectionContents />
+          </section>
+        )
+      })
+
       return (
         <section key={s.slug} data-slug={s.slug}>
           <h3 id={s.slug}>{s.title}</h3>
           <SectionContents />
+          {subsections}
         </section>
       )
     })
