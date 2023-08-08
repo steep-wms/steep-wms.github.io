@@ -1,10 +1,20 @@
 "use client"
 
-import { Children, isValidElement, ReactElement, ReactNode } from "react"
+import {
+  Children,
+  isValidElement,
+  ReactElement,
+  ReactNode,
+  useEffect,
+} from "react"
 import LanguageSelect from "./LanguageSelect"
-import { useRef, useState } from "react"
+import { useMemo, useRef, useState } from "react"
 import { Copy } from "lucide-react"
 import { Tooltip } from "./Tooltip"
+import {
+  usePreferredLanguage,
+  makeLanguageStoreId,
+} from "./hooks/usePreferredLanguage"
 
 const COPY = "Copy to clipboard"
 const COPIED = "Copied!"
@@ -34,29 +44,57 @@ const CodeContainer = ({ title, children }: CodeContainerProps) => {
   const [copyTooltipVisible, setCopyTooltipVisible] = useState(false)
   const [copyTooltipTitle, setCopyTooltipTitle] = useState(COPY)
 
-  let pres: ReactElement[] = []
-  findCodeInChildren(children, pres)
+  let { languages, pages, unrecognizedChildren } = useMemo(() => {
+    let languages: string[] = []
 
-  let languages = []
-  let pages: Record<string, React.ReactElement> = {}
-  let unrecognizedChildren = []
-  for (let pre of pres) {
-    let lang = pre.props?.["data-language"]
-    if (lang === undefined) {
-      unrecognizedChildren.push(pre)
-      continue
+    let pres: ReactElement[] = []
+    findCodeInChildren(children, pres)
+
+    let pages: Record<string, React.ReactElement> = {}
+    let unrecognizedChildren = []
+    for (let pre of pres) {
+      let lang = pre.props?.["data-language"]
+      if (lang === undefined) {
+        unrecognizedChildren.push(pre)
+        continue
+      }
+
+      languages.push(lang)
+
+      pages[lang] = (
+        <div data-rehype-pretty-code-fragment key={`page-${lang}`}>
+          {pre}
+        </div>
+      )
     }
 
-    languages.push(lang)
+    return { languages, pages, unrecognizedChildren }
+  }, [children])
 
-    pages[lang] = (
-      <div data-rehype-pretty-code-fragment key={`page-${lang}`}>
-        {pre}
-      </div>
-    )
-  }
-
+  let languageStoreId = makeLanguageStoreId(languages)
+  const preferredLanguage: string | undefined = usePreferredLanguage(
+    state => state.preferredLanguages[languageStoreId],
+  )
+  const setPreferredLanguage = usePreferredLanguage(
+    state => (preferredLanguage: string) =>
+      state.setPreferredLanguage(languageStoreId, preferredLanguage),
+  )
   const [currentLanguage, setCurrentLanguage] = useState(languages[0])
+
+  useEffect(() => {
+    if (
+      languages.length > 0 &&
+      preferredLanguage !== undefined &&
+      languages.includes(preferredLanguage)
+    ) {
+      setCurrentLanguage(preferredLanguage)
+    }
+  }, [preferredLanguage, languages])
+
+  function onChangeCurrentLanguage(lang: string) {
+    setCurrentLanguage(lang)
+    setPreferredLanguage(lang)
+  }
 
   function onCopy() {
     if (currentPageRef.current === null) {
@@ -88,7 +126,7 @@ const CodeContainer = ({ title, children }: CodeContainerProps) => {
                 <LanguageSelect
                   languages={languages}
                   current={currentLanguage}
-                  onChange={setCurrentLanguage}
+                  onChange={onChangeCurrentLanguage}
                 />
               ) : (
                 <div className="mr-2 uppercase opacity-60">{languages[0]}</div>
