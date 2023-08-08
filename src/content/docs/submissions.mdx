@@ -1,4 +1,3 @@
-import CodeExample from "components/CodeExample"
 import DocsLink from "components/DocsLink"
 
 A *submission* is created when you submit a <DocsLink href="#workflows">workflow</DocsLink>
@@ -26,9 +25,8 @@ current <DocsLink href="#submission-status">status</DocsLink>.
 | results<br/>*(optional)*                | object | If `status` is `SUCCESS` or `PARTIAL_SUCCESS`, this property contains the list of workflow result files grouped by their output variable ID. Otherwise, it is `null`.
 | errorMessage<br/>*(optional)*           | string | If `status` is `ERROR`, this property contains a human-readable error message. Otherwise, it is `null`.
 
-<CodeExample title="Example:">
-
-```json code-example
+<CodeContainer title="Example:">
+```json generate-yaml
 {
   "id": "aiq7eios7ubxglkcqx5a",
   "workflow": {
@@ -69,5 +67,4 @@ current <DocsLink href="#submission-status">status</DocsLink>.
   }
 }
 ```
-
-</CodeExample>
+</CodeContainer>

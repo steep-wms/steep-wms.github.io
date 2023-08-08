@@ -1,4 +1,3 @@
-import CodeExample from "components/CodeExample"
 import DocsLink from "components/DocsLink"
 
 As described in the section on <DocsLink href="#workflow-scheduling">workflow scheduling</DocsLink>, Steep
@@ -52,9 +51,8 @@ specifies, which run out of `totalRuns` is rendered.
 | estimatedProgress<br />*(optional)*   | number | A floating point number between `0.0` (0%) and `1.0` (100%) indicating the current execution progress of this process chain. This property will only be provided if the process chain is currently being executed (i.e. if its `status` equals `RUNNING`) and if a progress could actually be estimated. Note that the value is an estimation based on various factors and does not have to represent the real progress. More precise values can be calculated with a <DocsLink href="#progress-estimators">progress estimator plugin</DocsLink>. Sometimes, progress cannot be estimated at all. In this case, the value will be `null`.
 | errorMessage<br/>*(optional)*         | string | If `status` is `ERROR`, this property contains a human-readable error message. Otherwise, it is `null`.
 
-<CodeExample title="Example:">
-
-```json code-example
+<CodeContainer title="Example">
+```json generate-yaml
 {
   "id": "akpm646jjigral4cdyyq",
   "submissionId": "akpm6yojjigral4cdxgq",
@@ -94,5 +92,4 @@ specifies, which run out of `totalRuns` is rendered.
   "runNumber": 1
 }
 ```
-
-</CodeExample>
+</CodeContainer>

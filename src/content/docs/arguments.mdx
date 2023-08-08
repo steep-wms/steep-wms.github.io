@@ -1,4 +1,3 @@
-import CodeExample from "components/CodeExample"
 import DocsLink from "components/DocsLink"
 
 An argument is part of an <DocsLink href="#executables">executable</DocsLink>.
@@ -11,9 +10,8 @@ An argument is part of an <DocsLink href="#executables">executable</DocsLink>.
 | type<br/>*(required)*     | string | The type of this argument. Valid values: `input`, `output`
 | dataType<br/>*(required)* | string | The type of the argument value. If this property is `directory`, Steep will create a new directory for the service's output and recursively search it for result files after the service has been executed. Otherwise, this property can be an arbitrary string. New data types with special handling can be added through <DocsLink href="#output-adapters">output adapter plugins</DocsLink>.
 
-<CodeExample title="Example:">
-
-```json code-example
+<CodeContainer title="Example">
+```json generate-yaml
 {
   "id": "akqcqqoedcsaoescyhgq",
   "type": "input",
@@ -25,5 +23,4 @@ An argument is part of an <DocsLink href="#executables">executable</DocsLink>.
   }
 }
 ```
-
-</CodeExample>
+</CodeContainer>

@@ -95,11 +95,13 @@ const toc: DraftChapter[] = [
       },
       {
         title: "Process chains",
-        sections: ["Process chain status"],
-      },
-      {
-        title: "Executables",
-        sections: ["Arguments", "Argument variables"],
+        sections: [
+          {
+            title: "Executables",
+            subsections: ["Arguments", "Argument variables"],
+          },
+          "Process chain status",
+        ],
       },
       {
         title: "Submissions",
