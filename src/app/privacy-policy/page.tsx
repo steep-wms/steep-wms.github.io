@@ -1,4 +1,9 @@
 import Legal from "@/components/Legal"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Privacy policy",
+}
 
 const PrivacyPolicy = () => (
   <Legal

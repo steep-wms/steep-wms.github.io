@@ -4,6 +4,7 @@ import "./code.css"
 import { Roboto } from "next/font/google"
 import localFont from "next/font/local"
 import clsx from "clsx"
+import { Metadata } from "next"
 import ClientTooltipProvider from "@/components/ClientTooltipProvider"
 
 const roboto = Roboto({
@@ -22,6 +23,20 @@ const dejaVuFont = localFont({
   variable: "--font-dejavu",
   preload: false,
 })
+
+export const metadata: Metadata = {
+  title: {
+    default: "Steep",
+    template: "%s | Steep",
+  },
+  description: "Scientific Workflows in the Cloud",
+  authors: [
+    {
+      name: "Michel Krämer",
+    },
+  ],
+  robots: "index,follow",
+}
 
 export default function RootLayout({
   children,

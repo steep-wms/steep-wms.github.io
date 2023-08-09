@@ -1,4 +1,27 @@
 import { Toc, Index } from "@/components/docs/Toc"
+import { Metadata, ResolvingMetadata } from "next"
+
+interface DocsPageProps {
+  params: { slug: string[] }
+}
+
+export async function generateMetadata(
+  { params }: DocsPageProps,
+  _: ResolvingMetadata,
+): Promise<Metadata> {
+  let slug = undefined
+  if (params.slug !== undefined) {
+    slug = params.slug.join("/")
+  } else {
+    slug = ""
+  }
+
+  let entry = Index[slug]
+
+  return {
+    title: entry.title,
+  }
+}
 
 export async function generateStaticParams() {
   let params = Toc.flatMap(c =>
@@ -9,7 +32,7 @@ export async function generateStaticParams() {
   return params
 }
 
-const DocsPage = ({ params }: { params: { slug: string[] } }) => {
+const DocsPage = ({ params }: DocsPageProps) => {
   let slug = undefined
   if (params.slug !== undefined) {
     slug = params.slug.join("/")

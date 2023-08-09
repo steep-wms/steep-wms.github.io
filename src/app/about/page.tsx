@@ -6,6 +6,11 @@ import Profile from "@/components/about/Profile"
 import Presentation from "@/components/about/Presentation"
 import ResearchItem from "@/components/about/ResearchItem"
 import Link from "next/link"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "About",
+}
 
 const About = () => {
   return (
