@@ -1,12 +1,10 @@
-"use client"
-
 import "./themes.css"
 import "./main.css"
 import "./code.css"
 import { Roboto } from "next/font/google"
 import localFont from "next/font/local"
-import * as Tooltip from "@radix-ui/react-tooltip"
 import clsx from "clsx"
+import ClientTooltipProvider from "@/components/ClientTooltipProvider"
 
 const roboto = Roboto({
   weight: ["300", "400", "700", "900"],
@@ -73,7 +71,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Tooltip.Provider>{children}</Tooltip.Provider>
+        <ClientTooltipProvider>{children}</ClientTooltipProvider>
       </body>
     </html>
   )
