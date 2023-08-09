@@ -1,7 +1,7 @@
 import clsx from "clsx"
 
 interface CardProps {
-  title?: string
+  title?: React.ReactNode
   children?: React.ReactNode
   className?: string
 }
@@ -11,7 +11,7 @@ const Card = ({
   children,
   className,
   ...props
-}: CardProps & React.HTMLAttributes<HTMLDivElement>) => {
+}: CardProps & Omit<React.HTMLAttributes<HTMLDivElement>, "title">) => {
   return (
     <div
       className={clsx(
@@ -20,7 +20,7 @@ const Card = ({
       )}
       {...props}
     >
-      {title !== undefined ? <h4 className="mt-0">{title}</h4> : undefined}
+      {title !== undefined ? <h3 className="mt-0">{title}</h3> : undefined}
       {children}
     </div>
   )

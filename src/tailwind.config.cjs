@@ -151,19 +151,19 @@ module.exports = {
             maxWidth: null,
             h1: {
               fontWeight: 400,
-              fontSize: "2.5em",
+              fontSize: "2em",
             },
             h2: {
               fontWeight: 400,
-              fontSize: "2em",
+              fontSize: "1.75em",
             },
             h3: {
               fontWeight: 400,
-              fontSize: "1.8em",
+              fontSize: "1.5em",
             },
             h4: {
               fontWeight: 400,
-              fontSize: "1.4em",
+              fontSize: "1.25em",
             },
             h6: {
               fontWeight: 400,

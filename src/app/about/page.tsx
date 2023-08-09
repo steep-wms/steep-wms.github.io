@@ -44,7 +44,7 @@ const About = () => {
       <Divider />
       <Container type="lg">
         <section id="team" className="prose">
-          <h3 className="text-center">Contact the team</h3>
+          <h2 className="mb-10 text-center text-3xl">Contact the team</h2>
           <div className="not-prose mt-8 grid grid-cols-1 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
             <Profile
               imageUrl={`${process.env.basePath}/images/about/michel-kraemer-2019-09-400x400.jpg`}
@@ -79,7 +79,7 @@ const About = () => {
       <Divider />
       <Container type="sm">
         <section id="presentations" className="prose">
-          <h3 className="mb-8 text-center">Presentations</h3>
+          <h2 className="mb-8 text-center text-3xl">Presentations</h2>
           <Presentation
             image="https://michelkraemer.com/images/presentations/capability-based-scheduling-scientific-workflows-cloud/capability-based-scheduling-scientific-workflows-cloud-1.jpg"
             link="https://speakerdeck.com/michelkraemer/capability-based-scheduling-of-scientific-workflows-in-the-cloud"
@@ -98,7 +98,7 @@ const About = () => {
       <Divider />
       <Container type="md">
         <section id="publications" className="prose">
-          <h3 className="mb-8 text-center">Publications</h3>
+          <h2 className="mb-8 text-center text-3xl">Publications</h2>
           <p>
             Steep and its predecessor JobManager have appeared in at least the
             following publications:

@@ -2,7 +2,7 @@ import clsx from "clsx"
 import Card from "../Card"
 
 interface CardOptionProps {
-  title?: string
+  title?: React.ReactNode
   children?: React.ReactNode
   active: boolean
   placement: "left" | "right"

@@ -34,9 +34,9 @@ const ExampleWorkflow = () => {
             <SegmentWorkflow />
           </div>
           <div className="text-md prose text-gray-800">
-            <h3 className="font-normal">
+            <h2 className="mb-[0.6em] text-[1.8em] font-normal leading-[1.6]">
               Declarative and data-driven workflows
-            </h3>
+            </h2>
             <p>
               This example splits an aerial image into 5&times;5 tiles and then
               applies an <span style={{ whiteSpace: "nowrap" }}>AI-based</span>{" "}

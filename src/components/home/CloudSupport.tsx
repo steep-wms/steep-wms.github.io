@@ -28,14 +28,20 @@ const CloudSupport = () => {
             </div>
           </div>
           <div className="text-md prose row-start-1 text-gray-800 lg:row-start-1">
-            <h3 className="mb-0 font-normal">Cloud support</h3>
+            <h2 className="mb-0 text-[1.8em] font-normal leading-[1.6]">
+              Cloud support
+            </h2>
             <p className="lead">
               Deploy Steep to Kubernetes and automatically manage your cloud
               infrastructure based on resource demand.
             </p>
             <div className="mt-9 flex flex-col gap-4">
               <CardOption
-                title="Docker & Kubernetes"
+                title={
+                  <span className="text-[1.12em] leading-[1.5]">
+                    Docker & Kubernetes
+                  </span>
+                }
                 placement="right"
                 active={activeOption === "kubernetes"}
                 onActivate={() => setActiveOption("kubernetes")}
@@ -47,7 +53,11 @@ const CloudSupport = () => {
                 </p>
               </CardOption>
               <CardOption
-                title="Connectors"
+                title={
+                  <span className="text-[1.12em] leading-[1.5]">
+                    Connectors
+                  </span>
+                }
                 placement="right"
                 active={activeOption === "connectors"}
                 onActivate={() => setActiveOption("connectors")}

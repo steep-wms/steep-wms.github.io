@@ -16,14 +16,20 @@ const Microservices = () => {
       <Container type="xl">
         <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-2">
           <div className="text-md prose text-gray-800">
-            <h3 className="mb-0 font-normal">Microservices</h3>
+            <h2 className="mb-0 text-[1.8em] font-normal leading-[1.6]">
+              Microservices
+            </h2>
             <p className="lead">
               Steep is able to orchestrate microservices with arbitrary
               interfaces and written in any programming language.
             </p>
             <div className="mt-9 flex flex-col gap-4">
               <CardOption
-                title="Service metadata"
+                title={
+                  <span className="text-[1.12em] leading-[1.5]">
+                    Service metadata
+                  </span>
+                }
                 placement="left"
                 active={activeOption === "metadata"}
                 onActivate={() => setActiveOption("metadata")}
@@ -36,7 +42,11 @@ const Microservices = () => {
                 </p>
               </CardOption>
               <CardOption
-                title="Capability-based scheduling"
+                title={
+                  <span className="text-[1.12em] leading-[1.5]">
+                    Capability-based scheduling
+                  </span>
+                }
                 placement="left"
                 active={activeOption === "scheduling"}
                 onActivate={() => setActiveOption("scheduling")}

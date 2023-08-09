@@ -40,7 +40,7 @@ const DocsPage = ({ params }: { params: { slug: string[] } }) => {
 
         return (
           <section key={ss.slug} data-slug={ss.slug}>
-            <h4 id={ss.slug}>{ss.title}</h4>
+            <h3 id={ss.slug}>{ss.title}</h3>
             <SubsectionContents />
           </section>
         )
@@ -48,7 +48,7 @@ const DocsPage = ({ params }: { params: { slug: string[] } }) => {
 
       return (
         <section key={s.slug} data-slug={s.slug}>
-          <h3 id={s.slug}>{s.title}</h3>
+          <h2 id={s.slug}>{s.title}</h2>
           <SectionContents />
           {subsections}
         </section>
@@ -63,9 +63,9 @@ const DocsPage = ({ params }: { params: { slug: string[] } }) => {
           {parentChapter.title}
         </div>
       ) : undefined}
-      <h2 className="mt-2" id={slug}>
+      <h1 className="mt-2" id={slug}>
         {entry.title}
-      </h2>
+      </h1>
       <Content />
       {sections}
     </>
