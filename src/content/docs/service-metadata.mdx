@@ -1,5 +1,3 @@
-import CodeExample from "components/CodeExample"
-
 Service metadata is used to describe the interface of a processing service so
 it can be executed by Steep.
 
@@ -18,9 +16,8 @@ it can be executed by Steep.
 | maxRuntime<br/>*(optional)*            | <DocsLink href="#durations">duration</DocsLink> or object | An optional <DocsLink href="#durations">duration</DocsLink> or <DocsLink href="#timeout-policies">timeout policy</DocsLink> that defines how long the execution of this service can take before it is automatically cancelled or aborted, even if the service regularly writes to the standard output and error streams. Can be overridden in an <DocsLink href="#execute-actions">executable action</DocsLink> and can be combined with `maxInactivity` (see above) and `deadline` (see below). Note that a service cancelled due to a too long runtime is still subject to any configured <DocsLink href="#retry-policies">retry policy</DocsLink>, which means its execution may be retried even if one attempt timed out. If you want to cancel a long-running service immediately even if there is a retry policy configured, use a `deadline`.
 | deadline<br/>*(optional)*              | <DocsLink href="#durations">duration</DocsLink> or object | An optional <DocsLink href="#durations">duration</DocsLink> or <DocsLink href="#timeout-policies">timeout policy</DocsLink> that defines how long the execution of this service can take at all (including all retries and their associated delays) until it is cancelled or aborted. Can be overridden in an <DocsLink href="#execute-actions">executable action</DocsLink> and can be combined with `maxInactivity` and `maxRuntime` (see above).
 
-<CodeExample title="Example:">
-
-```json code-example
+<CodeContainer title="Example">
+```json generate-yaml
 {
   "id": "cp",
   "name": "cp",
@@ -53,5 +50,4 @@ it can be executed by Steep.
   }]
 }
 ```
-
-</CodeExample>
+</CodeContainer>

@@ -165,6 +165,11 @@ module.exports = {
               fontWeight: 400,
               fontSize: "1.4em",
             },
+            h6: {
+              fontWeight: 400,
+              marginTop: `${theme("spacing.8")}`,
+              marginBottom: `${theme("spacing.4")}`,
+            },
             "h1 a,h2 a,h3 a,h4 a,h5 a,h1 a:hover,h2 a:hover,h3 a:hover,h4 a:hover,h5 a:hover":
               {
                 color: `${theme("colors.gray-800")} !important`,
@@ -229,6 +234,21 @@ module.exports = {
             "code::after": null,
             strong: {
               fontWeight: 400,
+            },
+            dt: {
+              fontWeight: 400,
+            },
+            dd: {
+              paddingLeft: `${theme("spacing.8")}`,
+              marginTop: `${theme("spacing.5")}`,
+              marginBottom: `${theme("spacing.5")}`,
+            },
+            "dd h6": {
+              marginTop: `${theme("spacing.5")}`,
+              marginBottom: `${theme("spacing.3")}`,
+            },
+            "dd > h6 + p": {
+              marginTop: `${theme("spacing.3")}`,
             },
           },
         },

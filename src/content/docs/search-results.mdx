@@ -1,5 +1,3 @@
-import CodeExample from "components/CodeExample"
-
 The <DocsLink href="#get-search">HTTP endpoint `/search`</DocsLink> returns a list of search result objects. Each such object refers to an item found and contains information about which properties of this item have matched with which search term and where in these properties the search term has been found.
 
 The following list describes the properties of this object. For more information about each individual property, please refer to the description of the <DocsLink href="#submissions">submission</DocsLink> and <DocsLink href="#process-chains">process chain</DocsLink> data models.
@@ -15,9 +13,8 @@ The following list describes the properties of this object. For more information
 | endTime<br/>*(optional)*  | string | An ISO 8601 timestamp denoting the date and time when the execution of the item has finished. May be `null` if the execution has not finished yet.
 | matches                   | array  | A list of <DocsLink href="#matches">match objects</DocsLink> denoting which properties have matched and what term was found at which location.
 
-<CodeExample title="Example:">
-
-```json code-example
+<CodeContainer title="Example">
+```json generate-yaml
 {
   "id": "az2ne7scskxqqzduorzq",
   "type": "workflow",
@@ -46,5 +43,4 @@ The following list describes the properties of this object. For more information
   }]
 }
 ```
-
-</CodeExample>
+</CodeContainer>

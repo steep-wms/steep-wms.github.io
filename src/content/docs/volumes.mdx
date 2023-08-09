@@ -1,5 +1,3 @@
-import CodeExample from "components/CodeExample"
-
 This data model describes an additional volume that can be attached to a
 virtual machine specified by a <DocsLink href="#setups">setup</DocsLink>.
 
@@ -9,14 +7,12 @@ virtual machine specified by a <DocsLink href="#setups">setup</DocsLink>.
 | type<br/>*(optional)*                  | string  | Type the volume's type. By default, the type will be selected automatically.
 | availabilityZone<br/>*(optional)*      | string  | The availability zone in which to create the volume. By default, it will be created in the same availability zone as the VM to which it will be attached.
 
-<CodeExample title="Example:">
-
-```json code-example
+<CodeContainer title="Example">
+```json generate-yaml
 {
   "sizeGb": 50,
   "type": "SSD",
   "availabilityZone": "nova"
 }
 ```
-
-</CodeExample>
+</CodeContainer>

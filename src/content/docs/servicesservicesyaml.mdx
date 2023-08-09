@@ -1,2 +1,83 @@
 The file `services/services.yaml` contains an array of <DocsLink href="#service-metadata">service metadata objects</DocsLink>
 describing the interfaces of all processing services Steep can execute.
+
+*Note:* The path to the services configuration file can be configured with
+the item `steep.cloud.setups.file` in Steep's <DocsLink href="#cloud-connection">cloud
+configuration</DocsLink>.
+
+<CodeContainer title="services/services.yaml">
+```yaml
+- id: cp
+  name: cp
+  description: Copies files
+  path: cp
+  runtime: other
+
+  parameters:
+    - id: no_overwrite
+      name: No overwrite
+      description: Do not overwrite existing file
+      type: input
+      cardinality: 1..1
+      label: -n
+      dataType: boolean
+      default: false
+
+    - id: input_file
+      name: Input file name
+      description: Input file name
+      type: input
+      cardinality: 1..1
+      dataType: file
+
+    - id: output_file
+      name: Output file name
+      description: Output file name
+      type: output
+      cardinality: 1..1
+      dataType: file
+
+- id: sleep
+  name: sleep
+  description: sleeps for the given number of seconds
+  path: sleep
+  runtime: other
+
+  parameters:
+    - id: seconds
+      name: seconds to sleep
+      description: The number of seconds to sleep
+      type: input
+      cardinality: 1..1
+      dataType: integer
+
+- id: docker_hello_world
+  name: Docker hello world
+  description: Runs the hello-world Docker image
+  path: hello-world
+  runtime: docker
+  parameters: []
+
+- id: docker_sleep
+  name: Docker sleep
+  description: Run sleep inside an alpine container
+  path: alpine
+  runtime: docker
+
+  parameters:
+    - id: sleep
+      name: sleep command
+      description: The sleep command
+      type: input
+      cardinality: 1..1
+      dataType: string
+      default: sleep
+
+    - id: seconds
+      name: seconds to sleep
+      description: The number of seconds to sleep
+      type: input
+      cardinality: 1..1
+      dataType: integer
+```
+</CodeContainer>

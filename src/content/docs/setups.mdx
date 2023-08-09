@@ -1,5 +1,3 @@
-import CodeExample from "components/CodeExample"
-
 A setup describes how a virtual machine (VM) should be created by Steep's cloud
 manager.
 
@@ -21,9 +19,8 @@ manager.
 | parameters<br/>*(optional)*            | object  | An optional custom object with user-defined properties. Use this object to pass arbitrary values to <DocsLink href="#provisioning-scripts">provisioning scripts</DocsLink> where they can be accessed through the <DocsLink href="#global-variables">global variable</DocsLink> `setup`.
 | creation<br/>*(optional)*              | object  | An optional <DocsLink href="#creation-policies">creation policy</DocsLink> that defines rules for creating VMs from this setup. Default values for this parameter are defined in the <DocsLink href="#steepyaml">main configuration</DocsLink>.
 
-<CodeExample title="Example:">
-
-```json code-example
+<CodeContainer title="Example">
+```json generate-yaml
 {
   "id": "default",
   "flavor": "7d217779-4d7b-4689-8a40-c12a377b946d",
@@ -43,5 +40,4 @@ manager.
   }]
 }
 ```
-
-</CodeExample>
+</CodeContainer>

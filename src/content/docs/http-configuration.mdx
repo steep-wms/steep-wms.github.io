@@ -1,69 +1,84 @@
-`steep.http.enabled`
+<dl>
+<dt>`steep.http.enabled`</dt>
+<dd>
+`true` if the HTTP interface should be enabled
 
-> `true` if the HTTP interface should be enabled
+**Default:** `true`
+</dd>
 
-> **Default:** `true`
+<dt>`steep.http.host`</dt>
+<dd>
+The host to bind the HTTP server to
 
-`steep.http.host`
+**Default:** `localhost`
+</dd>
 
-> The host to bind the HTTP server to
+<dt>`steep.http.port`</dt>
+<dd>
+The port the HTTP server should listen on
 
-> **Default:** `localhost`
+**Default:** 8080
+</dd>
 
-`steep.http.port`
+<dt>`steep.http.postMaxSize`</dt>
+<dd>
+The maximum size of HTTP POST bodies in bytes
 
-> The port the HTTP server should listen on
+**Default:** 1048576 (1 MB)
+</dd>
 
-> **Default:** 8080
+<dt>`steep.http.basePath`</dt>
+<dd>
+The path where the HTTP endpoints and the web-based user interface should be mounted
 
-`steep.http.postMaxSize`
+**Default:** `""` (empty string, i.e. no base path)
+</dd>
 
-> The maximum size of HTTP POST bodies in bytes
+<dt>`steep.http.allowRoutes`</dt>
+<dd>
+A regular expression specifying a whitelist of enabled HTTP routes. Non-matching routes will be disabled. For example, the expression `/processchains.*` enables all endpoints starting with `/processchains` but disables all others.
 
-> **Default:** 1048576 (1 MB)
+**Default:** `.*` (all routes are enabled)
+</dd>
 
-`steep.http.basePath`
+<dt>`steep.http.cors.enable`</dt>
+<dd>
+`true` if Cross-Origin Resource Sharing (CORS) should be enabled
 
-> The path where the HTTP endpoints and the web-based user interface should be mounted
+**Default:** `false`
+</dd>
 
-> **Default:** `""` (empty string, i.e. no base path)
+<dt>`steep.http.cors.allowOrigin`</dt>
+<dd>
+A regular expression specifying allowed CORS origins. Use `*`​ to allow all origins.
 
-`steep.http.allowRoutes`
+**Default:** `"$."` (match nothing by default)
+</dd>
 
-> A regular expression specifying a whitelist of enabled HTTP routes. Non-matching routes will be disabled. For example, the expression `/processchains.*` enables all endpoints starting with `/processchains` but disables all others.
+<dt>`steep.http.cors.allowCredentials`</dt>
+<dd>
+`true` if the `Access-​Control-​Allow-​Credentials` response header should be returned.
 
-> **Default:** `.*` (all routes are enabled)
+**Default:** `false`
+</dd>
 
-`steep.http.cors.enable`
+<dt>`steep.http.cors.allowHeaders`</dt>
+<dd>
+A string or an array indicating which header field names can be used in a request.
+</dd>
 
-> `true` if Cross-Origin Resource Sharing (CORS) should be enabled
+<dt>`steep.http.cors.allowMethods`</dt>
+<dd>
+A string or an array indicating which HTTP methods can be used in a request.
+</dd>
 
-> **Default:** `false`
+<dt>`steep.http.cors.exposeHeaders`</dt>
+<dd>
+A string or an array indicating which headers are safe to expose to the API of a CORS API specification.
+</dd>
 
-`steep.http.cors.allowOrigin`
-
-> A regular expression specifying allowed CORS origins. Use `*`​ to allow all origins.
-
-> **Default:** `"$."` (match nothing by default)
-
-`steep.http.cors.allowCredentials`
-
-> `true` if the `Access-​Control-​Allow-​Credentials` response header should be returned.
-
-> **Default:** `false`
-
-`steep.http.cors.allowHeaders`
-
-> A string or an array indicating which header field names can be used in a request.
-
-`steep.http.cors.allowMethods`
-
-> A string or an array indicating which HTTP methods can be used in a request.
-
-`steep.http.cors.exposeHeaders`
-
-> A string or an array indicating which headers are safe to expose to the API of a CORS API specification.
-
-`steep.http.cors.maxAgeSeconds`
-
-> The number of seconds the results of a preflight request can be cached in a preflight result cache.
+<dt>`steep.http.cors.maxAgeSeconds`</dt>
+<dd>
+The number of seconds the results of a preflight request can be cached in a preflight result cache.
+</dd>
+</dl>

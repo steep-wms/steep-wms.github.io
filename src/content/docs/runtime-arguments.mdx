@@ -1,5 +1,3 @@
-import CodeExample from "components/CodeExample"
-
 Runtime arguments are similar to <DocsLink href="#service-parameters">service parameters</DocsLink>,
 except they are passed to the runtime that executes the service (e.g. Docker)
 instead of the service itself.
@@ -13,9 +11,8 @@ instead of the service itself.
 | label<br/>*(optional)*       | string | An optional string that will be used as a label for the parameter. Examples are `-v`, `--volume`, `--entrypoint`, etc.
 | value<br/>*(optional)*       | string | An optional value for this parameter.
 
-<CodeExample title="Example:">
-
-```json code-example
+<CodeContainer title="Example">
+```json generate-yaml
 {
   "id": "volume",
   "name": "Volume mount",
@@ -24,5 +21,4 @@ instead of the service itself.
   "value": "/data:/data"
 }
 ```
-
-</CodeExample>
+</CodeContainer>

@@ -1,8 +1,13 @@
+import WebUIScreenshot from "components/home/WebUIScreenshot"
+import Window from "components/Window"
+
 Steep has a web-based user interface that allows you to monitor the execution
 of running workflows, process chains, agents, and VMS, as well as to browse
 the database contents.
 
-Start Steep and visit any of the above-mentioned <DocsLink href="#http-endpoints">HTTP endpoints</DocsLink>
+Start Steep and visit any of its <DocsLink href="#http-endpoints">HTTP endpoints</DocsLink>
 with your web browser to open the user interface.
 
-<img src={`${process.env.basePath}/images/webui-light-800.png`} />
+<Window title="http://localhost:8080/workflows" className="mt-8 not-prose shadow-gray-800/10 [box-shadow:1px_2px_20px_var(--tw-shadow-color),1px_1px_8px_var(--tw-shadow-color)] dark:border dark:border-gray-200">
+  <WebUIScreenshot />
+</Window>

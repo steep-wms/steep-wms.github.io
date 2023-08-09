@@ -1,4 +1,19 @@
 The configuration file `plugins/common.yaml` describes all plugins so Steep can
 compile and use them during runtime. The file contains an array of descriptor
 objects with the properties specified in the section
-on <DocsLink href="#extending-steep-through-plugins">extending Steep through plugins</DocsLink>.
+on <DocsLink href="#plugin-overview">extending Steep through plugins</DocsLink>.
+
+*Note:* The path to the plugin configuration file can be configured with the item
+`steep.plugins` in Steep's <DocsLink href="#general-configuration">general
+configuration</DocsLink>.
+
+<CodeContainer title="plugins/common.yaml">
+```yaml
+# interprets a missing file as an empty list
+- name: fileOrEmptyList
+  type: outputAdapter
+  scriptFile: conf/plugins/fileOrEmptyList.kt
+  version: 1.0.0
+  supportedDataType: fileOrEmptyList
+```
+</CodeContainer>

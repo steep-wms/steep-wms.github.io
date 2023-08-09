@@ -1,15 +1,19 @@
-`steep.runtimes.docker.env`
+<dl>
+<dt>`steep.runtimes.docker.env`</dt>
+<dd>
+Additional environment variables that will be passed to containers created by the Docker runtime
 
-> Additional environment variables that will be passed to containers created by the Docker runtime
+**Example:** `["key=value", "foo=bar"]`
 
-> **Example:** `["key=value", "foo=bar"]`
+**Default:** `[]` (empty list)
+</dd>
 
-> **Default:** `[]` (empty list)
+<dt>`steep.runtimes.docker.volumes`</dt>
+<dd>
+Additional volume mounts to be passed to the Docker runtime
 
-`steep.runtimes.docker.volumes`
+**Example:** `["/data:/data"]`
 
-> Additional volume mounts to be passed to the Docker runtime
-
-> **Example:** `["/data:/data"]`
-
-> **Default:** `[]` (empty list)
+**Default:** `[]` (empty list)
+</dd>
+</dl>

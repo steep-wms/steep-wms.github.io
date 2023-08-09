@@ -1,5 +1,3 @@
-import CodeExample from "components/CodeExample"
-
 A match object specifies a which property of an item has matched with which search term and where the match has occurred.
 
 | Property                  | Type   | Description
@@ -15,9 +13,8 @@ A match object specifies a which property of an item has matched with which sear
 | term                      | string | The matched term from the search query
 | indices                   | array  | The start positions (relative to `fragment`) at which the term was found
 
-<CodeExample title="Example:">
-
-```json code-example
+<CodeContainer title="Example">
+```json generate-yaml
 {
   "locator": "name",
   "fragment": "This is a docker-based service showcasing how docker ...",
@@ -27,5 +24,4 @@ A match object specifies a which property of an item has matched with which sear
   }]
 }
 ```
-
-</CodeExample>
+</CodeContainer>

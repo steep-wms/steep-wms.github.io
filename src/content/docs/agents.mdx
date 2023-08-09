@@ -1,5 +1,3 @@
-import CodeExample from "components/CodeExample"
-
 An agent represents an instance of Steep that can execute <DocsLink href="#process-chains">process chains</DocsLink>.
 
 | Property                               | Type    | Description
@@ -11,9 +9,8 @@ An agent represents an instance of Steep that can execute <DocsLink href="#proce
 | stateChangedTime<br/>*(required)*      | string  | An ISO 8601 timestamp denoting the date and time when the value of the `available` property changed from `true` to `false` (i.e. when the agent became busy) or from `false` to `true` (when it became available)
 | processChainId<br/>*(optional)*        | string  | The ID of the <DocsLink href="#process-chains">process chain</DocsLink> currently allocated to this agent. May be `null` if no process chain has been allocated to the agent (i.e. if it is currently `available`).
 
-<CodeExample title="Example:">
-
-```json code-example
+<CodeContainer title="Example">
+```json generate-yaml
 {
   "id": "akuxryerojbw7mnvovaa",
   "available": true,
@@ -22,5 +19,4 @@ An agent represents an instance of Steep that can execute <DocsLink href="#proce
   "stateChangedTime": "2020-05-26T11:06:52.367121Z"
 }
 ```
-
-</CodeExample>
+</CodeContainer>

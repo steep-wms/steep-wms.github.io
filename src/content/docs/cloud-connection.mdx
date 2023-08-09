@@ -1,107 +1,122 @@
-`steep.cloud.enabled`
+<dl>
+<dt>`steep.cloud.enabled`</dt>
+<dd>
+`true` if Steep should connect to a cloud to acquire remote agents on demand
 
-> `true` if Steep should connect to a cloud to acquire remote agents on demand
+**Default:** `false`
+</dd>
 
-> **Default:** `false`
+<dt>`steep.cloud.driver`</dt>
+<dd>
+Defines which cloud driver to use
 
-`steep.cloud.driver`
+**Valid values:** `openstack` (see the <DocsLink href="#openstack-cloud-driver">OpenStack cloud driver</DocsLink> for more information)
+</dd>
 
-> Defines which cloud driver to use
+<dt>`steep.cloud.createdByTag`</dt>
+<dd>
+A metadata tag that should be attached to virtual machines to indicate that
+they have been created by Steep
+</dd>
 
-> **Valid values:** `openstack` (see the <DocsLink href="#openstack-cloud-driver">OpenStack cloud driver</DocsLink> for more information)
+<dt>`steep.cloud.syncInterval`</dt>
+<dd>
+The time that should pass before the cloud manager synchronizes its internal
+state with the cloud again, specified as a
+<DocsLink href="#durations">duration</DocsLink>.
 
-`steep.cloud.createdByTag`
+**Default:** 2m
+</dd>
 
-> A metadata tag that should be attached to virtual machines to indicate that
-> they have been created by Steep
+<dt>`steep.cloud.keepAliveInterval`</dt>
+<dd>
+The time that should pass before the cloud manager sends keep-alive messages
+to a minimum of remote agents again (so that they do not shut down themselves),
+specified as a <DocsLink href="#durations">duration</DocsLink>. See
+`minVMs` property of the <DocsLink href="#setups">setups</DocsLink> data
+model.
 
-`steep.cloud.syncInterval`
+**Default:** 30s
+</dd>
 
-> The time that should pass before the cloud manager synchronizes its internal
-> state with the cloud again, specified as a
-> <DocsLink href="#durations">duration</DocsLink>.
+<dt>`steep.cloud.setups.file`</dt>
+<dd>
+The path to the file that describes all available
+<DocsLink href="#setups">setups</DocsLink>. See
+<DocsLink href="setupsyaml">setups.yaml</DocsLink>.
+</dd>
 
-> **Default:** 2m
+<dt>`steep.cloud.setups.creation.retries`</dt>
+<dd>
+A <DocsLink href="#retry-policies">retry policy</DocsLink> that specifies
+how many attempts should be made to create a VM from a certain
+<DocsLink href="#setups">setup</DocsLink> (if creation fails) as well as
+possible (exponential) delays between those attempts.
 
-`steep.cloud.keepAliveInterval`
+###### Default:
 
-> The time that should pass before the cloud manager sends keep-alive messages
-> to a minimum of remote agents again (so that they do not shut down themselves),
-> specified as a <DocsLink href="#durations">duration</DocsLink>. See
-> `minVMs` property of the <DocsLink href="#setups">setups</DocsLink> data
-> model.
+```yaml
+retries:
+  maxAttempts: 5
+  delay: 40s
+  exponentialBackoff: 2
+```
+</dd>
 
-> **Default:** 30s
+<dt>`steep.cloud.setups.lockAfterRetries`</dt>
+<dd>
+When the maximum number of attempts to create a VM from a certain
+<DocsLink href="#setups">setup</DocsLink> has been reached (see
+`steep.cloud.setups.creation.retries`), the setup will be locked and no other
+VM with this setup will be created. This parameter defines how long it will be
+locked, specified as a <DocsLink href="#durations">duration</DocsLink>.
 
-`steep.cloud.setups.file`
+**Default:** 20m
+</dd>
 
-> The path to the file that describes all available
-> <DocsLink href="#setups">setups</DocsLink>. See
-> <DocsLink href="setupsyaml">setups.yaml</DocsLink>.
+<dt>`steep.cloud.timeouts.sshReady`</dt>
+<dd>
+The maximum time the cloud manager should try to log in to a new VM via SSH
+(specified as a <DocsLink href="#durations">duration</DocsLink>).
+The cloud manager will make a login attempt every 2 seconds until it is
+successful or until the maximum number of seconds have passed, in which
+case it will destroy the VM.
 
-`steep.cloud.setups.creation.retries`
+**Default:** 5m
+</dd>
 
-> A <DocsLink href="#retry-policies">retry policy</DocsLink> that specifies
-> how many attempts should be made to create a VM from a certain
-> <DocsLink href="#setups">setup</DocsLink> (if creation fails) as well as
-> possible (exponential) delays between those attempts.
+<dt>`steep.cloud.timeouts.agentReady`</dt>
+<dd>
+The maximum time the cloud manager should wait for an agent on a new VM to
+become available (i.e. how long a new Steep instance may take to register
+with the cluster) before it destroys the VM again (specified as a
+<DocsLink href="#durations">duration</DocsLink>).
 
-> **Default:**
+**Default:** 5m
+</dd>
 
-> ```yaml
-> retries:
->   maxAttempts: 5
->   delay: 40s
->   exponentialBackoff: 2
-> ```
+<dt>`steep.cloud.timeouts.createVM`</dt>
+<dd>
+The maximum time that creating a VM may take before it is aborted with an
+error (specified as a <DocsLink href="#durations">duration</DocsLink>).
 
-`steep.cloud.setups.lockAfterRetries`
+**Default:** 5m
+</dd>
 
-> When the maximum number of attempts to create a VM from a certain
-> <DocsLink href="#setups">setup</DocsLink> has been reached (see
-> `steep.cloud.setups.creation.retries`), the setup will be locked and no other
-> VM with this setup will be created. This parameter defines how long it will be
-> locked, specified as a <DocsLink href="#durations">duration</DocsLink>.
+<dt>`steep.cloud.timeouts.destroyVM`</dt>
+<dd>
+The maximum time that destroying a VM may take before it is aborted with an
+error (specified as a <DocsLink href="#durations">duration</DocsLink>).
 
-> **Default:** 20m
+**Default:** 5m
+</dd>
 
-`steep.cloud.timeouts.sshReady`
+<dt>`steep.cloud.agentPool`</dt>
+<dd>
+An array of <DocsLink href="#agent-pool-parameters">agent pool parameters</DocsLink>
+describing how many remote agents the cloud manager should keep in its pool
+how many it is allowed to create for each given set of capabilities.
 
-> The maximum time the cloud manager should try to log in to a new VM via SSH
-> (specified as a <DocsLink href="#durations">duration</DocsLink>).
-> The cloud manager will make a login attempt every 2 seconds until it is
-> successful or until the maximum number of seconds have passed, in which
-> case it will destroy the VM.
-
-> **Default:** 5m
-
-`steep.cloud.timeouts.agentReady`
-
-> The maximum time the cloud manager should wait for an agent on a new VM to
-> become available (i.e. how long a new Steep instance may take to register
-> with the cluster) before it destroys the VM again (specified as a
-> <DocsLink href="#durations">duration</DocsLink>).
-
-> **Default:** 5m
-
-`steep.cloud.timeouts.createVM`
-
-> The maximum time that creating a VM may take before it is aborted with an
-> error (specified as a <DocsLink href="#durations">duration</DocsLink>).
-
-> **Default:** 5m
-
-`steep.cloud.timeouts.destroyVM`
-
-> The maximum time that destroying a VM may take before it is aborted with an
-> error (specified as a <DocsLink href="#durations">duration</DocsLink>).
-
-> **Default:** 5m
-
-`steep.cloud.agentPool`
-
-> An array of <DocsLink href="#agent-pool-parameters">agent pool parameters</DocsLink>
-> describing how many remote agents the cloud manager should keep in its pool
-> how many it is allowed to create for each given set of capabilities.
-
-> **Default:** `[]` (empty list)
+**Default:** `[]` (empty list)
+</dd>
+</dl>

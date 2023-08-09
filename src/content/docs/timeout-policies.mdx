@@ -1,5 +1,3 @@
-import CodeExample from "components/CodeExample"
-
 A timeout policy defines how long a service or an executable may run before it
 is automatically cancelled or aborted (with an error). Timeout policies can be
 specified with the `maxInactivity`, `maxRuntime` and `deadline` attributes, either
@@ -20,9 +18,8 @@ If specified as an object, the timeout policy has the following properties:
 
 Multiple timeout policies can be combined. For example, a service may be cancelled after 5 minutes of inactivity and aborted with an error if its total execution takes longer than 1 hour.
 
-<CodeExample title="Example:">
-
-```json code-example
+<CodeContainer title="Example">
+```json generate-yaml
 {
   "maxInactivity": "5m",
   "deadline": {
@@ -31,5 +28,4 @@ Multiple timeout policies can be combined. For example, a service may be cancell
   }
 }
 ```
-
-</CodeExample>
+</CodeContainer>

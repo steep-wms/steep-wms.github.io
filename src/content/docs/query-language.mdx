@@ -1,80 +1,94 @@
 import dayjs from "dayjs"
 
-The focus of Steep's query language is on the end users. It is lightweight and contains only a few operators. There are no logical combinators such as `AND` or `OR`. The main idea is that Steep tries to find as many objects matching the query as possible and then sorts them by relevance so the best matches are on the top of the list. It is assumed that workflows have a higher relevance than process chains. If you are using the search through the web interface, you will typically find what you are looking for on one of the first pages. You rarely have to access any page after the second or third one. This is similar to how a web search engine works.
+The focus of Steep's query language is on end users. It is lightweight and contains only a few operators. There are no logical combinators such as `AND` or `OR`. The main idea is that Steep tries to find as many objects matching the query as possible and then sorts them by relevance, so the best matches are on the top of the list. It is assumed that workflows have a higher relevance than process chains. If you are using the search through the web interface, you will typically find what you are looking for on one of the first pages. You rarely have to access any page after the second or third one. This is similar to how a web search engine works.
 
 A search query consists of one or more of the following elements:
 
-**Term**
+<dl>
+<dt>Term</dt>
+<dd>
+A string that should appear somewhere in the document to find.
 
-> A string that should appear somewhere in the document to find.
+Put one or more terms into quotation marks (single or double) if you want to look for exact matches (including spaces). Within quoted terms, quotation marks can be escaped with the backslash character `\`.
 
-> Put the one or more terms into quotation marks (single or double) if you want to look for exact matches (including spaces). Within quoted terms, quotation marks can be escaped with the backslash character `\`.
+###### Examples:
 
-> **Examples:**<br />
-> `docker`<br />
-> `"exact match"`<br />
-> `"an \"exact match\" with quotation marks"`
+`docker`<br />
+`"exact match"`<br />
+`"an \"exact match\" with quotation marks"`
+</dd>
 
-**Date**
+<dt>Date</dt>
+<dd>
+A string in the form `yyyy-MM-dd`
 
-> A string in the form `yyyy-MM-dd`
+The operators `<` (less than), `<=` (less than or equal to), `>` (greater than), and `>=` (greater than or equal to) can be used to find objects with a date that is before or after the given one.
 
-> The operators `<` (less than), `<=` (less than or equal to), `>` (greater than), and `>=` (greater than or equal to) can be used to find objects with a date that is before or after the given one.
+###### Examples:
 
-> **Examples:**<br/>
-> <code suppressHydrationWarning={true}>{dayjs().format("YYYY-MM-DD")}</code><br/>
-> <code suppressHydrationWarning={true}>&lt;{dayjs().format("YYYY-MM-DD")}</code><br/>
-> <code suppressHydrationWarning={true}>&gt;={dayjs().format("YYYY-MM-DD")}</code><br/>
+<code suppressHydrationWarning={true}>{dayjs().format("YYYY-MM-DD")}</code><br/>
+<code suppressHydrationWarning={true}>&lt;{dayjs().format("YYYY-MM-DD")}</code><br/>
+<code suppressHydrationWarning={true}>&gt;={dayjs().format("YYYY-MM-DD")}</code><br/>
+</dd>
 
-**Date/time**
+<dt>Date/time</dt>
+<dd>
+A string in the form `yyyy-MM-dd'T'HH:mm[:ss]`. Seconds are optional.
 
-> A string in the form `yyyy-MM-dd'T'HH:mm[:ss]`. Seconds are optional.
+The operators `<` (less than), `<=` (less than or equal to), `>` (greater than), and `>=` (greater than or equal to) can be used to find objects with a date/time pair that is before or after the given one.
 
-> The operators `<` (less than), `<=` (less than or equal to), `>` (greater than), and `>=` (greater than or equal to) can be used to find objects with a date/time pair that is before or after the given one.
+###### Examples:
 
-> **Examples:**<br/>
-> <code suppressHydrationWarning={true}>{dayjs().format("YYYY-MM-DDTHH:mm")}</code><br/>
-> <code suppressHydrationWarning={true}>{dayjs().format("YYYY-MM-DDTHH:mm:ss")}</code><br/>
-> <code suppressHydrationWarning={true}>&gt;{dayjs().format("YYYY-MM-DDTHH:mm")}</code><br/>
-> <code suppressHydrationWarning={true}>&lt;={dayjs().format("YYYY-MM-DDTHH:mm:ss")}</code><br/>
+<code suppressHydrationWarning={true}>{dayjs().format("YYYY-MM-DDTHH:mm")}</code><br/>
+<code suppressHydrationWarning={true}>{dayjs().format("YYYY-MM-DDTHH:mm:ss")}</code><br/>
+<code suppressHydrationWarning={true}>&gt;{dayjs().format("YYYY-MM-DDTHH:mm")}</code><br/>
+<code suppressHydrationWarning={true}>&lt;={dayjs().format("YYYY-MM-DDTHH:mm:ss")}</code><br/>
+</dd>
 
-**Time range**
+<dt>Time range</dt>
+<dd>
+A string representing a time range in the form `yyyy-MM-dd['T'HH:mm[:ss]]..yyyy-MM-dd['T'HH:mm[:ss]]`. Times as well as seconds within times are optional. The time range is inclusive, which means that objects with a date that matches the given start date as well as those with a date matching the given end date are included.
 
-> A string representing a time range in the form `yyyy-MM-dd['T'HH:mm[:ss]]..yyyy-MM-dd['T'HH:mm[:ss]]`. Times as well as seconds within times are optional. The time range is inclusive, which means that objects with a date that matches the given start date as well as those with a date matching the given end date are included.
+###### Examples:
+<code suppressHydrationWarning={true}>{dayjs().subtract(1, "day").format("YYYY-MM-DD")}..{dayjs().format("YYYY-MM-DD")}</code><br/>
+<code suppressHydrationWarning={true}>{dayjs().subtract(1, "minute").format("YYYY-MM-DDTHH:mm")}..{dayjs().format("YYYY-MM-DDTHH:mm")}</code><br/>
+</dd>
 
-> **Examples:**<br/>
-> <code suppressHydrationWarning={true}>{dayjs().subtract(1, "day").format("YYYY-MM-DD")}..{dayjs().format("YYYY-MM-DD")}</code><br/>
-> <code suppressHydrationWarning={true}>{dayjs().subtract(1, "minute").format("YYYY-MM-DDTHH:mm")}..{dayjs().format("YYYY-MM-DDTHH:mm")}</code><br/>
+<dt>Locator</dt>
+<dd>
+A string starting with `in:` and denoting the attribute that should be compared with the give term(s), dates, date/time pairs, and time ranges. See **Attributes** below for a complete list of all possible attributes.
 
-**Locator**
+**Example:** `in:name`
+</dd>
 
-> A string starting with `in:` and denoting the attribute that should be compared with the give term(s), dates, date/time pairs, and time ranges. See **Attributes** below for a complete list of all possible attributes.
+<dt>Type</dt>
+<dd>
+A string starting with `is:` and denoting the type of documents to search. Possible values are `is:workflow` and `is:processchain`.
+</dd>
 
-> **Example:** `in:name`
+<dt>Filter</dt>
+<dd>
+A string that consists of an attribute name, followed by a colon and a term, date, date/time pair, or time range that should appear in this attribute. See **Attributes** below for a complete list of all possible attributes.
 
-**Type**
+###### Examples:
+`name:Elvis`<br/>
+<code suppressHydrationWarning={true}>start:&lt;={dayjs().format("YYYY-MM-DD")}</code><br/>
+</dd>
 
-> A string starting with `is:` and denoting the type of documents to search. Possible values are `is:workflow` and `is:processchain`.
+<dt>Attributes</dt>
+<dd>
+Possible values (including aliases) for attributes are:
 
-**Filter**
+* `id`
+* `name`
+* `error`, `errormessage`
+* `rc`, `cap`, `reqcap`, `capability`, `requiredcapability`,
+  `rcs`, `caps`, `reqcaps`, `capabilities`, `requiredcapabilities`
+* `source`
+* `start`, `startTime`
+* `end`, `endTime`
 
-> A string that consists of an attribute name, followed by a colon and a term, date, date/time pair, or time range that should appear in this attribute. See **Attributes** below for a complete list of all possible attributes.
+See the <DocsLink href="#submissions">submission</DocsLink> and <DocsLink href="#process-chains">process chain</DocsLink> data models for more information about these attributes.
+</dd>
 
-> **Examples:**<br/>
-> `name:Elvis`<br/>
-> <code suppressHydrationWarning={true}>start:&lt;={dayjs().format("YYYY-MM-DD")}</code><br/>
-
-**Attributes**
-
-> Possible values (including aliases) for attributes are:
-
-> * `id`
-> * `name`
-> * `error`, `errormessage`
-> * `rc`, `cap`, `reqcap`, `capability`, `requiredcapability`,
->   `rcs`, `caps`, `reqcaps`, `capabilities`, `requiredcapabilities`
-> * `source`
-> * `start`, `startTime`
-> * `end`, `endTime`
-
-> See the <DocsLink href="#submissions">submission</DocsLink> and <DocsLink href="#process-chains">process chain</DocsLink> data models for more information about these attributes.
+</dl>

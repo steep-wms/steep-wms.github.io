@@ -1,6 +1,7 @@
-You can use a template engine in all of Steep's YAML-based configuration files
-(`steep.yaml`, `setups.yaml`, `services.yaml`, etc.) to dynamically generate a
-configuration at startup.
+Steep contains a template engine that allows you to dynamically generate
+content for YAML-based configuration files (<DocsLink href="#steepyaml">`steep.yaml`</DocsLink>,
+<DocsLink href="#setupsyaml">`setups.yaml`</DocsLink>,
+<DocsLink href="#servicesservicesyaml">`services/services.yaml`</DocsLink>, etc.) at startup.
 
 You have to explicitly enable this feature by adding front matter to your YAML
 file and setting the attribute `template` to `true`:
@@ -12,7 +13,7 @@ template: true
 ```
 
 Steep uses <a href="https://pebbletemplates.io/">Pebble Templates</a> to compile
-your configuration files. Please refer to their website for a full documentation
+the configuration files. Please refer to their website for a full documentation
 on the tags, functions, and filters you can use.
 
 Within your template, you may access the following variables:

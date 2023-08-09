@@ -1,54 +1,63 @@
-`steep.agent.enabled`
+<dl>
+<dt>`steep.agent.enabled`</dt>
+<dd>
+`true` if this Steep instance should be able to execute process chains (i.e.
+if one or more agents should be deployed)
 
-> `true` if this Steep instance should be able to execute process chains (i.e.
-> if one or more agents should be deployed)
+**Default:** `true`
+</dd>
 
-> **Default:** `true`
+<dt>`steep.agent.instances`</dt>
+<dd>
+The number of agents that should be deployed within this Steep instance (i.e.
+how many <DocsLink href="#executables">executables</DocsLink> the Steep
+instance can run in parallel)
 
-`steep.agent.instances`
+**Default:** 1
+</dd>
 
-> The number of agents that should be deployed within this Steep instance (i.e.
-> how many <DocsLink href="#executables">executables</DocsLink> the Steep
-> instance can run in parallel)
+<dt>`steep.agent.id`</dt>
+<dd>
+Unique identifier for the first agent instance deployed. Subsequent agent
+instances will have a consecutive number appended to their IDs.
 
-> **Default:** 1
+**Default:** (an automatically generated unique ID)
+</dd>
 
-`steep.agent.id`
+<dt>`steep.agent.capabilities`</dt>
+<dd>
+List of capabilities that the agents provide
 
-> Unique identifier for the first agent instance deployed. Subsequent agent
-> instances will have a consecutive number appended to their IDs.
+**Default:** `[]` (empty list)
+</dd>
 
-> **Default:** (an automatically generated unique ID)
+<dt>`steep.agent.autoShutdownTimeout`</dt>
+<dd>
+The time any agent instance can remain idle until Steep shuts itself down
+gracefully (specified as a <DocsLink href="#durations">duration</DocsLink>).
+By default, this value is `0s`, which means Steep never shuts itself down.
 
-`steep.agent.capabilities`
+**Default:** 0s
+</dd>
 
-> List of capabilities that the agents provide
+<dt>`steep.agent.busyTimeout`</dt>
+<dd>
+The time that should pass before an idle agent decides that it is not busy
+anymore (specified as a <DocsLink href="#durations">duration</DocsLink>).
+Normally, the scheduler allocates an agent, sends it a process chain, and
+then deallocates it after the process chain execution has finished. This value
+is important if the scheduler crashes while the process chain is being
+executed and does not deallocate the agent anymore. In this case, the agent
+deallocates itself after the configured time has passed.
 
-> **Default:** `[]` (empty list)
+**Default:** 1m
+</dd>
 
-`steep.agent.autoShutdownTimeout`
+<dt>`steep.agent.outputLinesToCollect`</dt>
+<dd>
+The number of output lines to collect at most from each executed service
+(also applies to error output)
 
-> The time any agent instance can remain idle until Steep shuts itself down
-> gracefully (specified as a <DocsLink href="#durations">duration</DocsLink>).
-> By default, this value is `0s`, which means Steep never shuts itself down.
-
-> **Default:** 0s
-
-`steep.agent.busyTimeout`
-
-> The time that should pass before an idle agent decides that it is not busy
-> anymore (specified as a <DocsLink href="#durations">duration</DocsLink>).
-> Normally, the scheduler allocates an agent, sends it a process chain, and
-> then deallocates it after the process chain execution has finished. This value
-> is important if the scheduler crashes while the process chain is being
-> executed and does not deallocate the agent anymore. In this case, the agent
-> deallocates itself after the configured time has passed.
-
-> **Default:** 1m
-
-`steep.agent.outputLinesToCollect`
-
-> The number of output lines to collect at most from each executed service
-> (also applies to error output)
-
-> **Default:** 100
+**Default:** 100
+</dd>
+</dl>

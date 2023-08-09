@@ -116,11 +116,8 @@ const toc: DraftChapter[] = [
         ],
       },
       {
-        title: "Policies",
-        sections: ["Retry policies", "Timeout policies", "Creation policies"],
-      },
-      {
-        title: "Durations",
+        title: "Timeouts and retries",
+        sections: ["Timeout policies", "Retry policies", "Durations"],
       },
       {
         title: "Agents",
@@ -131,10 +128,7 @@ const toc: DraftChapter[] = [
       },
       {
         title: "Setups",
-        sections: ["Volumes"],
-      },
-      {
-        title: "Pool agent parameters",
+        sections: ["Volumes", "Creation policies"],
       },
       {
         title: "Full-text search",
@@ -205,6 +199,7 @@ const toc: DraftChapter[] = [
           "Log configuration",
           "Garbage collector configuration",
           "Cache configuration",
+          "Agent pool parameters",
         ],
       },
       {

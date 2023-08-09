@@ -1,29 +1,32 @@
-`steep.garbageCollector.enabled`
+<dl>
+<dt>`steep.garbageCollector.enabled`</dt>
+<dd>
+`true` if the garbage collector should be enabled. The garbage collector runs in the background and removes outdated objects from the database at the interval specified with `steep.garbageCollector.cron`
 
-> `true` if the garbage collector should be enabled. The garbage collector runs in the background and removes outdated objects from the database at the interval specified with `steep.garbageCollector.cron`
+**Default:** false
+</dd>
+<dt>`steep.garbageCollector.cron`</dt>
+<dd>
+A UNIX-like cron expression specifying the interval at which the garbage collector should be executed. Cron expressions consist of six required fields and one optional field separated by a white space:
 
-> **Default:** false
+`SECONDS MINUTES HOURS DAY-OF-MONTH MONTH DAY-OF-WEEK [YEAR]`.
 
-`steep.garbageCollector.cron`
+Use an asterisk `*` to specify all values (e.g. every second or every minute). Use a question mark `?` for `DAY-OF-MONTH` or `DAY-OF-WEEK` to specify no value (only one of `DAY-OF-MONTH` or `DAY-OF-WEEK` can be specified at the same time). Use a slash `/` to specify increments (e.g. `*/5` for every 5 minutes).
 
-> A UNIX-like cron expression specifying the interval at which the garbage collector should be executed. Cron expressions consist of six required fields and one optional field separated by a white space:
+More information about the format can be found in the [javadoc of the `org.quartz.CronExpression` class](https://www.quartz-scheduler.org/api/2.3.0/org/quartz/CronExpression.html).
 
-> `SECONDS MINUTES HOURS DAY-OF-MONTH MONTH DAY-OF-WEEK [YEAR]`.
+**Example:** `0 0 0 * * ?` (daily at 12am)
+</dd>
+<dt>`steep.garbageCollector.retention.submissions`</dt>
+<dd>
+The maximum time a <DocsLink href="#submissions">submission</DocsLink> should be kept in the database after it has finished (regardless of whether it was successful or not). The time can be specified as a human-readable <DocsLink href="#durations">duration</DocsLink>.
 
-> Use an asterisk `*` to specify all values (e.g. every second or every minute). Use a question mark `?` for `DAY-OF-MONTH` or `DAY-OF-WEEK` to specify no value (only one of `DAY-OF-MONTH` or `DAY-OF-WEEK` can be specified at the same time). Use a slash `/` to specify increments (e.g. `*/5` for every 5 minutes).
+**Default:** `null` (submissions will be kept indefinitely)
+</dd>
+<dt>`steep.garbageCollector.retention.vms`</dt>
+<dd>
+The maximum time a <DocsLink href="#vms">VM</DocsLink> should be kept in the database after it has been destroyed (regardless of its status). The time can be specified as a human-readable <DocsLink href="#durations">duration</DocsLink>.
 
-> More information about the format can be found in the [javadoc of the `org.quartz.CronExpression` class](https://www.quartz-scheduler.org/api/2.3.0/org/quartz/CronExpression.html).
-
-> **Example:** `0 0 0 * * ?` (daily at 12am)
-
-`steep.garbageCollector.retention.submissions`
-
-> The maximum time a <DocsLink href="#submissions">submission</DocsLink> should be kept in the database after it has finished (regardless of whether it was successful or not). The time can be specified as a human-readable <DocsLink href="#durations">duration</DocsLink>.
-
-> **Default:** `null` (submissions will be kept indefinitely)
-
-`steep.garbageCollector.retention.vms`
-
-> The maximum time a <DocsLink href="#vms">VM</DocsLink> should be kept in the database after it has been destroyed (regardless of its status). The time can be specified as a human-readable <DocsLink href="#durations">duration</DocsLink>.
-
-> **Default:** `null` (VMs will be kept indefinitely)
+**Default:** `null` (VMs will be kept indefinitely)
+</dd>
+</dl>

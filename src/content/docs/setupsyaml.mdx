@@ -1,3 +1,26 @@
 The configuration file `setups.yaml` contains an array of <DocsLink href="#setups">setup objects</DocsLink>
 that Steep's cloud manager component uses to create new virtual machines and
 to deploy remote agents to it.
+
+*Note:* The path to the setups configuration file can be configured with the item
+`steep.setups` in Steep's <DocsLink href="#general-configuration">general
+configuration</DocsLink>.
+
+<CodeContainer title="setups.yaml">
+```yaml
+- id: default
+  flavor: 7d217779-4d7b-4689-8a40-c12a377b946d
+  imageName: Ubuntu 18.04
+  availabilityZone: az-01
+  blockDeviceSizeGb: 50
+  minVMs: 0
+  maxVMs: 1
+
+  provisioningScripts:
+    - conf/setups/default/01_docker.sh
+    - conf/setups/default/02_steep.sh
+
+  providedCapabilities:
+    - docker
+```
+</CodeContainer>

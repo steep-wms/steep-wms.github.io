@@ -1,7 +1,5 @@
-import CodeExample from "components/CodeExample"
-
 This data model describes the parameters that can be passed to a processing
-service. It is part of the <DocsLink href="#service-metadata">service metadata</DocsLink>.
+service.
 
 | Property                     | Type   | Description
 | ---------------------------- | ------ | -----------
@@ -15,13 +13,13 @@ service. It is part of the <DocsLink href="#service-metadata">service metadata</
 | fileSuffix<br/>*(optional)*  | string | An optional suffix that should be appended to the generated filename of an `output` parameter. This property is typically used for file extensions (including the dot), e.g. `".xml"` or `".json"`.
 | label<br/>*(optional)*       | string | An optional string that will be used as a label for the parameter in the service call. Examples are `-i`, `--input`, `--resolution`, etc.
 
-<h6>Example cardinalities:</h6>
+###### Example cardinalities:
 
 * `"0..1"` means the parameter is optional (it can appear 0 times or 1 time)
 * `"1..1"` means the parameter is mandatory (it must appear 1 time)
 * `"1..n"` means it must appear at least once or many times (no upper limit)
 
-<h6>Data type:</h6>
+###### Data type:
 
 Steep treats parameters differently depending on the `type` and `dataType`:
 
@@ -44,9 +42,8 @@ Steep treats parameters differently depending on the `type` and `dataType`:
 * Otherwise, this property can be an arbitrary string. New data types with
   special handling can be added through <DocsLink href="#output-adapters">output adapter plugins</DocsLink>.
 
-<CodeExample title="Example:">
-
-```json code-example
+<CodeContainer title="Example">
+```json generate-yaml
 {
   "id": "no_overwrite",
   "name": "No overwrite",
@@ -58,5 +55,4 @@ Steep treats parameters differently depending on the `type` and `dataType`:
   "default": false
 }
 ```
-
-</CodeExample>
+</CodeContainer>

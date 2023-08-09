@@ -1,27 +1,35 @@
-`steep.db.driver`
+<dl>
+<dt>`steep.db.driver`</dt>
+<dd>
+The database driver
 
-> The database driver
+**Valid values:** `inmemory`, `postgresql`, `mongodb`
 
-> **Valid values:** `inmemory`, `postgresql`, `mongodb`
+**Default:** `inmemory`
+</dd>
 
-> **Default:** `inmemory`
+<dt>`steep.db.url`</dt>
+<dd>
+The database URL
+</dd>
 
-`steep.db.url`
+<dt>`steep.db.username`</dt>
+<dd>
+The database username (only used by the `postgresql` driver)
+</dd>
 
-> The database URL
+<dt>`steep.db.password`</dt>
+<dd>
+The database password (only used by the `postgresql` driver)
+</dd>
 
-`steep.db.username`
+<dt>`steep.db.connectionPool.maxSize`</dt>
+<dd>
+The maximum number of connections to keep open (i.e. to keep in the connection pool)
+</dd>
 
-> The database username (only used by the `postgresql` driver)
-
-`steep.db.password`
-
-> The database password (only used by the `postgresql` driver)
-
-`steep.db.connectionPool.maxSize`
-
-> The maximum number of connections to keep open (i.e. to keep in the connection pool)
-
-`steep.db.connectionPool.maxIdleTime`
-
-> The maximum time an idle connection should be kept in the connection pool before it is closed
+<dt>`steep.db.connectionPool.maxIdleTime`</dt>
+<dd>
+The maximum time an idle connection should be kept in the connection pool before it is closed
+</dd>
+</dl>

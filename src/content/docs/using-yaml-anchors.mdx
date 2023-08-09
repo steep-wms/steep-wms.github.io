@@ -3,7 +3,9 @@ Configuration files for <DocsLink href="#setups">setups</DocsLink>
 often contain repeated information (e.g. two setups might offer the same
 capabilities). You can use YAML anchors to simplify your configuration files.
 
-The following example shows two services sharing a parameter:
+The following example shows two services sharing a parameter `seconds`. The
+parameter is defined once for the `sleep` service and then reused in the
+`docker_sleep` service through the YAML anchor `sleep_seconds`.
 
 ```yaml
 - id: sleep
