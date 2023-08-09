@@ -237,14 +237,17 @@ const toc: DraftChapter[] = [
   {
     title: "Extending Steep through plugins",
     pages: [
-      { title: "Overview", slug: "plugin-overview" },
+      {
+        title: "Overview",
+        slug: "plugin-overview",
+        sections: ["Parameter injection"],
+      },
       { title: "Initializers" },
       { title: "Output adapters" },
       { title: "Process chain adapters" },
       { title: "Process chain consistency checkers" },
       { title: "Custom runtime environments" },
       { title: "Progress estimators" },
-      { title: "Parameter injection" },
     ],
   },
 ]

@@ -1,79 +1,80 @@
 import dayjs from "dayjs"
 
-<div>
-`filename highmemory`
+<dl>
+<dt>`filename highmemory`</dt>
+<dd>
+Search for objects that contain the terms `filename` or `highmemory` in any of their attributes. Since results are sorted by relevance, objects matching both terms will appear at the top of the list.
+</dd>
 
-> Search for objects that contain the terms `filename` or `highmemory` in any of their attributes. Since results are sorted by relevance, objects matching both terms will appear at the top of the list.
-</div>
+<dt>`"exact match"`</dt>
+<dd>
+Use quotation marks to search for literal (exact) strings.
+</dd>
 
-<div className="mt-8">
-`"exact match"`
+<dt>`filename is:workflow`</dt>
+<dd>
+Search for the term `filename` but only in workflows.
+</dd>
 
-> Use quotation marks to search for literal (exact) strings.
-</div>
+<dt>`error:127 is:processchain`</dt>
+<dd>
+Search for process chains whose error message contains the term `127`.
+</dd>
 
-<div className="mt-8">
-`filename is:workflow`
+<dt>`highmemory in:requiredcapabilities`</dt>
+<dd>
+Search for objects where the term `highmemory` appears in the list of required capabilities. Does not include objects where the term `highmemory` appears in any other attribute but the required capabilities.
+</dd>
 
-> Search for the term `filename` but only in workflows.
-</div>
+<dt>`rcs:highmemory`</dt>
+<dd>
+Search for objects whose required capabilities (alias `rcs`) contain the term `highmemory`.
+</dd>
 
-<div className="mt-8">
-`error:127 is:processchain`
+<dt>`filename status:error`</dt>
+<dd>
+Search for objects containing the term `filename` but only if their status equals `error`.
+</dd>
 
-> Search for process chains whose error message contains the term `127`.
-</div>
-
-<div className="mt-8">
-`highmemory in:requiredcapabilities`
-
-> Search for objects where the term `highmemory` appears in the list of required capabilities. Does not include objects where the term `highmemory` appears in any other attribute but the required capabilities.
-</div>
-
-<div className="mt-8">
-`rcs:highmemory`
-
-> Search for objects whose required capabilities (alias `rcs`) contain the term `highmemory`.
-</div>
-
-<div className="mt-8">
-`filename status:error`
-
-> Search for objects containing the term `filename` but only if their status equals `error`.
-</div>
-
-<div className="mt-8">
+<dt>
 <code suppressHydrationWarning={true}>{dayjs().format("YYYY-MM-DD")}</code>
+</dt>
+<dd>
+Search for workflows or process chains that have started or finished on <span suppressHydrationWarning={true}>{dayjs().format("DD MMMM YYYY")}</span>.
+</dd>
 
-> Search for workflows or process chains that have started or finished on <span suppressHydrationWarning={true}>{dayjs().format("DD MMMM YYYY")}</span>.
-</div>
-
-<div className="mt-8">
+<dt>
 <code suppressHydrationWarning={true}>&lt;{dayjs().format("YYYY-MM-DDTHH:mm")}</code>
+</dt>
+<dd>
+Search for workflows or process chains that have started or finished before <span suppressHydrationWarning={true}>{dayjs().format("HH:mm")}</span> on <span suppressHydrationWarning={true}>{dayjs().format("DD MMMM YYYY")}</span>.
+</dd>
 
-> Search for workflows or process chains that have started or finished before <span suppressHydrationWarning={true}>{dayjs().format("HH:mm")}</span> on <span suppressHydrationWarning={true}>{dayjs().format("DD MMMM YYYY")}</span>.
-</div>
-
-<div className="mt-8">
+<dt>
 <code suppressHydrationWarning={true}>&gt;={dayjs().format("YYYY-MM-DDTHH:mm:ss")}</code>
+</dt>
+<dd>
+Search for workflows or process chains that have started or finished at or after <span suppressHydrationWarning={true}>{dayjs().format("HH:mm:ss")}</span> on <span suppressHydrationWarning={true}>{dayjs().format("DD MMMM YYYY")}</span>.
+</dd>
 
-> Search for workflows or process chains that have started or finished at or after <span suppressHydrationWarning={true}>{dayjs().format("HH:mm:ss")}</span> on <span suppressHydrationWarning={true}>{dayjs().format("DD MMMM YYYY")}</span>.
-</div>
-
-<div className="mt-8">
+<dt>
 <code suppressHydrationWarning={true}>start:{dayjs().subtract(1, "day").format("YYYY-MM-DD")}..{dayjs().format("YYYY-MM-DD")}</code>
+</dt>
+<dd>
+Search for workflows or process chains that have been started between <span suppressHydrationWarning={true}>{dayjs().subtract(1, "day").format("DD MMMM YYYY")}</span> and <span suppressHydrationWarning={true}>{dayjs().format("DD MMMM YYYY")}</span> (inclusive).
+</dd>
 
-> Search for workflows or process chains that have been started between <span suppressHydrationWarning={true}>{dayjs().subtract(1, "day").format("DD MMMM YYYY")}</span> and <span suppressHydrationWarning={true}>{dayjs().format("DD MMMM YYYY")}</span> (inclusive).
-</div>
-
-<div className="mt-8">
+<dt>
 `filename in:source is:workflow rcs:highmemory`
+</dt>
+<dd>
+Search for workflows containing the term `filename` in their source and whose required capabilities contain the term `highmemory`.
+</dd>
 
-> Search for workflows containing the term `filename` in their source and whose required capabilities contain the term `highmemory`.
-</div>
-
-<div className="mt-8">
+<dt>
 `exit code 127 in:error is:processchain`
-
-> Search for process chains containing the terms `exit`, `code`, or `127` in their error message. Objects containing all terms in their error message will get a higher relevance and appear at the top of the list.
-</div>
+</dt>
+<dd>
+Search for process chains containing the terms `exit`, `code`, or `127` in their error message. Objects containing all terms in their error message will get a higher relevance and appear at the top of the list.
+</dd>
+</dl>

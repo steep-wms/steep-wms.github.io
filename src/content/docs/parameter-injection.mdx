@@ -1,4 +1,4 @@
-For compatibility reasons, the plugin function signatures described above are
+For compatibility reasons, the plugin function signatures are
 not fixed. Whenever a plugin function is called, its arguments are injected
 based on their type. For example, if the function requires an instance of
 `io.vertx.core.Vertx`, such an object will be passed. This is independent of
@@ -6,7 +6,7 @@ where this argument appears in the parameter list. In the function signatures
 described above, the Vert.x instance is always the last parameter, but actually,
 it could be at any position and the injection mechanism would still work.
 
-This feature allows us as developers to add new parameters in the future to
+This feature allows us as Steep developers to add new parameters in the future to
 the function signatures without requiring all users to change their plugins.
 It also allows plugin developers to specify parameters in any order and
 to even leave out parameters if they are not needed. For example,
