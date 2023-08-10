@@ -24,6 +24,8 @@ jobs:
         run: |
           cd src
           npm ci
+          cd scraper
+          npm ci
 
       - name: Build website
         run: |
