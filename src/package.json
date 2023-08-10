@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build && npm run scraper",
-    "deploy": "npm run build && rm -rf ../preview/404 ../preview/404.html ../preview/_next ../preview/about ../preview/favicons ../preview/images ../preview/index.html ../preview/index.txt && cp -r out/* ../preview",
+    "deploy": "npm run build && rm -rf ../preview/404 ../preview/404.html ../preview/_next ../preview/about ../preview/docs ../preview/legal-notice ../preview/privacy-policy ../preview/favicons ../preview/images ../preview/index.html ../preview/index.txt && cp -r out/* ../preview",
     "lint": "next lint",
     "scraper": "cd scraper && npm run run && cd ..",
     "start": "next start"
