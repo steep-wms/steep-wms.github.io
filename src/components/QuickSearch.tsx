@@ -1,4 +1,21 @@
+"use client"
+
+import { useEffect } from "react"
+
 const QuickSearch = () => {
+  useEffect(() => {
+    async function fetchIndex() {
+      let response = await fetch(`${process.env.basePath}/docs/index.json`, {
+        // make a conditional request if the index is in the cache or make
+        // a normal request and put it into the cache
+        cache: "no-cache",
+      })
+      let index = await response.json()
+      console.log(index)
+    }
+    fetchIndex().catch(console.error)
+  }, [])
+
   return (
     <div className="relative">
       <input
