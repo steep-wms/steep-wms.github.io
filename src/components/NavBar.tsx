@@ -155,7 +155,7 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
       <Disclosure>
         {({ open, close }) => (
           <nav
-            className={clsx("left-0 right-0 top-0 z-50 flex flex-col", {
+            className={clsx("left-0 right-0 top-0 z-10 flex flex-col", {
               fixed,
               sticky: !fixed && !belowThreshold,
               relative: !fixed,
