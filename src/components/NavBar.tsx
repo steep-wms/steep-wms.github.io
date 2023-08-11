@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import QuickSearch from "./QuickSearch"
+import QuickSearch from "./search/QuickSearch"
 import { Spin as Hamburger } from "hamburger-react"
 import { useEffect, useRef, useState } from "react"
 import { throttle } from "lodash"
