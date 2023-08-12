@@ -97,6 +97,26 @@ module.exports = {
           opacity: 0,
         },
       },
+      dialogFadeIn: {
+        "0%": {
+          transform: "scale(0.95)",
+          opacity: 0,
+        },
+        "100%": {
+          transform: "scale(1)",
+          opacity: 1,
+        },
+      },
+      dialogFadeOut: {
+        "0%": {
+          transform: "scale(1)",
+          opacity: 1,
+        },
+        "100%": {
+          transform: "scale(0.95)",
+          opacity: 0,
+        },
+      },
     },
     extend: {
       animation: {
@@ -104,6 +124,8 @@ module.exports = {
         "spin-4s": "spin 4s linear infinite",
         "fade-in": "fadeIn 100ms ease-out",
         "fade-out": "fadeOut 100ms ease-out",
+        "dialog-fade-in": "dialogFadeIn 100ms ease-out",
+        "dialog-fade-out": "dialogFadeOut 100ms ease-out",
       },
       keyframes: {
         spin: {

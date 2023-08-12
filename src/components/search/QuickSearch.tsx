@@ -1,28 +1,18 @@
 import { useHotkeys } from "react-hotkeys-hook"
-import { useLayoutEffect, useState } from "react"
+import { useState } from "react"
 import dynamic from "next/dynamic"
 import { Search } from "lucide-react"
+import { useIsApple } from "../hooks/useIsApple"
 
 const SearchDialog = dynamic(() => import("./SearchDialog"))
 
 const QuickSearch = () => {
-  const [modKey, setModKey] = useState<string | undefined>(undefined)
+  const isApple = useIsApple()
   const [searchDialogOpen, setSearchDialogOpen] = useState(false)
 
   useHotkeys("mod+k", () => {
     setSearchDialogOpen(true)
   })
-
-  useLayoutEffect(() => {
-    if (typeof navigator !== "undefined" && navigator.platform !== undefined) {
-      let p = navigator.platform.toLowerCase()
-      if (p.includes("mac") || p.includes("iphone") || p.includes("ipad")) {
-        setModKey("⌘")
-      } else {
-        setModKey("Ctrl+")
-      }
-    }
-  }, [])
 
   return (
     <>
@@ -34,9 +24,9 @@ const QuickSearch = () => {
         onClick={() => setSearchDialogOpen(true)}
       >
         Search docs ...
-        {modKey !== undefined ? (
+        {isApple !== undefined ? (
           <div className="flex h-5 items-center rounded border border-gray-200 px-1 text-xs text-gray-600">
-            {modKey}K
+            {isApple ? "⌘" : "Ctrl+"}K
           </div>
         ) : undefined}
       </button>
