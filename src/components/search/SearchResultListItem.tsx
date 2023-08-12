@@ -34,9 +34,22 @@ const SearchResultListItem = forwardRef<
     contextTitle = Index[context].title
   }
 
+  let pageslug
+  switch (idxentry.type) {
+    case "chapter":
+      throw new Error("Cannot link to a chapter")
+    case "page":
+      pageslug = slug
+      break
+    case "section":
+    case "subsection":
+      pageslug = `${idxentry.page}/#${slug}`
+      break
+  }
+
   return (
     <Link
-      href={`/docs/${slug}`}
+      href={`/docs/${pageslug}`}
       ref={ref}
       onFocus={onFocus}
       onClick={() => onClose()}
