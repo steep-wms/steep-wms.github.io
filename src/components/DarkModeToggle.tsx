@@ -5,9 +5,12 @@ import { useTheme, type Theme } from "./hooks/useTheme"
 // https://github.com/argyleink/gui-challenges/tree/main/theme-switch
 // Released by Adam Argyle under the Apache 2 license
 
-const DarkModeToggle = () => {
+interface DarkModeToggleProps {
+  id: string
+}
+
+const DarkModeToggle = ({ id }: DarkModeToggleProps) => {
   const { theme, setTheme } = useTheme()
-  const id = useId()
 
   useEffect(() => {
     let q = window.matchMedia("(prefers-color-scheme: dark)")

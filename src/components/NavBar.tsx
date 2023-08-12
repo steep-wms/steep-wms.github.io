@@ -227,7 +227,7 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
                   content={theme === "dark" ? "Light mode" : "Dark mode"}
                 >
                   <div className="flex">
-                    <DarkModeToggle />
+                    <DarkModeToggle id="dark-mode-toggle1" />
                   </div>
                 </Tooltip>
                 <Tooltip content="GitHub">
@@ -272,7 +272,7 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
                   ))}
                 </div>
                 <div className="mt-8 flex items-center justify-end gap-4 px-4">
-                  <DarkModeToggle />
+                  <DarkModeToggle id="dark-mode-toggle2" />
                   <Link
                     href="https://github.com/steep-wms/steep"
                     className="group"
