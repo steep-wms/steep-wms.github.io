@@ -13,7 +13,7 @@ import { siGithub } from "simple-icons"
 import DarkModeToggle from "./DarkModeToggle"
 import { Tooltip } from "./Tooltip"
 import { useTheme } from "./hooks/useTheme"
-import { usePathname, useSearchParams } from "next/navigation"
+import { usePathname } from "next/navigation"
 import { RemoveScroll } from "react-remove-scroll"
 
 interface ResizeObserverProps {
@@ -68,7 +68,6 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
   const [onTop, setOnTop] = useState(true)
   const { theme } = useTheme()
   const pathname = usePathname()
-  const searchParams = useSearchParams()
 
   useEffect(() => {
     function onScroll() {
@@ -122,7 +121,7 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
   useEffect(() => {
     // close menu when navigating
     setCollapsed(false)
-  }, [pathname, searchParams])
+  }, [pathname])
 
   const links = [
     {
