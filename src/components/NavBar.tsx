@@ -191,7 +191,7 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
                 <Logo onClick={() => setCollapsed(false)} />
               </div>
               <div className="flex items-center gap-4">
-                <QuickSearch />
+                <QuickSearch onClick={() => setCollapsed(false)} />
                 <button
                   id="navbar-toggle-menu-button"
                   className="inline-flex select-none items-center justify-center text-gray-800"

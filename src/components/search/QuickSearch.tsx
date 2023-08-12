@@ -6,7 +6,11 @@ import { useIsApple } from "../hooks/useIsApple"
 
 const SearchDialog = dynamic(() => import("./SearchDialog"))
 
-const QuickSearch = () => {
+interface QuickSearchProps {
+  onClick?: () => void
+}
+
+const QuickSearch = ({ onClick }: QuickSearchProps) => {
   const isApple = useIsApple()
   const [searchDialogOpen, setSearchDialogOpen] = useState(false)
 
@@ -16,7 +20,13 @@ const QuickSearch = () => {
 
   return (
     <>
-      <button className="lg:hidden" onClick={() => setSearchDialogOpen(true)}>
+      <button
+        className="lg:hidden"
+        onClick={() => {
+          onClick?.()
+          setSearchDialogOpen(true)
+        }}
+      >
         <Search size="1.75rem" />
       </button>
       <button
@@ -32,7 +42,10 @@ const QuickSearch = () => {
       </button>
       <SearchDialog
         open={searchDialogOpen}
-        onClose={() => setSearchDialogOpen(false)}
+        onClose={() => {
+          onClick?.()
+          setSearchDialogOpen(false)
+        }}
       />
     </>
   )
