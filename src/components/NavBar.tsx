@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react"
 import { throttle } from "lodash"
 import clsx from "clsx"
 import * as Dialog from "@radix-ui/react-dialog"
+import { Slot } from "@radix-ui/react-slot"
 import SimpleIcon from "./SimpleIcon"
 import { siGithub } from "simple-icons"
 import DarkModeToggle from "./DarkModeToggle"
@@ -29,11 +30,16 @@ const ResizeObserver = ({ onResize }: ResizeObserverProps) => {
   return <></>
 }
 
-const Logo = () => {
+interface LogoProps {
+  onClick?: () => void
+}
+
+const Logo = ({ onClick }: LogoProps) => {
   return (
     <Link
       href="/"
       className="flex items-center gap-1 text-xl text-black text-opacity-90 dark:text-white"
+      onClick={() => onClick?.()}
     >
       <img
         src={`${process.env.basePath}/images/steep-logo.svg`}
@@ -161,7 +167,7 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
       */}
       <div className="absolute top-0 h-0" id="__top-before-navbar"></div>
       <nav
-        className={clsx("left-0 right-0 top-0 z-10 flex flex-col", {
+        className={clsx("left-0 right-0 top-0 z-50 flex flex-col", {
           fixed,
           sticky: !fixed && !belowThreshold,
           relative: !fixed,
@@ -183,7 +189,7 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
           <div className="flex max-w-screen-2xl flex-1 items-center justify-between px-2">
             <div className="flex flex-1 items-center justify-between lg:hidden">
               <div className="mb-1">
-                <Logo />
+                <Logo onClick={() => setCollapsed(false)} />
               </div>
               <div className="flex items-center gap-4">
                 <QuickSearch />
@@ -198,7 +204,7 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
             </div>
             <div className="hidden flex-1 items-center justify-between gap-8 lg:flex">
               <div className="mb-1">
-                <Logo />
+                <Logo onClick={() => setCollapsed(false)} />
               </div>
               <div className="mt-1 flex gap-6">
                 {links.map(l => (
@@ -240,10 +246,9 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
 
         <Dialog.Root open={collapsed} onOpenChange={setCollapsed} modal={false}>
           <Dialog.Portal>
-            <RemoveScroll>
+            <RemoveScroll as={Slot}>
               <Dialog.Content
-                forceMount
-                className="fixed top-16 h-[calc(100vh-4rem)] w-screen overflow-scroll bg-gray-100 lg:hidden [&[data-state='closed']]:animate-fade-out [&[data-state='open']]:animate-fade-in"
+                className="fixed top-16 z-50 h-[calc(100vh-4rem)] w-screen overflow-scroll bg-gray-100 lg:hidden [&[data-state='closed']]:animate-fade-out [&[data-state='open']]:animate-fade-in"
                 onInteractOutside={e => e.preventDefault()}
                 onCloseAutoFocus={e => e.preventDefault()}
                 onPointerDownOutside={e => e.preventDefault()}
@@ -257,6 +262,7 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
                         "text-gray-800 hover:text-gray-500",
                         "block px-2 py-3",
                       )}
+                      onClick={() => setCollapsed(false)}
                     >
                       {l.label}
                     </Link>
