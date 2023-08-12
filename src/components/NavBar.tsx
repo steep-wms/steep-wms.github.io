@@ -7,12 +7,13 @@ import { useEffect, useRef, useState } from "react"
 import { throttle } from "lodash"
 import clsx from "clsx"
 import * as Dialog from "@radix-ui/react-dialog"
-import ScrollLock from "./ScrollLock"
 import SimpleIcon from "./SimpleIcon"
 import { siGithub } from "simple-icons"
 import DarkModeToggle from "./DarkModeToggle"
 import { Tooltip } from "./Tooltip"
 import { useTheme } from "./hooks/useTheme"
+import { usePathname, useSearchParams } from "next/navigation"
+import { RemoveScroll } from "react-remove-scroll"
 
 interface ResizeObserverProps {
   onResize: () => void
@@ -59,8 +60,9 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
   const [visible, setVisible] = useState(false)
   const [collapsed, setCollapsed] = useState(false)
   const [onTop, setOnTop] = useState(true)
-  const panelRef = useRef<HTMLDivElement>(null)
   const { theme } = useTheme()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
 
   useEffect(() => {
     function onScroll() {
@@ -110,6 +112,11 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
       setNeedsTransition(!belowThreshold)
     }, 100)
   }, [belowThreshold])
+
+  useEffect(() => {
+    // close menu when navigating
+    setCollapsed(false)
+  }, [pathname, searchParams])
 
   const links = [
     {
@@ -233,42 +240,43 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
 
         <Dialog.Root open={collapsed} onOpenChange={setCollapsed} modal={false}>
           <Dialog.Portal>
-            <Dialog.Content
-              className="fixed top-16 h-[calc(100vh-4rem)] w-screen overflow-scroll bg-gray-100 lg:hidden [&[data-state='closed']]:animate-fade-out [&[data-state='open']]:animate-fade-in"
-              ref={panelRef}
-              onInteractOutside={e => e.preventDefault()}
-              onCloseAutoFocus={e => e.preventDefault()}
-              onPointerDownOutside={e => e.preventDefault()}
-            >
-              <div className="flex flex-col divide-y divide-gray-500 px-2">
-                {links.map(l => (
+            <RemoveScroll>
+              <Dialog.Content
+                forceMount
+                className="fixed top-16 h-[calc(100vh-4rem)] w-screen overflow-scroll bg-gray-100 lg:hidden [&[data-state='closed']]:animate-fade-out [&[data-state='open']]:animate-fade-in"
+                onInteractOutside={e => e.preventDefault()}
+                onCloseAutoFocus={e => e.preventDefault()}
+                onPointerDownOutside={e => e.preventDefault()}
+              >
+                <div className="flex flex-col divide-y divide-gray-500 px-2">
+                  {links.map(l => (
+                    <Link
+                      key={l.label}
+                      href={l.href}
+                      className={clsx(
+                        "text-gray-800 hover:text-gray-500",
+                        "block px-2 py-3",
+                      )}
+                    >
+                      {l.label}
+                    </Link>
+                  ))}
+                </div>
+                <div className="mt-8 flex items-center justify-end gap-4 px-4">
+                  <DarkModeToggle />
                   <Link
-                    key={l.label}
-                    href={l.href}
-                    className={clsx(
-                      "text-gray-800 hover:text-gray-500",
-                      "block px-2 py-3",
-                    )}
+                    href="https://github.com/steep-wms/steep"
+                    className="group"
                   >
-                    {l.label}
+                    <SimpleIcon
+                      icon={siGithub}
+                      className="fill-gray-600 transition-colors group-hover:fill-gray-800"
+                    />
                   </Link>
-                ))}
-              </div>
-              <div className="mt-8 flex items-center justify-end gap-4 px-4">
-                <DarkModeToggle />
-                <Link
-                  href="https://github.com/steep-wms/steep"
-                  className="group"
-                >
-                  <SimpleIcon
-                    icon={siGithub}
-                    className="fill-gray-600 transition-colors group-hover:fill-gray-800"
-                  />
-                </Link>
-              </div>
-              <ScrollLock locked={collapsed} target={panelRef.current} />
-              <ResizeObserver onResize={() => setCollapsed(false)} />
-            </Dialog.Content>
+                </div>
+                <ResizeObserver onResize={() => setCollapsed(false)} />
+              </Dialog.Content>
+            </RemoveScroll>
           </Dialog.Portal>
         </Dialog.Root>
       </nav>

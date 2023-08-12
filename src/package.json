@@ -42,6 +42,7 @@
     "@types/node": "^20.4.2",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
+    "@types/ua-parser-js": "^0.7.36",
     "autoprefixer": "^10.4.14",
     "clsx": "^2.0.0",
     "dayjs": "^1.11.9",
@@ -63,6 +64,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hotkeys-hook": "^4.4.1",
+    "react-remove-scroll": "^2.5.6",
     "react-wrap-balancer": "^1.0.0",
     "rehype": "^12.0.1",
     "rehype-pretty-code": "^0.10.0",
@@ -71,8 +73,8 @@
     "shiki": "^0.14.3",
     "simple-icons": "^9.7.0",
     "tailwindcss": "^3.3.3",
-    "tua-body-scroll-lock": "^1.4.0",
     "typescript": "^5.1.6",
+    "ua-parser-js": "^2.0.0-alpha.2",
     "zustand": "^4.3.9"
   }
 }
