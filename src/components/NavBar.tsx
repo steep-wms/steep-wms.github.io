@@ -43,12 +43,16 @@ const Logo = ({ onClick }: LogoProps) => {
     >
       <img
         src={`${process.env.basePath}/images/steep-logo.svg`}
-        className="h-10 dark:hidden"
+        className="h-10 w-fit dark:hidden"
+        width={1706.4}
+        height={532.9}
         alt="Logo"
       />
       <img
         src={`${process.env.basePath}/images/steep-logo-white.svg`}
-        className="hidden h-10 dark:block"
+        className="hidden h-10 w-fit dark:block"
+        width={1706.4}
+        height={532.9}
         alt="Logo"
       />
     </Link>
