@@ -1,6 +1,7 @@
 import { useHotkeys } from "react-hotkeys-hook"
 import { useLayoutEffect, useState } from "react"
 import dynamic from "next/dynamic"
+import { Search } from "lucide-react"
 
 const SearchDialog = dynamic(() => import("./SearchDialog"))
 
@@ -25,8 +26,11 @@ const QuickSearch = () => {
 
   return (
     <>
+      <button className="lg:hidden" onClick={() => setSearchDialogOpen(true)}>
+        <Search size="1.75rem" />
+      </button>
       <button
-        className="flex h-8 w-56 cursor-pointer select-none items-center justify-between rounded border border-gray-200/0 bg-gray-200/60 pl-3 pr-2 text-sm text-gray-600 transition-colors hover:border-gray-400"
+        className="hidden h-8 w-56 cursor-pointer select-none items-center justify-between rounded border border-gray-200/0 bg-gray-200/60 pl-3 pr-2 text-sm text-gray-600 transition-colors hover:border-gray-400 lg:flex"
         onClick={() => setSearchDialogOpen(true)}
       >
         Search docs ...

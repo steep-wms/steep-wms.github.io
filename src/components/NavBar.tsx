@@ -179,12 +179,15 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
                   <div className="mb-1">
                     <Logo />
                   </div>
-                  <Disclosure.Button
-                    id="navbar-toggle-menu-button"
-                    className="inline-flex items-center justify-center text-gray-800"
-                  >
-                    <Hamburger toggled={open} />
-                  </Disclosure.Button>
+                  <div className="flex items-center gap-4">
+                    <QuickSearch />
+                    <Disclosure.Button
+                      id="navbar-toggle-menu-button"
+                      className="inline-flex items-center justify-center text-gray-800"
+                    >
+                      <Hamburger toggled={open} />
+                    </Disclosure.Button>
+                  </div>
                 </div>
                 <div className="hidden flex-1 items-center justify-between gap-8 lg:flex">
                   <div className="mb-1">
