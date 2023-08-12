@@ -1,7 +1,9 @@
 "use client"
 
 import * as Dialog from "@radix-ui/react-dialog"
-import SearchDialogContent from "./SearchDialogContent"
+import dynamic from "next/dynamic"
+
+const SearchDialogContent = dynamic(() => import("./SearchDialogContent"))
 
 interface SearchDialogProps {
   open: boolean
