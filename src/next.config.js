@@ -7,6 +7,11 @@ import remarkSmartypants from "remark-smartypants"
 import rehypeGenerateYaml from "./plugins/rehype-generate-yaml.js"
 import JSON5 from "json5"
 import fs from "fs"
+import nextBundleAnalyzer from "@next/bundle-analyzer"
+
+const withBundleAnalyzer = nextBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+})
 
 const basePath = "/preview"
 
@@ -107,4 +112,4 @@ const config = {
   },
 }
 
-export default withMDX(config)
+export default withBundleAnalyzer(withMDX(config))
