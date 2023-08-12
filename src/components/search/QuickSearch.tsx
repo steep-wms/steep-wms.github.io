@@ -14,9 +14,15 @@ const QuickSearch = ({ onClick }: QuickSearchProps) => {
   const isApple = useIsApple()
   const [searchDialogOpen, setSearchDialogOpen] = useState(false)
 
-  useHotkeys("mod+k", () => {
-    setSearchDialogOpen(true)
-  })
+  useHotkeys(
+    "mod+k",
+    () => {
+      setSearchDialogOpen(true)
+    },
+    {
+      preventDefault: true,
+    },
+  )
 
   return (
     <>
