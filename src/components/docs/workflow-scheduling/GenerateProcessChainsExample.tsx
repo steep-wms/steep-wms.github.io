@@ -1,6 +1,7 @@
 "use client"
 
 import GenerateProcessChains from "../../../assets/generate-process-chains.svg?source"
+import GenerateProcessChainsLight from "../../../assets/generate-process-chains-light.svg?source"
 import { useEffect } from "react"
 import { AnimationSequence, useAnimate } from "framer-motion"
 import clsx from "clsx"
@@ -69,16 +70,21 @@ const GenerateProcessChainsExample = ({
 
   return (
     <div
-      className={clsx(
-        "mx-auto max-w-[10rem] dark:[&_circle]:stroke-gray-900 dark:[&_path:not([id])]:stroke-gray-900 dark:[&_text]:fill-gray-900",
-        {
-          "[&_#docs-image-generate-process-chains-box1]:hidden [&_#docs-image-generate-process-chains-box2]:hidden [&_#docs-image-generate-process-chains-box3]:hidden [&_#docs-image-generate-process-chains-box4]:hidden":
-            !animated,
-        },
-      )}
+      className={clsx("mx-auto max-w-[10rem]", {
+        "[&_#docs-image-generate-process-chains-box1]:hidden [&_#docs-image-generate-process-chains-box2]:hidden [&_#docs-image-generate-process-chains-box3]:hidden [&_#docs-image-generate-process-chains-box4]:hidden":
+          !animated,
+      })}
       ref={scope}
-      dangerouslySetInnerHTML={{ __html: GenerateProcessChains }}
-    />
+    >
+      <div
+        className="dark:hidden"
+        dangerouslySetInnerHTML={{ __html: GenerateProcessChains }}
+      />
+      <div
+        className="hidden dark:block"
+        dangerouslySetInnerHTML={{ __html: GenerateProcessChainsLight }}
+      />
+    </div>
   )
 }
 

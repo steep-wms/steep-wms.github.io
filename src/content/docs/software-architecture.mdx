@@ -1,9 +1,11 @@
 import Architecture from "assets/architecture.svg"
+import ArchitectureLight from "assets/architecture-light.svg"
 
 The following figure shows the main components of Steep: the HTTP server,
 the controller, the scheduler, the agent, and the cloud manager.
 
-<img className="max-w-[16rem] mx-auto" src={Architecture} />
+<img className="max-w-[16rem] mx-auto dark:hidden" src={Architecture} />
+<img className="max-w-[16rem] mx-auto hidden dark:block" src={ArchitectureLight} />
 
 Together, these components form an instance of Steep. In practice, each
 instance typically runs on a separate virtual machine, but multiple instances
