@@ -1,7 +1,7 @@
 "use client"
 
 import { Balancer } from "react-wrap-balancer"
-import Link from "next/link"
+import Link from "@/components/LinkFix"
 import { Tooltip } from "@/components/Tooltip"
 import SimpleIcon from "@/components/SimpleIcon"
 import { siGithub } from "simple-icons"

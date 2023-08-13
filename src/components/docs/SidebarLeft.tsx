@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "@/components/LinkFix"
 import { Toc } from "@/components/docs/Toc"
 import Sidebar from "./Sidebar"
 import { useEffect, useRef } from "react"

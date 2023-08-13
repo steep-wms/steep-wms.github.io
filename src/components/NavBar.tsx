@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import Link from "./LinkFix"
 import QuickSearch from "./search/QuickSearch"
 import { Spin as Hamburger } from "hamburger-react"
 import { useEffect, useRef, useState } from "react"

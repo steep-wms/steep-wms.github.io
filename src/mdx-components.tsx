@@ -1,6 +1,6 @@
 // import Balancer from "react-wrap-balancer"
 import { createElement } from "react"
-import Link from "next/link"
+import Link from "./components/LinkFix"
 import CodeContainer, { CodeContainerProps } from "./components/CodeContainer"
 import DocsLink from "./components/DocsLink"
 

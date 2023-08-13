@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "@/components/LinkFix"
 import Sidebar from "./Sidebar"
 import { Index, Section, Subsection } from "@/components/docs/Toc"
 import { ExternalLink } from "lucide-react"

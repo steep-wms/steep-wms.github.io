@@ -1,5 +1,5 @@
 import { ChevronLeft } from "lucide-react"
-import Link from "next/link"
+import Link from "../LinkFix"
 import clsx from "clsx"
 import type { SearchResult } from "./SearchResult"
 import { Index } from "../docs/Toc"

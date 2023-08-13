@@ -9,7 +9,7 @@ import { ChevronRight } from "lucide-react"
 import { useAnimate, stagger } from "framer-motion"
 import Container from "../Container"
 import useInViewEx from "../hooks/useInViewEx"
-import Link from "next/link"
+import Link from "../LinkFix"
 
 const ExampleWorkflow = () => {
   const [scope, animate] = useAnimate()

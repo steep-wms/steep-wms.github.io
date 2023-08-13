@@ -14,7 +14,7 @@ import {
   useMotionValue,
   useReducedMotion,
 } from "framer-motion"
-import Link from "next/link"
+import Link from "../LinkFix"
 
 const HeroWorkflow = () => {
   const [scope, animate] = useAnimate()

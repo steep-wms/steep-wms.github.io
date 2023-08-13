@@ -2,7 +2,7 @@ import { Button } from "../Button"
 import { Download } from "lucide-react"
 import SimpleIcon from "../SimpleIcon"
 import { siDocker, siGithub } from "simple-icons"
-import Link from "next/link"
+import Link from "../LinkFix"
 import pkg from "../../package.json"
 
 const DownloadButtons = () => {

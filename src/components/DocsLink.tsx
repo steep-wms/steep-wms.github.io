@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "./LinkFix"
 import { AnchorHTMLAttributes } from "react"
 import { Index } from "./docs/Toc"
 
