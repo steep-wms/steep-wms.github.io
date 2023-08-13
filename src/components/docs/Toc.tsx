@@ -1,4 +1,10 @@
-import { slug } from "github-slugger"
+// alternative to the 'github-slugger' package; shaves off about 3KB of JS
+function slug(s: string) {
+  return s
+    .toLowerCase()
+    .replaceAll(/[^ \-a-z]/g, "")
+    .replaceAll(/ /g, "-")
+}
 
 export interface Chapter {
   readonly type: "chapter"
