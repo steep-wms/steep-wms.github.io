@@ -27,6 +27,9 @@ const Orthophoto = ({ t0 }: OrthophotoProps) => {
             <img
               alt="Tile"
               src={`${process.env.basePath}/images/home/tiles.jpg`}
+              width={650}
+              height={650}
+              loading="lazy"
             />
           </foreignObject>
         </svg>,
@@ -53,10 +56,15 @@ const Orthophoto = ({ t0 }: OrthophotoProps) => {
                 <source
                   srcSet={`${process.env.basePath}/images/home/masks.webp`}
                   type="image/webp"
+                  width={650}
+                  height={650}
                 />
                 <img
                   alt="Tile"
                   src={`${process.env.basePath}/images/home/masks.jpg`}
+                  width={650}
+                  height={650}
+                  loading="lazy"
                 />
               </picture>
             </foreignObject>
@@ -136,7 +144,10 @@ const Orthophoto = ({ t0 }: OrthophotoProps) => {
         <motion.img
           src={`${process.env.basePath}/images/home/2_1_mask.jpg`}
           alt="Large image tile"
+          width={650}
+          height={650}
           className="shadow-lg shadow-gray-800/30 dark:shadow-gray-100/30"
+          loading="lazy"
           variants={{
             initial: { opacity: 0, transition: reset },
             inView: {
@@ -148,7 +159,10 @@ const Orthophoto = ({ t0 }: OrthophotoProps) => {
         <motion.img
           src={`${process.env.basePath}/images/home/2_1.jpg`}
           alt="Large image tile mask"
+          width={650}
+          height={650}
           className="absolute left-0 top-0 opacity-50"
+          loading="lazy"
           variants={{
             initial: { opacity: 0, transition: reset },
             inView: {

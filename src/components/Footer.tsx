@@ -13,13 +13,19 @@ const Footer = () => {
             <Link href="/" className="group">
               <img
                 src={`${process.env.basePath}/images/steep-logo.svg`}
-                className="h-10 opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:hidden"
+                className="h-10 w-fit opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:hidden"
+                width={1706.4}
+                height={532.9}
                 alt="Steep Logo"
+                loading="lazy"
               />
               <img
                 src={`${process.env.basePath}/images/steep-logo-white.svg`}
-                className="hidden h-10 opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:block"
+                className="hidden h-10 w-fit opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:block"
+                width={1706.4}
+                height={532.9}
                 alt="Steep Logo"
+                loading="lazy"
               />
             </Link>
           </div>
@@ -65,13 +71,19 @@ const Footer = () => {
             <Link href="https://igd.fraunhofer.de/" className="group">
               <img
                 src={`${process.env.basePath}/images/fraunhofer.svg`}
-                className="w-48 opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:hidden"
+                className="w-48 h-fit opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:hidden"
+                width={301.647}
+                height={82.609}
                 alt="Fraunhofer Logo"
+                loading="lazy"
               />
               <img
                 src={`${process.env.basePath}/images/fraunhofer-light.svg`}
-                className="hidden w-48 opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:block"
+                className="hidden w-48 h-fit opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:block"
+                width={301.647}
+                height={82.609}
                 alt="Fraunhofer Logo"
+                loading="lazy"
               />
             </Link>
           </div>

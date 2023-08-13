@@ -11,6 +11,8 @@ import { Url } from "next/dist/shared/lib/router/router"
 interface ProfileProps {
   name: string
   imageUrl: string
+  imageWidth: number
+  imageHeight: number
   role: string
   mail: string
   githubUser?: string
@@ -19,6 +21,8 @@ interface ProfileProps {
 
 const Profile = ({
   imageUrl,
+  imageWidth,
+  imageHeight,
   name,
   role,
   mail,
@@ -30,8 +34,9 @@ const Profile = ({
       <img
         src={imageUrl}
         alt={name}
-        width={400}
-        height={400}
+        width={imageWidth}
+        height={imageHeight}
+        loading="lazy"
         className="w-36 rounded-full"
       />
       <h4 className="mb-2 mt-5 text-xl font-normal">{name}</h4>

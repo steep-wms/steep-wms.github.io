@@ -23,6 +23,7 @@ function Picture({ type }: { type: "dark" | "light" }) {
         alt="Web-based user interface"
         width={2560}
         height={1600}
+        loading="lazy"
       />
     </picture>
   )

@@ -53,6 +53,8 @@ const About = () => {
           <div className="not-prose mt-8 grid grid-cols-1 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
             <Profile
               imageUrl={`${process.env.basePath}/images/about/michel-kraemer-2019-09-400x400.jpg`}
+              imageWidth={400}
+              imageHeight={400}
               name="Michel Krämer"
               role="Lead developer"
               mail="michel.kraemer@igd.fraunhofer.de"
@@ -61,6 +63,8 @@ const About = () => {
             />
             <Profile
               imageUrl={`${process.env.basePath}/images/about/hendrik-wuerz-400x400.jpg`}
+              imageWidth={400}
+              imageHeight={400}
               name="Hendrik M. Würz"
               role="Core contributor"
               mail="hendrik.martin.wuerz@igd.fraunhofer.de"
@@ -68,12 +72,16 @@ const About = () => {
             />
             <Profile
               imageUrl={`${process.env.basePath}/images/about/kevin-kocon-400x400.jpg`}
+              imageWidth={400}
+              imageHeight={400}
               name="Kevin Kocon"
               role="AI expert"
               mail="kevin.kocon@igd.fraunhofer.de"
             />
             <Profile
               imageUrl={`${process.env.basePath}/images/about/eva-klien-400x400.jpg`}
+              imageWidth={400}
+              imageHeight={400}
               name="Eva Klien"
               role="Head of Spatial Information Management"
               mail="eva.klien@igd.fraunhofer.de"
@@ -87,6 +95,8 @@ const About = () => {
           <h2 className="mb-8 text-center text-3xl">Presentations</h2>
           <Presentation
             image="https://michelkraemer.com/images/presentations/capability-based-scheduling-scientific-workflows-cloud/capability-based-scheduling-scientific-workflows-cloud-1.jpg"
+            width={1080}
+            height={608}
             link="https://speakerdeck.com/michelkraemer/capability-based-scheduling-of-scientific-workflows-in-the-cloud"
           >
             This presentation was given by Michel Krämer at the DATA conference
@@ -111,6 +121,8 @@ const About = () => {
           <div className="mb-32 flex flex-col gap-6">
             <ResearchItem
               image="https://michelkraemer.com/images/research/21-02.jpg"
+              width={220}
+              height={334}
               pdf="https://michelkraemer.com/publications/2021/Kraemer%20-%20Efficient%20Scheduling%20of%20Scientific%20Workflow%20Actions%20in%20the%20Cloud%20Based%20on%20Required%20Capabilities%20(accepted%20manuscript).pdf"
             >
               Krämer, M. (2021). Efficient Scheduling of Scientific Workflow
@@ -125,6 +137,8 @@ const About = () => {
             </ResearchItem>
             <ResearchItem
               image="https://michelkraemer.com/images/research/21-01.jpg"
+              width={220}
+              height={293}
               pdf="https://michelkraemer.com/publications/2021/Kraemer,%20Wuerz,%20Altenhofen%20-%20Executing%20cyclic%20scientific%20workflows%20in%20the%20cloud.pdf"
             >
               Krämer, M., Würz, H. M., &amp; Altenhofen, C. (2021). Executing
@@ -136,6 +150,8 @@ const About = () => {
             </ResearchItem>
             <ResearchItem
               image="https://michelkraemer.com/images/research/20-03.jpg"
+              width={220}
+              height={311}
               pdf="https://michelkraemer.com/publications/2020/Kraemer%20-%20Capability-based%20Scheduling%20of%20Scientific%20Workflows%20in%20the%20Cloud.pdf"
             >
               Krämer, M. (2020). Capability-based Scheduling of Scientific
@@ -151,6 +167,8 @@ const About = () => {
             </ResearchItem>
             <ResearchItem
               image="https://michelkraemer.com/images/research/18-01.jpg"
+              width={220}
+              height={311}
               pdf="https://michelkraemer.com/publications/2018/Kraemer,%20M.%20(2018).%20A%20Microservice%20Architecture%20for%20the%20Processing%20of%20Large%20Geospatial%20Data%20in%20the%20Cloud.pdf"
             >
               Krämer, M. (2018).{" "}
@@ -165,6 +183,8 @@ const About = () => {
             </ResearchItem>
             <ResearchItem
               image="https://michelkraemer.com/images/research/16-01.jpg"
+              width={220}
+              height={311}
               pdf="https://michelkraemer.com/publications/2016/Boehm,%20Bredif,%20Gierlinger,%20Kraemer,%20Lindenbergh,%20Liu,%20Michel,%20Sirmacek%20-%20The%20IQmulus%20Urban%20Showcase%20-%20Automatic%20Tree%20Classification%20and%20Identification%20in%20Huge%20Mobile%20Mapping%20Point%20Clouds.pdf"
             >
               Böhm, J., Bredif, M., Gierlinger, T., Krämer, M., Lindenbergh, R.,
@@ -180,7 +200,11 @@ const About = () => {
                 https://doi.org/10.5194/isprs-archives-XLI-B3-301-2016
               </Link>
             </ResearchItem>
-            <ResearchItem image="https://michelkraemer.com/images/research/15-04.jpg">
+            <ResearchItem
+              image="https://michelkraemer.com/images/research/15-04.jpg"
+              width={220}
+              height={293}
+            >
               Krämer, M., &amp; Senner, I. (2015). A modular software
               architecture for processing of big geospatial data in the cloud.{" "}
               <i>Computers &amp; Graphics</i>, <i>49</i>, 69&ndash;81.{" "}
