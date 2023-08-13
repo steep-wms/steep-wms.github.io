@@ -1,4 +1,3 @@
-import { UAParser } from "ua-parser-js"
 import { useState, useEffect } from "react"
 import { useUserAgent } from "./useUserAgent"
 
@@ -10,9 +9,7 @@ export function useIsApple() {
     if (userAgent === undefined) {
       return
     }
-    let parser = new UAParser(userAgent)
-    let os = parser.getOS()
-    setIsApple(os.name === "iOS" || os.name === "macOS")
+    setIsApple(/Mac|iPhone|iPad/i.test(userAgent))
   }, [userAgent])
 
   return isApple
