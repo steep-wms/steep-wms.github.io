@@ -4,7 +4,7 @@ import dynamic from "next/dynamic"
 import { Search } from "lucide-react"
 import { useIsApple } from "../hooks/useIsApple"
 
-const SearchDialog = dynamic(() => import("./SearchDialog"))
+const SearchDialog = dynamic(() => import("./SearchDialog"), { ssr: false })
 
 interface QuickSearchProps {
   onClick?: () => void
