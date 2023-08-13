@@ -6,7 +6,6 @@ import { Spin as Hamburger } from "hamburger-react"
 import { useEffect, useRef, useState } from "react"
 import { throttle } from "lodash"
 import clsx from "clsx"
-import * as Dialog from "@radix-ui/react-dialog"
 import { Slot } from "@radix-ui/react-slot"
 import SimpleIcon from "./SimpleIcon"
 import { siGithub } from "simple-icons"
@@ -14,7 +13,26 @@ import DarkModeToggle from "./DarkModeToggle"
 import { Tooltip } from "./Tooltip"
 import { useTheme } from "./hooks/useTheme"
 import { usePathname } from "next/navigation"
-import { RemoveScroll } from "react-remove-scroll"
+import dynamic from "next/dynamic"
+
+const DialogRoot = dynamic(
+  () => import("@radix-ui/react-dialog").then(mod => mod.Root),
+  { ssr: false },
+)
+const DialogPortal = dynamic(
+  () => import("@radix-ui/react-dialog").then(mod => mod.Portal),
+  { ssr: false },
+)
+const DialogContent = dynamic(
+  () => import("@radix-ui/react-dialog").then(mod => mod.Content),
+  { ssr: false },
+)
+const RemoveScroll = dynamic(
+  () => import("react-remove-scroll").then(mod => mod.RemoveScroll),
+  {
+    ssr: false,
+  },
+)
 
 interface ResizeObserverProps {
   onResize: () => void
@@ -247,10 +265,10 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
           </div>
         </div>
 
-        <Dialog.Root open={collapsed} onOpenChange={setCollapsed} modal={false}>
-          <Dialog.Portal>
+        <DialogRoot open={collapsed} onOpenChange={setCollapsed} modal={false}>
+          <DialogPortal>
             <RemoveScroll as={Slot}>
-              <Dialog.Content
+              <DialogContent
                 className="fixed top-16 z-50 h-[calc(100vh-4rem)] w-screen overflow-scroll bg-gray-100 lg:hidden [&[data-state='closed']]:animate-fade-out [&[data-state='open']]:animate-fade-in"
                 onInteractOutside={e => e.preventDefault()}
                 onCloseAutoFocus={e => e.preventDefault()}
@@ -284,10 +302,10 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
                   </Link>
                 </div>
                 <ResizeObserver onResize={() => setCollapsed(false)} />
-              </Dialog.Content>
+              </DialogContent>
             </RemoveScroll>
-          </Dialog.Portal>
-        </Dialog.Root>
+          </DialogPortal>
+        </DialogRoot>
       </nav>
     </>
   )
