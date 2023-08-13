@@ -87,8 +87,8 @@ const SidebarRight = ({ activeSection }: SidebarRightProps) => {
     }
   }, [activeSection])
 
-  let githubFilename = activeSection
-  if (activeSection === "") {
+  let githubFilename = activeSlug
+  if (githubFilename === "") {
     githubFilename = "get-started"
   }
 
