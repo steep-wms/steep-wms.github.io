@@ -41,6 +41,7 @@ pre code {
   margin-right: 0.9rem;
   @apply block;
   @apply flex-1;
+  overflow: visible;
 }
 
 div[data-rehype-pretty-code-title] {
@@ -50,7 +51,6 @@ div[data-rehype-pretty-code-title] {
   margin-right: 0.9rem;
   @apply text-gray-500;
   @apply dark:text-gray-400;
-  overflow-x: auto;
   @apply text-xs;
 }
 

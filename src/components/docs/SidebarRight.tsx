@@ -5,6 +5,7 @@ import { ExternalLink } from "lucide-react"
 import { useEffect, useLayoutEffect, useRef } from "react"
 import { useSelectedLayoutSegment } from "next/navigation"
 import clsx from "clsx"
+import scrollparent from "scrollparent"
 
 interface SidebarRightProps {
   activeSection?: string
@@ -72,7 +73,7 @@ const SidebarRight = ({ activeSection }: SidebarRightProps) => {
     if (element !== null) {
       let erect = element.getBoundingClientRect()
       let srect = sectionsRef.current.getBoundingClientRect()
-      let parent = sectionsRef.current.parentElement!
+      let parent = scrollparent(sectionsRef.current)!
       let prect = parent.getBoundingClientRect()
 
       if (erect.bottom > prect.bottom || erect.top < prect.top) {

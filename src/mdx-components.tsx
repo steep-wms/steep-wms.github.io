@@ -3,6 +3,7 @@ import { createElement } from "react"
 import Link from "./components/LinkFix"
 import CodeContainer, { CodeContainerProps } from "./components/CodeContainer"
 import DocsLink from "./components/DocsLink"
+import ScrollArea from "./components/ScrollArea"
 
 // const balanceHeadings =
 //   (type: string) => (props: React.HTMLAttributes<HTMLHeadingElement>) => {
@@ -32,6 +33,12 @@ export function useMDXComponents(components: {
     CodeContainer: (props: CodeContainerProps) => <CodeContainer {...props} />,
     DocsLink: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
       <DocsLink {...props} />
+    ),
+
+    pre: (props: React.HTMLAttributes<HTMLPreElement>) => (
+      <ScrollArea nonAppleType="always" forceDark={true}>
+        <pre {...props} />
+      </ScrollArea>
     ),
 
     ...components,

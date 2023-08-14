@@ -15,6 +15,7 @@ import {
   usePreferredLanguage,
   makeLanguageStoreId,
 } from "./hooks/usePreferredLanguage"
+import ScrollArea from "./ScrollArea"
 
 const COPY = "Copy to clipboard"
 const COPIED = "Copied!"
@@ -63,7 +64,9 @@ const CodeContainer = ({ title, children }: CodeContainerProps) => {
 
       pages[lang] = (
         <div data-rehype-pretty-code-fragment key={`page-${lang}`}>
-          {pre}
+          <ScrollArea nonAppleType="always" forceDark={true}>
+            {pre}
+          </ScrollArea>
         </div>
       )
     }

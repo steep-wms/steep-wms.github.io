@@ -4,6 +4,7 @@ import Sidebar from "./Sidebar"
 import { useEffect, useRef } from "react"
 import { useSelectedLayoutSegment } from "next/navigation"
 import clsx from "clsx"
+import scrollparent from "scrollparent"
 
 function createToc(activeSlug: string) {
   let result = []
@@ -57,7 +58,7 @@ const SidebarLeft = () => {
     if (element !== null) {
       let erect = element.getBoundingClientRect()
       let srect = sectionsRef.current.getBoundingClientRect()
-      let parent = sectionsRef.current.parentElement!
+      let parent = scrollparent(sectionsRef.current)!
       let prect = parent.getBoundingClientRect()
 
       // center active item in view if necessary
@@ -70,7 +71,7 @@ const SidebarLeft = () => {
 
   return (
     <Sidebar ref={sidebarRef}>
-      <ul className="flex flex-col gap-6" ref={sectionsRef}>
+      <ul className="flex flex-col gap-6 mb-4" ref={sectionsRef}>
         {toc}
       </ul>
     </Sidebar>
