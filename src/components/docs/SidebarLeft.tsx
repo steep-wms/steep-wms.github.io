@@ -4,7 +4,6 @@ import Sidebar from "./Sidebar"
 import { useEffect, useRef } from "react"
 import { useSelectedLayoutSegment } from "next/navigation"
 import clsx from "clsx"
-import scrollparent from "scrollparent"
 
 function createToc(activeSlug: string) {
   let result = []
@@ -58,7 +57,7 @@ const SidebarLeft = () => {
     if (element !== null) {
       let erect = element.getBoundingClientRect()
       let srect = sectionsRef.current.getBoundingClientRect()
-      let parent = scrollparent(sectionsRef.current)!
+      let parent = sectionsRef.current.parentElement!.parentElement!
       let prect = parent.getBoundingClientRect()
 
       // center active item in view if necessary
