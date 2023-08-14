@@ -1,4 +1,6 @@
 :root {
+  color-scheme: light;
+
   --color-primary: 29 115 185;
   --color-primary-hover: 38 92 137;
 
@@ -31,6 +33,8 @@
 }
 
 .dark {
+  color-scheme: dark;
+
   /* colors from Chakra UI (https://github.com/chakra-ui/chakra-ui)
      released under the MIT license. Copyright (c) 2019 Segun Adebayo
      (slightly modified) */
