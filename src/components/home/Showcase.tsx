@@ -1,9 +1,9 @@
 import Container from "../Container"
 
-const Showcases = () => {
+const Showcase = () => {
   return (
     <Container type="xl" className="prose-2xl h-96">
-      <h2 className="text-center font-normal">Showcases</h2>
+      <h2 className="text-center font-normal">Showcase</h2>
       <p className="text-center text-alert">
         TODO Insert awesome screenshots here!
       </p>
@@ -11,4 +11,4 @@ const Showcases = () => {
   )
 }
 
-export default Showcases
+export default Showcase

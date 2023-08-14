@@ -35,7 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
     },
     {
-      url: `${root}/showcases/`,
+      url: `${root}/showcase/`,
       lastModified: new Date(),
     },
     ...docPages,

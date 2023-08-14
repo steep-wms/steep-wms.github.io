@@ -6,7 +6,7 @@ import Microservices from "@/components/home/Microservices"
 import CloudSupport from "@/components/home/CloudSupport"
 import MoreFeatures from "@/components/home/MoreFeatures"
 import WebUI from "@/components/home/WebUI"
-import Showcases from "@/components/home/Showcases"
+import Showcase from "@/components/home/Showcase"
 import Footer from "@/components/Footer"
 
 const Home = () => {
@@ -63,7 +63,7 @@ const Home = () => {
       </section>
 
       <section id="web-ui" className="mt-24">
-        <Showcases />
+        <Showcase />
       </section>
 
       <Footer />

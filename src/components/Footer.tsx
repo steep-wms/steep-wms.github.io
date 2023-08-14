@@ -33,7 +33,7 @@ const Footer = () => {
             <h2 className="mb-2 font-normal">Resources</h2>
             <ul className="text-gray-600">
               <li>
-                <Link href="/showcases">Showcases</Link>
+                <Link href="/showcase">Showcase</Link>
               </li>
               <li>
                 <Link href="/docs">Docs</Link>

@@ -2,9 +2,11 @@ import * as TooltipPrimitive from "@radix-ui/react-tooltip"
 
 interface TooltipProps {
   children?: React.ReactNode
+  content: React.ReactNode
   open?: boolean
   defaultOpen?: boolean
   onOpenChange?: (open: boolean) => void
+  delay?: number
 }
 
 export function Tooltip({
@@ -13,13 +15,15 @@ export function Tooltip({
   open,
   defaultOpen,
   onOpenChange,
+  delay,
   ...props
-}: TooltipProps & TooltipPrimitive.TooltipContentProps) {
+}: TooltipProps & Omit<TooltipPrimitive.TooltipContentProps, "content">) {
   return (
     <TooltipPrimitive.Root
       open={open}
       defaultOpen={defaultOpen}
       onOpenChange={onOpenChange}
+      delayDuration={delay}
     >
       <TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
       <TooltipPrimitive.Content

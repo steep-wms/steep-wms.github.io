@@ -147,8 +147,8 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
 
   const links = [
     {
-      href: "/showcases/",
-      label: "Showcases",
+      href: "/showcase/",
+      label: "Showcase",
     },
     {
       href: "/docs/",
