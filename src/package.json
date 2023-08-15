@@ -33,7 +33,7 @@
     "@fontsource/dejavu-mono": "^5.0.7",
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
-    "@next/bundle-analyzer": "^13.4.13",
+    "@next/bundle-analyzer": "^13.4.16",
     "@next/mdx": "^13.4.13",
     "@radix-ui/react-dialog": "^1.0.4",
     "@radix-ui/react-scroll-area": "^1.0.4",
