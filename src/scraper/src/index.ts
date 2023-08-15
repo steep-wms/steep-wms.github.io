@@ -30,7 +30,7 @@ function nodeToString($node: cheerio.Cheerio<cheerio.Element>) {
         },
       },
       { selector: "pre", format: "skip" },
-      { selector: "table", format: "block" },
+      { selector: "td", format: "inlineSurround", options: { suffix: " " } },
       {
         selector: "ul",
         format: "unorderedList",
