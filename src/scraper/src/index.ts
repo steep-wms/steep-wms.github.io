@@ -15,8 +15,27 @@ function nodeToString($node: cheerio.Cheerio<cheerio.Element>) {
     selectors: [
       { selector: "a", options: { ignoreHref: true } },
       { selector: "img", format: "skip" },
+      {
+        selector: "dt",
+        format: "inlineSurround",
+        options: {
+          suffix: ": ",
+        },
+      },
+      {
+        selector: "dd",
+        format: "inlineSurround",
+        options: {
+          suffix: "\n",
+        },
+      },
       { selector: "pre", format: "skip" },
-      { selector: "td", format: "block" },
+      { selector: "table", format: "block" },
+      {
+        selector: "ul",
+        format: "unorderedList",
+        options: { itemPrefix: "• " },
+      },
     ],
   })
 
