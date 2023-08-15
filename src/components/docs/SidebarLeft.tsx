@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react"
 import { useSelectedLayoutSegment } from "next/navigation"
 import clsx from "clsx"
 
-function createToc(activeSlug: string) {
+function createToc(activeSlug: string, onClickLink?: () => void) {
   let result = []
   for (let chapter of Toc) {
     let titleSlug = chapter.slug
@@ -26,6 +26,7 @@ function createToc(activeSlug: string) {
                   href={`/docs/${p.slug}`}
                   data-sidebar-page-slug={p.slug}
                   className="hover:text-primary-hover"
+                  onClick={onClickLink}
                 >
                   {p.title}
                 </Link>
@@ -39,13 +40,19 @@ function createToc(activeSlug: string) {
   return result
 }
 
-const SidebarLeft = () => {
+interface SidebarLeftProps {
+  className?: string
+  sticky?: boolean
+  onClickLink?: () => void
+}
+
+const SidebarLeft = ({ className, sticky, onClickLink }: SidebarLeftProps) => {
   const sidebarRef = useRef<HTMLDivElement>(null)
   const sectionsRef = useRef<HTMLUListElement>(null)
   const segment = useSelectedLayoutSegment()
 
   let activeSlug = segment ?? ""
-  let toc = createToc(activeSlug)
+  let toc = createToc(activeSlug, onClickLink)
 
   useEffect(() => {
     if (sectionsRef.current === null || sidebarRef.current === null) {
@@ -69,7 +76,7 @@ const SidebarLeft = () => {
   }, [activeSlug])
 
   return (
-    <Sidebar ref={sidebarRef}>
+    <Sidebar ref={sidebarRef} className={className} sticky={sticky}>
       <ul className="flex flex-col gap-6 mb-4" ref={sectionsRef}>
         {toc}
       </ul>

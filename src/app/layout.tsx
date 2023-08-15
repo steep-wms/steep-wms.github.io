@@ -46,10 +46,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={clsx(
-        `${roboto.variable} ${dejaVuFont.variable}`,
-        /* navbar height + a bit of additional space */ "scroll-pt-20",
-      )}
+      className={clsx(`${roboto.variable} ${dejaVuFont.variable}`)}
     >
       <head>
         <script

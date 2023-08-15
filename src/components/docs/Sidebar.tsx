@@ -1,14 +1,26 @@
 import { forwardRef } from "react"
 import ScrollArea from "../ScrollArea"
+import clsx from "clsx"
 
 interface SidebarProps {
+  className?: string
+  sticky?: boolean
   children: React.ReactNode
 }
 
 const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(
-  ({ children }, ref) => {
+  ({ className, sticky = true, children }, ref) => {
     return (
-      <div className="sticky top-0 flex max-h-screen w-full pt-24">
+      <div
+        className={clsx(
+          "w-full",
+          {
+            "sticky top-0 max-h-screen": sticky,
+            "flex max-h-full": !sticky,
+          },
+          className,
+        )}
+      >
         <ScrollArea ref={ref} className="max-h-full w-full text-sm">
           {children}
         </ScrollArea>

@@ -7,6 +7,7 @@ import { useSelectedLayoutSegment } from "next/navigation"
 import clsx from "clsx"
 
 interface SidebarRightProps {
+  className?: string
   activeSection?: string
 }
 
@@ -27,7 +28,7 @@ function sectionToLi(s: Section | Subsection, activeSection?: string) {
   )
 }
 
-const SidebarRight = ({ activeSection }: SidebarRightProps) => {
+const SidebarRight = ({ className, activeSection }: SidebarRightProps) => {
   const firstScroll = useRef<boolean>(true)
   const sidebarRef = useRef<HTMLDivElement>(null)
   const sectionsRef = useRef<HTMLUListElement>(null)
@@ -93,7 +94,7 @@ const SidebarRight = ({ activeSection }: SidebarRightProps) => {
   }
 
   return (
-    <Sidebar ref={sidebarRef}>
+    <Sidebar ref={sidebarRef} className={className}>
       {sections !== undefined ? (
         <>
           <div className="mb-4 font-normal">On this page</div>

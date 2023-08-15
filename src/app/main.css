@@ -34,3 +34,29 @@ h5 {
 .lucide {
   display: inline-block;
 }
+
+section,
+main,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  /* navbar height + a bit of additional space */
+  @apply scroll-mt-20;
+}
+
+#docs-layout section,
+#docs-layout main,
+#docs-layout h1,
+#docs-layout h2,
+#docs-layout h3,
+#docs-layout h4,
+#docs-layout h5,
+#docs-layout h6 {
+  /* navbar height + toc navbar height + a bit of additional space */
+  @apply scroll-mt-32;
+  /* same as on any other page */
+  @apply lg:scroll-mt-20;
+}

@@ -21,8 +21,11 @@ const ScrollObserver = ({ children, onChangeSlug }: ScrollObserverProps) => {
     let tops: Top[] = []
     let currentSlug: string | undefined = undefined
 
-    let style = window.getComputedStyle(document.documentElement)
-    let smt = parseInt(style.getPropertyValue("scroll-padding-top"))
+    let smt = 0
+    if (sections.length > 0) {
+      let style = window.getComputedStyle(sections[0])
+      smt = parseInt(style.getPropertyValue("scroll-margin-top"))
+    }
 
     function onResize() {
       sections.forEach(s => {

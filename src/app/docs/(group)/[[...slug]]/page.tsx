@@ -145,7 +145,7 @@ const DocsPage = ({ params }: DocsPageProps) => {
     </>
   )
 
-  return <main className="prose mt-24">{Main}</main>
+  return <main className="prose mt-40 lg:mt-24">{Main}</main>
 }
 
 export default DocsPage
