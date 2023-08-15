@@ -114,17 +114,17 @@ const DocsPage = ({ params }: DocsPageProps) => {
       </h1>
       <Content />
       {sections}
-      <div className="flex mt-14 mb-8 justify-between text-sm not-prose">
+      <div className="flex mt-14 mb-8 justify-between text-sm not-prose gap-4">
         <div>
           {prev !== undefined ? (
             <Link
               href={`/docs/${prev}`}
-              className="font-normal text-gray-700 hover:text-primary group"
+              className="font-normal text-gray-700 hover:text-primary group flex gap-1"
             >
-              <span className="text-gray-500 group-hover:text-primary">
+              <div className="text-gray-500 group-hover:text-primary">
                 <ChevronLeft size="1em" />
-              </span>{" "}
-              {Index[prev].title}
+              </div>
+              <div>{Index[prev].title}</div>
             </Link>
           ) : undefined}
         </div>
@@ -132,12 +132,12 @@ const DocsPage = ({ params }: DocsPageProps) => {
           {next !== undefined ? (
             <Link
               href={`/docs/${next}`}
-              className="font-normal text-gray-700 hover:text-primary group"
+              className="font-normal text-gray-700 hover:text-primary group flex gap-1 text-right"
             >
-              {Index[next].title}{" "}
-              <span className="text-gray-500 group-hover:text-primary">
+              <div>{Index[next].title}</div>
+              <div className="text-gray-500 group-hover:text-primary">
                 <ChevronRight size="1em" />
-              </span>
+              </div>
             </Link>
           ) : undefined}
         </div>
