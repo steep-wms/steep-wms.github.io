@@ -36,6 +36,7 @@ const fallbackFonts = [
 module.exports = {
   darkMode: "class",
   content: [
+    "./mdx-components.tsx",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./content/**/*.{js,ts,jsx,tsx,mdx}",

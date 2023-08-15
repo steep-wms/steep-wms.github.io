@@ -42,8 +42,8 @@ export function useMDXComponents(components: {
     ),
 
     table: (props: React.HTMLAttributes<HTMLTableElement>) => (
-      <ScrollArea nonAppleType="always">
-        <table {...props} />
+      <ScrollArea nonAppleType="always" className="my-7">
+        <table {...props} className="my-0" />
       </ScrollArea>
     ),
 

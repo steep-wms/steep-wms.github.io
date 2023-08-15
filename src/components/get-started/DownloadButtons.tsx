@@ -15,7 +15,8 @@ const DownloadButtons = () => {
           <div className="flex flex-row items-center gap-2">
             <Download />
             <div className="whitespace-nowrap">
-              Download Steep {pkg.version} (binaries)
+              <span className="hidden sm:inline-block">Download</span> Steep{" "}
+              {pkg.version} (binaries)
             </div>
           </div>
         </Button>

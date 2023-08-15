@@ -23,7 +23,7 @@ const About = () => {
       </h1>
       <Divider />
       <Container type="md">
-        <section id="story" className="prose">
+        <section id="story" className="prose text-center md:text-left">
           <p>
             Steep’s development is led by the competence center for Spatial
             Information Management of the{" "}
@@ -96,9 +96,8 @@ const About = () => {
         <section id="contact" className="prose mb-40">
           <h2 className="mb-10 text-center text-4xl">Contact us</h2>
           <p className="text-center lead">
-            If you have questions about Steep or any of our{" "}
-            <Link href="/showcase">projects</Link> or discuss interesting ideas,
-            feel free to drop us an email.
+            If you have questions about Steep, or if you want to discuss
+            interesting ideas and projects, feel free to drop us an email.
           </p>
           <p className="text-center lead">
             You may also reach out to us or Fraunhofer IGD in general via social
@@ -113,7 +112,7 @@ const About = () => {
             </Link>
           </div>
           <div className="flex justify-center">
-            <span className="group flex items-center gap-6">
+            <span className="group flex items-center gap-6 flex-wrap justify-center">
               <SocialButton
                 icon={siGithub}
                 title="Fork us on GitHub"
