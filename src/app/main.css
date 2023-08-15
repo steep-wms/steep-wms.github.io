@@ -29,8 +29,7 @@ h3,
 h4,
 h5 {
   font-weight: 300;
-  @apply overflow-hidden;
-  @apply text-ellipsis;
+  @apply break-words;
 }
 
 .lucide {
