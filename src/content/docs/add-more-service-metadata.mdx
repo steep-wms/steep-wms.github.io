@@ -1,0 +1,77 @@
+import Admonition from '@/components/Admonition'
+
+In this tutorial, we are going to create a workflow that downloads a `.zip` file from an HTTP server and then extracts it. For this, we will use the `wget` and `unzip` programs. Similar to the <DocsLink href="#your-first-workflow">first tutorial</DocsLink>, we need to add service metadata for these services to the `conf/services/services.yaml` file.
+
+First, add the following metadata for the `wget` service:
+
+<CodeContainer title="conf/services/services.yaml">
+```yaml
+- id: download
+  name: Download
+  description: Download a file from a HTTP server
+  path: wget
+  runtime: other
+
+  parameters:
+    - id: output_file
+      name: Output file
+      description: The target file to which to download
+      type: output
+      cardinality: 1..1
+      label: -O
+      fileSuffix: .zip
+      dataType: file
+
+    - id: url
+      name: URL
+      description: The URL of the file to download
+      type: input
+      cardinality: 1..1
+      dataType: string
+```
+</CodeContainer>
+
+Similar to the `cp` service from the first tutorial, this service has two parameters. However, in this case, the output parameter has been specified first and has a label `-O`. Steep will respect the order of the parameters and the label when calling `wget` later during workflow execution and generate a command line in the following form:
+
+```text
+wget -O <output_file> <url>
+```
+
+The output parameter also has a `fileSuffix`. Specifying this will make sure Steep generates an output filename with the correct extension (in this case `.zip`) later during workflow execution.
+
+Next, we need to add the metadata for the `unzip` service:
+
+<CodeContainer title="conf/services/services.yaml">
+```yaml
+- id: extract
+  name: Extract
+  description: Extract a ZIP archive
+  path: unzip
+  runtime: other
+
+  parameters:
+    - id: input_file
+      name: Input file
+      description: The archive to extract
+      type: input
+      cardinality: 1..1
+      dataType: file
+
+    - id: destination_directory
+      name: Destination
+      description: >-
+        The destination directory to which the archive
+        should be extracted
+      type: output
+      cardinality: 1..1
+      label: -d
+      dataType: directory
+```
+</CodeContainer>
+
+In this case, the output parameter has a label `-d` and is a directory. Steep
+is able to automatically create output directories during workflow execution.
+
+<Admonition>
+Don't forget to restart Steep after changing the service metadata configuration file.
+</Admonition>
