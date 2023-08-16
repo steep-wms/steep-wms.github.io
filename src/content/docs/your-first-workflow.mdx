@@ -1,0 +1,8 @@
+Learn how to run your first simple workflow. This tutorial assumes that you've already <DocsLink href="/docs">downloaded and extracted</DocsLink> Steep and that it is running and listens to incoming requests on port 8080.
+
+A Steep workflow consists of a set of processing services that are executed in a specific order (see <DocsLink href="#how-does-steep-work">How does Steep work?</DocsLink>). Every service that should be executed has to be described with so-called <DocsLink href="#service-metadata">service metadata</DocsLink>. 
+
+In order to run a workflow, you therefore need at least two things:
+
+1. The <DocsLink href="#workflows">workflow</DocsLink> itself as a YAML document or JSON file (we prefer YAML for its readability).
+2. The <DocsLink href="#service-metadata">service metadata</DocsLink> for all services that are used in the workflow. This metadata has to be stored in the <DocsLink href="#servicesservicesyaml">services configuration file</DocsLink>. The default path to this file is `conf/services/services.yaml` in Steep's application directory but <DocsLink href="#steepyaml">can be configured</DocsLink>.

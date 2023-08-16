@@ -1,0 +1,23 @@
+Now, let's create a workflow that uses the new `cp` service. Create a file `copy.yaml` anywhere on your computer and add the following content:
+
+<CodeContainer title="copy.yaml">
+```yaml generate-json
+api: 4.6.0
+actions:
+  - type: execute
+    service: cp
+    inputs:
+      - id: input_file
+        value: /path/to/example.txt
+    outputs:
+      - id: output_file
+        var: o1
+        store: true
+```
+</CodeContainer>
+
+The workflow consists of one <DocsLink href="#execute-actions">execute action</DocsLink> calling our `cp` service. `/path/to/example.txt` is the path to the file that should be copied. **Replace this with the absolute path to any file on your computer.**
+
+The name of the output file will be generated later during workflow execution by Steep. It will be stored in the variable `o1`.
+
+Any output filename generated is relative to either Steep's temporary directory (`tmpPath`) or output directory (`outPath`), which can be configured in the <DocsLink href="#steepyaml">general configuration file</DocsLink>. In our workflow, we set `store` to `true` to generate a filename in the output directory.

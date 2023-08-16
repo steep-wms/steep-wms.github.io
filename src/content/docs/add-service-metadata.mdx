@@ -1,0 +1,36 @@
+import Admonition from '@/components/Admonition'
+
+Let's assume we want to create a workflow that creates a copy of a file. For this, we can use the `cp` command, which is built-in into all UNIX distributions (under Windows, you can use the `copy` command instead). Open the file `conf/services/services.yaml` and add the following service metadata:
+
+<CodeContainer title="conf/services/services.yaml">
+```yaml
+- id: cp
+  name: Copy
+  description: Create a copy of a file
+  path: cp
+  runtime: other
+
+  parameters:
+    - id: input_file
+      name: Input file name
+      description: The file to copy
+      type: input
+      cardinality: 1..1
+      dataType: file
+
+    - id: output_file
+      name: Output file name
+      description: The target to where the file will be copied
+      type: output
+      cardinality: 1..1
+      dataType: file
+```
+</CodeContainer>
+
+This metadata describes a service with the ID `cp`. It has a human-readable `name` and `description`. The `path` attribute specifies the path to the service's executable. Since the *cp* command is built-in, we can just use `cp` here (replace this with `copy` under Windows).
+
+The service has two parameters, `input_file` and `output_file`, which represent the service's input and output parameters, respectively. Both have a cardinality of `1..1`, which means they are mandatory. They also have human-readable names and descriptions.
+
+<Admonition>
+The default distribution of Steep already contains metadata for this service, so you actually don't need to do anything here.
+</Admonition>
