@@ -6,16 +6,32 @@ const rehypeGenerateYaml = () => tree => {
   visit(tree, "element", node => {
     if (
       node.tagName === "pre" &&
-      node.children?.[0]?.data?.meta === "generate-yaml"
+      (node.children?.[0]?.data?.meta === "generate-yaml" ||
+        node.children?.[0]?.data?.meta === "generate-json")
     ) {
-      // convert JSON to YAML
       let code = node.children[0].children[0].value
-      let jsonObj = JSON.parse(code)
-      let yamlStr = yaml.dump(jsonObj).trim()
+
+      let jsonStr
+      let yamlStr
+      if (node.children[0].data.meta === "generate-yaml") {
+        // convert JSON to YAML
+        let jsonObj = JSON.parse(code)
+        yamlStr = yaml.dump(jsonObj).trim()
+        jsonStr = code
+      } else {
+        // convert YAML to JSON
+        yamlStr = code.trim()
+        let jsonObj = yaml.load(yamlStr)
+        jsonStr = JSON.stringify(jsonObj, undefined, 2)
+      }
 
       // create two new nodes, one for JSON and one for YAML
       let jsonNode = _.clone(node)
       let yamlNode = _.cloneDeep(node)
+
+      // update JSON clone
+      jsonNode.children[0].children[0].value = jsonStr
+      jsonNode.children[0].properties.className = ["language-json"]
 
       // update YAML clone
       yamlNode.children[0].children[0].value = yamlStr
