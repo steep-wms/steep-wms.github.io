@@ -240,7 +240,9 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
               </div>
               <div className="flex-1"></div>
               <div className="flex items-center gap-4">
-                <QuickSearch />
+                <div className="border-r border-gray-200 pr-4">
+                  <QuickSearch />
+                </div>
                 <Tooltip
                   content={theme === "dark" ? "Light mode" : "Dark mode"}
                 >
