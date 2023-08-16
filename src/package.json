@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "dev": "next",
-    "build": "next build && npm run scraper",
+    "build": "next build && npm run scraper && cp public/docs/index.json out/docs/index.json",
     "deploy": "npm run build && rm -rf ../preview/404 ../preview/404.html ../preview/_next ../preview/about ../preview/docs ../preview/legal-notice ../preview/privacy-policy ../preview/favicons ../preview/images ../preview/index.html ../preview/index.txt && cp -r out/* ../preview",
     "lint": "next lint",
     "scraper": "cd scraper && npm run run && cd ..",
