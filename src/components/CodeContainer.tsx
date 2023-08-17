@@ -1,21 +1,21 @@
 "use client"
 
-import {
-  Children,
-  isValidElement,
-  ReactElement,
-  ReactNode,
-  useEffect,
-} from "react"
 import LanguageSelect from "./LanguageSelect"
-import { useMemo, useRef, useState } from "react"
-import { Copy } from "lucide-react"
+import ScrollArea from "./ScrollArea"
 import { Tooltip } from "./Tooltip"
 import {
-  usePreferredLanguage,
   makeLanguageStoreId,
+  usePreferredLanguage,
 } from "./hooks/usePreferredLanguage"
-import ScrollArea from "./ScrollArea"
+import { Copy } from "lucide-react"
+import {
+  Children,
+  ReactElement,
+  ReactNode,
+  isValidElement,
+  useEffect,
+} from "react"
+import { useMemo, useRef, useState } from "react"
 
 const COPY = "Copy to clipboard"
 const COPIED = "Copied!"

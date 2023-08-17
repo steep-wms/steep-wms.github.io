@@ -1,11 +1,11 @@
-import "./themes.css"
-import "./main.css"
 import "./code.css"
-import { Roboto } from "next/font/google"
-import localFont from "next/font/local"
+import "./main.css"
+import "./themes.css"
+import ClientTooltipProvider from "@/components/ClientTooltipProvider"
 import clsx from "clsx"
 import { Metadata } from "next"
-import ClientTooltipProvider from "@/components/ClientTooltipProvider"
+import { Roboto } from "next/font/google"
+import localFont from "next/font/local"
 
 const roboto = Roboto({
   weight: ["300", "400", "700", "900"],

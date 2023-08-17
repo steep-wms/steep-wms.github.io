@@ -24,6 +24,7 @@
   },
   "homepage": "https://steep-wms.github.io/",
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@types/scrollparent": "^2.0.1",
     "eslint-webpack-plugin": "^4.0.1",
     "mini-svg-data-uri": "^1.4.4",

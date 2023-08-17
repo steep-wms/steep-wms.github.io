@@ -1,7 +1,7 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import { useUserAgent } from "./useUserAgent"
+import { useEffect, useState } from "react"
 
 export function useIsApple() {
   const userAgent = useUserAgent()

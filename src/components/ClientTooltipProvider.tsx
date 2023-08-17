@@ -1,10 +1,10 @@
 "use client"
 
+import * as Tooltip from "@radix-ui/react-tooltip"
+
 // This is a thin wrapper around Tooltip.Provider from @radix-ui/react-tooltip
 // that adds the "use client" directive so the tooltip provider can be used
 // in server components.
-
-import * as Tooltip from "@radix-ui/react-tooltip"
 
 interface ClientTooltipProviderProps {
   children: React.ReactNode

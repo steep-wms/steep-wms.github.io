@@ -1,15 +1,14 @@
 "use client"
 
-import { useEffect } from "react"
-
-import SegmentWorkflow from "./SegmentWorkflow.mdx"
-import Orthophoto from "./Orthophoto"
-import { Button } from "@/components/Button"
-import { ChevronRight } from "lucide-react"
-import { useAnimate, stagger } from "framer-motion"
 import Container from "../Container"
-import useInViewEx from "../hooks/useInViewEx"
 import Link from "../LinkFix"
+import useInViewEx from "../hooks/useInViewEx"
+import Orthophoto from "./Orthophoto"
+import SegmentWorkflow from "./SegmentWorkflow.mdx"
+import { Button } from "@/components/Button"
+import { stagger, useAnimate } from "framer-motion"
+import { ChevronRight } from "lucide-react"
+import { useEffect } from "react"
 
 const ExampleWorkflow = () => {
   const [scope, animate] = useAnimate()

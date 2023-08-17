@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from "react"
 import { Index } from "../docs/Toc"
-import MiniSearch, { SearchResult as MiniSearchResult } from "minisearch"
-import debounce from "lodash/debounce"
-import SearchResultList, { SearchResultListRef } from "./SearchResultList"
 import SearchInputBar from "./SearchInputBar"
 import type { SearchResult } from "./SearchResult"
+import SearchResultList, { SearchResultListRef } from "./SearchResultList"
+import debounce from "lodash/debounce"
+import MiniSearch, { SearchResult as MiniSearchResult } from "minisearch"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 
 const MAX_EXCERPT_LENGTH = 80
 const MAX_SEARCH_RESULTS = 25

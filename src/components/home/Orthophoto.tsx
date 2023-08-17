@@ -1,7 +1,7 @@
+import useInViewEx from "../hooks/useInViewEx"
 import { motion } from "framer-motion"
 import prand from "pure-rand"
 import { useRef } from "react"
-import useInViewEx from "../hooks/useInViewEx"
 
 const reset = { duration: 0 }
 

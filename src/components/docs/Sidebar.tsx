@@ -1,6 +1,6 @@
-import { forwardRef } from "react"
 import ScrollArea from "../ScrollArea"
 import clsx from "clsx"
+import { forwardRef } from "react"
 
 interface SidebarProps {
   className?: string

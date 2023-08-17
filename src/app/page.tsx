@@ -1,13 +1,13 @@
-import Balancer, { Provider } from "react-wrap-balancer"
-import NavBar from "@/components/NavBar"
-import HeroWorkflow from "@/components/home/HeroWorkflow"
-import ExampleWorkflow from "@/components/home/ExampleWorkflow"
-import Microservices from "@/components/home/Microservices"
-import CloudSupport from "@/components/home/CloudSupport"
-import MoreFeatures from "@/components/home/MoreFeatures"
-import WebUI from "@/components/home/WebUI"
-import Showcase from "@/components/home/Showcase"
 import Footer from "@/components/Footer"
+import NavBar from "@/components/NavBar"
+import CloudSupport from "@/components/home/CloudSupport"
+import ExampleWorkflow from "@/components/home/ExampleWorkflow"
+import HeroWorkflow from "@/components/home/HeroWorkflow"
+import Microservices from "@/components/home/Microservices"
+import MoreFeatures from "@/components/home/MoreFeatures"
+import Showcase from "@/components/home/Showcase"
+import WebUI from "@/components/home/WebUI"
+import Balancer, { Provider } from "react-wrap-balancer"
 
 const Home = () => {
   return (

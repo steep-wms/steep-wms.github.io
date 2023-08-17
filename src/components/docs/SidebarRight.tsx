@@ -1,10 +1,10 @@
-import Link from "@/components/LinkFix"
 import Sidebar from "./Sidebar"
+import Link from "@/components/LinkFix"
 import { Index, Section, Subsection } from "@/components/docs/Toc"
-import { ExternalLink } from "lucide-react"
-import { useEffect, useLayoutEffect, useRef } from "react"
-import { useSelectedLayoutSegment } from "next/navigation"
 import clsx from "clsx"
+import { ExternalLink } from "lucide-react"
+import { useSelectedLayoutSegment } from "next/navigation"
+import { useEffect, useLayoutEffect, useRef } from "react"
 
 interface SidebarRightProps {
   className?: string

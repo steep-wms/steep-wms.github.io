@@ -1,14 +1,14 @@
+import { Button } from "@/components/Button"
 import Container from "@/components/Container"
-import NavBar from "@/components/NavBar"
 import Footer from "@/components/Footer"
+import Link from "@/components/LinkFix"
+import NavBar from "@/components/NavBar"
 import Divider from "@/components/about/Divider"
 import Profile from "@/components/about/Profile"
 import SocialButton from "@/components/about/SocialButton"
-import Link from "@/components/LinkFix"
-import { Metadata } from "next"
-import { siGithub, siInstagram, siYoutube, siLinkedin, siX } from "simple-icons"
-import { Button } from "@/components/Button"
 import { Mail } from "lucide-react"
+import { Metadata } from "next"
+import { siGithub, siInstagram, siLinkedin, siX, siYoutube } from "simple-icons"
 
 export const metadata: Metadata = {
   title: "About",

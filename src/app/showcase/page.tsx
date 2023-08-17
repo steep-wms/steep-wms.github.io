@@ -1,7 +1,7 @@
 import Container from "@/components/Container"
+import Link from "@/components/LinkFix"
 import Presentation from "@/components/showcase/Presentation"
 import ResearchItem from "@/components/showcase/ResearchItem"
-import Link from "@/components/LinkFix"
 
 const ShowcasePage = () => {
   return (

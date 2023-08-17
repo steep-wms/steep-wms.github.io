@@ -1,6 +1,6 @@
 import Link from "./LinkFix"
-import { AnchorHTMLAttributes } from "react"
 import { Index } from "./docs/Toc"
+import { AnchorHTMLAttributes } from "react"
 
 const DocsLink = (props: AnchorHTMLAttributes<HTMLAnchorElement>) => {
   let href = props.href!

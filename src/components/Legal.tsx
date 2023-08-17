@@ -1,6 +1,6 @@
 import Container from "@/components/Container"
-import NavBar from "@/components/NavBar"
 import Footer from "@/components/Footer"
+import NavBar from "@/components/NavBar"
 import { rehype } from "rehype"
 import { visit } from "unist-util-visit"
 

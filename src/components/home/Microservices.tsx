@@ -1,10 +1,10 @@
 "use client"
 
 import Container from "../Container"
-import SegmentMetadata from "./SegmentMetadata.mdx"
 import CardOption from "./CardOption"
-import { useState } from "react"
+import SegmentMetadata from "./SegmentMetadata.mdx"
 import clsx from "clsx"
+import { useState } from "react"
 
 type ActiveOption = "metadata" | "scheduling"
 

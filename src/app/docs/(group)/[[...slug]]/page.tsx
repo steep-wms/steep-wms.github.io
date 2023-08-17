@@ -1,7 +1,7 @@
-import { Toc, Index } from "@/components/docs/Toc"
-import { Metadata, ResolvingMetadata } from "next"
-import { ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "@/components/LinkFix"
+import { Index, Toc } from "@/components/docs/Toc"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { Metadata, ResolvingMetadata } from "next"
 
 interface DocsPageProps {
   params: { slug: string[] }

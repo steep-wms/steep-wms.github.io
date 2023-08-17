@@ -1,6 +1,6 @@
 import yaml from "js-yaml"
-import { visit, CONTINUE, SKIP } from "unist-util-visit"
 import _ from "lodash"
+import { CONTINUE, SKIP, visit } from "unist-util-visit"
 
 const rehypeGenerateYaml = () => tree => {
   visit(tree, "element", node => {

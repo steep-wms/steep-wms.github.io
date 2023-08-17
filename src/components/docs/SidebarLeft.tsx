@@ -1,9 +1,9 @@
+import Sidebar from "./Sidebar"
 import Link from "@/components/LinkFix"
 import { Toc } from "@/components/docs/Toc"
-import Sidebar from "./Sidebar"
-import { useEffect, useRef } from "react"
-import { useSelectedLayoutSegment } from "next/navigation"
 import clsx from "clsx"
+import { useSelectedLayoutSegment } from "next/navigation"
+import { useEffect, useRef } from "react"
 
 function createToc(activeSlug: string, onClickLink?: () => void) {
   let result = []

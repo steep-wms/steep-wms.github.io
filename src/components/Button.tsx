@@ -1,5 +1,5 @@
-import { MouseEventHandler } from "react"
 import clsx from "clsx"
+import { MouseEventHandler } from "react"
 
 interface BaseButtonProps {
   onClick?: MouseEventHandler<HTMLButtonElement>

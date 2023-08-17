@@ -1,8 +1,8 @@
-import { useHotkeys } from "react-hotkeys-hook"
-import { useState } from "react"
-import dynamic from "next/dynamic"
-import { Search } from "lucide-react"
 import { useIsApple } from "../hooks/useIsApple"
+import { Search } from "lucide-react"
+import dynamic from "next/dynamic"
+import { useState } from "react"
+import { useHotkeys } from "react-hotkeys-hook"
 
 const SearchDialog = dynamic(() => import("./SearchDialog"), { ssr: false })
 

@@ -1,9 +1,9 @@
 "use client"
 
 import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area"
-import { forwardRef } from "react"
-import clsx from "clsx"
 import { useIsApple } from "./hooks/useIsApple"
+import clsx from "clsx"
+import { forwardRef } from "react"
 
 interface ScrollBarProps {
   orientation: "vertical" | "horizontal"

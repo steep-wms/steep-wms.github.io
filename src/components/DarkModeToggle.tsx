@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useId } from "react"
-import { useTheme, type Theme } from "./hooks/useTheme"
+import { type Theme, useTheme } from "./hooks/useTheme"
+import { useCallback, useEffect } from "react"
 
 // The icon animation is based on the following component:
 // https://github.com/argyleink/gui-challenges/tree/main/theme-switch

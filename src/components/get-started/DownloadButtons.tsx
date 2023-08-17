@@ -1,9 +1,9 @@
-import { Button } from "../Button"
-import { Download } from "lucide-react"
-import SimpleIcon from "../SimpleIcon"
-import { siDocker, siGithub } from "simple-icons"
-import Link from "../LinkFix"
 import pkg from "../../package.json"
+import { Button } from "../Button"
+import Link from "../LinkFix"
+import SimpleIcon from "../SimpleIcon"
+import { Download } from "lucide-react"
+import { siDocker, siGithub } from "simple-icons"
 
 const DownloadButtons = () => {
   return (

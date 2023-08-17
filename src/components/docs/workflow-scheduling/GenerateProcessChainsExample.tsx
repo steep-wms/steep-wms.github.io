@@ -2,9 +2,9 @@
 
 import GenerateProcessChains from "../../../assets/generate-process-chains-inlined-styles.svg?source"
 import GenerateProcessChainsLight from "../../../assets/generate-process-chains-light-inlined-styles.svg?source"
-import { useEffect } from "react"
-import { AnimationSequence, useAnimate } from "framer-motion"
 import clsx from "clsx"
+import { AnimationSequence, useAnimate } from "framer-motion"
+import { useEffect } from "react"
 
 interface GenerateProcessChainsExampleProps {
   animated?: boolean

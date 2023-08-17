@@ -1,11 +1,11 @@
 "use client"
 
 import Container from "../Container"
-import Setup from "./Setup.mdx"
-import Kubernetes from "./Kubernetes.mdx"
 import CardOption from "./CardOption"
-import { useState } from "react"
+import Kubernetes from "./Kubernetes.mdx"
+import Setup from "./Setup.mdx"
 import clsx from "clsx"
+import { useState } from "react"
 
 type ActiveOption = "kubernetes" | "connectors"
 

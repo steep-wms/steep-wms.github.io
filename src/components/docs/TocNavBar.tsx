@@ -1,7 +1,7 @@
 import { Index, type Page } from "@/components/docs/Toc"
-import { useSelectedLayoutSegment } from "next/navigation"
-import { ChevronRight } from "lucide-react"
 import { Cross as Hamburger } from "hamburger-react"
+import { ChevronRight } from "lucide-react"
+import { useSelectedLayoutSegment } from "next/navigation"
 import { Dispatch, SetStateAction } from "react"
 
 interface TocNavBarProps {

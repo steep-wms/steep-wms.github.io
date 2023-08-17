@@ -1,5 +1,5 @@
-import { Search as SearchIcon } from "lucide-react"
 import { useIsMobile } from "../hooks/useIsMobile"
+import { Search as SearchIcon } from "lucide-react"
 import { KeyboardEvent } from "react"
 
 interface SearchInputBarProps {

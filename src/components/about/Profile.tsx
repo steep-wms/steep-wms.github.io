@@ -1,12 +1,12 @@
 "use client"
 
-import { Balancer } from "react-wrap-balancer"
 import Link from "@/components/LinkFix"
-import { Tooltip } from "@/components/Tooltip"
 import SimpleIcon from "@/components/SimpleIcon"
-import { siGithub } from "simple-icons"
+import { Tooltip } from "@/components/Tooltip"
 import { Home, Mail } from "lucide-react"
 import { Url } from "next/dist/shared/lib/router/router"
+import { Balancer } from "react-wrap-balancer"
+import { siGithub } from "simple-icons"
 
 interface ProfileProps {
   name: string

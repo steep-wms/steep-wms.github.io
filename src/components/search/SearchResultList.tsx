@@ -1,6 +1,6 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef } from "react"
 import type { SearchResult } from "./SearchResult"
 import SearchResultListItem from "./SearchResultListItem"
+import { forwardRef, useEffect, useImperativeHandle, useRef } from "react"
 
 export interface SearchResultListRef {
   click: () => void

@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react"
 import { useUserAgent } from "./useUserAgent"
+import { useEffect, useState } from "react"
 
 export function useIsMobile() {
   const userAgent = useUserAgent()

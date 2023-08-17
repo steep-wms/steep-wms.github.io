@@ -1,20 +1,20 @@
 "use client"
 
-import { cloneElement, Children, ReactNode, useEffect } from "react"
+import Link from "../LinkFix"
 import {
   AnimationPlaybackControls,
   AnimationSequence,
   At,
   DOMKeyframesDefinition,
   DynamicAnimationOptions,
+  SequenceTime,
   easeOut,
   motion,
-  SequenceTime,
   useAnimate,
   useMotionValue,
   useReducedMotion,
 } from "framer-motion"
-import Link from "../LinkFix"
+import { Children, ReactNode, cloneElement, useEffect } from "react"
 
 const HeroWorkflow = () => {
   const [scope, animate] = useAnimate()

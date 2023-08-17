@@ -1,5 +1,5 @@
-import { MetadataRoute } from "next"
 import { Toc } from "@/components/docs/Toc"
+import { MetadataRoute } from "next"
 
 const root = `https://steep-wms.github.io${process.env.basePath}`
 
