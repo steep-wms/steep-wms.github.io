@@ -27,7 +27,7 @@
     "@types/scrollparent": "^2.0.1",
     "eslint-webpack-plugin": "^4.0.1",
     "mini-svg-data-uri": "^1.4.4",
-    "npm-check-updates": "^16.11.0"
+    "npm-check-updates": "^16.11.2"
   },
   "dependencies": {
     "@fontsource/dejavu-mono": "^5.0.7",
