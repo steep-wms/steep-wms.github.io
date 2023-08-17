@@ -34,7 +34,7 @@
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
     "@next/bundle-analyzer": "^13.4.13",
-    "@next/mdx": "^13.4.13",
+    "@next/mdx": "^13.4.17",
     "@radix-ui/react-dialog": "^1.0.4",
     "@radix-ui/react-scroll-area": "^1.0.4",
     "@radix-ui/react-select": "^1.2.2",
