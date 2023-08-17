@@ -1,0 +1,37 @@
+import Admonition from "@/components/Admonition"
+
+To demonstrate how loops work in Steep, we create a workflow that counts a number down until it has reached 0. The workflow uses a for-each action to repeatedly call a service that reads a number from a file, decreases it, and then writes the new value to an output file. After each service call, the output is fed back into the for-each action's input, which makes Steep call the service again and again.
+
+To end the loop, we just need to make sure that no more items are appended to the for-each action's input list. When the service reaches the value 0, it therefore does not produce a new output file.
+
+To implement the service, we use Node.js. Create a new file `countdown.js` and paste the following code into it:
+
+<CodeContainer title="countdown.js">
+```javascript
+#!/usr/bin/env node
+
+const fs = require("fs").promises
+
+async function countDown(input, output) {
+  let value = parseInt(await fs.readFile(input, "utf-8"))
+  console.log(`Old value: ${value}`)
+
+  value--
+  if (value > 0) {
+    console.log(`New value: ${value}`)
+    await fs.writeFile(output, "" + value, "utf-8")
+  } else {
+    console.log("No new value")
+  }
+}
+
+countDown(process.argv[2], process.argv[3]).catch((err) => {
+  console.error(err)
+  process.exit(1)
+})
+```
+</CodeContainer>
+
+<Admonition>
+Note that we could use any programming language to implement this service. We're just using Node.js here because it makes it very easy to create executable scripts. Read the tutorial on <DocsLink href="#bring-your-own-service">bringing your own service</DocsLink> for a more advanced example.
+</Admonition>

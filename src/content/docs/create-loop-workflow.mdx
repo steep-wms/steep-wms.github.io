@@ -1,0 +1,27 @@
+Create a new file `loop-workflow.yaml` and add the following code:
+
+<CodeContainer title="loop-workflow.yaml">
+```yaml generate-json
+api: 4.6.0
+vars:
+  - id: input_file
+    value: input.txt
+
+actions:
+  - type: for
+    input: input_file
+    enumerator: i
+    yieldToInput: output_file   # feed into for-each action's input
+    actions:
+      - type: execute
+        service: countdown
+        inputs:
+          - id: input
+            var: i
+        outputs:
+          - id: output
+            var: output_file
+```
+</CodeContainer>
+
+In the first iteration of the for-each action, the service reads from the file `input.txt` and writes to an output file with a name generated during runtime. The path of this output file is fed back into the for-each action via `yieldToInput`. In the second iteration, the service reads from the output file and produces another one. This process continues until the number equals 0, in which case the service does not write an output file and the workflow finishes.

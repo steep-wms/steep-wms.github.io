@@ -1,0 +1,19 @@
+By default, every Steep instance spawns only one agent. You can configure the number of agents in the <DocsLink href="#steepyaml">general configuration file</DocsLink> `conf/steep.yaml`. For example, the following configuration will spawn 12 agents:
+
+<CodeContainer title="conf/steep.yaml">
+```yaml
+steep:
+  agents:
+    instances: 12
+```
+</CodeContainer>
+
+Restart Steep for the changes to take effect. Then, open the 'Agents' tab in Steep's UI to see the list of agents: http://localhost:8080/agents
+
+You may also access Steep's HTTP API:
+
+<CodeContainer title="Terminal">
+```shell
+curl http://localhost:8080/agents
+```
+</CodeContainer>

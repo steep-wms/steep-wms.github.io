@@ -1,0 +1,19 @@
+Create a new file `input.txt` with the number 10 in it:
+
+<CodeContainer title="Terminal">
+```shell
+echo 10 > input.txt
+```
+</CodeContainer>
+
+Edit the file `loop-workflow.yaml` that you've created in the previous step and **replace the relative path to `input.txt` with the absolute path to this file on your computer**.
+
+Then, submit the workflow:
+
+<CodeContainer title="Terminal">
+```shell
+curl -X POST http://localhost:8080/workflows --data-binary @loop-workflow.yaml
+```
+</CodeContainer>
+
+Visit the workflow page in Steep's web UI (http://localhost:8080/workflows) and click on the ID of your submitted workflow. After the workflow has finished, it should display ten completed process chains, one for each iteration.

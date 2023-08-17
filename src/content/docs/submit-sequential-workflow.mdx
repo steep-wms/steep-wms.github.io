@@ -1,7 +1,7 @@
 Run the following command on your terminal to submit the new workflow to Steep:
 
 <CodeContainer title="Terminal">
-```bash
+```shell
 curl -X POST http://localhost:8080/workflows --data-binary @download.yaml
 ```
 </CodeContainer>
@@ -11,7 +11,7 @@ Similar to the first tutorial, Steep will return a workflow ID.
 Wait until the workflow has finished. If it was successful, you will find the extracted archive in Steep's output directory:
 
 <CodeContainer title="Terminal">
-```bash
+```shell
 ls /tmp/steep/out/[WORKFLOW ID]
 ```
 </CodeContainer>
@@ -19,7 +19,7 @@ ls /tmp/steep/out/[WORKFLOW ID]
 Since we did not specify the `store` flag for the `download` action, the downloaded `.zip` file will be stored in Steep's temporary directory, which is `/tmp` by default:
 
 <CodeContainer title="Terminal">
-```bash
+```shell
 ls /tmp/[WORKFLOW ID]
 ```
 </CodeContainer>

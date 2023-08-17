@@ -1,0 +1,25 @@
+import Link from "@/components/LinkFix"
+
+Steep comes with a built-in clustering solution based on <Link href="https://vertx.io">Eclipse Vert.x</Link> and <Link href="https://hazelcast.com/">Hazelcast</Link>.
+
+If you run multiple instances of Steep on your local machine, they will automatically form a cluster. For this to work, you have to change the ports for the event bus and the HTTP server of each instance. The <DocsLink href="#http-configuration">default configuration</DocsLink> can be overridden through environment variables.
+
+After <DocsLink href="/docs">downloading</DocsLink> the Steep distribution, open your terminal and change into the directory where you've extracted it. Run the following command:
+
+<CodeContainer title="Terminal">
+```shell
+STEEP_CLUSTER_EVENTBUS_PORT=41187 STEEP_CLUSTER_EVENTBUS_PUBLICPORT=41187 \
+  STEEP_HTTP_PORT=8080 bin/steep
+```
+</CodeContainer>
+
+Run this command as many times as you want but make sure to change the values of `STEEP_CLUSTER_EVENTBUS_PORT`, `STEEP_CLUSTER_EVENTBUS_PUBLICPORT`, and `STEEP_HTTP_PORT` for each instance. For example:
+
+<CodeContainer title="Terminal">
+```shell
+STEEP_CLUSTER_EVENTBUS_PORT=41188 STEEP_CLUSTER_EVENTBUS_PUBLICPORT=41188 \
+  STEEP_HTTP_PORT=8081 bin/steep
+```
+</CodeContainer>
+
+The default configuration will also allow you to run Steep on multiple machines in the same network. The instances will automatically detect each other (through multicasting) and form a cluster. If this does not work (because your firewall does not allow multicasting) or if you need a more advanced distributed deployment across different networks or with specific IP addresses, read the section on <DocsLink href="#cluster-settings">cluster settings</DocsLink>.

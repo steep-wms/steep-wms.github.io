@@ -1,0 +1,36 @@
+import Admonition from "@/components/Admonition"
+
+Next, we need to define the metadata for our new service. Open the file `conf/services/services.yaml` and add the following code:
+
+<CodeContainer title="conf/services/services.yaml">
+```yaml
+- id: countdown
+  name: Count Down
+  description: Read a number, subtract 1, and write the result
+  path: ./countdown.js  # change if necessary
+  runtime: other
+
+  parameters:
+    - id: input
+      name: Input file
+      description: The input file containing the number to decrease
+      type: input
+      cardinality: 1..1
+      dataType: file
+
+    - id: output
+      name: Output file
+      description: The path to the output file
+      type: output
+      cardinality: 1..1
+      dataType: fileOrEmptyList
+```
+</CodeContainer>
+
+Change the `path` attribute to the absolute location of the `countdown.js` file on your system.
+
+Note that we use the data type `fileOrEmptyList` for the service's output parameter. This is a special data type that either returns the generated file or an empty list if the file does not exist. Using the data type `file` would lead to an error during workflow execution.
+
+<Admonition>
+Don't forget to restart Steep for the changes to take effect.
+</Admonition>

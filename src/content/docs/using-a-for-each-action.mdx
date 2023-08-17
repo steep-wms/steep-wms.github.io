@@ -1,0 +1,53 @@
+import Admonition from "@/components/Admonition"
+
+While option A does exactly what we want, it is kind of verbose: The download and extract actions have to be repeated for every file. But what if we wanted to apply this to, say, a hundred or a thousand files?
+
+For this purpose, Steep offers so-called <DocsLink href="#for-each-actions">for-each actions</DocsLink> that iterate over a list of inputs and apply a set of actions to each of them. During workflow execution, Steep is able to automatically convert the individual iterations of a for-each action to independent process chains and run them in parallel.
+
+<Admonition>
+**for-each actions are not loops**! Although, you may be used to general purpose programming languages that sometimes also have a for-each construct, which is executed with a single thread and, hence, sequentially, *for-each* actually just means that something should be applied to *each element of a set*. In our case, a set of actions is applied to each item in the for-each action's input. This can be done in parallel and in any order.
+</Admonition>
+
+The following workflow works exactly like the one from option A but uses a variable and a for-each action instead to reduce boilerplate code.
+
+<CodeContainer title="download-for-each.yaml">
+```yaml generate-json
+api: 4.6.0
+vars:
+  # Download the source code of the Steep website and Steep
+  - id: urls
+    value:
+      - https://github.com/steep-wms/steep-wms.github.io/archive/refs/heads/master.zip
+      - https://github.com/steep-wms/steep/archive/refs/heads/master.zip
+
+actions:
+  - type: for
+    input: urls     # The list of files to download
+    enumerator: i   # The variable name for the current item
+    actions:
+      # Download the current item
+      - type: execute
+        service: download
+        inputs:
+          - id: url
+            var: i
+        outputs:
+          - id: output_file
+            var: o
+
+      # Extract the current item
+      - type: execute
+        service: extract
+        inputs:
+          - id: input_file
+            var: o
+        outputs:
+          - id: destination_directory
+            var: output_directory
+            store: true
+```
+</CodeContainer>
+
+<Admonition>
+We are using a variable with a constant value in this workflow, but it is also possible to apply a for-each action to the output of a service. This is useful if a service produces a directory and you want to process each file in this directory. Specify the data type `directory` for the output parameter in the service's metadata and, after the service has finished, Steep will automatically traverse the directory recursively to collect all files in a list. We will use this approach in the advanced tutorial on <DocsLink href="#segment-aerial-images">segmenting aerial images</DocsLink>.
+</Admonition>

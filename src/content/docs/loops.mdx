@@ -1,0 +1,11 @@
+import Admonition from "@/components/Admonition"
+
+In the workflows from the previous tutorials, data flowed in one direction from one action to the next until the final output was produced. However, sometimes it is necessary to *feed back the results* of one action into a preceding one or even into the same until a certain condition has been reached.
+
+In general purpose programming languages, this concept can be modelled with `while` or `for` loops. Steep has a similar but much more powerful concept. In the <DocsLink href="#parallelization">previous tutorial</DocsLink>, you've learned about for-each actions, which apply a certain set of actions to a list of inputs. This can be used to execute multiple actions in parallel. Also, the list of inputs is dynamic. New items can be appended during workflow execution, which will make Steep automatically generate more process chains. The loop will finish once there are no more items in the input list.
+
+<Admonition>
+Although, for-each actions can be used to model loops, as <DocsLink href="#using-a-for-each-action">described in the previous tutorial</DocsLink>, **for-each actions are not loops per se**! In fact, a for-each action just applies a set of other actions to each item in its input. This can be done in parallel and in any order. The fact that you can append more items to its input list does not change this behaviour. Process chains for new items might be scheduled in parallel to existing process chains or even earlier.
+</Admonition>
+
+This tutorial teaches you how to use the `yieldToInput` keyword to append new items to a for-each action's input list during workflow execution.

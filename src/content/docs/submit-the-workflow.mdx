@@ -1,7 +1,7 @@
 It's now time to submit the workflow to Steep. Run the following command on your terminal:
 
 <CodeContainer title="Terminal">
-```bash
+```shell
 curl -X POST http://localhost:8080/workflows --data-binary @copy.yaml
 ```
 </CodeContainer>
@@ -9,7 +9,7 @@ curl -X POST http://localhost:8080/workflows --data-binary @copy.yaml
 Steep will return a <DocsLink href="#submissions">submission object</DocsLink> with runtime information about the workflow including a unique ID. You can either open the web-based user interface at http://localhost:8080 or monitor the workflow execution on the command line:
 
 <CodeContainer title="Terminal">
-```bash
+```shell
 curl http://localhost:8080/workflows/[WORKFLOW ID]
 ```
 </CodeContainer>
@@ -19,7 +19,7 @@ Replace `[WORKFLOW ID]` with the unique ID returned by Steep after submitting th
 When the workflow has finished, its <DocsLink href="#submission-status">status</DocsLink> will change to `SUCCESS`. You will find the file copy in the output directory, which is `/tmp/steep/out` by default. Steep creates a subdirectory for each workflow based in the workflow's ID:
 
 <CodeContainer title="Terminal">
-```bash
+```shell
 ls /tmp/steep/out/[WORKFLOW ID]
 ```
 </CodeContainer>

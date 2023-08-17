@@ -1,0 +1,13 @@
+<DocsLink href="#submit-the-workflow">Submit the workflows</DocsLink> from above to Steep and familiarize yourself with how it converts them to process chains and what directories and files it generates in the output directory.
+
+Visit the workflow page in Steep's web UI (http://localhost:8080/workflows) and click on the ID of your submitted workflow. It should display two process chains, one for each downloaded file.
+
+List the contents of Steep's output directory for this workflow:
+
+<CodeContainer title="Terminal">
+```shell
+ls /tmp/steep/out/[WORKFLOW ID]
+```
+</CodeContainer>
+
+You should find two sub-directories, one for each extract action output.

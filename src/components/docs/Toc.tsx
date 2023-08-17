@@ -39,7 +39,7 @@ export interface Subsection {
 
 type DraftSubsection =
   | string
-  | (Omit<Subsection, "type" | "slug" | "page"> & { slug?: string })
+  | (Omit<Subsection, "type" | "slug" | "page" | "section"> & { slug?: string })
 type DraftSection =
   | string
   | (Omit<Section, "type" | "slug" | "page" | "subsections"> & {
@@ -67,17 +67,119 @@ const toc: DraftChapter[] = [
           "Processing services",
         ],
       },
+    ],
+  },
+  {
+    title: "Tutorials",
+    pages: [
       {
-        title: "Example workflows",
+        title: "Your first workflow",
         sections: [
-          "Running two services in parallel",
-          "Chaining two services",
-          "Splitting and joining results",
-          "Processing a dynamic number of results in parallel",
-          "Feeding results back into the workflow (cycles/loops)",
+          {
+            title: "Step 1: Add service metadata",
+            slug: "add-service-metadata",
+          },
+          {
+            title: "Step 2: Restart Steep",
+            slug: "restart-steep",
+          },
+          {
+            title: "Step 3: Create the workflow",
+            slug: "create-the-workflow",
+          },
+          {
+            title: "Step 4: Submit the workflow",
+            slug: "submit-the-workflow",
+          },
         ],
       },
-      { title: "Tutorial: Segment aerial images" },
+      {
+        title: "Sequential workflows",
+        sections: [
+          {
+            title: "Step 1: Add more service metadata",
+            slug: "add-more-service-metadata",
+          },
+          {
+            title: "Step 2: Create the workflow",
+            slug: "create-sequential-workflow",
+          },
+          {
+            title: "Step 3: Submit the workflow",
+            slug: "submit-sequential-workflow",
+          },
+        ],
+      },
+      {
+        title: "Parallelization",
+        sections: [
+          {
+            title: "Step 1: Configure Steep for parallelization",
+            slug: "configure-steep-for-parallelization",
+            subsections: [
+              {
+                title: "Spawn multiple agents (vertical scaling)",
+                slug: "spawn-multiple-agents",
+              },
+              {
+                title: "Launch multiple Steep instances (horizontal scaling)",
+                slug: "launch-multiple-steep-instances",
+              },
+            ],
+          },
+          {
+            title: "Step 2: Execute parallel workflows",
+            slug: "execute-parallel-workflows",
+            subsections: [
+              {
+                title: "Option A: Independent actions",
+                slug: "independent-actions",
+              },
+              {
+                title: "Option B: Using a for-each action",
+                slug: "using-a-for-each-action",
+              },
+            ],
+          },
+          {
+            title: "Step 3: Submit parallel workflows",
+            slug: "submit-parallel-workflows",
+          },
+        ],
+      },
+      {
+        title: "Loops",
+        sections: [
+          {
+            title: "Step 1: Create a countdown service",
+            slug: "create-a-countdown-service",
+          },
+          {
+            title: "Step 2: Make the service executable",
+            slug: "make-the-service-executable",
+          },
+          {
+            title: "Step 3: Add service metadata",
+            slug: "add-countdown-metadata",
+          },
+          {
+            title: "Step 4: Create a workflow with a loop",
+            slug: "create-loop-workflow",
+          },
+          {
+            title: "Step 5: Submit the workflow",
+            slug: "submit-loop-workflow",
+          },
+        ],
+      },
+      {
+        title: "Advanced: Segment aerial images",
+        slug: "segment-aerial-images",
+      },
+      {
+        title: "Advanced: Bring your own service",
+        slug: "bring-your-own-service",
+      },
     ],
   },
   {
