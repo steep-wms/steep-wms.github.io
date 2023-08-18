@@ -60,7 +60,7 @@
     "lodash": "^4.17.21",
     "lucide-react": "0.268.0",
     "minisearch": "^6.1.0",
-    "next": "^13.4.17",
+    "next": "^13.4.18",
     "postcss": "^8.4.28",
     "prettier-plugin-tailwindcss": "^0.5.3",
     "pure-rand": "^6.0.2",
