@@ -4,7 +4,7 @@ interface AdmonitionProps {
 
 const Admonition = ({ children }: AdmonitionProps) => {
   return (
-    <div className="bg-gray-100 prose p-4 border-l-4 border-primary">
+    <div className="bg-gray-100 prose my-4 p-4 border-l-4 border-primary">
       {children}
     </div>
   )

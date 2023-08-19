@@ -1,6 +1,10 @@
 import Admonition from '@/components/Admonition'
 
-Let's assume we want to create a workflow that creates a copy of a file. For this, we can use the `cp` command, which is built-in into all UNIX distributions (under Windows, you can use the `copy` command instead). Open the file `conf/services/services.yaml` and add the following service metadata:
+Let's assume we want to create a workflow that creates a copy of a file. For this, we can use the `cp` command, which is built-in into all UNIX distributions (under Windows, you can use the `copy` command instead). Open the file `conf/services/services.yaml` and add service metadata below.
+
+<Admonition>
+The default distribution of Steep already contains metadata for this service, so you actually don't need to do anything here.
+</Admonition>
 
 <CodeContainer title="conf/services/services.yaml">
 ```yaml
@@ -31,6 +35,8 @@ This metadata describes a service with the ID `cp`. It has a human-readable `nam
 
 The service has two parameters, `input_file` and `output_file`, which represent the service's input and output parameters, respectively. Both have a cardinality of `1..1`, which means they are mandatory. They also have human-readable names and descriptions.
 
-<Admonition>
-The default distribution of Steep already contains metadata for this service, so you actually don't need to do anything here.
-</Admonition>
+Steep uses this metadata later during workflow execution to generate a command line in the following form:
+
+```text
+cp <input_file> <output_file>
+```

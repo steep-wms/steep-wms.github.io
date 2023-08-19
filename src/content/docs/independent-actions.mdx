@@ -1,4 +1,6 @@
-While processing the workflow graph, Steep looks for independent sequences of actions and converts them to <DocsLink href="#process-chains">process chains</DocsLink>. The following workflow contains four actions (two download actions and two extract actions). As described in the previous tutorial, Steep automatically detects dependencies between the actions. In this case, the first extract action depends on the output of the first download action, and the second extract action depends on the second download action. Both pairs of actions are, however, independent. Steep <DocsLink href="#workflow-scheduling">converts them to different process chains</DocsLink>, which can then be executed in parallel.
+import DownloadExtractParallel from "../../assets/download-extract-parallel.svg?drawio"
+
+While processing the workflow graph, Steep looks for independent sequences of actions and converts them to <DocsLink href="#process-chains">process chains</DocsLink>. The following workflow contains four actions (two download actions and two extract actions). There are two output variables `o1` and `o2` that connect the services with each other.
 
 <CodeContainer title="download-independent-actions.yaml">
 ```yaml generate-json
@@ -47,3 +49,9 @@ actions:
         store: true
 ```
 </CodeContainer>
+
+As described in the previous tutorial, Steep automatically detects dependencies between the actions. In this case, the first extract action depends on the output of the first download action (`o1`), and the second extract action depends on the second download action (`o2`).
+
+<DownloadExtractParallel className="my-8" />
+
+Both pairs of actions are independent. Steep <DocsLink href="#workflow-scheduling">converts them to different process chains</DocsLink>, which can then be executed in parallel.

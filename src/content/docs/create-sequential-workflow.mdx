@@ -1,3 +1,5 @@
+import DownloadExtract from "../../assets/download-extract.svg?drawio"
+
 Create a new file `download.yaml` and paste the following workflow into it:
 
 <CodeContainer title="download.yaml">
@@ -29,3 +31,5 @@ The workflow consists of two <DocsLink href="#execute-actions">execute actions</
 
 Steep is able to automatically detect the dependency between the two actions based on their inputs and outputs.
 The output of the `download` action is stored in the variable `o1`, which is in turn used as input for the `extract` action. This tells Steep to execute the download action first, wait for it to finish, and then execute the extract action.
+
+<DownloadExtract className="my-8 text-black dark:text-white" />
