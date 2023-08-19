@@ -17,12 +17,12 @@ function withOpacity(variableName) {
 }
 
 const fallbackFonts = [
+  "Roboto",
   "ui-sans-serif",
   "system-ui",
   "-apple-system",
   "BlinkMacSystemFont",
   "Segoe UI",
-  "Roboto",
   "Helvetica Neue",
   "Arial",
   "Noto Sans",
