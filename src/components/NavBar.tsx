@@ -254,6 +254,7 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
                   <Link
                     href="https://github.com/steep-wms/steep"
                     className="group"
+                    aria-label="GitHub"
                   >
                     <SimpleIcon
                       icon={siGithub}
