@@ -37,9 +37,12 @@ const GenerateProcessChainsExample = ({
 
   return (
     <div
-      className={clsx("font-normal mx-auto my-6 max-w-[11rem]", {
-        "[&_[data-animation-id]]:hidden": !animated,
-      })}
+      className={clsx(
+        "text-black dark:text-white font-normal mx-auto my-6 max-w-[11rem]",
+        {
+          "[&_[data-animation-id]]:hidden": !animated,
+        },
+      )}
       ref={scope}
     >
       <GenerateProcessChains />

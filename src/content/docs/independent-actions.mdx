@@ -52,6 +52,6 @@ actions:
 
 As described in the previous tutorial, Steep automatically detects dependencies between the actions. In this case, the first extract action depends on the output of the first download action (`o1`), and the second extract action depends on the second download action (`o2`).
 
-<DownloadExtractParallel className="my-8" />
+<DownloadExtractParallel className="my-8 text-black dark:text-white" />
 
 Both pairs of actions are independent. Steep <DocsLink href="#workflow-scheduling">converts them to different process chains</DocsLink>, which can then be executed in parallel.
