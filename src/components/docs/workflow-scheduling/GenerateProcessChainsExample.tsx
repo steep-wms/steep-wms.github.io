@@ -1,7 +1,6 @@
 "use client"
 
-import GenerateProcessChains from "../../../assets/generate-process-chains-inlined-styles.svg?source"
-import GenerateProcessChainsLight from "../../../assets/generate-process-chains-light-inlined-styles.svg?source"
+import GenerateProcessChains from "../../../assets/generate-process-chains.svg?drawio"
 import clsx from "clsx"
 import { AnimationSequence, useAnimate } from "framer-motion"
 import { useEffect } from "react"
@@ -16,53 +15,21 @@ const GenerateProcessChainsExample = ({
   const [scope, animate] = useAnimate()
 
   useEffect(() => {
-    animate(
-      ".docs-image-generate-process-chains-box1",
-      { opacity: 0 },
-      { duration: 0 },
-    )
-    animate(
-      ".docs-image-generate-process-chains-box2",
-      { opacity: 0 },
-      { duration: 0 },
-    )
-    animate(
-      ".docs-image-generate-process-chains-box3",
-      { opacity: 0 },
-      { duration: 0 },
-    )
-    animate(
-      ".docs-image-generate-process-chains-box4",
-      { opacity: 0 },
-      { duration: 0 },
-    )
+    animate("[data-animation-id=red]", { opacity: 0 }, { duration: 0 })
+    animate("[data-animation-id=blue1]", { opacity: 0 }, { duration: 0 })
+    animate("[data-animation-id=blue2]", { opacity: 0 }, { duration: 0 })
+    animate("[data-animation-id=green]", { opacity: 0 }, { duration: 0 })
 
     if (animated) {
       let sequence: AnimationSequence = [
-        [".docs-image-generate-process-chains-box1", { opacity: 1 }, { at: 1 }],
-        [".docs-image-generate-process-chains-box2", { opacity: 1 }, { at: 2 }],
-        [".docs-image-generate-process-chains-box3", { opacity: 1 }, { at: 2 }],
-        [".docs-image-generate-process-chains-box4", { opacity: 1 }, { at: 3 }],
-        [
-          ".docs-image-generate-process-chains-box1",
-          { opacity: 0 },
-          { at: 4.5 },
-        ],
-        [
-          ".docs-image-generate-process-chains-box2",
-          { opacity: 0 },
-          { at: 4.5 },
-        ],
-        [
-          ".docs-image-generate-process-chains-box3",
-          { opacity: 0 },
-          { at: 4.5 },
-        ],
-        [
-          ".docs-image-generate-process-chains-box4",
-          { opacity: 0 },
-          { at: 4.5 },
-        ],
+        ["[data-animation-id=red]", { opacity: 1 }, { at: 1 }],
+        ["[data-animation-id=blue1]", { opacity: 1 }, { at: 2 }],
+        ["[data-animation-id=blue2]", { opacity: 1 }, { at: 2 }],
+        ["[data-animation-id=green]", { opacity: 1 }, { at: 3 }],
+        ["[data-animation-id=red]", { opacity: 0 }, { at: 4.5 }],
+        ["[data-animation-id=blue1]", { opacity: 0 }, { at: 4.5 }],
+        ["[data-animation-id=blue2]", { opacity: 0 }, { at: 4.5 }],
+        ["[data-animation-id=green]", { opacity: 0 }, { at: 4.5 }],
       ]
       animate(sequence, { repeat: Infinity })
     }
@@ -70,20 +37,12 @@ const GenerateProcessChainsExample = ({
 
   return (
     <div
-      className={clsx("mx-auto my-10 max-w-[10rem]", {
-        "[&_.docs-image-generate-process-chains-box1]:hidden [&_.docs-image-generate-process-chains-box2]:hidden [&_.docs-image-generate-process-chains-box3]:hidden [&_.docs-image-generate-process-chains-box4]:hidden":
-          !animated,
+      className={clsx("font-normal mx-auto my-6 max-w-[11rem]", {
+        "[&_[data-animation-id]]:hidden": !animated,
       })}
       ref={scope}
     >
-      <div
-        className="dark:hidden"
-        dangerouslySetInnerHTML={{ __html: GenerateProcessChains }}
-      />
-      <div
-        className="hidden dark:block"
-        dangerouslySetInnerHTML={{ __html: GenerateProcessChainsLight }}
-      />
+      <GenerateProcessChains />
     </div>
   )
 }
