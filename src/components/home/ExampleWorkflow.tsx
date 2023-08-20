@@ -1,7 +1,7 @@
 "use client"
 
 import Container from "../Container"
-import Link from "../LinkFix"
+import DocsLink from "../DocsLink"
 import useInViewEx from "../hooks/useInViewEx"
 import Orthophoto from "./Orthophoto"
 import SegmentWorkflow from "./SegmentWorkflow.mdx"
@@ -47,12 +47,12 @@ const ExampleWorkflow = () => {
               executes them in parallel if possible.
             </p>
 
-            <Link href="/docs/tutorial-segment-aerial-images">
+            <DocsLink href="#segment-aerial-images">
               <Button className="text-sm">
                 Read full tutorial
                 <ChevronRight size="16" className="ml-1" />
               </Button>
-            </Link>
+            </DocsLink>
           </div>
           <div className="bottom-0 right-0 md:mx-auto md:w-4/5 lg:absolute lg:mx-0 lg:w-3/5">
             <Orthophoto t0={0.5} />
