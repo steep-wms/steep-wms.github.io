@@ -11,7 +11,7 @@ const ShowcasePage = () => {
       </h1>
       <Container
         type="2xl"
-        className="mt-20 mb-10 grid gap-10 px-2 [grid-template-columns:16rem_minmax(0,1fr)_16rem]"
+        className="mt-20 mb-10 grid gap-10 [grid-template-columns:16rem_minmax(0,1fr)_16rem]"
       >
         Hello world
       </Container>

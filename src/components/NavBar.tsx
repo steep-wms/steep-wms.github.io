@@ -207,7 +207,7 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
               : "border-opacity-100",
           )}
         >
-          <div className="flex max-w-screen-2xl flex-1 items-center justify-between px-2">
+          <div className="flex max-w-screen-2xl flex-1 items-center justify-between px-2 sm:px-4 lg:px-6">
             <div className="flex flex-1 items-center justify-between lg:hidden">
               <div className="mb-1">
                 <Logo onClick={() => setCollapsed(false)} />

@@ -1,15 +1,15 @@
 "use client"
 
-import NavBar from "@/components/NavBar"
-import Footer from "@/components/Footer"
+import * as Dialog from "@radix-ui/react-dialog"
 import Container from "@/components/Container"
+import Footer from "@/components/Footer"
+import NavBar from "@/components/NavBar"
+import ScrollObserver from "@/components/docs/ScrollObserver"
 import SidebarLeft from "@/components/docs/SidebarLeft"
 import SidebarRight from "@/components/docs/SidebarRight"
-import ScrollObserver from "@/components/docs/ScrollObserver"
 import TocNavBar from "@/components/docs/TocNavBar"
-import { useState } from "react"
-import * as Dialog from "@radix-ui/react-dialog"
 import { X } from "lucide-react"
+import { useState } from "react"
 
 const DocsLayout = ({ children }: { children: React.ReactNode }) => {
   const [activeSection, setActiveSection] = useState<string | undefined>(
@@ -24,7 +24,7 @@ const DocsLayout = ({ children }: { children: React.ReactNode }) => {
       <Container
         id="docs-layout"
         type="2xl"
-        className="mb-10 grid gap-10 xl:gap-6 2xl:gap-10 px-2 [grid-template-columns:minmax(0,1fr)] lg:[grid-template-columns:16rem_minmax(0,1fr)] xl:[grid-template-columns:14rem_minmax(0,1fr)_14rem] 2xl:[grid-template-columns:16rem_minmax(0,1fr)_16rem]"
+        className="mb-10 grid gap-10 xl:gap-6 2xl:gap-10 [grid-template-columns:minmax(0,1fr)] lg:[grid-template-columns:16rem_minmax(0,1fr)] xl:[grid-template-columns:14rem_minmax(0,1fr)_14rem] 2xl:[grid-template-columns:16rem_minmax(0,1fr)_16rem]"
       >
         <SidebarLeft className="hidden lg:flex pt-24" />
         <ScrollObserver onChangeSlug={slug => setActiveSection(slug)}>

@@ -3,7 +3,7 @@ import Container from "../Container"
 
 const MoreFeatures = () => {
   return (
-    <Container type="xl" className="prose">
+    <Container type="xl" className="prose 2xl:px-2">
       <h2 className="mb-0 text-center text-[1.8em] font-normal leading-[1.6]">
         But wait, there’s more!
       </h2>

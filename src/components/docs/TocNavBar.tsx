@@ -12,7 +12,7 @@ interface TocNavBarProps {
 const TocNavBar = ({ isOpen, setIsOpen }: TocNavBarProps) => {
   const segment = useSelectedLayoutSegment()
   return (
-    <nav className="flex fixed left-0 right-0 top-16 h-16 z-50 lg:hidden bg-bg bg-opacity-80 backdrop-blur-sm items-center pl-0.5 pr-2 gap-2 border-b border-gray-200">
+    <nav className="flex fixed left-0 right-0 top-16 h-16 z-50 lg:hidden bg-bg bg-opacity-80 backdrop-blur-sm items-center pl-0.5 sm:pl-2.5 pr-2 gap-2 border-b border-gray-200">
       <div>
         <Hamburger
           label="Show table of contents"

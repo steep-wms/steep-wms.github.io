@@ -18,7 +18,7 @@ const Container = ({
     <section
       id={id}
       className={clsx(
-        "mx-auto flex flex-col px-2",
+        "mx-auto flex flex-col px-2 sm:px-4 lg:px-6",
         {
           "max-w-screen-2xl": type === "2xl",
           "max-w-screen-xl": type === "xl",

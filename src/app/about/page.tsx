@@ -92,10 +92,10 @@ const About = () => {
         </section>
       </Container>
       <Divider />
-      <Container type="md">
+      <Container type="lg">
         <section id="contact" className="prose mb-40">
           <h2 className="mb-10 text-center text-4xl">Contact us</h2>
-          <p className="text-center lead">
+          <p className="text-center lead max-w-2xl mx-auto">
             If you have questions about Steep, or if you want to discuss
             interesting ideas and projects, feel free to drop us an email.
           </p>

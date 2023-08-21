@@ -14,7 +14,7 @@ const CloudSupport = () => {
 
   return (
     <div className="bg-gradient-to-b from-gray-200/0 via-gray-200/40 to-gray-200/0 dark:from-gray-200/0 dark:via-gray-200/30 dark:to-gray-200/0">
-      <Container type="xl">
+      <Container type="xl" className="2xl:px-2">
         <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-2">
           <div className="relative row-start-2 text-sm lg:row-start-1 lg:mb-8 lg:mt-14">
             <Setup />
