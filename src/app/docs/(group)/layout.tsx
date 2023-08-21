@@ -24,7 +24,7 @@ const DocsLayout = ({ children }: { children: React.ReactNode }) => {
       <Container
         id="docs-layout"
         type="2xl"
-        className="mb-10 grid gap-10 xl:gap-6 2xl:gap-10 [grid-template-columns:minmax(0,1fr)] lg:[grid-template-columns:16rem_minmax(0,1fr)] xl:[grid-template-columns:14rem_minmax(0,1fr)_14rem] 2xl:[grid-template-columns:16rem_minmax(0,1fr)_16rem]"
+        className="mb-10 grid gap-10 xl:gap-8 2xl:gap-10 [grid-template-columns:minmax(0,1fr)] lg:[grid-template-columns:16rem_minmax(0,1fr)] xl:[grid-template-columns:15rem_minmax(0,1fr)_15rem] 2xl:[grid-template-columns:16rem_minmax(0,1fr)_16rem]"
       >
         <SidebarLeft className="hidden lg:flex pt-24" />
         <ScrollObserver onChangeSlug={slug => setActiveSection(slug)}>
