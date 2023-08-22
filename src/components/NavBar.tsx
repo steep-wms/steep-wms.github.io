@@ -218,8 +218,12 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
                   id="navbar-toggle-menu-button"
                   className="inline-flex select-none items-center justify-center text-gray-800"
                   onClick={() => setCollapsed(!collapsed)}
+                  aria-label={collapsed ? "Close menu" : "Open menu"}
                 >
-                  <Hamburger toggled={collapsed} />
+                  <Hamburger
+                    toggled={collapsed}
+                    label={collapsed ? "Close menu" : "Open menu"}
+                  />
                 </button>
               </div>
             </div>

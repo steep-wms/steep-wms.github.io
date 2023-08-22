@@ -32,6 +32,7 @@ const QuickSearch = ({ onClick }: QuickSearchProps) => {
           onClick?.()
           setSearchDialogOpen(true)
         }}
+        aria-label="Search docs ..."
       >
         <Search size="1.75rem" />
       </button>

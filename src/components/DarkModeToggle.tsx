@@ -65,7 +65,9 @@ const DarkModeToggle = ({ id }: DarkModeToggleProps) => {
 
   return (
     <button
-      aria-label="auto"
+      aria-label={
+        theme === "dark" ? "Activate light mode" : "Activate dark mode"
+      }
       aria-live="polite"
       onClick={() => onToggle()}
       className="aspect-square cursor-pointer touch-manipulation rounded-full text-gray-600 outline-offset-[5px] transition-colors hover:text-gray-800"

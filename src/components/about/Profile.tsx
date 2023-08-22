@@ -39,17 +39,20 @@ const Profile = ({
         loading="lazy"
         className="w-36 rounded-full"
       />
-      <h4 className="mb-2 mt-5 text-xl font-normal">{name}</h4>
+      <h3 className="mb-2 mt-5 text-xl font-normal">{name}</h3>
       <Balancer>{role}</Balancer>
       <div className="mt-3 flex gap-3">
         <Tooltip content="Email">
-          <Link href={`mailto:${mail}`}>
+          <Link href={`mailto:${mail}`} aria-label={`Send ${name} an email`}>
             <Mail className="transition-colors hover:stroke-gray-600" />
           </Link>
         </Tooltip>
         {githubUser !== undefined ? (
           <Tooltip content="GitHub">
-            <Link href={`https://github.com/${githubUser}`}>
+            <Link
+              href={`https://github.com/${githubUser}`}
+              aria-label={`${name}'s GitHub profile`}
+            >
               <SimpleIcon
                 icon={siGithub}
                 className="transition-colors hover:fill-gray-600"
@@ -60,7 +63,7 @@ const Profile = ({
         ) : undefined}
         {website !== undefined ? (
           <Tooltip content="Website">
-            <Link href={website}>
+            <Link href={website} aria-label={`${name}'s Website`}>
               <Home className="transition-colors hover:stroke-gray-600" />
             </Link>
           </Tooltip>
