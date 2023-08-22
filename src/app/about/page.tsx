@@ -6,6 +6,8 @@ import NavBar from "@/components/NavBar"
 import Divider from "@/components/about/Divider"
 import Profile from "@/components/about/Profile"
 import SocialButton from "@/components/about/SocialButton"
+import { robotoBold } from "@/components/lib/roboto-bold"
+import clsx from "clsx"
 import { Mail } from "lucide-react"
 import { Metadata } from "next"
 import { siGithub, siInstagram, siLinkedin, siX, siYoutube } from "simple-icons"
@@ -18,7 +20,11 @@ const About = () => {
   return (
     <>
       <NavBar />
-      <h1 className="mt-40 text-center text-5xl font-bold text-gray-900">
+      <h1
+        className={clsx(
+          `${robotoBold.variable} mt-40 text-center text-5xl font-bold text-gray-900`,
+        )}
+      >
         About
       </h1>
       <Divider />

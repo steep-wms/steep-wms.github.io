@@ -45,6 +45,8 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ["var(--font-roboto)", ...fallbackFonts],
+      bold: ["var(--font-roboto-bold)", ...fallbackFonts],
+      black: ["var(--font-roboto-black)", ...fallbackFonts],
       mono: 'Menlo,var(--font-dejavu),SFMono-Regular,Monaco,Consolas,"Liberation Mono","Courier New",monospace',
     },
     colors: {

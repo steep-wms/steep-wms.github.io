@@ -1,12 +1,18 @@
 import Container from "@/components/Container"
 import Link from "@/components/LinkFix"
+import { robotoBold } from "@/components/lib/roboto-bold"
 import Presentation from "@/components/showcase/Presentation"
 import ResearchItem from "@/components/showcase/ResearchItem"
+import clsx from "clsx"
 
 const ShowcasePage = () => {
   return (
     <>
-      <h1 className="mt-40 text-center text-5xl font-bold text-gray-900">
+      <h1
+        className={clsx(
+          `${robotoBold.variable} mt-40 text-center text-5xl font-bold text-gray-900`,
+        )}
+      >
         Showcase
       </h1>
       <Container

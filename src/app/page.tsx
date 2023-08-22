@@ -7,6 +7,8 @@ import Microservices from "@/components/home/Microservices"
 import MoreFeatures from "@/components/home/MoreFeatures"
 import Showcase from "@/components/home/Showcase"
 import WebUI from "@/components/home/WebUI"
+import { robotoBlack } from "@/components/lib/roboto-black"
+import clsx from "clsx"
 import Balancer, { Provider } from "react-wrap-balancer"
 
 const Home = () => {
@@ -15,7 +17,9 @@ const Home = () => {
       <NavBar fixed={false} />
       <section
         id="hero"
-        className="mx-auto mt-10 flex min-h-[780px] max-w-screen-2xl flex-col items-center justify-center px-2 md:mt-0"
+        className={clsx(
+          `${robotoBlack.variable} mx-auto mt-10 flex min-h-[780px] max-w-screen-2xl flex-col items-center justify-center px-2 md:mt-0`,
+        )}
       >
         <h1 className="mx-8 mb-5 text-center text-[3.4rem] font-black leading-[1.1] text-gray-900">
           <Balancer>

@@ -1,6 +1,8 @@
 import Container from "@/components/Container"
 import Footer from "@/components/Footer"
 import NavBar from "@/components/NavBar"
+import { robotoBold } from "@/components/lib/roboto-bold"
+import clsx from "clsx"
 import { rehype } from "rehype"
 import { visit } from "unist-util-visit"
 
@@ -55,7 +57,11 @@ const Legal = async ({ url, title }: LegalProps) => {
   return (
     <>
       <NavBar />
-      <h1 className="mb-20 mt-40 text-center text-5xl font-bold text-gray-900">
+      <h1
+        className={clsx(
+          `${robotoBold.variable} mb-20 mt-40 text-center text-5xl font-bold text-gray-900`,
+        )}
+      >
         {title}
       </h1>
       <Container type="md">
