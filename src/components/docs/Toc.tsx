@@ -58,7 +58,7 @@ const toc: DraftChapter[] = [
   {
     title: "Introduction",
     pages: [
-      { title: "Get started", slug: "" },
+      { title: "Get started", slug: "", sections: ["What to read next"] },
       {
         title: "How does Steep work?",
         sections: [
