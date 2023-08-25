@@ -15,8 +15,8 @@ The workflow consists of two steps:
 
   <div className="flex flex-row items-center max-w-lg">
     <Tiles gap={false} />
-    <div className="flex w-fit items-center">
-      <ChevronRight size="2rem" className="m-0" />
+    <div className="flex w-28 items-center">
+      <ChevronRight height="100%" width="100%" />
     </div>
     <Tiles />
   </div>
@@ -28,15 +28,18 @@ The workflow consists of two steps:
 
   <div className="flex flex-row items-center max-w-lg">
     <Tiles />
-    <div className="flex w-fit items-center">
-      <ChevronRight size="2rem" className="m-0" />
+    <div className="flex flex-col w-28 items-center">
+      <ChevronRight height="100%" width="100%" className="m-0" />
+      <ChevronRight height="100%" width="100%" className="m-0" />
+      <ChevronRight height="100%" width="100%" className="m-0" />
+      <ChevronRight height="100%" width="100%" className="m-0" />
     </div>
     <Tiles masks={true} />
   </div>
 </div>
 
-The actions in the second workflow step are intended to run in parallel. Be default, each Steep instance spawns only one agent, so the actions will be executed sequentially. If you want to execute this workflow as it is intended, you need to enable <DocsLink href="#parallelization">parallelization</DocsLink>.
+The actions in the second workflow step are intended to run in parallel. If you've just installed Steep, you will most likely want to enable <DocsLink href="#parallelization">parallelization</DocsLink>.
 
 <Admonition>
-Note that each instance of the segmentation service requires up 6 GB of RAM. If you want to run the workflow on a single machine only, limit the number of agents so that you don't exceed your main memory.
+Note that each instance of the segmentation service requires up 6 GB of RAM. If you wish to run the workflow on a single machine only, limit the number of agents so that you don't exceed your main memory.
 </Admonition>

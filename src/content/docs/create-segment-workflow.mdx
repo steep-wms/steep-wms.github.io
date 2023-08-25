@@ -33,6 +33,6 @@ actions:
 ```
 </CodeContainer>
 
-The workflow first applies the tiling service `tile` to the input image. The service writes its results into a directory. We then use a for-each action to apply the segmentation service `segment` to each image tile in this directory. Steep will create a new process chain for each image tile and execute them in parallel if possible.
+The workflow first applies the tiling service `tile` to the input image. The service writes its results into a directory. The segmentation service `segment` is then applied in a for-each action to each image tile in this directory. Steep will create a new process chain for each image tile and execute them in parallel if possible.
 
 <SegmentAerialImages className="my-8 text-black dark:text-white" />
