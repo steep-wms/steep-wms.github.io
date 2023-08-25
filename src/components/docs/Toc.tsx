@@ -172,13 +172,51 @@ const toc: DraftChapter[] = [
           },
         ],
       },
+    ],
+  },
+  {
+    title: "Advanced tutorials",
+    pages: [
       {
-        title: "Advanced: Segment aerial images",
-        slug: "segment-aerial-images",
+        title: "Segment aerial images",
+        sections: [
+          "What we are going to do",
+          {
+            title: "Step 1: Add service metadata",
+            slug: "add-segment-metadata",
+          },
+          {
+            title: "Step 2: Configure Steep",
+            slug: "configure-steep",
+            subsections: [
+              "Change temporary and output paths",
+              "Mount data directory",
+              {
+                title: "Restart Steep",
+                slug: "restart-steep-segment",
+              },
+            ],
+          },
+          {
+            title: "Step 3: Download input data",
+            slug: "download-input-data",
+          },
+          {
+            title: "Step 4: Create the workflow",
+            slug: "create-segment-workflow",
+          },
+          {
+            title: "Step 5: Submit the workflow",
+            slug: "submit-segment-workflow",
+          },
+          {
+            title: "Optional: Enable GPU acceleration",
+            slug: "enable-gpu-acceleration",
+          },
+        ],
       },
       {
-        title: "Advanced: Bring your own service",
-        slug: "bring-your-own-service",
+        title: "Bring your own service",
       },
     ],
   },

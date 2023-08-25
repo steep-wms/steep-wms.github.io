@@ -1,0 +1,42 @@
+import Admonition from "@/components/Admonition"
+import Link from "@/components/LinkFix"
+import Tiles from "@/components/docs/segment-aerial-images/Tiles"
+import { ChevronRight } from "lucide-react"
+
+In this tutorial, we will apply a tiling service and a segmentation service to an aerial image. The segmentation service is based on [segment-geospatial](https://samgeo.gishub.org/samgeo/), which in turn uses Facebook's [Segment Anything](https://segment-anything.com/) AI model. Both services are provided as pre-built <Link href="https://github.com/steep-wms/segment-aerial-images">Docker images on GitHub</Link>.
+
+The workflow consists of two steps:
+
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4 lg:gap-y-8 not-prose my-8 items-start">
+  <div>
+    <div className="text-lg font-normal mb-2">Split input image into tiles</div>
+    <p>The <em>tiling service</em> splits the input image into four smaller tiles.</p>
+  </div>
+
+  <div className="flex flex-row items-center max-w-lg">
+    <Tiles gap={false} />
+    <div className="flex w-fit items-center">
+      <ChevronRight size="2rem" className="m-0" />
+    </div>
+    <Tiles />
+  </div>
+
+  <div className="mt-4 lg:mt-0">
+    <div className="text-lg font-normal mb-2">Segment image tiles</div>
+    <p>We apply the <em>segmentation service</em> in a for-each action to each image tile and create mask images representing the segmentation results.</p>
+  </div>
+
+  <div className="flex flex-row items-center max-w-lg">
+    <Tiles />
+    <div className="flex w-fit items-center">
+      <ChevronRight size="2rem" className="m-0" />
+    </div>
+    <Tiles masks={true} />
+  </div>
+</div>
+
+The actions in the second workflow step are intended to run in parallel. Be default, each Steep instance spawns only one agent, so the actions will be executed sequentially. If you want to execute this workflow as it is intended, you need to enable <DocsLink href="#parallelization">parallelization</DocsLink>.
+
+<Admonition>
+Note that each instance of the segmentation service requires up 6 GB of RAM. If you want to run the workflow on a single machine only, limit the number of agents so that you don't exceed your main memory.
+</Admonition>

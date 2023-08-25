@@ -1,0 +1,38 @@
+import SegmentAerialImages from "../../assets/segment-aerial-images.svg?drawio"
+
+Create a new file `segment.yaml` and paste the following workflow into it:
+
+<CodeContainer title="segment.yaml">
+```yaml generate-json
+api: 4.6.0
+actions:
+  - type: execute
+    service: tile
+    inputs:
+      - id: input_file
+        value: /data/dop20_32_475_5524_1_he.jpg
+      - id: num_tiles
+        value: 2
+    outputs:
+      - id: output_directory
+        var: tiles
+
+  - type: for
+    enumerator: i
+    input: tiles
+    actions:
+      - type: execute
+        service: segment-geospatial
+        inputs:
+          - id: input_file
+            var: i
+        outputs:
+          - id: output_file
+            var: mask_image
+            store: true
+```
+</CodeContainer>
+
+The workflow first applies the tiling service `tile` to the input image. The service writes its results into a directory. We then use a for-each action to apply the segmentation service `segment-geospatial` to each image tile in this directory. Steep will create a new process chain for each image tile and execute them in parallel if possible.
+
+<SegmentAerialImages className="my-8 text-black dark:text-white" />
