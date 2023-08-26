@@ -1,49 +1,57 @@
 import clsx from "clsx"
 
 interface TilesProps {
+  n: number
+  src: string
+  avifsrc?: string
   masks: boolean
   gap: boolean
+  imageSize?: number
 }
 
-const Tiles = ({ masks = false, gap = true }: TilesProps) => {
-  const n = 2
-
+const Tiles = ({
+  n,
+  src,
+  avifsrc = undefined,
+  gap = true,
+  imageSize = 500,
+}: TilesProps) => {
   let tiles = []
   for (let y = 0; y < n; ++y) {
     for (let x = 0; x < n; ++x) {
       tiles.push(
         <svg
-          viewBox={`0 0 ${650 / n} ${650 / n}`}
+          viewBox={`0 0 ${imageSize / n} ${imageSize / n}`}
           key={`${x}_${y}_mask`}
           className="h-full w-full"
         >
           <foreignObject
-            width={650}
-            height={650}
-            y={-y * (650 / n)}
-            x={-x * (650 / n)}
+            width={imageSize}
+            height={imageSize}
+            y={-y * (imageSize / n)}
+            x={-x * (imageSize / n)}
           >
-            {!masks ? (
+            {avifsrc === undefined ? (
               <img
                 alt="Tile"
-                src={`${process.env.basePath}/images/home/tiles.jpg`}
-                width={650}
-                height={650}
+                src={src}
+                width={imageSize}
+                height={imageSize}
                 loading="lazy"
               />
             ) : (
               <picture>
                 <source
-                  srcSet={`${process.env.basePath}/images/home/masks.webp`}
-                  type="image/webp"
-                  width={650}
-                  height={650}
+                  srcSet={avifsrc}
+                  type="image/avif"
+                  width={imageSize}
+                  height={imageSize}
                 />
                 <img
                   alt="Tile"
-                  src={`${process.env.basePath}/images/home/masks.jpg`}
-                  width={650}
-                  height={650}
+                  src={src}
+                  width={imageSize}
+                  height={imageSize}
                   loading="lazy"
                 />
               </picture>
@@ -55,7 +63,7 @@ const Tiles = ({ masks = false, gap = true }: TilesProps) => {
   }
 
   return (
-    <div className={clsx("grid grid-cols-2", { "gap-1": gap })}>{tiles}</div>
+    <div className={clsx(`grid grid-cols-${n}`, { "gap-1": gap })}>{tiles}</div>
   )
 }
 

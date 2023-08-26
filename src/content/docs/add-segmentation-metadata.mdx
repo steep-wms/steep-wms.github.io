@@ -1,1 +1,71 @@
-TODO
+import Link from "@/components/LinkFix"
+
+Similar to the previous tutorials, we need to add metadata for the two services. Open the file `conf/services/services.yaml` and add the following code to it to describe the tiling service:
+
+<CodeContainer title="conf/services/services.yaml">
+```yaml
+- id: tile
+  name: Tiling
+  description: Split an image into tiles
+  path: ghcr.io/steep-wms/aerial-image-segmentation/tiling-service:1.0.0
+  runtime: docker
+
+  parameters:
+    - id: input_file
+      name: Input image
+      description: The input image to tile
+      type: input
+      cardinality: 1..1
+      dataType: string
+
+    - id: output_directory
+      name: Output directory
+      description: The directory where the tiles should be stored
+      type: output
+      cardinality: 1..1
+      dataType: directory
+
+    - id: num_tiles
+      name: Number of columns/rows
+      description: >-
+        The number of columns and rows to split the image into. A value of
+        5 means the image will be split into 5x5 tiles.
+      type: input
+      cardinality: 1..1
+      dataType: string
+```
+</CodeContainer>
+
+The service has three parameters: one for the input image file, one for the output directory where the tiles will be stored, and one specifying the number of columns and rows to split the image into. Regarding the latter, a value of 5 means the image will be split into 5x5 (=25) tiles.
+
+As the service is provided as a pre-compiled <Link href="https://github.com/steep-wms/aerial-image-segmentation">Docker image on GitHub</Link>, we set the attribute `path` to the Docker image name and the attribute `runtime` to `docker`.
+
+Now, add the metadata for the segmentation service:
+
+<CodeContainer title="conf/services/services.yaml">
+```yaml
+- id: segment
+  name: Image segmentation
+  description: Segment geospatial data with the Segment Anything Model (SAM)
+  path: ghcr.io/steep-wms/aerial-image-segmentation/segmentation-service:1.0.0
+  runtime: docker
+
+  parameters:
+    - id: input_file
+      name: Input image
+      description: The input image to segment
+      type: input
+      cardinality: 1..1
+      dataType: string
+
+    - id: output_file
+      name: Output image
+      description: Output image with masks
+      type: output
+      cardinality: 1..1
+      dataType: string
+      fileSuffix: .jpg
+```
+</CodeContainer>
+
+The service has just two parameters: one for the image to segment and one for the filename of the output segmentation mask. We set the `fileSuffix` of the output parameter to `.jpg` to make sure the filename will be generated with the right extension.

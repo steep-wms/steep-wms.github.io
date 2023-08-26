@@ -180,7 +180,10 @@ const toc: DraftChapter[] = [
       {
         title: "Aerial image segmentation",
         sections: [
-          "What we are going to do",
+          {
+            title: "What we are going to do",
+            subsections: ["Why tile the image?"],
+          },
           {
             title: "Step 1: Add service metadata",
             slug: "add-segmentation-metadata",
