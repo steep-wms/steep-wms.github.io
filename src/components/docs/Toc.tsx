@@ -178,12 +178,12 @@ const toc: DraftChapter[] = [
     title: "Advanced tutorials",
     pages: [
       {
-        title: "Segment aerial images",
+        title: "Aerial image segmentation",
         sections: [
           "What we are going to do",
           {
             title: "Step 1: Add service metadata",
-            slug: "add-segment-metadata",
+            slug: "add-segmentation-metadata",
           },
           {
             title: "Step 2: Configure Steep",
@@ -203,11 +203,11 @@ const toc: DraftChapter[] = [
           },
           {
             title: "Step 4: Create the workflow",
-            slug: "create-segment-workflow",
+            slug: "create-segmentation-workflow",
           },
           {
             title: "Step 5: Submit the workflow",
-            slug: "submit-segment-workflow",
+            slug: "submit-segmentation-workflow",
           },
           {
             title: "Optional: Enable GPU acceleration",

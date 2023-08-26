@@ -2,7 +2,7 @@
 
 import Container from "../Container"
 import CardOption from "./CardOption"
-import SegmentMetadata from "./SegmentMetadata.mdx"
+import SegmentationMetadata from "./SegmentationMetadata.mdx"
 import clsx from "clsx"
 import { useState } from "react"
 
@@ -71,7 +71,7 @@ const Microservices = () => {
               },
             )}
           >
-            <SegmentMetadata />
+            <SegmentationMetadata />
           </div>
         </div>
       </Container>

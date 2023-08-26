@@ -4,7 +4,7 @@ import Container from "../Container"
 import DocsLink from "../DocsLink"
 import useInViewEx from "../hooks/useInViewEx"
 import Orthophoto from "./Orthophoto"
-import SegmentWorkflow from "./SegmentWorkflow.mdx"
+import SegmentationWorkflow from "./SegmentationWorkflow.mdx"
 import { Button } from "@/components/Button"
 import { stagger, useAnimate } from "framer-motion"
 import { ChevronRight } from "lucide-react"
@@ -30,7 +30,7 @@ const ExampleWorkflow = () => {
             className="text-sm lg:mb-8 lg:mt-16 [&_[data-line]]:opacity-0"
             ref={scope}
           >
-            <SegmentWorkflow />
+            <SegmentationWorkflow />
           </div>
           <div className="text-md prose text-gray-800">
             <h2 className="mb-[0.6em] text-[1.8em] font-normal leading-[1.6]">
@@ -47,7 +47,7 @@ const ExampleWorkflow = () => {
               executes them in parallel if possible.
             </p>
 
-            <DocsLink href="#segment-aerial-images">
+            <DocsLink href="#aerial-image-segmentation">
               <Button className="text-sm">
                 Read full tutorial
                 <ChevronRight size="16" className="ml-1" />
