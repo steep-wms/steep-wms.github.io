@@ -1,3 +1,30 @@
-TODO
+import Admonition from "@/components/Admonition"
+import Link from "@/components/LinkFix"
 
-You may also enable GPU acceleration to further speed up processing. In fact, this is recommended for AI workflows in production environments. Note, however, that a single GPU cannot be shared between multiple instances of the segmentation service. If you want to use GPU acceleration, you have to either disable parallelization or run multiple instances of Steep <DocsLink href="#launch-multiple-steep-instances">distributed across several machines</DocsLink>.
+If your machine has an NVIDIA graphics card, you can optionally enable GPU acceleration to tremendously speed up processing. In fact, this is recommended for any AI workflow in production.
+
+To do so, the <Link href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/">NVIDIA Container Toolkit</Link> needs to be installed on your system. Follow the <Link href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html">installation guide</Link> if you haven't done so already.
+
+Modify the metadata of the segmentation service and add the following <DocsLink href="#runtime-arguments">runtime argument</DocsLink>:
+
+<CodeContainer title="conf/services/services.yaml">
+```yaml
+- id: segment
+  name: Image segmentation
+  
+  ...
+
+  runtimeArgs:
+    - id: gpus
+      name: GPUs
+      description: "Use all available GPUs"
+      label: "--gpus"
+      value: "all"
+```
+</CodeContainer>
+
+This will tell Steep to pass the argument `--gpus all{:sh}` to the `docker run{:sh}` command when it starts the segmentation service.
+
+<Admonition>
+**Important:** A single GPU cannot be shared between multiple instances of the segmentation service. If you want to use GPU acceleration, you have to either disable parallelization or run multiple instances of Steep <DocsLink href="#launch-multiple-steep-instances">distributed across several machines</DocsLink>.
+</Admonition>

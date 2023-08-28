@@ -5,17 +5,17 @@ import { ChevronRight } from "lucide-react"
 
 In this tutorial, we will apply a tiling service and a segmentation service to an aerial image. The segmentation service is based on [segment-geospatial](https://samgeo.gishub.org/samgeo/), which in turn uses Facebook's [Segment Anything](https://segment-anything.com/) AI model. Both services are provided as pre-built <Link href="https://github.com/steep-wms/aerial-image-segmentation">Docker images on GitHub</Link>.
 
-Semantic segmentation is the process of assigning an object class (e.g. *tree*, *building*, or *street*) to each pixel of an image. Our workflow creates segmentation masks, which are images where the detected classes is represented by different colors.
+Semantic segmentation is the process of assigning an object class (e.g. *tree*, *building*, or *street*) to each pixel of an image. Our workflow creates segmentation masks, which are images where the detected classes are represented by different colors.
 
 The workflow consists of two steps:
 
-<div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4 lg:gap-y-8 not-prose my-8 items-start">
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4 lg:gap-y-8 my-8 items-start">
   <div>
     <div className="text-lg font-normal mb-2">Split input image into tiles</div>
     <p>The <em>tiling service</em> splits the input image into four smaller tiles.</p>
   </div>
 
-  <div className="flex flex-row items-center max-w-lg">
+  <div className="flex flex-row items-center max-w-lg not-prose">
     <div className="w-72">
       <Tiles n={1} src={`${process.env.basePath}/images/home/tiles.jpg`} gap={false} imageSize={650} />
     </div>
@@ -29,10 +29,10 @@ The workflow consists of two steps:
 
   <div className="mt-4 lg:mt-0">
     <div className="text-lg font-normal mb-2">Apply image segmentation</div>
-    <p>The <em>segmentation service</em> is applied in a for-each action to each image tile to create the segmentation masks.</p>
+    <p>The <em>segmentation service</em> is applied in a <DocsLink href="#for-each-actions">for-each action</DocsLink> to each image tile to create the segmentation masks.</p>
   </div>
 
-  <div className="flex flex-row items-center max-w-lg">
+  <div className="flex flex-row items-center max-w-lg not-prose">
     <div className="w-72">
       <Tiles n={2} src={`${process.env.basePath}/images/home/tiles.jpg`} imageSize={650} />
     </div>

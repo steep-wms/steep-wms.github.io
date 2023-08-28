@@ -185,24 +185,24 @@ const toc: DraftChapter[] = [
             subsections: ["Why tile the image?"],
           },
           {
-            title: "Step 1: Add service metadata",
+            title: "Step 1: Download input data",
+            slug: "download-input-data",
+          },
+          {
+            title: "Step 2: Add service metadata",
             slug: "add-segmentation-metadata",
           },
           {
-            title: "Step 2: Configure Steep",
+            title: "Step 3: Configure Steep",
             slug: "configure-steep",
             subsections: [
-              "Change temporary and output paths",
+              "Change temporary path and output path",
               "Mount data directory",
               {
                 title: "Restart Steep",
                 slug: "restart-steep-segment",
               },
             ],
-          },
-          {
-            title: "Step 3: Download input data",
-            slug: "download-input-data",
           },
           {
             title: "Step 4: Create the workflow",

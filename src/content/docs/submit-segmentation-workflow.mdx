@@ -1,1 +1,13 @@
-TODO
+Run the following command to submit the segmentation workflow to Steep:
+
+<CodeContainer title="Terminal">
+```shell
+curl -X POST http://localhost:8080/workflows --data-binary @segment.yaml
+```
+</CodeContainer>
+
+You can monitor the workflow execution in Steep's web UI. Note that it will take several minutes to complete.
+
+Also, if you haven't done so already, the Docker images need to be pulled first. They have a total download size of about 8 GB, so depending on your Internet connection, downloading also may take a few minutes. Subsequent runs will be faster.
+
+After the execution has finished, you will find the segmentation masks at `/data/out/[WORKFLOW ID]`.

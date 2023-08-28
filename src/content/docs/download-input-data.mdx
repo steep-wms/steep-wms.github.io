@@ -1,1 +1,18 @@
-TODO
+import Link from "@/components/LinkFix"
+
+The most important thing for any data processing workflow is the data. In this tutorial, we use an aerial image provided by the <Link href="https://hvbg.hessen.de/">Hessische Verwaltung für Bodenmanagement und Geoinformation</Link> in Germany through https://gds.hessen.de. The image is free and can be used for any purpose.
+
+Use the following link to download the full resolution image:
+
+<div className="flex justify-center gap-3">
+  <div className="not-prose">
+    <img src={`${process.env.basePath}/images/docs/aerial-image-segmentation/aerial-image-mini.jpg`} width="650" height="650" alt="Aerial image" loading="lazy" className="w-16 mt-0.5" />
+  </div>
+  <div>https://raw.githubusercontent.com/steep-wms/aerial-image-segmentation/1.0.0/data/dop20_32_475_5524_1_he.jpg</div>
+</div>
+
+In the following, we assume that the image has been saved to:
+
+`/data/dop20_32_475_5524_1_he.jpg`
+
+If you've downloaded the image to another location on your computer, make sure you modify the paths in the subsequent steps.

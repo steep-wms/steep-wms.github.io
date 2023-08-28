@@ -1,1 +1,11 @@
-TODO
+In the same file, add the following configuration to tell the Docker runtime to mount the `/data` directory into every container started:
+
+<CodeContainer title="conf/steep.yaml">
+```yaml
+steep:
+  runtimes:
+    docker:
+      volumes:
+        - /data:/data
+```
+</CodeContainer>

@@ -1,1 +1,3 @@
-TODO
+Our two services will be executed in Docker containers, which have a virtualized file system. Any data location on the host system that should be accessible from within a Docker container needs to be mounted when the container is started.
+
+In our case, this applies to the `/data` directory where the <DocsLink href="#download-input-data">input image has been downloaded</DocsLink>. We will use the same directory for Steep's temporary path as well as its output path to access the segmentation masks after the workflow has finished.

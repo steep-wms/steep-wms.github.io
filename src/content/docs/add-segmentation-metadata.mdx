@@ -1,6 +1,6 @@
 import Link from "@/components/LinkFix"
 
-Similar to the previous tutorials, we need to add metadata for the two services. Open the file `conf/services/services.yaml` and add the following code to it to describe the tiling service:
+Similar to the previous tutorials, we need to add metadata for the tiling service and the segmentation service. Open the file `conf/services/services.yaml` and add the following code to it to describe the tiling service:
 
 <CodeContainer title="conf/services/services.yaml">
 ```yaml
@@ -36,7 +36,7 @@ Similar to the previous tutorials, we need to add metadata for the two services.
 ```
 </CodeContainer>
 
-The service has three parameters: one for the input image file, one for the output directory where the tiles will be stored, and one specifying the number of columns and rows to split the image into. Regarding the latter, a value of 5 means the image will be split into 5x5 (=25) tiles.
+The service has three parameters: one for the input image file, one for the output directory where the tiles will be stored, and one specifying the number of columns and rows to split the image into. Regarding the latter, a value of 5 means the image will be split into 5&times;5 (=25) tiles.
 
 As the service is provided as a pre-compiled <Link href="https://github.com/steep-wms/aerial-image-segmentation">Docker image on GitHub</Link>, we set the attribute `path` to the Docker image name and the attribute `runtime` to `docker`.
 
@@ -69,3 +69,5 @@ Now, add the metadata for the segmentation service:
 </CodeContainer>
 
 The service has just two parameters: one for the image to segment and one for the filename of the output segmentation mask. We set the `fileSuffix` of the output parameter to `.jpg` to make sure the filename will be generated with the right extension.
+
+Again, we use the Docker image name as `path` and set the `runtime` to `docker`.

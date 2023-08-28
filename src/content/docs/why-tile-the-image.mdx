@@ -1,44 +1,44 @@
 import Admonition from "@/components/Admonition"
 import Tiles from "@/components/docs/aerial-image-segmentation/Tiles"
 
-You might wonder why the input image needs to be tiled before the segmentation can be applied, and why we don't apply the segmentation to the input image directly. There are three reasons for that:
+You might wonder why the input image needs to be tiled and why we don't apply the segmentation to it directly. There are three reasons for that:
 
-1. **Quality.** Aerial images typically have a very high resolution (e.g. 5000x5000 pixels, like the <DocsLink href="#download-input-data">one below</DocsLink>), and AI models tend to perform badly on large images. Consider the following pictures where we applied the segmentation on the input image directly and then executed the workflow with 2x2 tiles and 5x5 tiles. The smaller the tiles are, the more precise the results are and the more classes the model is able to identify.
+1. **Quality.** Aerial images typically have a high resolution (e.g. 5000x5000 pixels, like the <DocsLink href="#download-input-data">one below</DocsLink>), and AI models tend to perform badly on large images. Consider the following pictures where we applied the segmentation on an input image directly and then executed the workflow with the same image but with 2&times;2 tiles and 5&times;5 tiles. The smaller the tiles, the more precise the results are and the more objects the model is able to identify.
 
-<div className="flex flex-row gap-4 not-prose my-8">
-  <div className="w-72 flex flex-col">
+<div className="grid grid-cols-[75%] xs:grid-cols-[50%] sm:grid-cols-2 md:grid-cols-3 gap-4 not-prose my-8 justify-center">
+  <div className="flex flex-col">
     <Tiles
       n={1}
       src={`${process.env.basePath}/images/docs/aerial-image-segmentation/1tile/1tile.jpg`}
       avifsrc={`${process.env.basePath}/images/docs/aerial-image-segmentation/1tile/1tile.avif`}
     />
     <div className="text-center mt-2 font-normal">
-      1 tile
+      No tiling
     </div>
   </div>
-  <div className="w-72 flex flex-col">
+  <div className="flex flex-col">
     <Tiles
       n={2}
       src={`${process.env.basePath}/images/docs/aerial-image-segmentation/4tiles/4tiles.jpg`}
       avifsrc={`${process.env.basePath}/images/docs/aerial-image-segmentation/4tiles/4tiles.avif`}
     />
     <div className="text-center mt-2 font-normal">
-      2x2 tiles
+      2&times;2 tiles
     </div>
   </div>
-  <div className="w-72 flex flex-col">
+  <div className="flex flex-col">
     <Tiles
       n={5}
       src={`${process.env.basePath}/images/docs/aerial-image-segmentation/25tiles/25tiles.jpg`}
       avifsrc={`${process.env.basePath}/images/docs/aerial-image-segmentation/25tiles/25tiles.avif`}
     />
     <div className="text-center mt-2 font-normal">
-      5x5 tiles
+      5&times;5 tiles
     </div>
   </div>
 </div>
 
-2. **Lower memory consumption.** The smaller the tiles are, the less memory each segmentation process needs. This is particularly important if you enable parallelization and run multiple processes on the same machine. Also, if you <DocsLink href="#enable-gpu-acceleration">enable GPU acceleration</DocsLink>, depending on your hardware, your graphics card memory may not be large enough to process a high-resolution image and the segmentation service will crash.
+2. **Lower memory consumption.** The smaller the tiles are, the less memory each segmentation process needs. This is particularly important if you enable parallelization and run multiple processes on the same machine. Also, if you <DocsLink href="#enable-gpu-acceleration">enable GPU acceleration</DocsLink>, depending on your hardware, your graphics card memory might not be large enough to process a high-resolution image and the segmentation service will crash.
 
 3. **For the sake of demonstration.** With this tutorial, we aim to teach you how to use a for-each action to process the results of a service with another service in parallel.
 
