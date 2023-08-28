@@ -72,3 +72,19 @@ code[data-line-numbers] > .line::before {
 [data-rehype-pretty-code-fragment] .highlighted {
   @apply bg-gray-700;
 }
+
+[data-rehype-pretty-code-fragment] [data-highlighted-line] {
+  @apply bg-bg-code-highlighted;
+  display: inline-flex;
+  width: calc(100% + 1.8rem);
+  margin-left: -0.9rem;
+  margin-right: -0.9rem;
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
+}
+
+[data-rehype-pretty-code-fragment] [data-highlighted-chars] {
+  @apply bg-bg-code-highlighted;
+  @apply rounded;
+  @apply px-1 py-0.5;
+}

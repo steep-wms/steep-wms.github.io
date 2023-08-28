@@ -1,0 +1,41 @@
+import Link from "@/components/LinkFix"
+
+Finally, open the file `conf/services/services.yaml` in your Steep installation and add the following <DocsLink href="#service-metadata">metadata</DocsLink> to register the service:
+
+<CodeContainer title="conf/services/services.yaml">
+```yaml
+- id: tile
+  name: Tiling
+  description: Split an image into tiles
+  path: tile.js   # replace this
+  runtime: other
+
+  parameters:
+    - id: input_file
+      name: Input image
+      description: The input image to tile
+      type: input
+      cardinality: 1..1
+      dataType: string
+
+    - id: output_directory
+      name: Output directory
+      description: The directory where the tiles should be stored
+      type: output
+      cardinality: 1..1
+      dataType: directory
+
+    - id: num_tiles
+      name: Number of columns/rows
+      description: >-
+        The number of columns and rows to split the image into. A value of
+        5 means the image will be split into 5x5 tiles.
+      type: input
+      cardinality: 1..1
+      dataType: string
+```
+</CodeContainer>
+
+Replace `tile.js` in the `path` attribute with the absolute path to `tile.js` on your system.
+
+That's it! 🎉 You've created your first service from scratch and integrated into Steep. It can now be called via its ID as seen in the previous tutorials.

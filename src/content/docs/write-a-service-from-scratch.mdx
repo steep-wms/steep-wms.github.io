@@ -1,0 +1,72 @@
+import Admonition from "@/components/Admonition"
+
+We use the <DocsLink href="#aerial-image-segmentation">tiling service</DocsLink> as an example, because it's relatively small and easy to understand. Also, it has been written in JavaScript, which makes it easy to create executable scripts.
+
+<Admonition>
+In general, you can use *any programming language* to create processing services. *Anything, that's executable can be integrated into Steep*.
+</Admonition>
+
+Create a new directory, change into it, and initialize a new npm package:
+
+<CodeContainer title="Terminal">
+```shell
+mkdir tiling-service
+cd tiling-service
+npm init -y
+```
+</CodeContainer>
+
+Install the only dependency for the service:
+
+<CodeContainer title="Terminal">
+```shell
+npm i sharp
+```
+</CodeContainer>
+
+Then, create a new file `tile.js` in your directory and paste the following code into it:
+
+<CodeContainer title="tile.js">
+```javascript
+#!/usr/bin/env node
+const fs = require("fs/promises")
+const path = require("path")
+const sharp = require("sharp")
+
+if (process.argv.length < 5) {
+  console.error("Usage: tile.js <input_image> <output_directory> <number_of_cols>")
+  process.exit(1)
+}
+
+let input = process.argv[2]
+let output_dir = process.argv[3]
+let n = process.argv[4]
+
+async function tile() {
+  await fs.mkdir(output_dir, { recursive: true })
+  let metadata = await sharp(input).metadata()
+  let dx = metadata.width / n
+  let dy = metadata.height / n
+  for (let x = 0; x < n; x++) {
+    for (let y = 0; y < n; y++) {
+      await sharp(input)
+        .extract({ left: dx * x, top: dy * y, width: dx, height: dy })
+        .toFile(path.join(output_dir, `${x}_${y}.jpg`))
+    }
+  }
+}
+
+tile().catch(e => {
+  console.error(e)
+  process.exit(1)
+})
+```
+</CodeContainer>
+
+The service accepts three command line arguments: the name of the image to tile, the output directory where to store the tiles, and the number of columns/rows. The main function `tile` creates the output directory, reads the input file, and then creates the tiles.
+
+<Admonition>
+Note, in case of an error, the service fails with an exit code of 1. This is important so the workflow execution will be aborted by Steep and the error won't be suppressed.
+
+Also, the service follows all guidelines from the section on <DocsLink href="#processing-services">processing services</DocsLink>.
+</Admonition>

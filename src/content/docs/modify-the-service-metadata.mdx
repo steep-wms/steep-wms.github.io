@@ -1,0 +1,17 @@
+import Link from "@/components/LinkFix"
+
+Finally, modify the service metadata you've added <DocsLink href="#add-tiling-service-metadata">above</DocsLink> and change the `path` to the name of the built Docker image `tiling-service`. Also change `runtime` to `docker`.
+
+<CodeContainer title="conf/services/services.yaml">
+```yaml /tiling-service/ /docker/
+- id: tile
+  name: Tiling
+  description: Split an image into tiles
+  path: tiling-service
+  runtime: docker
+
+  ...
+```
+</CodeContainer>
+
+If you want to deploy your image to multiple machines in your distributed environment, you'll most likely want to push your image into a Docker registry. Please refer to the <Link href="https://docs.docker.com/engine/reference/commandline/push/">Docker documentation</Link> for more information.

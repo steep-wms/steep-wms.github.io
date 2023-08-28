@@ -1,0 +1,19 @@
+In a production environment, you'll probably want to convert your custom service into a Docker image. This makes it easier to deploy the service (including all its dependencies) to multiple machines in your environment.
+
+Create a new `Dockerfile` in the directory of the tiling service you've created above and paste the following code into it:
+
+<CodeContainer title="Dockerfile">
+```dockerfile
+FROM node:18-slim
+
+COPY . /tiling-service
+WORKDIR /tiling-service
+RUN npm ci
+
+ENTRYPOINT ["node", "./tile.js"]
+```
+</CodeContainer>
+
+The `Dockerfile` is very short in this case. It just includes the base image for Node.js, copies the source code, and installs the dependencies.
+
+We set the entrypoint to `["node", "./tile.js"]{:dockerfile}`, so Steep can later simply append the service arguments to the `docker run{:shell}` command when it creates the container.

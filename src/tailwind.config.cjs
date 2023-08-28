@@ -55,6 +55,7 @@ module.exports = {
       "bg-ternary": withOpacity("color-bg-ternary"),
       "bg-darkblue": withOpacity("color-bg-darkblue"),
       "bg-code": withOpacity("color-bg-code"),
+      "bg-code-highlighted": withOpacity("color-bg-code-highlighted"),
       primary: withOpacity("color-primary"),
       "primary-hover": withOpacity("color-primary-hover"),
       alert: withOpacity("color-alert"),

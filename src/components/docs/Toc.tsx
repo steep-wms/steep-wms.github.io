@@ -220,6 +220,28 @@ const toc: DraftChapter[] = [
       },
       {
         title: "Bring your own service",
+        sections: [
+          {
+            title: "Write a service from scratch",
+            subsections: [
+              {
+                title: "Make the service executable",
+                slug: "make-the-tiling-service-executable",
+              },
+              {
+                title: "Add service metadata",
+                slug: "add-tiling-service-metadata",
+              },
+            ],
+          },
+          {
+            title: "Create a Docker image",
+            subsections: [
+              "Build the Docker image",
+              "Modify the service metadata",
+            ],
+          },
+        ],
       },
     ],
   },

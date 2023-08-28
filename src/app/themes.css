@@ -23,6 +23,7 @@
   --color-bg-ternary: 51 51 51;
   --color-bg-darkblue: 38 89 134;
   --color-bg-code: 30 40 60;
+  --color-bg-code-highlighted: 40 54 79;
 
   --color-text: 40 40 35;
   --color-code: var(--color-gray-600);
@@ -58,6 +59,7 @@
   --color-bg-secondary: 20 18 16;
   --color-bg-ternary: var(--color-gray-700);
   --color-bg-code: var(--color-gray-100);
+  --color-bg-code-highlighted: 53 66 86;
 
   --color-text: var(--color-gray-500);
   --color-code: var(--color-gray-300);
