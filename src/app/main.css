@@ -61,3 +61,9 @@ h6 {
   /* same as on any other page */
   @apply lg:scroll-mt-20;
 }
+
+input::placeholder,
+textarea::placeholder {
+  @apply text-gray-500;
+  @apply dark:text-gray-400;
+}

@@ -164,7 +164,7 @@ const HeroWorkflow = () => {
     }
   }, [scope, animate, prefersReducedMotion, getStartedBgOpacity])
 
-  let stroke = "#ced4da"
+  let stroke = "#cbd5e0"
   let getStartedBox =
     "M867 180.9H698.2c-7.6 0-13.7-6.1-13.7-13.7v-37.3c0-7.6 6.1-13.7 13.7-13.7H867c7.6 0 13.7 6.1 13.7 13.7v37.3c0 7.5-6.2 13.7-13.7 13.7z"
   let svgPaths = [

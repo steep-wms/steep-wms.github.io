@@ -119,7 +119,7 @@ const DocsPage = ({ params }: DocsPageProps) => {
           {prev !== undefined ? (
             <Link
               href={`/docs/${prev}`}
-              className="font-normal text-gray-700 hover:text-primary group flex gap-1"
+              className="font-normal text-gray-800 hover:text-primary group flex gap-1"
             >
               <div className="text-gray-500 group-hover:text-primary">
                 <ChevronLeft size="1em" />
@@ -132,7 +132,7 @@ const DocsPage = ({ params }: DocsPageProps) => {
           {next !== undefined ? (
             <Link
               href={`/docs/${next}`}
-              className="font-normal text-gray-700 hover:text-primary group flex gap-1 text-right"
+              className="font-normal text-gray-800 hover:text-primary group flex gap-1 text-right"
             >
               <div>{Index[next].title}</div>
               <div className="text-gray-500 group-hover:text-primary">
