@@ -10,7 +10,7 @@ const Publications = () => {
         <p className="lead text-center">
           Steep has appeared in a number of scientific publications.
         </p>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 xl:gap-8 mt-16">
           <Publication
             previewImages={[
               "wuerz-et-al-2023-1",
@@ -159,7 +159,7 @@ const Publications = () => {
                   ISPRS - International Archives of the Photogrammetry, Remote
                   Sensing and Spatial Information Sciences
                 </i>
-                , <i>XLI</i>-<i>B3</i>, 301&ndash;307.
+                , <i>XLI</i>-<i>B3</i>, 301&ndash;307.{" "}
                 <Link href="https://doi.org/10.5194/isprs-archives-XLI-B3-301-2016">
                   https://doi.org/10.5194/isprs-archives-XLI-B3-301-2016
                 </Link>
