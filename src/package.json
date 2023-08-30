@@ -59,7 +59,7 @@
     "lucide-react": "0.268.0",
     "minisearch": "^6.1.0",
     "next": "^13.4.19",
-    "postcss": "^8.4.28",
+    "postcss": "^8.4.29",
     "prettier-plugin-tailwindcss": "^0.5.3",
     "pure-rand": "^6.0.2",
     "react": "^18.2.0",
