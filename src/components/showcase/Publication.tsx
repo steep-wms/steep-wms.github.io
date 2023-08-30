@@ -29,26 +29,64 @@ const Publication = ({
   const animationControls = useRef<AnimationPlaybackControls | undefined>(
     undefined,
   )
+  const loadingPromise = useRef<Promise<void[]> | undefined>(undefined)
+  const mouseEntered = useRef(false)
 
   const onMouseEnter = useCallback(() => {
+    mouseEntered.current = true
+
     if (animationControls.current !== undefined) {
       animationControls.current.stop()
     }
-    animationControls.current = animate(
-      "div",
-      { y: ["0%", "-100%", "-100%", "-200%"] },
-      {
-        duration: 1.5,
-        ease: "circOut",
-        times: [0, 0.4, 0.6, 1],
-      },
-    )
-  }, [animate])
+
+    if (loadingPromise.current === undefined) {
+      // load all images
+      let images = scope.current.querySelectorAll("img")
+      let loadingPromises: Promise<void>[] = []
+      images.forEach((img: HTMLImageElement) => {
+        if (!img.complete) {
+          img.loading = "eager"
+          loadingPromises.push(
+            new Promise<void>(resolve => {
+              img.onload = () => {
+                resolve()
+              }
+            }),
+          )
+        }
+      })
+
+      loadingPromise.current = Promise.all(loadingPromises)
+
+      // when all images have been loaded ...
+      loadingPromise.current.then(() => {
+        loadingPromise.current = undefined
+
+        // ... start animation but only if the mouse is still over the element
+        if (!mouseEntered.current) {
+          return
+        }
+
+        animationControls.current = animate(
+          "div",
+          { y: ["0%", "-100%", "-100%", "-200%"] },
+          {
+            duration: 1.5,
+            ease: "circOut",
+            times: [0, 0.4, 0.6, 1],
+          },
+        )
+      })
+    }
+  }, [animate, scope])
 
   const onMouseLeave = useCallback(() => {
+    mouseEntered.current = false
+
     if (animationControls.current !== undefined) {
       animationControls.current.stop()
     }
+
     animationControls.current = animate(
       "div:first-child",
       { opacity: [0, 1], y: [0, 0] },
