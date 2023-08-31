@@ -41,10 +41,20 @@ const Publication = ({
 
     if (loadingPromise.current === undefined) {
       // load all images
+      let sources = scope.current.querySelectorAll("source")
+      sources.forEach((source: HTMLSourceElement) => {
+        source.srcset = source.dataset.srcset!
+      })
       let images = scope.current.querySelectorAll("img")
       let loadingPromises: Promise<void>[] = []
       images.forEach((img: HTMLImageElement) => {
-        if (!img.complete) {
+        if (
+          img.src === null ||
+          img.src === undefined ||
+          img.src === "" ||
+          !img.complete
+        ) {
+          img.src = img.dataset.src!
           img.loading = "eager"
           loadingPromises.push(
             new Promise<void>(resolve => {
@@ -124,14 +134,24 @@ const Publication = ({
               <div key={pi} className="relative" style={{ zIndex: -i }}>
                 <picture>
                   <source
-                    srcSet={`${process.env.basePath}/images/showcase/publications/${pi}.avif`}
+                    srcSet={
+                      i > 0
+                        ? undefined
+                        : `${process.env.basePath}/images/showcase/publications/${pi}.avif`
+                    }
+                    data-srcset={`${process.env.basePath}/images/showcase/publications/${pi}.avif`}
                     type="image/avif"
                     width={previewImageWidth}
                     height={previewImageHeight}
                   />
                   <img
                     alt="title"
-                    src={`${process.env.basePath}/images/showcase/publications/${pi}.jpg`}
+                    src={
+                      i > 0
+                        ? undefined
+                        : `${process.env.basePath}/images/showcase/publications/${pi}.jpg`
+                    }
+                    data-src={`${process.env.basePath}/images/showcase/publications/${pi}.jpg`}
                     width={previewImageWidth}
                     height={previewImageHeight}
                     loading="lazy"
