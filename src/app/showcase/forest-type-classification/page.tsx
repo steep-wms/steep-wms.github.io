@@ -33,13 +33,17 @@ const ForestTypeClassification = () => {
               width={1376}
               height={690}
             />
-            <img
-              src={`${process.env.basePath}/images/showcase/projects/forest-type-classification/satellite-image.jpg`}
+            <source
+              srcSet={`${process.env.basePath}/images/showcase/projects/forest-type-classification/satellite-image.jpg`}
+              type="image/jpeg"
               width={1376}
               height={690}
-              loading="lazy"
-              alt="Classified satellite image"
             />
+            {/*
+              Fallback img should not have src to avoid loading it.
+              See https://github.com/facebook/react/issues/22684
+            */}
+            <img fetchPriority="high" alt="Classified satellite image" />
           </picture>
           <p>
             Climate change is no longer something we can address in the future.

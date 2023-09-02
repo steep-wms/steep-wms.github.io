@@ -34,12 +34,19 @@ const ProjectTelekom = () => {
               width={1835}
               height={860}
             />
-            <img
-              src={`${process.env.basePath}/images/showcase/projects/telekom/t-car.jpg`}
-              alt="Background image"
+            <source
+              srcSet={`${process.env.basePath}/images/showcase/projects/telekom/t-car.jpg`}
+              type="image/jpeg"
               width={1835}
               height={860}
-              loading="lazy"
+            />
+            {/*
+              Fallback img should not have src to avoid loading it.
+              See https://github.com/facebook/react/issues/22684
+            */}
+            <img
+              alt="Background image"
+              fetchPriority="high"
               className="absolute -left-1/2 h-full min-w-fit grayscale opacity-20 group-hover:grayscale-[50%] transition-[filter_opacity] group-hover:opacity-20"
             />
           </picture>

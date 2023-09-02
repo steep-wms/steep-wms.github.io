@@ -25,12 +25,19 @@ const ProjectForest = () => {
               width={1376}
               height={690}
             />
-            <img
-              src={`${process.env.basePath}/images/showcase/projects/forest-type-classification/satellite-image-small.jpg`}
-              alt="Background image"
+            <source
+              srcSet={`${process.env.basePath}/images/showcase/projects/forest-type-classification/satellite-image-small.jpg`}
+              type="image/jpeg"
               width={1376}
               height={690}
-              loading="lazy"
+            />
+            {/*
+              Fallback img should not have src to avoid loading it.
+              See https://github.com/facebook/react/issues/22684
+            */}
+            <img
+              alt="Background image"
+              fetchPriority="high"
               className="absolute -left-1/2 h-full min-w-fit grayscale opacity-10 dark:opacity-20 group-hover:grayscale-[30%] transition-[filter_opacity] group-hover:opacity-20 dark:group-hover:opacity-30"
             />
           </picture>
