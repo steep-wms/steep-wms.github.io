@@ -124,13 +124,6 @@ const config = {
       ],
     })
 
-    config.module.rules.push({
-      test: /\.svg$/i,
-      resourceQuery: /source/,
-      type: "asset/source",
-      use: "image-webpack-loader",
-    })
-
     if (dev) {
       config.plugins.push(
         new ESLintPlugin({
