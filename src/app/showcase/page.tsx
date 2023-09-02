@@ -1,5 +1,6 @@
 import { robotoBold } from "@/components/lib/roboto-bold"
 import Presentations from "@/components/showcase/Presentations"
+import Projects from "@/components/showcase/Projects"
 import Publications from "@/components/showcase/Publications"
 import clsx from "clsx"
 
@@ -11,8 +12,9 @@ const ShowcasePage = () => {
           `${robotoBold.variable} mt-40 text-center text-5xl font-bold text-gray-900`,
         )}
       >
-        Showcase
+        What we’ve created with Steep
       </h1>
+      <Projects />
       <Publications />
       <Presentations />
     </>
