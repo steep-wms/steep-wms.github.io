@@ -14,10 +14,10 @@ const Fact = ({ fact, description }: FactProps) => {
 
 const Facts = () => {
   return (
-    <div className="w-full border border-gray-400 rounded-md p-6 text-sm flex flex-col gap-4">
-      <div>
-        <div className="font-normal">Facts and figures</div>
-        <div className="text-gray-600">(from the year 2022)</div>
+    <div className="w-full border border-gray-200 rounded-md px-6 pt-6 pb-7 text-sm flex flex-col gap-6 shadow-sm">
+      <div className="mb-2">
+        <div className="font-normal text-base">Facts and figures</div>
+        <div className="text-gray-600 text-xs">from the year 2022</div>
       </div>
       <Fact fact="1,300" description="planning areas" />
       <Fact
