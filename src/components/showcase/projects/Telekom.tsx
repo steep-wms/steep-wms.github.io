@@ -1,7 +1,7 @@
-import Link from "../LinkFix"
+import Link from "../../LinkFix"
 import Project from "./Project"
 
-const ProjectTelekom = () => {
+const Telekom = () => {
   return (
     <Project>
       <Link href="/showcase/telekom" className="group relative w-full h-full">
@@ -58,4 +58,4 @@ const ProjectTelekom = () => {
   )
 }
 
-export default ProjectTelekom
+export default Telekom

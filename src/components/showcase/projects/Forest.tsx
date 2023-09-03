@@ -1,7 +1,7 @@
-import Link from "../LinkFix"
+import Link from "../../LinkFix"
 import Project from "./Project"
 
-const ProjectForest = () => {
+const Forest = () => {
   return (
     <Project>
       <Link
@@ -49,4 +49,4 @@ const ProjectForest = () => {
   )
 }
 
-export default ProjectForest
+export default Forest

@@ -1,9 +1,9 @@
-import { Button } from "../Button"
-import Container from "../Container"
-import Link from "../LinkFix"
-import { robotoBold } from "../lib/roboto-bold"
-import ProjectForest from "./ProjectForest"
-import ProjectTelekom from "./ProjectTelekom"
+import { Button } from "../../Button"
+import Container from "../../Container"
+import Link from "../../LinkFix"
+import { robotoBold } from "../../lib/roboto-bold"
+import Forest from "./Forest"
+import Telekom from "./Telekom"
 
 const Projects = () => {
   return (
@@ -13,8 +13,8 @@ const Projects = () => {
           id="projects"
           className={`${robotoBold.variable} grid grid-cols-2 gap-8 mt-20 mb-16`}
         >
-          <ProjectTelekom />
-          <ProjectForest />
+          <Telekom />
+          <Forest />
         </section>
         <div className="flex justify-center">
           <div className="text-xl flex flex-row items-center gap-8">

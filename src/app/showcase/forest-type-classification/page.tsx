@@ -1,25 +1,14 @@
 import ForestClassificationWorkflow from "../../../assets/forest-classification-workflow.svg?drawio"
-import Card from "@/components/Card"
-import Container from "@/components/Container"
 import Link from "@/components/LinkFix"
-import { robotoBold } from "@/components/lib/roboto-bold"
+import ProjectAuthor from "@/components/showcase/projects/ProjectAuthor"
+import ProjectGrid from "@/components/showcase/projects/ProjectGrid"
+import ProjectLayout from "@/components/showcase/projects/ProjectLayout"
+import ProjectQuote from "@/components/showcase/projects/ProjectQuote"
 
 const ForestTypeClassification = () => {
   return (
-    <Container type="lg" className="mt-32 mb-32">
-      <Link
-        href="/showcase"
-        className="text-gray-600 hover:no-underline hover:text-gray-700"
-      >
-        &larr; Showcase
-      </Link>
-      <div className="grid [grid-template-columns:minmax(0,1fr)_10rem] gap-8 mt-6">
-        <h1 className={`${robotoBold.variable} text-4xl font-bold`}>
-          How we used Steep to improve our training pipeline for AI-based forest
-          type classification
-        </h1>
-      </div>
-      <div className="grid [grid-template-columns:minmax(0,1fr)_10rem] gap-8 mt-4">
+    <ProjectLayout title="How we used Steep to improve our training pipeline for AI-based forest type classification">
+      <ProjectGrid>
         <div className="prose">
           <p className="lead">
             Steep can help train a neural network in an efficient,
@@ -73,28 +62,18 @@ const ForestTypeClassification = () => {
           </p>
         </div>
         <div>
-          <div className="flex flex-col items-center gap-3">
-            <Link
-              href="/about/#team"
-              className="w-16 rounded-full overflow-hidden"
-            >
-              <img
-                src={`${process.env.basePath}/images/about/hendrik-wuerz-200x200.jpg`}
-                width={200}
-                height={200}
-                alt="Hendrik M. Würz"
-              />
-            </Link>
-            <span className="prose">
-              by <Link href="/about/#team">Hendrik M. Würz</Link>
-            </span>
-          </div>
+          <ProjectAuthor
+            name="Hendrik M. Würz"
+            imgSrc={`${process.env.basePath}/images/about/hendrik-wuerz-200x200.jpg`}
+            imgWidth={200}
+            imgHeight={200}
+          />
         </div>
-      </div>
-      <div className="py-8">
+      </ProjectGrid>
+      <div className="my-8">
         <ForestClassificationWorkflow />
       </div>
-      <div className="grid [grid-template-columns:minmax(0,1fr)_10rem] gap-8 mt-4">
+      <ProjectGrid>
         <div className="prose">
           <p>
             We started by searching for relevant satellite imagery from{" "}
@@ -128,24 +107,13 @@ const ForestTypeClassification = () => {
             with a model definition and learned how different forest types look
             in satellite images.
           </p>
-          <div className="border border-gray-200 rounded-lg px-16 py-8 not-prose grid [grid-template-columns:4rem_1fr] items-center gap-4">
-            <Link href="/about/#team" className="rounded-full overflow-hidden">
-              <img
-                src={`${process.env.basePath}/images/about/hendrik-wuerz-200x200.jpg`}
-                width={200}
-                height={200}
-                alt="Hendrik M. Würz"
-                className="w-full h-full"
-              />
-            </Link>
-            <span className="italic text-lg leading-7">
-              “Steep automatically parallelized the calculations, which saved us
-              valuable time.”{" "}
-              <span className="ml-4 text-gray-600">
-                &mdash; Hendrik M. Würz
-              </span>
-            </span>
-          </div>
+          <ProjectQuote
+            authorName="Hendrik M. Würz"
+            authorImgSrc={`${process.env.basePath}/images/about/hendrik-wuerz-200x200.jpg`}
+            authorImgWidth={200}
+            authorImgHeight={200}
+            quote="Steep automatically parallelized the calculations, which saved us valuable time."
+          />
           <p>
             During the development of our AI model, we executed the workflow
             several times with slight modifications. For example, we tested
@@ -193,40 +161,8 @@ const ForestTypeClassification = () => {
             (Parts of this article were taken from the second paper.)
           </p>
         </div>
-      </div>
-      <hr className="border-gray-200 my-14" />
-      <div className="flex gap-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-2 not-prose">
-          <Link href="/showcase">
-            <Card className="hover:bg-gray-100 min-h-full">
-              <h3 className="mt-1 mb-2 text-lg font-normal">&larr; Showcase</h3>
-              <p className="text-sm text-gray-700">
-                Go back and see more of what we’ve created with Steep
-              </p>
-            </Card>
-          </Link>
-          <Link href="/showcase/telekom">
-            <Card className="hover:bg-gray-100 min-h-full">
-              <h3 className="mt-1 mb-2 text-lg font-normal flex items-center gap-2">
-                <div className="w-5">
-                  <img
-                    src={`${process.env.basePath}/images/showcase/projects/telekom/telekom.svg`}
-                    alt="Telekom Logo"
-                    width={1000}
-                    height={1000}
-                  />
-                </div>{" "}
-                Deutsche Telekom
-              </h3>
-              <p className="text-sm text-gray-700">
-                Read about our cloud-based platform supporting the fibre
-                roll-out in Germany
-              </p>
-            </Card>
-          </Link>
-        </div>
-      </div>
-    </Container>
+      </ProjectGrid>
+    </ProjectLayout>
   )
 }
 

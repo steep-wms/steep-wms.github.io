@@ -1,7 +1,7 @@
 import { robotoBold } from "@/components/lib/roboto-bold"
 import Presentations from "@/components/showcase/Presentations"
-import Projects from "@/components/showcase/Projects"
 import Publications from "@/components/showcase/Publications"
+import Projects from "@/components/showcase/projects/Projects"
 import clsx from "clsx"
 
 const ShowcasePage = () => {
