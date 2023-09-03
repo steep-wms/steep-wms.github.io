@@ -123,7 +123,7 @@ const Presentation = ({
       <div className="not-prose flex items-start md:col-span-2">
         <Link
           href={link}
-          className="max-w-sm md:max-w-full border border-gray-200"
+          className="mx-auto max-w-full xs:max-w-sm md:max-w-full border border-gray-200"
           target="_blank"
           rel="noopener noreferrer"
         >
