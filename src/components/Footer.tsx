@@ -9,7 +9,7 @@ interface FooterProps {
   bgBg?: boolean
 }
 
-const Footer = ({ bgBg = false }) => {
+const Footer = ({ bgBg = false }: FooterProps) => {
   return (
     <footer
       className={clsx(
