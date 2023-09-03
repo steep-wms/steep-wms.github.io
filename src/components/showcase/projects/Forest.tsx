@@ -38,7 +38,7 @@ const Forest = () => {
             <img
               alt="Background image"
               fetchPriority="high"
-              className="absolute -left-1/2 h-full min-w-fit grayscale opacity-10 dark:opacity-20 group-hover:grayscale-[30%] transition-[filter_opacity] group-hover:opacity-20 dark:group-hover:opacity-30"
+              className="w-full h-full object-cover grayscale opacity-10 dark:opacity-20 group-hover:grayscale-[30%] transition-[filter_opacity] group-hover:opacity-20 dark:group-hover:opacity-30"
             />
           </picture>
           <div className="absolute inset-0 bg-gradient-to-b from-bg/0 via-80% via-bg/50 to-bg" />

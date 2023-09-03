@@ -47,7 +47,7 @@ const Telekom = () => {
             <img
               alt="Background image"
               fetchPriority="high"
-              className="absolute -left-1/2 h-full min-w-fit grayscale opacity-20 group-hover:grayscale-[50%] transition-[filter_opacity] group-hover:opacity-20"
+              className="w-full h-full object-cover grayscale opacity-20 group-hover:grayscale-[50%] transition-[filter_opacity] group-hover:opacity-20"
             />
           </picture>
           <div className="absolute inset-0 bg-gradient-to-r from-bg/0 via-30% via-bg/50 to-bg" />
