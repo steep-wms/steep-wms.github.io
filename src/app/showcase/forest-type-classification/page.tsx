@@ -4,10 +4,19 @@ import ProjectAuthor from "@/components/showcase/projects/ProjectAuthor"
 import ProjectGrid from "@/components/showcase/projects/ProjectGrid"
 import ProjectLayout from "@/components/showcase/projects/ProjectLayout"
 import ProjectQuote from "@/components/showcase/projects/ProjectQuote"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title:
+    "How we used Steep to improve our training pipeline for AI-based forest type classification",
+}
 
 const ForestTypeClassification = () => {
   return (
-    <ProjectLayout title="How we used Steep to improve our training pipeline for AI-based forest type classification">
+    <ProjectLayout
+      title="How we used Steep to improve our training pipeline for AI-based forest type classification"
+      moreShowcases={["telekom"]}
+    >
       <ProjectGrid>
         <div className="prose">
           <p className="lead">

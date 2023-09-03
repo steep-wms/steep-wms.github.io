@@ -3,6 +3,11 @@ import Presentations from "@/components/showcase/Presentations"
 import Publications from "@/components/showcase/Publications"
 import Projects from "@/components/showcase/projects/Projects"
 import clsx from "clsx"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Showcase",
+}
 
 const ShowcasePage = () => {
   return (

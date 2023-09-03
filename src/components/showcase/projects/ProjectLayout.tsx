@@ -1,15 +1,20 @@
 import Container from "../../Container"
 import Link from "../../LinkFix"
-import MoreShowcases from "./MoreShowcases"
+import MoreShowcases, { type MoreShowcasesProps } from "./MoreShowcases"
 import ProjectGrid from "./ProjectGrid"
 import { robotoBold } from "@/components/lib/roboto-bold"
 
 interface ProjectLayoutProps {
   title: string
+  moreShowcases: MoreShowcasesProps["showcases"]
   children: React.ReactNode
 }
 
-const ProjectLayout = ({ title, children }: ProjectLayoutProps) => {
+const ProjectLayout = ({
+  title,
+  moreShowcases,
+  children,
+}: ProjectLayoutProps) => {
   return (
     <Container type="lg" className="mt-32 mb-32">
       <div className="mb-6">
@@ -26,7 +31,7 @@ const ProjectLayout = ({ title, children }: ProjectLayoutProps) => {
         </h1>
       </ProjectGrid>
       {children}
-      <MoreShowcases />
+      <MoreShowcases showcases={moreShowcases} />
     </Container>
   )
 }
