@@ -23,11 +23,17 @@ const ProjectQuote = ({
   return (
     <div
       className={clsx(
-        "border border-gray-200 rounded-lg py-8 my-8 not-prose grid [grid-template-columns:4rem_1fr] gap-4",
-        { "px-16 items-center": !long, "px-10 items-start": long },
+        "border border-gray-200 rounded-lg py-8 my-8 not-prose grid grid-cols-1 sm:[grid-template-columns:4rem_1fr] gap-4",
+        {
+          "px-6 md:px-16 items-center": !long,
+          "px-6 md:px-10 items-start": long,
+        },
       )}
     >
-      <Link href="/about/#team" className="rounded-full overflow-hidden">
+      <Link
+        href="/about/#team"
+        className="rounded-full overflow-hidden w-16 mx-auto"
+      >
         <img
           src={authorImgSrc}
           width={authorImgWidth}
@@ -44,7 +50,12 @@ const ProjectQuote = ({
             <div>{authorLongName}</div>
           </div>
         ) : (
-          <span className="ml-4 text-gray-600">&mdash; {authorName}</span>
+          <>
+            <span className="inline-block w-4"></span>
+            <span className="text-gray-600 whitespace-nowrap">
+              &mdash; {authorName}
+            </span>
+          </>
         )}
       </span>
     </div>

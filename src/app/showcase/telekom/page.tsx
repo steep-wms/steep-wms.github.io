@@ -18,7 +18,7 @@ const Telekom = () => {
       moreShowcases={["forest-type-classification"]}
     >
       <ProjectGrid>
-        <div className="prose">
+        <div className="prose row-start-2 md:row-start-1">
           <p className="lead">
             We’ve been working together with Deutsche Telekom to build a Big
             Data processing platform supporting the fibre roll-out in Germany.
@@ -197,15 +197,20 @@ const Telekom = () => {
             months. Now they are on average about 75% faster and can be finished
             within a few weeks.
           </p>
+          <div className="md:hidden">
+            <Facts />
+          </div>
         </div>
-        <div>
+        <div className="row-start-1 mt-6 md:mt-0">
           <ProjectAuthor
             name="Michel Krämer"
             imgSrc={`${process.env.basePath}/images/about/michel-kraemer-2019-09-256x256.jpg`}
             imgWidth={256}
             imgHeight={256}
           />
-          <Facts />
+          <div className="hidden md:block">
+            <Facts />
+          </div>
         </div>
       </ProjectGrid>
     </ProjectLayout>

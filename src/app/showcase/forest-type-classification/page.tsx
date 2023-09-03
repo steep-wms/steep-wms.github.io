@@ -18,7 +18,7 @@ const ForestTypeClassification = () => {
       moreShowcases={["telekom"]}
     >
       <ProjectGrid>
-        <div className="prose">
+        <div className="prose row-start-2 md:row-start-1">
           <p className="lead">
             Steep can help train a neural network in an efficient,
             comprehensible, and flexible way. Our AI model can be used to
@@ -70,7 +70,7 @@ const ForestTypeClassification = () => {
             workflow in Steep.
           </p>
         </div>
-        <div>
+        <div className="row-start-1 mt-6 md:mt-0">
           <ProjectAuthor
             name="Hendrik M. Würz"
             imgSrc={`${process.env.basePath}/images/about/hendrik-wuerz-200x200.jpg`}

@@ -14,7 +14,7 @@ const Fact = ({ fact, description }: FactProps) => {
 
 const Facts = () => {
   return (
-    <div className="sticky mt-16 w-full top-20 border-t border-b border-gray-400 py-6 text-sm flex flex-col gap-4">
+    <div className="sticky mt-8 md:mt-16 w-full top-20 border-t border-b border-gray-400 py-6 text-sm flex flex-col gap-4">
       <div>
         <div className="font-normal">Facts and figures</div>
         <div className="text-gray-600">(from the year 2022)</div>
