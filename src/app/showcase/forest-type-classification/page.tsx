@@ -79,7 +79,7 @@ const ForestTypeClassification = () => {
           />
         </div>
       </ProjectGrid>
-      <div className="my-8">
+      <div className="my-8 max-w-4xl">
         <ForestClassificationWorkflow />
       </div>
       <ProjectGrid>

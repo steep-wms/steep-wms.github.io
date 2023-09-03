@@ -197,7 +197,7 @@ const Telekom = () => {
             months. Now they are on average about 75% faster and can be finished
             within a few weeks.
           </p>
-          <div className="md:hidden">
+          <div className="md:hidden mt-8">
             <Facts />
           </div>
         </div>
@@ -208,7 +208,7 @@ const Telekom = () => {
             imgWidth={256}
             imgHeight={256}
           />
-          <div className="hidden md:block">
+          <div className="hidden md:block sticky top-20 mt-8">
             <Facts />
           </div>
         </div>

@@ -16,7 +16,7 @@ const ProjectLayout = ({
   children,
 }: ProjectLayoutProps) => {
   return (
-    <Container type="lg" className="mt-32 mb-32">
+    <Container type="xl" className="mt-32 mb-32">
       <div className="mb-6">
         <Link
           href="/showcase"

@@ -14,7 +14,7 @@ const ProjectAuthor = ({
   imgHeight,
 }: ProjectAuthorProps) => {
   return (
-    <div className="flex flex-row md:flex-col items-center gap-3">
+    <div className="flex flex-row items-center gap-3">
       <Link href="/about/#team" className="w-16 rounded-full overflow-hidden">
         <img src={imgSrc} width={imgWidth} height={imgHeight} alt={name} />
       </Link>
