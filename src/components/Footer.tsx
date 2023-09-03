@@ -1,12 +1,22 @@
 import Container from "./Container"
 import Link from "./LinkFix"
+import clsx from "clsx"
 import { Balancer } from "react-wrap-balancer"
 
 const now = new Date().getFullYear()
 
-const Footer = () => {
+interface FooterProps {
+  bgBg?: boolean
+}
+
+const Footer = ({ bgBg = false }) => {
   return (
-    <footer className="border-t border-gray-200 bg-gray-100 pb-20 pt-16 [&_a:hover]:text-gray-800 [&_a:hover]:underline [&_a]:text-gray-600">
+    <footer
+      className={clsx(
+        "border-t border-gray-200 pb-20 pt-16 [&_a:hover]:text-gray-800 [&_a:hover]:underline [&_a]:text-gray-600",
+        { "bg-gray-100/50": !bgBg, "bg-bg": bgBg },
+      )}
+    >
       <Container type="xl">
         <div className="grid w-[40rem] max-w-full grid-cols-1 justify-items-center gap-8 self-start text-center sm:grid-cols-3 sm:justify-items-start sm:text-left">
           <div>

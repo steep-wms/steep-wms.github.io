@@ -66,11 +66,7 @@ const Home = () => {
         <MoreFeatures />
       </section>
 
-      <section id="web-ui" className="mt-24">
-        <Showcase />
-      </section>
-
-      <Footer />
+      <Footer bgBg={true} />
     </Provider>
   )
 }
