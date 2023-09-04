@@ -6,7 +6,7 @@ const Forest = () => {
     <Project>
       <Link
         href="/showcase/forest-type-classification"
-        className="group relative w-full h-full"
+        className="group block relative w-full h-full"
       >
         <div className="flex flex-col justify-end px-12 pt-14 pb-16 relative z-10 w-full h-full">
           <h2 className="text-3xl font-bold mb-8">
@@ -17,7 +17,7 @@ const Forest = () => {
             neural network that can be used to respond to climate change.
           </p>
         </div>
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0">
           <picture>
             <source
               srcSet={`${process.env.basePath}/images/showcase/projects/forest-type-classification/satellite-image-small.avif`}

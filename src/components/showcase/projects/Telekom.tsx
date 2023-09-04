@@ -4,7 +4,10 @@ import Project from "./Project"
 const Telekom = () => {
   return (
     <Project>
-      <Link href="/showcase/telekom" className="group relative w-full h-full">
+      <Link
+        href="/showcase/telekom"
+        className="group block relative w-full h-full"
+      >
         <div className="px-12 pt-14 pb-16 relative z-10 w-full h-full">
           <div className="flex flex-row items-center text-xl font-normal gap-2 mb-3">
             <div className="w-8">
@@ -26,7 +29,7 @@ const Telekom = () => {
             their data processing workflows.
           </p>
         </div>
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0">
           <picture>
             <source
               srcSet={`${process.env.basePath}/images/showcase/projects/telekom/t-car.avif`}
