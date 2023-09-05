@@ -12,7 +12,7 @@ interface OrthophotoProps {
 const Orthophoto = ({ t0 }: OrthophotoProps) => {
   const rng = prand.xoroshiro128plus(1302)
   const ref = useRef<HTMLDivElement>(null)
-  const inView = useInViewEx(ref, { amount: 0.6 }, { amount: 0 })
+  const inView = useInViewEx(ref, 0.6, 0)
 
   let tiles = []
   for (let y = 0; y < 5; ++y) {

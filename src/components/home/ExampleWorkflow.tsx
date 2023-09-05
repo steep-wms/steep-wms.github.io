@@ -12,7 +12,7 @@ import { useEffect } from "react"
 
 const ExampleWorkflow = () => {
   const [scope, animate] = useAnimate()
-  const codeInView = useInViewEx(scope, { amount: 0.5 }, { amount: 0 })
+  const codeInView = useInViewEx(scope, 0.5, 0)
 
   useEffect(() => {
     if (codeInView) {
