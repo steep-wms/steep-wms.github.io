@@ -13,7 +13,8 @@ const withBundleAnalyzer = nextBundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
 })
 
-const basePath = "/preview"
+// const basePath = "/preview"
+const basePath = ""
 
 const steepColorTheme = JSON5.parse(
   fs.readFileSync("./components/lib/steep-color-theme.json", "utf8"),
