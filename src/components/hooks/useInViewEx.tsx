@@ -1,10 +1,9 @@
-import { useInView } from "framer-motion"
+import { inView } from "framer-motion"
 import { RefObject, useEffect, useState } from "react"
 
 interface UseInViewOptions {
   root?: RefObject<Element>
   margin?: string
-  once?: boolean
   amount?: "some" | "all" | number
 }
 
@@ -13,20 +12,49 @@ function useInViewEx(
   optionsEnter: UseInViewOptions,
   optionsLeave: UseInViewOptions,
 ): boolean {
-  const inViewEnter = useInView(ref, optionsEnter)
-  const inViewLeave = useInView(ref, optionsLeave)
   const [inViewCombined, setInViewCombined] = useState(false)
 
+  function convertOptions(o: UseInViewOptions) {
+    return {
+      root: (o.root && o.root.current) || undefined,
+      margin: o.margin,
+      amount: o.amount,
+    }
+  }
+
   useEffect(() => {
-    setInViewCombined(state => {
-      if (!state && inViewEnter) {
-        return true
-      } else if (state && !inViewLeave) {
-        return false
+    if (!ref.current) {
+      return
+    }
+
+    function onEnterChange() {
+      setInViewCombined(true)
+
+      return () => {
+        // nothing to do here but this callback is necessary to be notified
+        // again when the element re-enters the viewport
       }
-      return state
-    })
-  }, [inViewEnter, inViewLeave])
+    }
+
+    function onLeaveChange() {
+      // nothing to do on enter
+
+      return () => {
+        setInViewCombined(false)
+      }
+    }
+
+    let oe = convertOptions(optionsEnter)
+    let ol = convertOptions(optionsLeave)
+
+    let enterCleanup = inView(ref.current, onEnterChange, oe)
+    let leaveCleanup = inView(ref.current, onLeaveChange, ol)
+
+    return () => {
+      enterCleanup()
+      leaveCleanup()
+    }
+  }, [ref, optionsEnter, optionsLeave])
 
   return inViewCombined
 }

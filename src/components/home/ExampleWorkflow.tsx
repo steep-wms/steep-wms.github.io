@@ -8,7 +8,7 @@ import SegmentationWorkflow from "./SegmentationWorkflow.mdx"
 import { Button } from "@/components/Button"
 import { stagger, useAnimate } from "framer-motion"
 import { ChevronRight } from "lucide-react"
-import { useEffect, useMemo } from "react"
+import { useEffect } from "react"
 
 const ExampleWorkflow = () => {
   const [scope, animate] = useAnimate()
@@ -22,13 +22,6 @@ const ExampleWorkflow = () => {
     }
   }, [animate, codeInView])
 
-  // BUGFIX: Since we are by-passing React with framer-motion in the useEffect()
-  // function above, we need to prevent the component from re-rendering. Otherwise,
-  // our changes will be overwritten on every re-render (which, in this case,
-  // also happens when the the workflow is 50% out of the screen because the
-  // inViewEnter hook of useInViewEx is tiggered).
-  let sw = useMemo(() => <SegmentationWorkflow />, [])
-
   return (
     <div className="relative">
       <Container type="xl" className="2xl:px-2">
@@ -37,7 +30,7 @@ const ExampleWorkflow = () => {
             className="text-sm lg:mb-8 lg:mt-16 [&_[data-line]]:opacity-0"
             ref={scope}
           >
-            {sw}
+            <SegmentationWorkflow />
           </div>
           <div className="text-md prose text-gray-800">
             <h2 className="mb-[0.6em] text-[1.8em] font-normal leading-[1.6]">
