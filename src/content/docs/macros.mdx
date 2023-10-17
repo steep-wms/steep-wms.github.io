@@ -1,0 +1,39 @@
+Macros can be used to model reusable workflow parts. A macro consists of a list of <DocsLink href="#actions">actions</DocsLink> and has input and output parameters. It can be included in a workflow (or indeed another macro) through an <DocsLink href="#include-actions">include action</DocsLink>.
+
+Macros are specified in the configuration file <DocsLink href="#macrosmacrosyaml">`macros/macros.yaml`</DocsLink>.
+
+| Property                               | Type   | Description
+| -------------------------------------- | ------ | -----------
+| id<br/>*(required)*                    | string | A unique macro identifier
+| name<br/>*(required)*                  | string | A human-readable name
+| description<br/>*(required)*           | string | A human-readable description
+| parameters<br/>*(optional)*            | array  | An optional list of input and output <DocsLink href="#macro-parameters">parameters</DocsLink> that can be accessed from outside the macro to provide arguments or to access return values, respectively.
+| vars<br/>*(optional)*                  | array  | An optional list of private <DocsLink href="#variables">variables</DocsLink> that can be used inside the macro. These variables are not accessible from the outside.
+| actions<br/>*(required)*               | array  | The actions to execute
+
+<CodeContainer title="Example">
+```yaml
+- id: delayed_docker_hello_world
+  name: Delayed Docker hello world
+  description: >-
+    Wait for the given number of seconds and then run the
+    hello-world Docker image
+
+  parameters:
+    - id: seconds
+      name: seconds to wait
+      description: The number of seconds to wait
+      type: input
+
+  actions:
+    - id: sleep
+      type: execute
+      service: sleep
+      inputs:
+        - id: seconds
+          var: seconds
+    - type: execute
+      dependsOn: sleep
+      service: docker_hello_world
+```
+</CodeContainer>

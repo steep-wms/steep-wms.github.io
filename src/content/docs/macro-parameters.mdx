@@ -1,0 +1,18 @@
+Macro parameters describe inputs and outputs of macros.
+
+| Property                     | Type   | Description
+| ---------------------------- | ------ | -----------
+| id<br/>*(required)*          | string | A unique parameter identifier
+| name<br/>*(required)*        | string | A human-readable name
+| description<br/>*(required)* | string | A human-readable description
+| type<br/>*(required)*        | string | The type of this parameter. Valid values: `input`, `output`
+| default<br/>*(optional)*     | string | An optional default value for this parameter that will be used if a parameter value is not explicitly provided when the macro is included.
+
+<CodeContainer title="Example">
+```yaml
+id: seconds
+name: seconds to wait
+description: The number of seconds to wait
+type: input
+```
+</CodeContainer>

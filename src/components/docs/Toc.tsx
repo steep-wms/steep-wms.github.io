@@ -257,6 +257,7 @@ const toc: DraftChapter[] = [
             subsections: [
               "Execute actions",
               "For-each actions",
+              "Include actions",
               "Parameters",
               "Output parameters",
             ],
@@ -285,6 +286,10 @@ const toc: DraftChapter[] = [
           "Service parameters",
           "Runtime arguments",
         ],
+      },
+      {
+        title: "Macros",
+        sections: ["Macro parameters"],
       },
       {
         title: "Timeouts and retries",
@@ -378,6 +383,9 @@ const toc: DraftChapter[] = [
       },
       {
         title: "services/services.yaml",
+      },
+      {
+        title: "macros/macros.yaml",
       },
       {
         title: "plugins/common.yaml",
