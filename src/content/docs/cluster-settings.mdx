@@ -76,18 +76,6 @@ A list of IP addresses (or hostnames) of Hazelcast cluster members
 **Default:** `false`
 </dd>
 
-<dt>`steep.cluster.hazelcast.restoreMembersOnStartup.enabled`</dt>
-<dd>
-`true` if Steep should try to load IP addresses of possibly still running VMs from its database during startup and add them to `steep.cluster.hazelcast.members`. This is useful if a Steep instance has crashed and should be reintegrated into an existing cluster when it's back.
-
-**Default:** `false`
-</dd>
-
-<dt>`steep.cluster.hazelcast.restoreMembersOnStartup.defaultPort`</dt>
-<dd>
-If `steep.cluster.hazelcast.restoreMembersOnStartup.enabled` is `true`, potential Hazelcast cluster members will be restored from database. This configuration item specifies on which Hazelcast port these members are listening.
-</dd>
-
 <dt>`steep.cluster.hazelcast.placementGroupName`</dt>
 <dd>
 An optional name specifying in which group this Hazelcast member should be placed. Steep uses [distributed maps](https://docs.hazelcast.com/hazelcast/5.1/data-structures/map) to share data between instances. Data in these maps is partitioned (i.e. distributed to the individual cluster members). In a large cluster, no member keeps all the data. Most nodes only keep a small fraction of the data (a partition).
@@ -119,5 +107,49 @@ Note that since lite members cannot keep data, they are not suitable to keep bac
 The interval at which Steep's main thread looks for orphaned entries in its internal remote agent registry (specified as a <DocsLink href="#durations">duration</DocsLink>). Such entries may (very rarely) happen if there is a network failure during deregistration of an agent. You normally do not have to change this configuration.
 
 **Default:** 5m
+</dd>
+
+<dt>`steep.cluster.hazelcast.restoreMembersOnStartup.enabled`</dt>
+<dd>
+`true` if Steep should try to load IP addresses of possibly still running VMs from its database during startup and add them to `steep.cluster.hazelcast.members`. This is useful if a Steep instance has crashed and should be reintegrated into an existing cluster when it's back.
+
+**Default:** `false`
+</dd>
+
+<dt>`steep.cluster.hazelcast.restoreMembersOnStartup.defaultPort`</dt>
+<dd>
+If `steep.cluster.hazelcast.restoreMembersOnStartup.enabled` is `true`, potential Hazelcast cluster members will be restored from database. This configuration item specifies on which Hazelcast port these members are listening.
+</dd>
+
+<dt>`steep.cluster.hazelcast.splitBrainProtection.enabled`</dt>
+<dd>
+`true` if split-brain protection should be enabled. This mechanism makes sure the cluster is only able to operate if there are at least `n` members, where `n` is defined by `steep.cluster.hazelcast.splitBrainProtection.minClusterSize`. If there are less than `n` members, Steep instances in the cluster will not be able to access cluster-wide data structures and stop to operate until the issue has been resolved.
+
+This mechanism protects against so-called split-brain situations where one part of the cluster loses connection to another part, and the cluster is therefore split into different partitions. If one partition becomes too small, it should stop operating to avoid doing any harm.
+
+See the [Hazelcast documentation](https://docs.hazelcast.com/imdg/4.2/network-partitioning/split-brain-protection) for more information.
+
+**Default:** `false`
+</dd>
+
+<dt>`steep.cluster.hazelcast.splitBrainProtection.minClusterSize`</dt>
+<dd>
+The minimum number of members the cluster must have to be able operate if split-brain protection is enabled.
+
+Recommendation: Your cluster should have an odd number of members. The minimum cluster size should be even and represent the majority of your cluster. For example, if your cluster has 7 nodes, set this value to 4. This makes sure that when a split-brain situation happens, the majority of your cluster will be able to continue operating while the smaller part will stop.
+
+This configuration item does not have a default value. It must be set if `steep.cluster.hazelcast.splitBrainProtection.enable` equals `true`.
+</dd>
+
+<dt>`steep.cluster.hazelcast.splitBrainProtection.gracefulStartup`</dt>
+<dd>
+`true` if the split-brain protection mechanism should only start to be in effect once the cluster has reached its minimum size. This allows the cluster to startup gracefully even if the member count is temporarily lower than the defined minimum.
+
+**Default:** `true`
+</dd>
+
+<dt>`steep.cluster.hazelcast.splitBrainProtection.exitProcessAfter`</dt>
+<dd>
+An optional timeout (specified as a <DocsLink href="#durations">duration</DocsLink>) defining how long a Steep instance may keep running after a split-brain situation has been detected. When the timeout is reached and the split-brain situation has not been resolved in the meantime, the Steep instance shuts itself down with exit code 16. This mechanism can be used to prevent a Steep instance from doing any harm when it is in a split-brain situation.
 </dd>
 </dl>
