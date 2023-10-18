@@ -1,6 +1,6 @@
 {
   "name": "steep-wms-docs",
-  "version": "6.6.0",
+  "version": "6.7.0",
   "description": "Steep Workflow Management System - Documentation",
   "private": true,
   "main": "index.js",
