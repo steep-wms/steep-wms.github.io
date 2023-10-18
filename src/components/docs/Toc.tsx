@@ -260,6 +260,7 @@ const toc: DraftChapter[] = [
               "Include actions",
               "Parameters",
               "Output parameters",
+              "Include output parameters",
             ],
           },
           "Retry policy defaults",

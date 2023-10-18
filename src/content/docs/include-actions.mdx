@@ -1,1 +1,22 @@
-TODO
+Include actions can be used to include the actions of a macro at a certain point in a workflow. They can also be used in macros to include other macros.
+
+Note that include actions are evaluated in a static pre-processing step during workflow parsing. The pre-processor replaces each include action with the list of actions it specifies and takes care of assigning parameter values as well as renaming IDs and variables to avoid naming collisions.
+
+| Property                       | Type   | Description
+| ------------------------------ | ------ | -----------
+| id<br/>*(optional)*            | string | An optional string uniquely identifying the action within the workflow. If not given, a random identifier will be generated.
+| type<br/>*(required)*          | string | The type of the action. Must be `include`.
+| macro<br/>*(required)*         | string | The ID of the macro to include.
+| inputs<br/>*(optional)*        | array  | An array of <DocsLink href="#parameters">input parameters</DocsLink>.
+| outputs<br/>*(optional)*       | array  | An array of <DocsLink href="#include-output-parameters">include output parameters</DocsLink>.
+| dependsOn<br/>*(optional)*     | array  | A list of identifiers of actions this action needs to finish first before it is ready to be executed. Note that Steep is able to identify dependencies between actions itself based on `outputs` and `inputs`, so this attribute is normally not needed. However, it may be useful if a preceding action does not have an output parameter or if the depending action does not have an input parameter. Include actions may depend on <DocsLink href="#execute-actions">execute actions</DocsLink> and <DocsLink href="#for-each-actions">for-each actions</DocsLink> but also on other include actions and vice versa.
+
+<CodeContainer title="Example">
+```yaml generate-json
+type: include
+macro: delayed_docker_hello_world
+inputs:
+  - id: seconds
+    value: 5
+```
+</CodeContainer>

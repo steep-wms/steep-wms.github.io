@@ -1,0 +1,15 @@
+This data model describes output parameters of <DocsLink href="#include-actions">include actions</DocsLink>.
+
+| Property                | Type    | Description
+| ----------------------- | ------- | -----------
+| id<br/>*(required)*     | string  | The ID of the parameter as defined in the <DocsLink href="#macros">macro definition</DocsLink>
+| var<br/>*(required)*    | string  | The ID of a variable to which Steep will assign the macro's return value. This variable can then be used, for example, as an input parameter of a subsequent action.
+
+<CodeContainer title="Example">
+```json generate-yaml
+{
+  "id": "output",
+  "var": "o"
+}
+```
+</CodeContainer>
