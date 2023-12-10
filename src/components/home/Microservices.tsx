@@ -64,9 +64,9 @@ const Microservices = () => {
             className={clsx(
               "text-sm lg:mb-8 lg:mt-14 [&_[data-line]]:transition-opacity",
               {
-                "[&_[data-line]:nth-child(n+9):nth-child(-n+11)]:opacity-30":
+                "[&_[data-line]:not([data-highlighted-line-id=requiredCapabilities])]:opacity-30 [&_[data-highlighted-line-id=requiredCapabilities]]:opacity-100":
                   activeOption === "metadata",
-                "[&_[data-line]:nth-child(n+9):nth-child(-n+11)]:opacity-100 [&_[data-line]]:opacity-30":
+                "[&_[data-line]:not([data-highlighted-line-id=requiredCapabilities])]:opacity-100 [&_[data-highlighted-line-id=requiredCapabilities]]:opacity-30":
                   activeOption === "scheduling",
               },
             )}
