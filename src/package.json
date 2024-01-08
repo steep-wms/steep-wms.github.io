@@ -50,7 +50,7 @@
     "dayjs": "^1.11.10",
     "eslint": "^8.55.0",
     "eslint-config-next": "^14.0.4",
-    "framer-motion": "^10.16.16",
+    "framer-motion": "^10.17.9",
     "hamburger-react": "^2.5.0",
     "immer": "^10.0.3",
     "json5": "^2.2.3",
