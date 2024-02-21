@@ -111,6 +111,17 @@ error (specified as a <DocsLink href="#durations">duration</DocsLink>).
 **Default:** 5m
 </dd>
 
+<dt>`steep.cloud.timeouts.provisioning`</dt>
+<dd>
+The maximum time each individual provisioning step (i.e. executing a
+provisioning script or uploading files) may take before it is aborted. Running
+provisioning commands will be killed after this timeout regardless of whether
+they are still active or not. This value is specified as
+a <DocsLink href="#durations">duration</DocsLink>.
+
+**Default:** 10m
+</dd>
+
 <dt>`steep.cloud.agentPool`</dt>
 <dd>
 An array of <DocsLink href="#agent-pool-parameters">agent pool parameters</DocsLink>
