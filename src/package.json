@@ -48,7 +48,7 @@
     "autoprefixer": "^10.4.17",
     "clsx": "^2.1.0",
     "dayjs": "^1.11.10",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
     "eslint-config-next": "^14.1.0",
     "framer-motion": "^11.0.5",
     "hamburger-react": "^2.5.0",
