@@ -50,7 +50,7 @@ const Telekom = () => {
             very low. Deutsche Telekom, the largest telecommunications provider
             in Europe, is therefore working on speeding up the fibre roll-out in
             Germany by automating planning processes and reducing communcation
-            overhead. Their aim is to connect more than 3 million households per
+            overhead. Their aim is to connect more than 2.5 million households per
             year to FTTH.
           </p>
           <p>
@@ -192,7 +192,7 @@ const Telekom = () => {
           <p>
             We’ve started our collaboration with Deutsche Telekom in 2017. Since
             then, with the help of the GDI and Steep, they’ve been able to plan
-            more than 10 million households and connect more than 6 million of
+            more than 10 million households and connect more than 8 million of
             them to FTTH. Before, planning and approval processes took several
             months. Now they are on average about 75% faster and can be finished
             within a few weeks.

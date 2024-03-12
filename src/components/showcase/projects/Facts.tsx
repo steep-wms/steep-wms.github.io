@@ -17,11 +17,11 @@ const Facts = () => {
     <div className="w-full border border-gray-200 rounded-md px-6 pt-6 pb-7 text-sm flex flex-col gap-6 shadow-sm">
       <div className="mb-2">
         <div className="font-normal text-base">Facts and figures</div>
-        <div className="text-gray-600 text-xs">from the year 2022</div>
+        <div className="text-gray-600 text-xs">from the years 2017&ndash;2023</div>
       </div>
-      <Fact fact="1,300" description="planning areas" />
+      <Fact fact="1,731" description="planning areas" />
       <Fact
-        fact="> 58,000&thinsp;km"
+        fact="> 191,000&thinsp;km"
         description={
           <>
             distance recorded by{" "}
@@ -29,8 +29,8 @@ const Facts = () => {
           </>
         }
       />
-      <Fact fact="201&thinsp;TB" description="data collected and processed" />
-      <Fact fact="58.4 M" description="images taken and processed" />
+      <Fact fact="622&thinsp;TB" description="data collected and processed" />
+      <Fact fact="> 184 M" description="images taken and processed" />
     </div>
   )
 }
