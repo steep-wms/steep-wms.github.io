@@ -13,6 +13,26 @@ const Publications = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 xl:gap-8 mt-16">
           <Publication
             previewImages={[
+              "kraemer-et-al-2024-01",
+              "kraemer-et-al-2024-02",
+              "kraemer-et-al-2024-03",
+            ]}
+            previewImageHeight={631}
+            authors="Krämer, M., Bormann, P., Würz, H. M., Kocon, K., Frechen, T., &amp; Schmid, J."
+            year="2024"
+            title="A cloud-based data processing and visualization pipeline for the fibre roll-out in Germany"
+            pdf="https://michelkraemer.com/publications/2024/Kraemer,%20Bormann,%20Wuerz,%20Kocon,%20Frechen,%20Schmid%20-%20A%20cloud-based%20data%20processing%20and%20visualization%20pipeline%20for%20the%20fibre%20roll-out%20in%20Germany.pdf"
+            citation={
+              <>
+                <i>Journal of Systems and Software, 211</i>, 112008.{" "}
+                <Link href="https://doi.org/10.1016/j.jss.2024.112008">
+                  https://doi.org/10.1016/j.jss.2024.112008
+                </Link>
+              </>
+            }
+          />
+          <Publication
+            previewImages={[
               "wuerz-et-al-2023-1",
               "wuerz-et-al-2023-2",
               "wuerz-et-al-2023-3",
