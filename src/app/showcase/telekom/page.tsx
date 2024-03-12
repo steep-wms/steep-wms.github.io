@@ -4,6 +4,7 @@ import Facts from "@/components/showcase/projects/Facts"
 import ProjectAuthor from "@/components/showcase/projects/ProjectAuthor"
 import ProjectGrid from "@/components/showcase/projects/ProjectGrid"
 import ProjectLayout from "@/components/showcase/projects/ProjectLayout"
+import Publication from "@/components/showcase/Publication"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -197,6 +198,28 @@ const Telekom = () => {
             months. Now they are on average about 75% faster and can be finished
             within a few weeks.
           </p>
+          <h2>Research</h2>
+          <p>Read more about this project in the following scientific publication:</p>
+          <Publication
+            previewImages={[
+              "kraemer-et-al-2024-01",
+              "kraemer-et-al-2024-02",
+              "kraemer-et-al-2024-03",
+            ]}
+            previewImageHeight={631}
+            authors="Krämer, M., Bormann, P., Würz, H. M., Kocon, K., Frechen, T., &amp; Schmid, J."
+            year="2024"
+            title="A cloud-based data processing and visualization pipeline for the fibre roll-out in Germany"
+            pdf="https://michelkraemer.com/publications/2024/Kraemer,%20Bormann,%20Wuerz,%20Kocon,%20Frechen,%20Schmid%20-%20A%20cloud-based%20data%20processing%20and%20visualization%20pipeline%20for%20the%20fibre%20roll-out%20in%20Germany.pdf"
+            citation={
+              <>
+                <i>Journal of Systems and Software, 211</i>, 112008.{" "}
+                <Link href="https://doi.org/10.1016/j.jss.2024.112008">
+                  https://doi.org/10.1016/j.jss.2024.112008
+                </Link>
+              </>
+            }
+          />
           <div className="lg:hidden mt-8">
             <Facts />
           </div>
