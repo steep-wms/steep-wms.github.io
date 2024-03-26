@@ -2,6 +2,7 @@
 
 import DarkModeToggle from "./DarkModeToggle"
 import Link from "./LinkFix"
+import ScrollTopWorkaround from "./ScrollTopWorkaround"
 import SimpleIcon from "./SimpleIcon"
 import { Tooltip } from "./Tooltip"
 import { useTheme } from "./hooks/useTheme"
@@ -162,31 +163,7 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
 
   return (
     <>
-      {/*
-        The following div is necessary so that the browser scrolls to top
-        after navigating to a new page. Explanation:
-
-        * Next.js's InnerScrollAndFocusHandler handles scrolling after
-          navigation (see https://github.com/vercel/next.js/blob/12e77cae30f61bd94182931b836ec46a1d79a888/packages/next/src/client/components/layout-router.tsx)
-        * For this, it receives a ref to the element to scroll to
-        * If the element is not `null`, it just scrolls to it
-        * But if the element is `null`, it tries to find the first element on
-          the page and scrolls to that instead:
-          https://github.com/vercel/next.js/blob/12e77cae30f61bd94182931b836ec46a1d79a888/packages/next/src/client/components/layout-router.tsx#L191-L193
-        * If the first element is our navbar and it is fixed, it is already
-          in view and InnerScrollAndFocusHandler will do nothing!
-          https://github.com/vercel/next.js/blob/12e77cae30f61bd94182931b836ec46a1d79a888/packages/next/src/client/components/layout-router.tsx#L231-L234
-        * We therefore have to have an artifical element that always comes
-          before the navbar in the DOM and that is always at the top of the
-          page so InnerScrollAndFocusHandler can find it and correctly scroll
-          to it.
-
-        What would happen if we removed this element:
-        * Whenever you click on a link that leads to a page with a fixed navbar,
-          scrolling will not work correctly. Instead, the scroll position will
-          stay the same as before the navigation.
-      */}
-      <div className="absolute top-0 h-0" id="__top-before-navbar"></div>
+      <ScrollTopWorkaround />
       <nav
         className={clsx("left-0 right-0 top-0 z-50 flex flex-col", {
           fixed,

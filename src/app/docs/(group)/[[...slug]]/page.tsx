@@ -1,4 +1,5 @@
 import Link from "@/components/LinkFix"
+import ScrollTopWorkaround from "@/components/ScrollTopWorkaround"
 import { Index, Toc } from "@/components/docs/Toc"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Metadata, ResolvingMetadata } from "next"
@@ -145,7 +146,12 @@ const DocsPage = ({ params }: DocsPageProps) => {
     </>
   )
 
-  return <main className="prose mt-40 lg:mt-24">{Main}</main>
+  return (
+    <>
+      <ScrollTopWorkaround />
+      <main className="prose mt-40 lg:mt-24">{Main}</main>
+    </>
+  )
 }
 
 export default DocsPage
