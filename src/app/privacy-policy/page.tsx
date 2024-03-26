@@ -1,6 +1,8 @@
 import Legal from "@/components/Legal"
 import { Metadata } from "next"
 
+export const dynamic = "force-static"
+
 export const metadata: Metadata = {
   title: "Privacy policy",
 }
