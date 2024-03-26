@@ -1,5 +1,5 @@
 "use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[881],{9108:function(t,e,r){r.d(e,{Z:function(){return n}});/**
- * @license lucide-react v0.356.0 - ISC
+ * @license lucide-react v0.363.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
