@@ -47,7 +47,7 @@ interface LegalProps {
 }
 
 const Legal = async ({ url, title }: LegalProps) => {
-  let dsiResponse = await fetch(url)
+  let dsiResponse = await fetch(url, { cache: "no-store" })
   let dsi = await dsiResponse.text()
 
   const processedDsi = String(
