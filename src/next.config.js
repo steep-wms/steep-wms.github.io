@@ -37,10 +37,6 @@ const withMDX = nextMDX({
 })
 
 const config = {
-  env: {
-    basePath,
-  },
-
   // also render markdown pages
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
 

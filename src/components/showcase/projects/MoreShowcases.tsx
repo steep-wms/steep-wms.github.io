@@ -24,7 +24,7 @@ const MoreShowcases = ({ showcases }: MoreShowcasesProps) => {
               <h3 className="mt-1 mb-2 text-lg font-normal flex items-center gap-2">
                 <div className="w-5">
                   <img
-                    src={`${process.env.basePath}/images/showcase/projects/telekom/telekom.svg`}
+                    src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/telekom/telekom.svg`}
                     alt="Telekom Logo"
                     width={1000}
                     height={1000}

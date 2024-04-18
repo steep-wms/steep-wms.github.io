@@ -137,9 +137,9 @@ const Publication = ({
                     srcSet={
                       i > 0
                         ? undefined
-                        : `${process.env.basePath}/images/showcase/publications/${pi}.avif`
+                        : `${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/publications/${pi}.avif`
                     }
-                    data-srcset={`${process.env.basePath}/images/showcase/publications/${pi}.avif`}
+                    data-srcset={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/publications/${pi}.avif`}
                     type="image/avif"
                     width={previewImageWidth}
                     height={previewImageHeight}
@@ -149,9 +149,9 @@ const Publication = ({
                     src={
                       i > 0
                         ? undefined
-                        : `${process.env.basePath}/images/showcase/publications/${pi}.jpg`
+                        : `${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/publications/${pi}.jpg`
                     }
-                    data-src={`${process.env.basePath}/images/showcase/publications/${pi}.jpg`}
+                    data-src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/publications/${pi}.jpg`}
                     width={previewImageWidth}
                     height={previewImageHeight}
                     loading="lazy"

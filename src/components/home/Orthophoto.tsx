@@ -26,7 +26,7 @@ const Orthophoto = ({ t0 }: OrthophotoProps) => {
           <foreignObject width={650} height={650} y={-y * 130} x={-x * 130}>
             <img
               alt="Tile"
-              src={`${process.env.basePath}/images/home/tiles.jpg`}
+              src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/home/tiles.jpg`}
               width={650}
               height={650}
               loading="lazy"
@@ -54,14 +54,14 @@ const Orthophoto = ({ t0 }: OrthophotoProps) => {
             <foreignObject width={650} height={650} y={-y * 130} x={-x * 130}>
               <picture>
                 <source
-                  srcSet={`${process.env.basePath}/images/home/masks.webp`}
+                  srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/home/masks.webp`}
                   type="image/webp"
                   width={650}
                   height={650}
                 />
                 <img
                   alt="Tile"
-                  src={`${process.env.basePath}/images/home/masks.jpg`}
+                  src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/home/masks.jpg`}
                   width={650}
                   height={650}
                   loading="lazy"
@@ -142,7 +142,7 @@ const Orthophoto = ({ t0 }: OrthophotoProps) => {
       </motion.div>
       <div className="relative z-20">
         <motion.img
-          src={`${process.env.basePath}/images/home/2_1_mask.jpg`}
+          src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/home/2_1_mask.jpg`}
           alt="Large image tile"
           width={650}
           height={650}
@@ -157,7 +157,7 @@ const Orthophoto = ({ t0 }: OrthophotoProps) => {
           }}
         />
         <motion.img
-          src={`${process.env.basePath}/images/home/2_1.jpg`}
+          src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/home/2_1.jpg`}
           alt="Large image tile mask"
           width={650}
           height={650}

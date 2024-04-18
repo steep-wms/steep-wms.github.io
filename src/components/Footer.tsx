@@ -22,7 +22,7 @@ const Footer = ({ bgBg = false }: FooterProps) => {
           <div>
             <Link href="/" className="group">
               <img
-                src={`${process.env.basePath}/images/steep-logo.svg`}
+                src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/steep-logo.svg`}
                 className="h-10 w-fit opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:hidden"
                 width={1706.4}
                 height={532.9}
@@ -30,7 +30,7 @@ const Footer = ({ bgBg = false }: FooterProps) => {
                 loading="lazy"
               />
               <img
-                src={`${process.env.basePath}/images/steep-logo-white.svg`}
+                src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/steep-logo-white.svg`}
                 className="hidden h-10 w-fit opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:block"
                 width={1706.4}
                 height={532.9}
@@ -80,7 +80,7 @@ const Footer = ({ bgBg = false }: FooterProps) => {
           <div>
             <Link href="https://igd.fraunhofer.de/" className="group">
               <img
-                src={`${process.env.basePath}/images/fraunhofer.svg`}
+                src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/fraunhofer.svg`}
                 className="w-48 h-fit opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:hidden"
                 width={301.647}
                 height={82.609}
@@ -88,7 +88,7 @@ const Footer = ({ bgBg = false }: FooterProps) => {
                 loading="lazy"
               />
               <img
-                src={`${process.env.basePath}/images/fraunhofer-light.svg`}
+                src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/fraunhofer-light.svg`}
                 className="hidden w-48 h-fit opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:block"
                 width={301.647}
                 height={82.609}

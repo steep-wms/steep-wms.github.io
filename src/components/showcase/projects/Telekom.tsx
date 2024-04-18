@@ -12,7 +12,7 @@ const Telekom = () => {
           <div className="flex flex-row items-center text-xl font-normal gap-2 mb-3">
             <div className="w-8">
               <img
-                src={`${process.env.basePath}/images/showcase/projects/telekom/telekom.svg`}
+                src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/telekom/telekom.svg`}
                 alt="Telekom Logo"
                 width={1000}
                 height={1000}
@@ -32,13 +32,13 @@ const Telekom = () => {
         <div className="absolute inset-0">
           <picture>
             <source
-              srcSet={`${process.env.basePath}/images/showcase/projects/telekom/t-car.avif`}
+              srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/telekom/t-car.avif`}
               type="image/avif"
               width={1835}
               height={860}
             />
             <source
-              srcSet={`${process.env.basePath}/images/showcase/projects/telekom/t-car.jpg`}
+              srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/telekom/t-car.jpg`}
               type="image/jpeg"
               width={1835}
               height={860}

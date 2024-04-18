@@ -1,7 +1,7 @@
 import { Toc } from "@/components/docs/Toc"
 import { MetadataRoute } from "next"
 
-const root = `https://steep-wms.github.io${process.env.basePath}`
+const root = `https://steep-wms.github.io${process.env.__NEXT_ROUTER_BASEPATH}`
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const docPages = Toc.flatMap(chapter => {

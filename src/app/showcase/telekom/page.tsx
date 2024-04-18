@@ -1,10 +1,10 @@
 import TelekomDataflow from "../../../assets/telekom-dataflow.svg?drawio"
 import Link from "@/components/LinkFix"
+import Publication from "@/components/showcase/Publication"
 import Facts from "@/components/showcase/projects/Facts"
 import ProjectAuthor from "@/components/showcase/projects/ProjectAuthor"
 import ProjectGrid from "@/components/showcase/projects/ProjectGrid"
 import ProjectLayout from "@/components/showcase/projects/ProjectLayout"
-import Publication from "@/components/showcase/Publication"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -26,13 +26,13 @@ const Telekom = () => {
           </p>
           <picture>
             <source
-              srcSet={`${process.env.basePath}/images/showcase/projects/telekom/t-cars.avif`}
+              srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/telekom/t-cars.avif`}
               type="image/avif"
               width={1440}
               height={675}
             />
             <source
-              srcSet={`${process.env.basePath}/images/showcase/projects/telekom/t-cars.jpg`}
+              srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/telekom/t-cars.jpg`}
               type="image/jpeg"
               width={1440}
               height={675}
@@ -51,8 +51,8 @@ const Telekom = () => {
             very low. Deutsche Telekom, the largest telecommunications provider
             in Europe, is therefore working on speeding up the fibre roll-out in
             Germany by automating planning processes and reducing communcation
-            overhead. Their aim is to connect more than 2.5 million households per
-            year to FTTH.
+            overhead. Their aim is to connect more than 2.5 million households
+            per year to FTTH.
           </p>
           <p>
             To this end, they are collecting large amounts of data with
@@ -101,13 +101,13 @@ const Telekom = () => {
           <div className="grid grid-cols-2 gap-4 not-prose my-8">
             <picture>
               <source
-                srcSet={`${process.env.basePath}/images/showcase/projects/telekom/screenshot1.avif`}
+                srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/telekom/screenshot1.avif`}
                 type="image/avif"
                 width={720}
                 height={405}
               />
               <img
-                srcSet={`${process.env.basePath}/images/showcase/projects/telekom/screenshot1.jpg`}
+                srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/telekom/screenshot1.jpg`}
                 width={720}
                 height={405}
                 alt="Screenshot 1"
@@ -116,13 +116,13 @@ const Telekom = () => {
             </picture>
             <picture>
               <source
-                srcSet={`${process.env.basePath}/images/showcase/projects/telekom/screenshot2.avif`}
+                srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/telekom/screenshot2.avif`}
                 type="image/avif"
                 width={720}
                 height={405}
               />
               <img
-                srcSet={`${process.env.basePath}/images/showcase/projects/telekom/screenshot2.jpg`}
+                srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/telekom/screenshot2.jpg`}
                 width={720}
                 height={405}
                 alt="Screenshot 2"
@@ -131,13 +131,13 @@ const Telekom = () => {
             </picture>
             <picture>
               <source
-                srcSet={`${process.env.basePath}/images/showcase/projects/telekom/screenshot3.avif`}
+                srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/telekom/screenshot3.avif`}
                 type="image/avif"
                 width={720}
                 height={405}
               />
               <img
-                srcSet={`${process.env.basePath}/images/showcase/projects/telekom/screenshot3.jpg`}
+                srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/telekom/screenshot3.jpg`}
                 width={720}
                 height={405}
                 alt="Screenshot 3"
@@ -146,13 +146,13 @@ const Telekom = () => {
             </picture>
             <picture>
               <source
-                srcSet={`${process.env.basePath}/images/showcase/projects/telekom/screenshot4.avif`}
+                srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/telekom/screenshot4.avif`}
                 type="image/avif"
                 width={720}
                 height={405}
               />
               <img
-                srcSet={`${process.env.basePath}/images/showcase/projects/telekom/screenshot4.jpg`}
+                srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/telekom/screenshot4.jpg`}
                 width={720}
                 height={405}
                 alt="Screenshot 4"
@@ -199,7 +199,10 @@ const Telekom = () => {
             within a few weeks.
           </p>
           <h2>Research</h2>
-          <p>Read more about this project in the following scientific publication:</p>
+          <p>
+            Read more about this project in the following scientific
+            publication:
+          </p>
           <Publication
             previewImages={[
               "kraemer-et-al-2024-01",
@@ -227,7 +230,7 @@ const Telekom = () => {
         <div className="row-start-1 mt-6 lg:mt-0">
           <ProjectAuthor
             name="Michel Krämer"
-            imgSrc={`${process.env.basePath}/images/about/michel-kraemer-2019-09-256x256.jpg`}
+            imgSrc={`${process.env.__NEXT_ROUTER_BASEPATH}/images/about/michel-kraemer-2019-09-256x256.jpg`}
             imgWidth={256}
             imgHeight={256}
           />

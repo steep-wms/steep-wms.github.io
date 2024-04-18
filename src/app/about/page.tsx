@@ -60,7 +60,7 @@ const About = () => {
           <h2 className="mb-10 text-center text-4xl">Our team</h2>
           <div className="not-prose mt-8 grid grid-cols-1 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
             <Profile
-              imageUrl={`${process.env.basePath}/images/about/michel-kraemer-2019-09-400x400.jpg`}
+              imageUrl={`${process.env.__NEXT_ROUTER_BASEPATH}/images/about/michel-kraemer-2019-09-400x400.jpg`}
               imageWidth={400}
               imageHeight={400}
               name="Michel Krämer"
@@ -70,7 +70,7 @@ const About = () => {
               website="https://michelkraemer.com"
             />
             <Profile
-              imageUrl={`${process.env.basePath}/images/about/hendrik-wuerz-400x400.jpg`}
+              imageUrl={`${process.env.__NEXT_ROUTER_BASEPATH}/images/about/hendrik-wuerz-400x400.jpg`}
               imageWidth={400}
               imageHeight={400}
               name="Hendrik M. Würz"
@@ -79,7 +79,7 @@ const About = () => {
               githubUser="hwuerz"
             />
             <Profile
-              imageUrl={`${process.env.basePath}/images/about/kevin-kocon-400x400.jpg`}
+              imageUrl={`${process.env.__NEXT_ROUTER_BASEPATH}/images/about/kevin-kocon-400x400.jpg`}
               imageWidth={400}
               imageHeight={400}
               name="Kevin Kocon"
@@ -87,7 +87,7 @@ const About = () => {
               mail="kevin.kocon@igd.fraunhofer.de"
             />
             <Profile
-              imageUrl={`${process.env.basePath}/images/about/eva-klien-400x400.jpg`}
+              imageUrl={`${process.env.__NEXT_ROUTER_BASEPATH}/images/about/eva-klien-400x400.jpg`}
               imageWidth={400}
               imageHeight={400}
               name="Eva Klien"

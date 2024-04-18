@@ -67,19 +67,19 @@ export default function RootLayout({
           rel="icon"
           type="image/png"
           sizes="16x16"
-          href={`${process.env.basePath}/favicons/favicon-16x16.png`}
+          href={`${process.env.__NEXT_ROUTER_BASEPATH}/favicons/favicon-16x16.png`}
         />
         <link
           rel="icon"
           type="image/png"
           sizes="32x32"
-          href={`${process.env.basePath}/favicons/favicon-32x32.png`}
+          href={`${process.env.__NEXT_ROUTER_BASEPATH}/favicons/favicon-32x32.png`}
         />
         <link
           rel="icon"
           type="image/png"
           sizes="96x96"
-          href={`${process.env.basePath}/favicons/favicon-96x96.png`}
+          href={`${process.env.__NEXT_ROUTER_BASEPATH}/favicons/favicon-96x96.png`}
         />
       </head>
       <body>

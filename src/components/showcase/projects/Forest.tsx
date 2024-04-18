@@ -20,13 +20,13 @@ const Forest = () => {
         <div className="absolute inset-0">
           <picture>
             <source
-              srcSet={`${process.env.basePath}/images/showcase/projects/forest-type-classification/satellite-image-small.avif`}
+              srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/forest-type-classification/satellite-image-small.avif`}
               type="image/avif"
               width={1376}
               height={690}
             />
             <source
-              srcSet={`${process.env.basePath}/images/showcase/projects/forest-type-classification/satellite-image-small.jpg`}
+              srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/forest-type-classification/satellite-image-small.jpg`}
               type="image/jpeg"
               width={1376}
               height={690}

@@ -49,11 +49,14 @@ async function ensureIndex(): Promise<MiniSearch> {
     return index
   }
 
-  let response = await fetch(`${process.env.basePath}/docs/index.json`, {
-    // make a conditional request if the index is in the cache or make
-    // a normal request and put it into the cache
-    cache: "no-cache",
-  })
+  let response = await fetch(
+    `${process.env.__NEXT_ROUTER_BASEPATH}/docs/index.json`,
+    {
+      // make a conditional request if the index is in the cache or make
+      // a normal request and put it into the cache
+      cache: "no-cache",
+    },
+  )
   let json: { slug: string; body: string }[] = await response.json()
 
   let documents = json.map(entry => {

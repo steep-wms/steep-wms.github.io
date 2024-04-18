@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: `https://steep-wms.github.io${process.env.basePath}/sitemap.xml`,
+    sitemap: `https://steep-wms.github.io${process.env.__NEXT_ROUTER_BASEPATH}/sitemap.xml`,
   }
 }

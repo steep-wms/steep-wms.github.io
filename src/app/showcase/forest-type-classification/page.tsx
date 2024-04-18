@@ -26,13 +26,13 @@ const ForestTypeClassification = () => {
           </p>
           <picture>
             <source
-              srcSet={`${process.env.basePath}/images/showcase/projects/forest-type-classification/satellite-image.avif`}
+              srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/forest-type-classification/satellite-image.avif`}
               type="image/avif"
               width={1376}
               height={690}
             />
             <source
-              srcSet={`${process.env.basePath}/images/showcase/projects/forest-type-classification/satellite-image.jpg`}
+              srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/forest-type-classification/satellite-image.jpg`}
               type="image/jpeg"
               width={1376}
               height={690}
@@ -73,7 +73,7 @@ const ForestTypeClassification = () => {
         <div className="row-start-1 mt-6 lg:mt-0">
           <ProjectAuthor
             name="Hendrik M. Würz"
-            imgSrc={`${process.env.basePath}/images/about/hendrik-wuerz-200x200.jpg`}
+            imgSrc={`${process.env.__NEXT_ROUTER_BASEPATH}/images/about/hendrik-wuerz-200x200.jpg`}
             imgWidth={200}
             imgHeight={200}
           />
@@ -118,7 +118,7 @@ const ForestTypeClassification = () => {
           </p>
           <ProjectQuote
             authorName="Hendrik M. Würz"
-            authorImgSrc={`${process.env.basePath}/images/about/hendrik-wuerz-200x200.jpg`}
+            authorImgSrc={`${process.env.__NEXT_ROUTER_BASEPATH}/images/about/hendrik-wuerz-200x200.jpg`}
             authorImgWidth={200}
             authorImgHeight={200}
             quote="Steep automatically parallelized the calculations, which saved us valuable time."

@@ -17,13 +17,13 @@ The workflow consists of two steps:
 
   <div className="flex flex-row items-center max-w-lg not-prose">
     <div className="w-72">
-      <Tiles n={1} src={`${process.env.basePath}/images/home/tiles.jpg`} gap={false} imageSize={650} />
+      <Tiles n={1} src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/home/tiles.jpg`} gap={false} imageSize={650} />
     </div>
     <div className="flex w-16 items-center">
       <ChevronRight height="100%" width="100%" />
     </div>
     <div className="w-72">
-      <Tiles n={2} src={`${process.env.basePath}/images/home/tiles.jpg`} imageSize={650} />
+      <Tiles n={2} src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/home/tiles.jpg`} imageSize={650} />
     </div>
   </div>
 
@@ -34,7 +34,7 @@ The workflow consists of two steps:
 
   <div className="flex flex-row items-center max-w-lg not-prose">
     <div className="w-72">
-      <Tiles n={2} src={`${process.env.basePath}/images/home/tiles.jpg`} imageSize={650} />
+      <Tiles n={2} src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/home/tiles.jpg`} imageSize={650} />
     </div>
     <div className="flex flex-col w-16 items-center">
       <ChevronRight height="100%" width="100%" className="m-0" />
@@ -45,8 +45,8 @@ The workflow consists of two steps:
     <div className="w-72">
       <Tiles
         n={2}
-        src={`${process.env.basePath}/images/docs/aerial-image-segmentation/4tiles/4tiles.jpg`}
-        avifsrc={`${process.env.basePath}/images/docs/aerial-image-segmentation/4tiles/4tiles.avif`}
+        src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/docs/aerial-image-segmentation/4tiles/4tiles.jpg`}
+        avifsrc={`${process.env.__NEXT_ROUTER_BASEPATH}/images/docs/aerial-image-segmentation/4tiles/4tiles.avif`}
       />
     </div>
   </div>

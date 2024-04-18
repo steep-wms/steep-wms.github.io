@@ -10,15 +10,15 @@ function Picture({ type }: { type: "dark" | "light" }) {
       })}
     >
       <source
-        srcSet={`${process.env.basePath}/images/webui-${type}-800.webp 800w, ${process.env.basePath}/images/webui-${type}-1280.webp 1280w, ${process.env.basePath}/images/webui-${type}-2560.webp 2560w`}
+        srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/webui-${type}-800.webp 800w, ${process.env.__NEXT_ROUTER_BASEPATH}/images/webui-${type}-1280.webp 1280w, ${process.env.__NEXT_ROUTER_BASEPATH}/images/webui-${type}-2560.webp 2560w`}
         sizes="(max-width: 992px) 100vw, 60vw"
         type="image/webp"
         width={2560}
         height={1600}
       />
       <img
-        src={`${process.env.basePath}/images/webui-${type}-800.png`}
-        srcSet={`${process.env.basePath}/images/webui-${type}-800.png 800w, ${process.env.basePath}/images/webui-${type}-1280.png 1280w, ${process.env.basePath}/images/webui-${type}-2560.png 2560w`}
+        src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/webui-${type}-800.png`}
+        srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/webui-${type}-800.png 800w, ${process.env.__NEXT_ROUTER_BASEPATH}/images/webui-${type}-1280.png 1280w, ${process.env.__NEXT_ROUTER_BASEPATH}/images/webui-${type}-2560.png 2560w`}
         sizes="(max-width: 992px) 100vw, 60vw"
         alt="Web-based user interface"
         width={2560}

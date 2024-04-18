@@ -135,9 +135,9 @@ const Presentation = ({
                     srcSet={
                       i > 0
                         ? undefined
-                        : `${process.env.basePath}/images/showcase/presentations/${image}.avif`
+                        : `${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/presentations/${image}.avif`
                     }
-                    data-srcset={`${process.env.basePath}/images/showcase/presentations/${image}.avif`}
+                    data-srcset={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/presentations/${image}.avif`}
                     type="image/avif"
                     width={720}
                     height={405}
@@ -146,9 +146,9 @@ const Presentation = ({
                     src={
                       i > 0
                         ? undefined
-                        : `${process.env.basePath}/images/showcase/presentations/${image}.jpg`
+                        : `${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/presentations/${image}.jpg`
                     }
-                    data-src={`${process.env.basePath}/images/showcase/presentations/${image}.jpg`}
+                    data-src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/presentations/${image}.jpg`}
                     alt="Slides"
                     width={720}
                     height={405}
