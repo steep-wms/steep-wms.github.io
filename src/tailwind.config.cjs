@@ -276,6 +276,9 @@ module.exports = {
             "dd > h6 + p": {
               marginTop: `${theme("spacing.3")}`,
             },
+            th: {
+              textAlign: "left",
+            },
           },
         },
       }),
