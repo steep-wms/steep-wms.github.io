@@ -8,6 +8,24 @@ Additional environment variables that will be passed to containers created by th
 **Default:** `[]` (empty list)
 </dd>
 
+<dt>`steep.runtimes.docker.pull`</dt>
+<dd>
+Defines if the Docker runtime should pull the image before running a container
+
+**Default:** `auto`
+
+###### Valid values:
+
+* `always` - Always pull the image before running, regardless of whether it is already present locally or not.
+* `missing` - Only pull the image if it is not present locally.
+* `never` - Never pull the image. If it is not present locally, the operation will fail.
+* `auto` - Automatically decide whether to pull the image or not based on the following criteria (in this order):
+  * If an image digest is given, the Docker runtime will behave as if the value were equal to `missing`
+  * If an image tag is given that is not `latest`, the Docker runtime will behave as if the value were equal to `missing`
+  * If an image tag is given and it is `latest`, the Docker runtime will behave as if the value was `always`
+  * If no image tag is given, the Docker runtime will behave as if the value was `always`
+</dd>
+
 <dt>`steep.runtimes.docker.volumes`</dt>
 <dd>
 Additional volume mounts to be passed to the Docker runtime
