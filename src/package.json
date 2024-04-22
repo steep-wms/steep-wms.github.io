@@ -29,7 +29,7 @@
     "npm-check-updates": "^16.14.18"
   },
   "dependencies": {
-    "@fontsource/dejavu-mono": "^5.0.7",
+    "@fontsource/dejavu-mono": "^5.0.11",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
     "@next/bundle-analyzer": "^14.2.2",
