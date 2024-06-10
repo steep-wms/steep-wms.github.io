@@ -73,7 +73,7 @@
     "shikiji": "^0.10.2",
     "simple-functional-loader": "^1.2.1",
     "simple-icons": "^12.0.0",
-    "tailwindcss": "^3.4.3",
+    "tailwindcss": "^3.4.4",
     "typescript": "^5.4.5",
     "zustand": "^4.5.2"
   }
