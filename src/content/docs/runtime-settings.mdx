@@ -34,4 +34,72 @@ Additional volume mounts to be passed to the Docker runtime
 
 **Default:** `[]` (empty list)
 </dd>
+
+<dt>`steep.runtimes.kubernetes.namespace`</dt>
+<dd>
+The namespace in which Steep should create Kubernetes jobs and pods
+
+**Default:** `default`
+</dd>
+
+<dt>`steep.runtimes.kubernetes.env`</dt>
+<dd>
+An optional list of environment variables that should be injected into the containers started by the Kubernetes runtime. The list items should be Kubernetes environment variable objects. See the [Kubernetes API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#envvar-v1-core) for more information.
+
+###### Example:
+
+```yaml
+env:
+  - name: MYVAR
+    value: something
+```
+</dd>
+
+<dt>`steep.runtimes.kubernetes.volumeMounts`</dt>
+<dd>
+An optional list of Kubernetes volume mount objects. The Kubernetes runtime mounts volumes specified here into the started containers. For example, the following configuration mounts a volume with the name `steep-tmp-path` to the path `/tmp/steep/tmp` inside the container:
+
+```yaml
+volumeMounts:
+  - name: steep-tmp-path
+    mountPath: /tmp/steep/tmp
+```
+
+The volume `steep-tmp-path` must be defined through the configuration item `steep.runtimes.kubernetes.volumes`.
+
+See the [Kubernetes API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#volumemount-v1-core) for more information about volume mount objects.
+</dd>
+
+<dt>`steep.runtimes.kubernetes.volumes`</dt>
+<dd>
+An optional list of Kubernetes volumes. The Kubernetes runtime attaches these volumes to the started pods. For example, the following configuration defines a volume that refers to a host path:
+
+```yaml
+volumes:
+  - name: steep-tmp-path
+    hostPath:
+      path: /path/to/steep/tmp_path
+```
+
+You can also refer to persistent volume claims:
+
+```yaml
+volumes:
+  - name: steep-tmp-path
+    persistentVolumeClaim:
+      claimName: steep-tmp-path-volume-claim
+```
+
+See the [Kubernetes API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#volume-v1-core) for more information about volumes.
+</dd>
+
+<dt>`steep.runtimes.kubernetes.imagePullPolicy`</dt>
+<dd>
+The image pull policy for any job the Kubernetes runtime starts. See the [Kubernetes documentation](https://kubernetes.io/docs/concepts/containers/images/#updating-images) or the `imagePullPolicy` parameter of the `Container` object in the [Kubernetes API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#container-v1-core) for more information.
+</dd>
+
+<dt>`steep.runtimes.kubernetes.imagePullSecrets`</dt>
+<dd>
+A list of image pull secrets for any job the Kubernetes runtime starts. See the [Kubernetes documentation](https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod) or the [Kubernetes API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#localobjectreference-v1-core) for more information.
+</dd>
 </dl>

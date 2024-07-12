@@ -6,7 +6,7 @@ it can be executed by Steep.
 | id<br/>*(required)*                    | string | A unique service identifier
 | name<br/>*(required)*                  | string | A human-readable name
 | description<br/>*(required)*           | string | A human-readable description
-| path<br/>*(required)*                  | string | Relative path to the service executable in the service artefact (or a Docker image if `runtime` equals `docker`)
+| path<br/>*(required)*                  | string | Relative path to the service executable in the service artefact (or a container image if `runtime` equals `docker` or `kubernetes`)
 | runtime<br/>*(required)*               | string | The <DocsLink href="#runtime-environments">runtime environment</DocsLink>
 | parameters<br/>*(required)*            | array  | A list of <DocsLink href="#service-parameters">service parameters</DocsLink>
 | runtimeArgs<br/>*(optional)*           | array  | An optional list of <DocsLink href="#runtime-arguments">arguments</DocsLink> to pass to the runtime
