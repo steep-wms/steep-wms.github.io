@@ -6,6 +6,7 @@ virtual machine specified by a <DocsLink href="#setups">setup</DocsLink>.
 | sizeGb<br/>*(required)*                | number  | The volume's size in gigabytes
 | type<br/>*(optional)*                  | string  | Type the volume's type. By default, the type will be selected automatically.
 | availabilityZone<br/>*(optional)*      | string  | The availability zone in which to create the volume. By default, it will be created in the same availability zone as the VM to which it will be attached.
+| deviceName<br/>*(optional)*            | string  | The device name under which the volume will be exposed to the operating system on the virtual machine (e.g. `/dev/sdb`). Please note that this value is mandatory for some cloud providers, while for others, it is optional and they automatically assign a name. Some even ignore this value completely (e.g. OpenStack). Also, some cloud providers only accept names that correspond to a specific scheme. Please refer to your cloud provider's documentation on whether specifying a name is mandatory and which values are considered valid.
 
 <CodeContainer title="Example">
 ```json generate-yaml
