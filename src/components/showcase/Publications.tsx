@@ -193,7 +193,7 @@ const Publications = () => {
               "kraemer-senner-2015-03",
             ]}
             previewImageHeight={636}
-            authors="Krämer, M., &amp; Senner, I."
+            authors="Krämer, M., &amp; Senner, J."
             year="2015"
             title="A modular software architecture for processing of big geospatial data in the cloud"
             pdf="https://michelkraemer.com/publications/2015/Kraemer,%20Senner%20-%20A%20modular%20software%20architecture%20for%20processing%20of%20big%20geospatial%20data%20(accepted%20manuscript).pdf"
