@@ -339,6 +339,7 @@ const toc: DraftChapter[] = [
           "PUT process chain",
           "GET agents",
           "GET agent by ID",
+          "HEAD agents",
           "GET VMs",
           "GET VM by ID",
           "GET plugins",

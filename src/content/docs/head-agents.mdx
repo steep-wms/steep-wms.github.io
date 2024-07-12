@@ -1,0 +1,31 @@
+This endpoint can be used to check if an agent with a given ID exists.
+
+| Resource URL |
+| ------------ |
+
+```http
+/agents/:id
+```
+
+| Parameters |                                    |
+| ---------- | ---------------------------------- |
+| id         | The ID of the agent to check       |
+
+| Status codes |                              |
+| ------------ | ---------------------------- |
+| 200          | The operation was successful. The agent exists. |
+| 404          | The agent was not found      |
+
+| Example request |
+| --------------- |
+
+```http
+HEAD /agents/akuxryerojbw7mnvovaa HTTP/1.1
+```
+
+| Example response |
+| ---------------- |
+
+```http
+HTTP/1.1 200 OK
+```
