@@ -152,4 +152,27 @@ This configuration item does not have a default value. It must be set if `steep.
 <dd>
 An optional timeout (specified as a <DocsLink href="#durations">duration</DocsLink>) defining how long a Steep instance may keep running after a split-brain situation has been detected. When the timeout is reached and the split-brain situation has not been resolved in the meantime, the Steep instance shuts itself down with exit code 16. This mechanism can be used to prevent a Steep instance from doing any harm when it is in a split-brain situation.
 </dd>
+
+<dt>`steep.cluster.kubernetes.enabled`</dt>
+<dd>
+`true` if Hazelcast should try to automatically discover other members in a Kubernetes cluster
+
+**Default:** `false`
+</dd>
+
+<dt>`steep.cluster.kubernetes.namespace`</dt>
+<dd>
+The Kubernetes namespace where Steep is running. Falls back to the values of the environment variables `KUBERNETES_NAMESPACE` or `OPENSHIFT_BUILD_NAMESPACE`, or to the pod's namespace retrieved from `/var/run/secrets/kubernetes.io/serviceaccount/namespace`.
+</dd>
+
+<dt>`steep.cluster.kubernetes.serviceName`</dt>
+<dd>
+An optional service name to limit the cluster members to pods that are connected to a given service. If not specified, all pods in the namespace will be considered potential cluster members.
+</dd>
+
+<dt>`steep.cluster.kubernetes.serviceDns`</dt>
+<dd>
+Instead of specifying a namespace and a service name through `steep.cluster.kubernetes.namespace` and `steep.cluster.kubernetes.serviceName`, you can also specify a DNS name in the form `SERVICE-NAME.NAMESPACE.svc.cluster.local`. Hazelcast will perform a DNS lookup to obtain the pod IP addresses of cluster members.
+</dd>
 </dl>
+
