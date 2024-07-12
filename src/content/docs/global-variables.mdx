@@ -5,6 +5,7 @@ Here is a list of the global variables defined in provisioning scripts:
 | `agentId`   | The ID of the agent that is about to be deployed on the provisioned VM |
 | `ipAddress` | The IP address of the provisioned VM |
 | `setup`     | A <DocsLink href="#setups">Setup</DocsLink> object that describes the configuration of the provisioned VM |
+| `attachedVolumes` | A list of volumes attached to the VM. Each item in the list has two properties: `volumeId` refers to the volume's ID as assigned by the cloud provider; `descriptor` is a copy of the <DocsLink href="#volumes">volume</DocsLink> object as specified in the VM's <DocsLink href="#setups">setup</DocsLink>. |
 
 | Example provisioning script |
 | --------------------------- |
