@@ -1,7 +1,7 @@
 <dl>
 <dt>`steep.runtimes.docker.env`</dt>
 <dd>
-Additional environment variables that will be passed to containers created by the Docker runtime
+Additional environment variables that will be passed to containers created by the <DocsLink href="#docker-runtime">Docker runtime</DocsLink>
 
 **Example:** `["key=value", "foo=bar"]`
 
@@ -10,7 +10,7 @@ Additional environment variables that will be passed to containers created by th
 
 <dt>`steep.runtimes.docker.pull`</dt>
 <dd>
-Defines if the Docker runtime should pull the image before running a container
+Defines if the <DocsLink href="#docker-runtime">Docker runtime</DocsLink> should pull the image before running a container
 
 **Default:** `auto`
 
@@ -28,7 +28,7 @@ Defines if the Docker runtime should pull the image before running a container
 
 <dt>`steep.runtimes.docker.volumes`</dt>
 <dd>
-Additional volume mounts to be passed to the Docker runtime
+Additional volume mounts to be passed to the <DocsLink href="#docker-runtime">Docker runtime</DocsLink>
 
 **Example:** `["/data:/data"]`
 
@@ -44,7 +44,7 @@ The namespace in which Steep should create Kubernetes jobs and pods
 
 <dt>`steep.runtimes.kubernetes.env`</dt>
 <dd>
-An optional list of environment variables that should be injected into the containers started by the Kubernetes runtime. The list items should be Kubernetes environment variable objects. See the [Kubernetes API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#envvar-v1-core) for more information.
+An optional list of environment variables that should be injected into the containers started by the <DocsLink href="#kubernetes-runtime">Kubernetes runtime</DocsLink>. The list items should be Kubernetes environment variable objects. See the [Kubernetes API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#envvar-v1-core) for more information.
 
 ###### Example:
 
@@ -57,7 +57,7 @@ env:
 
 <dt>`steep.runtimes.kubernetes.volumeMounts`</dt>
 <dd>
-An optional list of Kubernetes volume mount objects. The Kubernetes runtime mounts volumes specified here into the started containers. For example, the following configuration mounts a volume with the name `steep-tmp-path` to the path `/tmp/steep/tmp` inside the container:
+An optional list of Kubernetes volume mount objects. The <DocsLink href="#kubernetes-runtime">Kubernetes runtime</DocsLink> mounts volumes specified here into the started containers. For example, the following configuration mounts a volume with the name `steep-tmp-path` to the path `/tmp/steep/tmp` inside the container:
 
 ```yaml
 volumeMounts:
@@ -72,7 +72,7 @@ See the [Kubernetes API reference](https://kubernetes.io/docs/reference/generate
 
 <dt>`steep.runtimes.kubernetes.volumes`</dt>
 <dd>
-An optional list of Kubernetes volumes. The Kubernetes runtime attaches these volumes to the started pods. For example, the following configuration defines a volume that refers to a host path:
+An optional list of Kubernetes volumes. The <DocsLink href="#kubernetes-runtime">Kubernetes runtime</DocsLink> attaches these volumes to the started pods. For example, the following configuration defines a volume that refers to a host path:
 
 ```yaml
 volumes:
@@ -95,11 +95,11 @@ See the [Kubernetes API reference](https://kubernetes.io/docs/reference/generate
 
 <dt>`steep.runtimes.kubernetes.imagePullPolicy`</dt>
 <dd>
-The image pull policy for any job the Kubernetes runtime starts. See the [Kubernetes documentation](https://kubernetes.io/docs/concepts/containers/images/#updating-images) or the `imagePullPolicy` parameter of the `Container` object in the [Kubernetes API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#container-v1-core) for more information.
+The image pull policy for any job the <DocsLink href="#kubernetes-runtime">Kubernetes runtime</DocsLink> starts. See the [Kubernetes documentation](https://kubernetes.io/docs/concepts/containers/images/#updating-images) or the `imagePullPolicy` parameter of the `Container` object in the [Kubernetes API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#container-v1-core) for more information.
 </dd>
 
 <dt>`steep.runtimes.kubernetes.imagePullSecrets`</dt>
 <dd>
-A list of image pull secrets for any job the Kubernetes runtime starts. See the [Kubernetes documentation](https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod) or the [Kubernetes API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#localobjectreference-v1-core) for more information.
+A list of image pull secrets for any job the <DocsLink href="#kubernetes-runtime">Kubernetes runtime</DocsLink> starts. See the [Kubernetes documentation](https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod) or the [Kubernetes API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#localobjectreference-v1-core) for more information.
 </dd>
 </dl>

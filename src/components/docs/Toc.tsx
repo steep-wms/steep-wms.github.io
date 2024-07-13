@@ -283,9 +283,16 @@ const toc: DraftChapter[] = [
       {
         title: "Service metadata",
         sections: [
-          "Runtime environments",
           "Service parameters",
           "Runtime arguments",
+          {
+            title: "Runtimes",
+            subsections: [
+              "Other runtime",
+              "Docker runtime",
+              "Kubernetes runtime",
+            ],
+          },
         ],
       },
       {
@@ -427,7 +434,7 @@ const toc: DraftChapter[] = [
       { title: "Output adapters" },
       { title: "Process chain adapters" },
       { title: "Process chain consistency checkers" },
-      { title: "Custom runtime environments" },
+      { title: "Custom runtimes" },
       { title: "Progress estimators" },
     ],
   },
