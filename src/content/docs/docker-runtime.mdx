@@ -1,0 +1,24 @@
+**Name:** `docker`
+
+This runtime executes the service through Docker.
+
+The service metadata attribute `path` specifies the Docker image to run. It can
+be an image name followed by an optional tag and/or digest (e.g. `ubuntu` or
+`ubuntu:23.10`).
+
+The attribute `runtimeArgs` specifies parameters that should be forwarded to the
+`docker run` command. For example, the following runtime argument mounts a
+volume to the started container:
+
+```yaml
+runtimeArgs:
+  - id: myCustomVolumeMount
+    name: Data volume
+    description: Mount /data into the container
+    label: -v
+    value: /data:/data
+```
+
+Please refer to the documentation of
+the [docker run command](https://docs.docker.com/reference/cli/docker/container/run/)
+for a complete list of possible arguments.

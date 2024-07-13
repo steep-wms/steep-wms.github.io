@@ -1,0 +1,146 @@
+import Admonition from "@/components/Admonition"
+
+**Name:** `kubernetes`
+
+This runtime executes the service as a Kubernetes job.
+
+The service metadata attribute `path` specifies the container image to run. It
+can be an image name followed by an optional tag and/or digest (e.g. `ubuntu`
+or `ubuntu:23.10`). See the [Kubernetes documentation](https://kubernetes.io/docs/concepts/containers/images/)
+for more information about valid image names.
+
+The `runtimeArgs` attribute can be used to override or amend the
+<DocsLink href="#runtime-settings">Kubernetes runtime configuration</DocsLink>
+as specified in the `steep.yaml` file. Find a list of valid properties below.
+
+<Admonition>
+Note that some of the properties are objects or arrays although the
+<DocsLink href="#runtime-arguments">runtime arguments</DocsLink> data model only
+allows strings as values. While reading the configuration file
+<DocsLink href="#servicesservicesyaml">`services.yaml`</DocsLink>,
+Steep automatically converts objects and arrays to strings and the Kubernetes
+runtime interprets those correctly later.
+</Admonition>
+
+###### env
+
+A list of environment variables that should be injected into the container.
+The list items should be Kubernetes environment variable objects. See the
+[Kubernetes API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#envvar-v1-core)
+for more information. The following example specifies an environment variable
+`FOO` with the value `bar`:
+
+```yaml
+runtimeArgs:
+  - id: env
+    name: Environment variables
+    description: Additional environment variables
+    value:
+      - name: FOO
+        value: bar
+```
+
+<Admonition>
+The environment variables specified here will be added to the ones set in the
+<DocsLink href="#runtime-settings">Kubernetes runtime configuration</DocsLink>
+through the `steep.runtimes.kubernetes.env` configuration item.
+</Admonition>
+
+###### imagePullPolicy
+
+The image pull policy for the started Kubernetes job. See the
+[Kubernetes documentation](https://kubernetes.io/docs/concepts/containers/images/#updating-images)
+or the `imagePullPolicy` parameter of the `Container` object in the
+[Kubernetes API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#container-v1-core)
+for more information.
+
+```yaml
+runtimeArgs:
+  - id: imagePullPolicy
+    name: Image pull policy
+    description: Image pull policy
+    value: Always
+```
+
+<Admonition>
+This value overrides the one specified in the
+<DocsLink href="#runtime-settings">Kubernetes runtime configuration</DocsLink>
+through the `steep.runtimes.kubernetes.imagePullPolicy` configuration item.
+</Admonition>
+
+###### imagePullSecrets
+
+A list of image pull secrets for the started job. See the
+[Kubernetes documentation](https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod)
+or the [Kubernetes API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#localobjectreference-v1-core)
+for more information.
+
+```yaml
+runtimeArgs:
+  - id: imagePullSecrets
+    name: Image pull secrets
+    description: Image pull secrets
+    value:
+      - name: my-secret
+```
+
+<Admonition>
+The image pull secrets specified here will be added to the ones set in the
+<DocsLink href="#runtime-settings">Kubernetes runtime configuration</DocsLink>
+through the `steep.runtimes.kubernetes.imagePullSecrets` configuration item.
+</Admonition>
+
+###### volumes
+
+A list of Kubernetes volumes. The Kubernetes runtime attaches these volumes to the started pod. For example, the following configuration defines a volume that refers to a host path:
+
+```yaml
+runtimeArgs:
+  volumes:
+    - name: steep-tmp-path
+      hostPath:
+        path: /path/to/steep/tmp_path
+```
+
+You can also refer to persistent volume claims:
+
+```yaml
+runtimeArgs:
+  volumes:
+    - name: steep-tmp-path
+      persistentVolumeClaim:
+        claimName: steep-tmp-path-volume-claim
+```
+
+See the [Kubernetes API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#volume-v1-core) for more information about volumes.
+
+<Admonition>
+The volumes specified here will be added to the ones set in the
+<DocsLink href="#runtime-settings">Kubernetes runtime configuration</DocsLink>
+through the `steep.runtimes.kubernetes.volumes` configuration item.
+</Admonition>
+
+###### volumeMounts
+
+A list of Kubernetes volume mount objects. The Kubernetes runtime mounts
+volumes specified here into the started container. For example, the following
+configuration mounts a volume with the name `steep-tmp-path` to the path
+`/tmp/steep/tmp` inside the container:
+
+```yaml
+volumeMounts:
+  - name: steep-tmp-path
+    mountPath: /tmp/steep/tmp
+```
+
+The volume `steep-tmp-path` must be defined through another runtime argument
+with the ID `volumes` or through the <DocsLink href="#runtime-settings">configuration item</DocsLink>
+`steep.runtimes.kubernetes.volumes`.
+
+See the [Kubernetes API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#volumemount-v1-core) for more information about volume mount objects.
+
+<Admonition>
+The volume mounts specified here will be added to the ones set in the
+<DocsLink href="#runtime-settings">Kubernetes runtime configuration</DocsLink>
+through the `steep.runtimes.kubernetes.volumeMounts` configuration item.
+</Admonition>

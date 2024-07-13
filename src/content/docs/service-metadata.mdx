@@ -7,7 +7,7 @@ it can be executed by Steep.
 | name<br/>*(required)*                  | string | A human-readable name
 | description<br/>*(required)*           | string | A human-readable description
 | path<br/>*(required)*                  | string | Relative path to the service executable in the service artefact (or a container image if `runtime` equals `docker` or `kubernetes`)
-| runtime<br/>*(required)*               | string | The name of the <DocsLink href="#runtimes">runtime</DocsLink> to execute the service
+| runtime<br/>*(required)*               | string | The name of the <DocsLink href="#runtimes">runtime</DocsLink> to execute the service (valid values are <DocsLink href="#other-runtime">`other`</DocsLink>, <DocsLink href="#docker-runtime">`docker`</DocsLink>, <DocsLink href="#kubernetes-runtime">`kubernetes`</DocsLink>, or the name of a <DocsLink href="#custom-runtimes">custom runtime</DocsLink>)
 | parameters<br/>*(required)*            | array  | A list of <DocsLink href="#service-parameters">service parameters</DocsLink>
 | runtimeArgs<br/>*(optional)*           | array  | An optional list of <DocsLink href="#runtime-arguments">arguments</DocsLink> to pass to the runtime
 | requiredCapabilities<br/>*(optional)*  | array  | A set of strings specifying capabilities a host system must provide to be able to execute this service. See also <DocsLink href="#setups">setups</DocsLink>.
