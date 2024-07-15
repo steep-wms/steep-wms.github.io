@@ -47,9 +47,9 @@ const CloudSupport = () => {
                 onActivate={() => setActiveOption("kubernetes")}
               >
                 <p>
-                  Steep has first-level support for Docker. It can run in a
-                  container and orchestrate other containers. It can also be
-                  deployed to a Kubernetes cluster.
+                  Steep has native support for Docker and Kubernetes. It can run
+                  in a container and orchestrate other containers. It can also
+                  be deployed to a Kubernetes cluster.
                 </p>
               </CardOption>
               <CardOption
