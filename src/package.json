@@ -72,7 +72,7 @@
     "remark-smartypants": "^3.0.2",
     "shikiji": "^0.10.2",
     "simple-functional-loader": "^1.2.1",
-    "simple-icons": "^13.1.0",
+    "simple-icons": "^13.5.0",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.5.3",
     "zustand": "^4.5.4"
