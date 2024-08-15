@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "../LinkFix"
 import {
   AnimationPlaybackControls,
   AnimationSequence,
@@ -14,6 +13,7 @@ import {
   useMotionValue,
   useReducedMotion,
 } from "framer-motion"
+import Link from "next/link"
 import { Children, ReactNode, cloneElement, useEffect } from "react"
 
 const HeroWorkflow = () => {

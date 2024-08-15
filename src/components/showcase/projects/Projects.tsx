@@ -1,9 +1,9 @@
 import { Button } from "../../Button"
 import Container from "../../Container"
-import Link from "../../LinkFix"
 import { robotoBold } from "../../lib/roboto-bold"
 import Forest from "./Forest"
 import Telekom from "./Telekom"
+import Link from "next/link"
 
 const Projects = () => {
   return (

@@ -1,5 +1,5 @@
-import Link from "../../LinkFix"
 import Project from "./Project"
+import Link from "next/link"
 
 const Forest = () => {
   return (

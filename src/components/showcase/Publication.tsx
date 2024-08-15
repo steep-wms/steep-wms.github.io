@@ -1,7 +1,7 @@
 "use client"
 
-import Link from "../LinkFix"
 import { AnimationPlaybackControls, useAnimate } from "framer-motion"
+import Link from "next/link"
 import { useCallback, useRef } from "react"
 
 interface PublicationProps {

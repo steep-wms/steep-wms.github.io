@@ -1,5 +1,5 @@
-import Link from "../../LinkFix"
 import clsx from "clsx"
+import Link from "next/link"
 
 interface ProjectQuoteProps {
   authorName: string

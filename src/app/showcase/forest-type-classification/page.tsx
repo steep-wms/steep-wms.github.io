@@ -1,10 +1,10 @@
 import ForestClassificationWorkflow from "../../../assets/forest-classification-workflow.svg?drawio"
-import Link from "@/components/LinkFix"
 import ProjectAuthor from "@/components/showcase/projects/ProjectAuthor"
 import ProjectGrid from "@/components/showcase/projects/ProjectGrid"
 import ProjectLayout from "@/components/showcase/projects/ProjectLayout"
 import ProjectQuote from "@/components/showcase/projects/ProjectQuote"
 import { Metadata } from "next"
+import Link from "next/link"
 
 export const metadata: Metadata = {
   title:

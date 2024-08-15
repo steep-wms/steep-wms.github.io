@@ -1,5 +1,5 @@
 import Card from "../../Card"
-import Link from "../../LinkFix"
+import Link from "next/link"
 
 export interface MoreShowcasesProps {
   showcases: ("telekom" | "forest-type-classification")[]

@@ -1,4 +1,4 @@
-import Link from "../../LinkFix"
+import Link from "next/link"
 
 interface ProjectAuthorProps {
   name: string

@@ -1,11 +1,11 @@
 import TelekomDataflow from "../../../assets/telekom-dataflow.svg?drawio"
-import Link from "@/components/LinkFix"
 import Publication from "@/components/showcase/Publication"
 import Facts from "@/components/showcase/projects/Facts"
 import ProjectAuthor from "@/components/showcase/projects/ProjectAuthor"
 import ProjectGrid from "@/components/showcase/projects/ProjectGrid"
 import ProjectLayout from "@/components/showcase/projects/ProjectLayout"
 import { Metadata } from "next"
+import Link from "next/link"
 
 export const metadata: Metadata = {
   title:

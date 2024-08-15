@@ -1,7 +1,7 @@
 "use client"
 
-import Link from "../LinkFix"
 import { useAnimate, useInView } from "framer-motion"
+import Link from "next/link"
 import { useEffect, useRef } from "react"
 
 interface PresentationProps {

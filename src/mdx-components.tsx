@@ -1,8 +1,8 @@
 // import Balancer from "react-wrap-balancer"
 import CodeContainer, { CodeContainerProps } from "./components/CodeContainer"
 import DocsLink from "./components/DocsLink"
-import Link from "./components/LinkFix"
 import ScrollArea from "./components/ScrollArea"
+import Link from "next/link"
 import { createElement } from "react"
 
 // const balanceHeadings =

@@ -1,7 +1,6 @@
 import { Button } from "@/components/Button"
 import Container from "@/components/Container"
 import Footer from "@/components/Footer"
-import Link from "@/components/LinkFix"
 import NavBar from "@/components/NavBar"
 import Divider from "@/components/about/Divider"
 import Profile from "@/components/about/Profile"
@@ -10,6 +9,7 @@ import { robotoBold } from "@/components/lib/roboto-bold"
 import clsx from "clsx"
 import { Mail } from "lucide-react"
 import { Metadata } from "next"
+import Link from "next/link"
 import { siGithub, siInstagram, siLinkedin, siX, siYoutube } from "simple-icons"
 
 export const metadata: Metadata = {

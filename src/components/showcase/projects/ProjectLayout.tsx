@@ -1,9 +1,9 @@
 import Container from "../../Container"
-import Link from "../../LinkFix"
 import MoreShowcases, { type MoreShowcasesProps } from "./MoreShowcases"
 import ProjectGrid from "./ProjectGrid"
 import ScrollTopWorkaround from "@/components/ScrollTopWorkaround"
 import { robotoBold } from "@/components/lib/roboto-bold"
+import Link from "next/link"
 
 interface ProjectLayoutProps {
   title: string

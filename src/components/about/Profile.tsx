@@ -1,10 +1,10 @@
 "use client"
 
-import Link from "@/components/LinkFix"
 import SimpleIcon from "@/components/SimpleIcon"
 import { Tooltip } from "@/components/Tooltip"
 import { Home, Mail } from "lucide-react"
 import { Url } from "next/dist/shared/lib/router/router"
+import Link from "next/link"
 import { Balancer } from "react-wrap-balancer"
 import { siGithub } from "simple-icons"
 

@@ -1,8 +1,8 @@
 "use client"
 
-import Link from "../LinkFix"
 import SimpleIcon from "../SimpleIcon"
 import { Tooltip } from "../Tooltip"
+import Link from "next/link"
 import type { SimpleIcon as SI } from "simple-icons"
 
 interface SocialButtonProps {

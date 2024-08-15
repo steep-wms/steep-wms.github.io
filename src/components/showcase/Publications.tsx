@@ -1,6 +1,6 @@
 import Container from "../Container"
 import Publication from "./Publication"
-import Link from "@/components/LinkFix"
+import Link from "next/link"
 
 const Publications = () => {
   return (

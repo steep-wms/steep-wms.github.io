@@ -1,6 +1,6 @@
 import Container from "./Container"
-import Link from "./LinkFix"
 import clsx from "clsx"
+import Link from "next/link"
 import { Balancer } from "react-wrap-balancer"
 
 const now = new Date().getFullYear()

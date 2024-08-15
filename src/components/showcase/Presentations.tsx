@@ -1,6 +1,6 @@
 import Container from "../Container"
-import Link from "../LinkFix"
 import Presentation from "./Presentation"
+import Link from "next/link"
 
 const Presentations = () => {
   return (

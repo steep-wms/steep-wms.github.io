@@ -1,8 +1,8 @@
-import Link from "../LinkFix"
 import { Index } from "../docs/Toc"
 import type { SearchResult } from "./SearchResult"
 import clsx from "clsx"
 import { ChevronLeft } from "lucide-react"
+import Link from "next/link"
 import { forwardRef } from "react"
 
 interface SearchResultListItemProps {

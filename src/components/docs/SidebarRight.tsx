@@ -1,8 +1,8 @@
 import Sidebar from "./Sidebar"
-import Link from "@/components/LinkFix"
 import { Index, Section, Subsection } from "@/components/docs/Toc"
 import clsx from "clsx"
 import { ExternalLink } from "lucide-react"
+import Link from "next/link"
 import { useSelectedLayoutSegment } from "next/navigation"
 import { useEffect, useLayoutEffect, useRef } from "react"
 
