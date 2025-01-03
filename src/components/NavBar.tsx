@@ -153,30 +153,11 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
           )}
         >
           <div className="flex max-w-screen-2xl flex-1 items-center justify-between px-2 sm:px-4 lg:px-6">
-            <div className="flex flex-1 items-center justify-between lg:hidden">
+            <div className="flex flex-1 items-center justify-between lg:gap-8">
               <div className="mb-1">
                 <Logo onClick={() => setCollapsed(false)} />
               </div>
-              <div className="flex items-center gap-4">
-                <QuickSearch onClick={() => setCollapsed(false)} />
-                <button
-                  id="navbar-toggle-menu-button"
-                  className="inline-flex select-none items-center justify-center text-gray-800"
-                  onClick={() => setCollapsed(!collapsed)}
-                  aria-label={collapsed ? "Close menu" : "Open menu"}
-                >
-                  <Hamburger
-                    toggled={collapsed}
-                    label={collapsed ? "Close menu" : "Open menu"}
-                  />
-                </button>
-              </div>
-            </div>
-            <div className="hidden flex-1 items-center justify-between gap-8 lg:flex">
-              <div className="mb-1">
-                <Logo onClick={() => setCollapsed(false)} />
-              </div>
-              <div className="mt-1 flex gap-6">
+              <div className="mt-1 hidden gap-6 lg:flex">
                 {links.map(l => (
                   <Link
                     key={l.label}
@@ -187,31 +168,44 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
                   </Link>
                 ))}
               </div>
-              <div className="flex-1"></div>
+              <div className="hidden flex-1 lg:flex"></div>
               <div className="flex items-center gap-4">
-                <div className="border-r border-gray-200 pr-4">
-                  <QuickSearch />
+                <div className="lg:border-r lg:border-gray-200 lg:pr-4">
+                  <QuickSearch onClick={() => setCollapsed(false)} />
                 </div>
-                <Tooltip
-                  content={theme === "dark" ? "Light mode" : "Dark mode"}
-                >
-                  <div className="flex">
-                    <DarkModeToggle id="dark-mode-toggle1" />
-                  </div>
-                </Tooltip>
-                <Tooltip content="GitHub">
-                  <Link
-                    href="https://github.com/steep-wms/steep"
-                    className="group"
-                    aria-label="GitHub"
+                <div className="hidden lg:contents">
+                  <Tooltip
+                    content={theme === "dark" ? "Light mode" : "Dark mode"}
                   >
-                    <SimpleIcon
-                      icon={siGithub}
-                      className="fill-gray-600 transition-colors group-hover:fill-gray-800"
-                      title=""
-                    />
-                  </Link>
-                </Tooltip>
+                    <div className="flex">
+                      <DarkModeToggle id="dark-mode-toggle1" />
+                    </div>
+                  </Tooltip>
+                  <Tooltip content="GitHub">
+                    <Link
+                      href="https://github.com/steep-wms/steep"
+                      className="group"
+                      aria-label="GitHub"
+                    >
+                      <SimpleIcon
+                        icon={siGithub}
+                        className="fill-gray-600 transition-colors group-hover:fill-gray-800"
+                        title=""
+                      />
+                    </Link>
+                  </Tooltip>
+                </div>
+                <button
+                  id="navbar-toggle-menu-button"
+                  className="inline-flex select-none items-center justify-center text-gray-800 lg:hidden"
+                  onClick={() => setCollapsed(!collapsed)}
+                  aria-label={collapsed ? "Close menu" : "Open menu"}
+                >
+                  <Hamburger
+                    toggled={collapsed}
+                    label={collapsed ? "Close menu" : "Open menu"}
+                  />
+                </button>
               </div>
             </div>
           </div>
