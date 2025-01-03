@@ -1,7 +1,14 @@
 "use client"
 
-import * as Select from "@radix-ui/react-select"
 import { Check, ChevronDown } from "lucide-react"
+import {
+  Button,
+  ListBox,
+  ListBoxItem,
+  Popover,
+  Select,
+  SelectValue,
+} from "react-aria-components"
 
 interface LanguageSelectProps {
   languages: string[]
@@ -15,40 +22,44 @@ const LanguageSelect = ({
   onChange,
 }: LanguageSelectProps) => {
   return (
-    <Select.Root value={current} onValueChange={onChange}>
-      <Select.Trigger
-        aria-label="Language"
+    <Select
+      selectedKey={current}
+      onSelectionChange={key => onChange(key as string)}
+      aria-label="Language"
+    >
+      <Button
         className="flex h-full items-center justify-center gap-[.1em] rounded-sm px-2 py-1 outline-none hover:bg-gray-700 dark:hover:bg-gray-200"
+        aria-label="Language"
       >
-        <div className="uppercase">
-          <Select.Value />
-        </div>
-        <Select.Icon>
-          <div className="flex">
-            <ChevronDown size="1.2em" />
-          </div>
-        </Select.Icon>
-      </Select.Trigger>
-
-      <Select.Portal>
-        <Select.Content className="rounded bg-bg-secondary p-1 text-sm text-text drop-shadow-lg">
-          <Select.Viewport>
-            {languages.map(lang => (
-              <Select.Item
-                value={lang}
-                key={lang}
-                className="relative select-none rounded-sm py-1 pl-5 uppercase data-[highlighted]:bg-gray-700 data-[highlighted]:text-code-container-header data-[highlighted]:outline-none dark:data-[highlighted]:bg-gray-200"
-              >
-                <Select.ItemText>{lang}</Select.ItemText>
-                <Select.ItemIndicator className="absolute left-0 inline-flex h-5 w-5 select-none items-center justify-center">
-                  <Check size=".9em" />
-                </Select.ItemIndicator>
-              </Select.Item>
-            ))}
-          </Select.Viewport>
-        </Select.Content>
-      </Select.Portal>
-    </Select.Root>
+        <SelectValue className="uppercase" />
+        <span aria-hidden="true">
+          <ChevronDown size="1.2em" />
+        </span>
+      </Button>
+      <Popover offset={5}>
+        <ListBox className="rounded bg-bg-secondary p-1 text-sm text-text drop-shadow-lg">
+          {languages.map(lang => (
+            <ListBoxItem
+              id={lang}
+              key={lang}
+              textValue={lang}
+              className="relative flex h-6 select-none items-center rounded-sm px-6 text-xs leading-none data-[focused]:bg-primary data-[focused]:text-bg outline-none uppercase"
+            >
+              {({ isSelected }) => (
+                <>
+                  {lang}
+                  {isSelected ? (
+                    <div className="absolute left-0 inline-flex w-6 items-center justify-center">
+                      <Check size="1em" />
+                    </div>
+                  ) : undefined}
+                </>
+              )}
+            </ListBoxItem>
+          ))}
+        </ListBox>
+      </Popover>
+    </Select>
   )
 }
 

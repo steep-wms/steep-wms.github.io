@@ -1,53 +1,21 @@
 "use client"
 
 import DarkModeToggle from "./DarkModeToggle"
+import EscapeKeyObserver from "./EscapeKeyObserver"
+import ResizeObserver from "./ResizeObserver"
 import ScrollTopWorkaround from "./ScrollTopWorkaround"
 import SimpleIcon from "./SimpleIcon"
 import { Tooltip } from "./Tooltip"
 import { useTheme } from "./hooks/useTheme"
 import QuickSearch from "./search/QuickSearch"
-import { Slot } from "@radix-ui/react-slot"
 import clsx from "clsx"
 import { Spin as Hamburger } from "hamburger-react"
 import { throttle } from "lodash"
-import dynamic from "next/dynamic"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
+import { Dialog, Modal, ModalOverlay } from "react-aria-components"
 import { siGithub } from "simple-icons"
-
-const DialogRoot = dynamic(
-  () => import("@radix-ui/react-dialog").then(mod => mod.Root),
-  { ssr: false },
-)
-const DialogPortal = dynamic(
-  () => import("@radix-ui/react-dialog").then(mod => mod.Portal),
-  { ssr: false },
-)
-const DialogContent = dynamic(
-  () => import("@radix-ui/react-dialog").then(mod => mod.Content),
-  { ssr: false },
-)
-const RemoveScroll = dynamic(
-  () => import("react-remove-scroll").then(mod => mod.RemoveScroll),
-  {
-    ssr: false,
-  },
-)
-
-interface ResizeObserverProps {
-  onResize: () => void
-}
-
-const ResizeObserver = ({ onResize }: ResizeObserverProps) => {
-  useEffect(() => {
-    window.addEventListener("resize", onResize)
-    return () => {
-      window.removeEventListener("resize", onResize)
-    }
-  }, [onResize])
-  return <></>
-}
 
 interface LogoProps {
   onClick?: () => void
@@ -249,47 +217,44 @@ const NavBar = ({ fixed = true }: NavBarProps) => {
           </div>
         </div>
 
-        <DialogRoot open={collapsed} onOpenChange={setCollapsed} modal={false}>
-          <DialogPortal>
-            <RemoveScroll as={Slot}>
-              <DialogContent
-                className="fixed top-16 z-50 h-[calc(100vh-4rem)] w-screen overflow-scroll bg-gray-100 lg:hidden [&[data-state='closed']]:animate-fade-out [&[data-state='open']]:animate-fade-in"
-                onInteractOutside={e => e.preventDefault()}
-                onCloseAutoFocus={e => e.preventDefault()}
-                onPointerDownOutside={e => e.preventDefault()}
-              >
-                <div className="flex flex-col divide-y divide-gray-500 px-2">
-                  {links.map(l => (
-                    <Link
-                      key={l.label}
-                      href={l.href}
-                      className={clsx(
-                        "text-gray-800 hover:text-gray-500",
-                        "block px-2 py-3",
-                      )}
-                      onClick={() => setCollapsed(false)}
-                    >
-                      {l.label}
-                    </Link>
-                  ))}
-                </div>
-                <div className="mt-8 flex items-center justify-end gap-4 px-4">
-                  <DarkModeToggle id="dark-mode-toggle2" />
+        <ModalOverlay isOpen={collapsed} isKeyboardDismissDisabled={true}>
+          <Modal className="fixed bottom-0 left-0 right-0 top-14 z-[150] overflow-scroll bg-gray-100 data-[entering]:animate-fade-in data-[exiting]:animate-fade-out xl:hidden">
+            <Dialog
+              aria-label="Main menu"
+              className="flex flex-col overflow-hidden outline-none"
+            >
+              <div className="flex flex-col divide-y divide-gray-500 px-2">
+                {links.map(l => (
                   <Link
-                    href="https://github.com/steep-wms/steep"
-                    className="group"
+                    key={l.label}
+                    href={l.href}
+                    className={clsx(
+                      "text-gray-800 hover:text-gray-500",
+                      "block px-2 py-3",
+                    )}
+                    onClick={() => setCollapsed(false)}
                   >
-                    <SimpleIcon
-                      icon={siGithub}
-                      className="fill-gray-600 transition-colors group-hover:fill-gray-800"
-                    />
+                    {l.label}
                   </Link>
-                </div>
-                <ResizeObserver onResize={() => setCollapsed(false)} />
-              </DialogContent>
-            </RemoveScroll>
-          </DialogPortal>
-        </DialogRoot>
+                ))}
+              </div>
+              <div className="mt-8 flex items-center justify-end gap-4 px-4">
+                <DarkModeToggle id="dark-mode-toggle2" />
+                <Link
+                  href="https://github.com/steep-wms/steep"
+                  className="group"
+                >
+                  <SimpleIcon
+                    icon={siGithub}
+                    className="fill-gray-600 transition-colors group-hover:fill-gray-800"
+                  />
+                </Link>
+              </div>
+              <EscapeKeyObserver onEscape={() => setCollapsed(false)} />
+              <ResizeObserver onResize={() => setCollapsed(false)} />
+            </Dialog>
+          </Modal>
+        </ModalOverlay>
       </nav>
     </>
   )
