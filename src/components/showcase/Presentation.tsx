@@ -120,7 +120,7 @@ const Presentation = ({
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-5 gap-6 py-12 border-t border-gray-300 [&:first-child]:pt-0 [&:first-child]:border-none [&:last-child]:pb-0">
-      <div className="not-prose flex items-start md:col-span-2">
+      <div className="flex items-start md:col-span-2">
         <Link
           href={link}
           className="mx-auto max-w-full xs:max-w-sm md:max-w-full border border-gray-200"
@@ -130,7 +130,7 @@ const Presentation = ({
           <div className="flex overflow-hidden" ref={scope}>
             {images.map((image, i) => (
               <div key={i} className="min-w-full">
-                <picture>
+                <picture className="m-0">
                   <source
                     srcSet={
                       i > 0

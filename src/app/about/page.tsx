@@ -58,9 +58,11 @@ const About = () => {
       </Container>
       <Divider />
       <Container type="lg">
-        <section id="team" className="prose">
-          <h2 className="mb-10 text-center text-4xl">Our team</h2>
-          <div className="not-prose mt-8 grid grid-cols-1 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
+        <section id="team">
+          <div className="prose contents">
+            <h2 className="mb-10 text-center text-4xl">Our team</h2>
+          </div>
+          <div className="mt-8 grid grid-cols-1 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
             <Profile
               imageUrl={`${process.env.__NEXT_ROUTER_BASEPATH}/images/about/michel-kraemer-2019-09-400x400.jpg`}
               imageWidth={400}

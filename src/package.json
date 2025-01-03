@@ -10,6 +10,7 @@
     "build": "next build && npm run scraper && cp public/docs/index.json out/docs/index.json",
     "deploy": "npm run build && rm -rf ../404 ../404.html ../_next ../about ../docs ../legal-notice ../privacy-policy ../favicons ../images ../index.html ../index.txt && cp -r out/* ..",
     "lint": "next lint",
+    "postinstall": "patch-package",
     "scraper": "cd scraper && npm run run && cd ..",
     "start": "next start"
   },
@@ -26,7 +27,8 @@
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^5.2.1",
     "eslint-webpack-plugin": "^4.2.0",
-    "npm-check-updates": "^17.1.13"
+    "npm-check-updates": "^17.1.13",
+    "patch-package": "^8.0.0"
   },
   "dependencies": {
     "@fontsource/dejavu-mono": "^5.1.0",

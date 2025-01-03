@@ -119,7 +119,7 @@ const DocsPage = async (props: DocsPageProps) => {
       </h1>
       <Content />
       {sections}
-      <div className="flex mt-14 mb-8 justify-between text-sm not-prose gap-4">
+      <div className="flex mt-14 mb-8 justify-between text-sm gap-4">
         <div>
           {prev !== undefined ? (
             <Link

@@ -5,16 +5,14 @@ You might wonder why the input image needs to be tiled and why we don't apply th
 
 1. **Quality.** Aerial images typically have a high resolution (e.g. 5000x5000 pixels, like the <DocsLink href="#download-input-data">one below</DocsLink>), and AI models tend to perform badly on large images. Consider the following pictures where we applied the segmentation on an input image directly and then executed the workflow with the same image but with 2&times;2 tiles and 5&times;5 tiles. The smaller the tiles, the more precise the results are and the more objects the model is able to identify.
 
-<div className="grid grid-cols-[75%] xs:grid-cols-[50%] sm:grid-cols-2 md:grid-cols-3 gap-4 not-prose my-8 justify-center">
+<div className="grid grid-cols-[75%] xs:grid-cols-[50%] sm:grid-cols-2 md:grid-cols-3 gap-4 my-8 justify-center [&_img]:m-0 [&_picture]:m-0">
   <div className="flex flex-col">
     <Tiles
       n={1}
       src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/docs/aerial-image-segmentation/1tile/1tile.jpg`}
       avifsrc={`${process.env.__NEXT_ROUTER_BASEPATH}/images/docs/aerial-image-segmentation/1tile/1tile.avif`}
     />
-    <div className="text-center mt-2 font-normal">
-      No tiling
-    </div>
+    <div className="text-center mt-2 font-normal">No tiling</div>
   </div>
   <div className="flex flex-col">
     <Tiles
@@ -22,9 +20,7 @@ You might wonder why the input image needs to be tiled and why we don't apply th
       src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/docs/aerial-image-segmentation/4tiles/4tiles.jpg`}
       avifsrc={`${process.env.__NEXT_ROUTER_BASEPATH}/images/docs/aerial-image-segmentation/4tiles/4tiles.avif`}
     />
-    <div className="text-center mt-2 font-normal">
-      2&times;2 tiles
-    </div>
+    <div className="text-center mt-2 font-normal">2&times;2 tiles</div>
   </div>
   <div className="flex flex-col">
     <Tiles
@@ -32,9 +28,7 @@ You might wonder why the input image needs to be tiled and why we don't apply th
       src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/docs/aerial-image-segmentation/25tiles/25tiles.jpg`}
       avifsrc={`${process.env.__NEXT_ROUTER_BASEPATH}/images/docs/aerial-image-segmentation/25tiles/25tiles.avif`}
     />
-    <div className="text-center mt-2 font-normal">
-      5&times;5 tiles
-    </div>
+    <div className="text-center mt-2 font-normal">5&times;5 tiles</div>
   </div>
 </div>
 

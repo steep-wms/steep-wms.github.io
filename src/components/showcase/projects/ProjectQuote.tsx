@@ -23,7 +23,7 @@ const ProjectQuote = ({
   return (
     <div
       className={clsx(
-        "border border-gray-200 rounded-lg py-8 my-8 not-prose grid grid-cols-1 sm:[grid-template-columns:4rem_1fr] gap-4",
+        "border border-gray-200 rounded-lg py-8 my-8 grid grid-cols-1 sm:[grid-template-columns:4rem_1fr] gap-4",
         {
           "px-6 md:px-16 items-center": !long,
           "px-6 md:px-10 items-start": long,
@@ -39,7 +39,7 @@ const ProjectQuote = ({
           width={authorImgWidth}
           height={authorImgHeight}
           alt={authorName}
-          className="w-full h-full"
+          className="w-full h-full m-0"
         />
       </Link>
       <span className="italic text-lg leading-7">

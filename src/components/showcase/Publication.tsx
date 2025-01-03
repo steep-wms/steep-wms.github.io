@@ -117,7 +117,7 @@ const Publication = ({
         <div className="text-xs text-gray-600">{citation}</div>
         <div className="mt-2 text-gray-700"></div>
       </div>
-      <div className="not-prose absolute top-14 -left-20 w-48 hidden xs:block">
+      <div className="absolute top-14 -left-20 w-48 hidden xs:block">
         <Link
           href={pdf}
           target="_blank"
@@ -132,7 +132,7 @@ const Publication = ({
           >
             {previewImages.map((pi, i) => (
               <div key={pi} className="relative" style={{ zIndex: -i }}>
-                <picture>
+                <picture className="m-0">
                   <source
                     srcSet={
                       i > 0

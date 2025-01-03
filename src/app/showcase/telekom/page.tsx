@@ -98,8 +98,8 @@ const Telekom = () => {
             to prepare the data for web-based visualization in a tool called{" "}
             <em>Fibre3D</em>, which we’ve developed for Deutsche Telekom.
           </p>
-          <div className="grid grid-cols-2 gap-4 not-prose my-8">
-            <picture>
+          <div className="grid grid-cols-2 gap-4 my-8">
+            <picture className="m-0">
               <source
                 srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/telekom/screenshot1.avif`}
                 type="image/avif"
@@ -114,7 +114,7 @@ const Telekom = () => {
                 loading="lazy"
               />
             </picture>
-            <picture>
+            <picture className="m-0">
               <source
                 srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/telekom/screenshot2.avif`}
                 type="image/avif"
@@ -129,7 +129,7 @@ const Telekom = () => {
                 loading="lazy"
               />
             </picture>
-            <picture>
+            <picture className="m-0">
               <source
                 srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/telekom/screenshot3.avif`}
                 type="image/avif"
@@ -144,7 +144,7 @@ const Telekom = () => {
                 loading="lazy"
               />
             </picture>
-            <picture>
+            <picture className="m-0">
               <source
                 srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/telekom/screenshot4.avif`}
                 type="image/avif"

@@ -15,7 +15,7 @@ The workflow consists of two steps:
     <p>The <em>tiling service</em> splits the input image into four smaller tiles.</p>
   </div>
 
-  <div className="flex flex-row items-center max-w-lg not-prose">
+  <div className="flex flex-row items-center max-w-lg [&_img]:m-0 [&_picture]:m-0">
     <div className="w-72">
       <Tiles n={1} src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/home/tiles.jpg`} gap={false} imageSize={650} />
     </div>
@@ -32,7 +32,7 @@ The workflow consists of two steps:
     <p>The <em>segmentation service</em> is applied in a <DocsLink href="#for-each-actions">for-each action</DocsLink> to each image tile to create the segmentation masks.</p>
   </div>
 
-  <div className="flex flex-row items-center max-w-lg not-prose">
+  <div className="flex flex-row items-center max-w-lg [&_img]:m-0 [&_picture]:m-0">
     <div className="w-72">
       <Tiles n={2} src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/home/tiles.jpg`} imageSize={650} />
     </div>
