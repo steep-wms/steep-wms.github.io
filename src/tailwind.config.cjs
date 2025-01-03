@@ -278,6 +278,7 @@ module.exports = {
             },
             th: {
               textAlign: "left",
+              fontWeight: 500,
             },
           },
         },
