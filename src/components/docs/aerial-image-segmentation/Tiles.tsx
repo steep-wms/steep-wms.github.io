@@ -23,7 +23,7 @@ const Tiles = ({
         <svg
           viewBox={`0 0 ${imageSize / n} ${imageSize / n}`}
           key={`${x}_${y}_mask`}
-          className="h-full w-full"
+          className="w-full"
         >
           <foreignObject
             width={imageSize}
