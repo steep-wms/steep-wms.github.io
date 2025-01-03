@@ -19,17 +19,17 @@ const ProjectLayout = ({
   return (
     <>
       <ScrollTopWorkaround />
-      <Container type="xl" className="mt-32 mb-32">
+      <Container type="xl" className="mb-32 mt-32">
         <div className="mb-6">
           <Link
             href="/showcase"
-            className="text-gray-600 hover:no-underline hover:text-gray-700"
+            className="text-gray-600 hover:text-gray-700 hover:no-underline"
           >
             &larr; Showcase
           </Link>
         </div>
         <ProjectGrid>
-          <h1 className={`${robotoBold.variable} text-4xl font-bold mb-4`}>
+          <h1 className={`${robotoBold.variable} mb-4 font-bold text-4xl`}>
             {title}
           </h1>
         </ProjectGrid>

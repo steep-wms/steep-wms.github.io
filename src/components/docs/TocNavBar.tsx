@@ -12,7 +12,7 @@ interface TocNavBarProps {
 const TocNavBar = ({ isOpen, setIsOpen }: TocNavBarProps) => {
   const segment = useSelectedLayoutSegment()
   return (
-    <nav className="flex fixed left-0 right-0 top-16 h-16 z-50 lg:hidden bg-bg bg-opacity-80 backdrop-blur-sm items-center pl-0.5 sm:pl-2.5 pr-2 gap-2 border-b border-gray-200">
+    <nav className="fixed left-0 right-0 top-16 z-50 flex h-16 items-center gap-2 border-b border-gray-200 bg-bg bg-opacity-80 pl-0.5 pr-2 backdrop-blur-sm sm:pl-2.5 lg:hidden">
       <div>
         <Hamburger
           label="Show table of contents"
@@ -20,11 +20,11 @@ const TocNavBar = ({ isOpen, setIsOpen }: TocNavBarProps) => {
           toggle={setIsOpen}
         />
       </div>
-      <div className="text-gray-600 whitespace-nowrap max-w-min">
+      <div className="max-w-min whitespace-nowrap text-gray-600">
         {Index[(Index[segment ?? ""] as Page).chapter].title}
       </div>
       <ChevronRight size="1em" />
-      <div className="font-normal text-ellipsis whitespace-nowrap overflow-hidden">
+      <div className="overflow-hidden text-ellipsis whitespace-nowrap font-normal">
         {Index[segment ?? ""].title}
       </div>
     </nav>

@@ -4,7 +4,7 @@ interface ProjectGridProps {
 
 const ProjectGrid = ({ children }: ProjectGridProps) => {
   return (
-    <div className="grid grid-cols-1 lg:[grid-template-columns:minmax(0,1fr)_16rem] gap-8 lg:gap-12 xl:gap-16">
+    <div className="grid grid-cols-1 gap-8 lg:gap-12 lg:[grid-template-columns:minmax(0,1fr)_16rem] xl:gap-16">
       {children}
     </div>
   )

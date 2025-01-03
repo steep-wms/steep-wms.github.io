@@ -59,7 +59,7 @@ const Legal = async ({ url, title }: LegalProps) => {
       <NavBar />
       <h1
         className={clsx(
-          `${robotoBold.variable} mb-20 mt-40 text-center text-5xl font-bold text-gray-900`,
+          `${robotoBold.variable} mb-20 mt-40 text-center font-bold text-5xl text-gray-900`,
         )}
       >
         {title}

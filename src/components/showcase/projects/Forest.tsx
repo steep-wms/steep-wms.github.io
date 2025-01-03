@@ -6,10 +6,10 @@ const Forest = () => {
     <Project>
       <Link
         href="/showcase/forest-type-classification"
-        className="group block relative w-full h-full"
+        className="group relative block h-full w-full"
       >
-        <div className="flex flex-col justify-end px-12 pt-14 pb-16 relative z-10 w-full h-full">
-          <h2 className="text-3xl font-bold mb-8">
+        <div className="relative z-10 flex h-full w-full flex-col justify-end px-12 pb-16 pt-14">
+          <h2 className="mb-8 font-bold text-3xl">
             Training an AI for forest type classification
           </h2>
           <p>
@@ -38,11 +38,11 @@ const Forest = () => {
             <img
               alt="Background image"
               fetchPriority="high"
-              className="w-full h-full object-cover grayscale opacity-10 dark:opacity-20 group-hover:grayscale-[30%] transition-[filter_opacity] group-hover:opacity-20 dark:group-hover:opacity-30"
+              className="h-full w-full object-cover opacity-10 grayscale transition-[filter_opacity] group-hover:opacity-20 group-hover:grayscale-[30%] dark:opacity-20 dark:group-hover:opacity-30"
             />
           </picture>
-          <div className="absolute inset-0 bg-gradient-to-b from-bg/0 via-80% via-bg/50 to-bg" />
-          <div className="absolute inset-0 bg-gradient-to-t from-gray-200/80 via-30% via-gray-200/30 to-gray-200/10 dark:from-gray-100/80 dark:via-60% dark:via-gray-100/30 dark:to-gray-100/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+          <div className="absolute inset-0 bg-gradient-to-b from-bg/0 via-bg/50 via-80% to-bg" />
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-200/80 via-gray-200/30 via-30% to-gray-200/10 opacity-0 transition-opacity group-hover:opacity-100 dark:from-gray-100/80 dark:via-gray-100/30 dark:via-60% dark:to-gray-100/10" />
         </div>
       </Link>
     </Project>

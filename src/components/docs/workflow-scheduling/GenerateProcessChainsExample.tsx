@@ -38,7 +38,7 @@ const GenerateProcessChainsExample = ({
   return (
     <div
       className={clsx(
-        "text-black dark:text-white font-normal mx-auto my-6 max-w-[11rem]",
+        "mx-auto my-6 max-w-[11rem] font-normal text-black dark:text-white",
         {
           "[&_[data-animation-id]]:hidden": !animated,
         },

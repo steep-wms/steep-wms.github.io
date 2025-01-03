@@ -119,12 +119,12 @@ const DocsPage = async (props: DocsPageProps) => {
       </h1>
       <Content />
       {sections}
-      <div className="flex mt-14 mb-8 justify-between text-sm gap-4">
+      <div className="mb-8 mt-14 flex justify-between gap-4 text-sm">
         <div>
           {prev !== undefined ? (
             <Link
               href={`/docs/${prev}`}
-              className="font-normal text-gray-800 hover:text-primary group flex gap-1"
+              className="group flex gap-1 font-normal text-gray-800 hover:text-primary"
             >
               <div className="text-gray-500 group-hover:text-primary">
                 <ChevronLeft size="1em" />
@@ -137,7 +137,7 @@ const DocsPage = async (props: DocsPageProps) => {
           {next !== undefined ? (
             <Link
               href={`/docs/${next}`}
-              className="font-normal text-gray-800 hover:text-primary group flex gap-1 text-right"
+              className="group flex gap-1 text-right font-normal text-gray-800 hover:text-primary"
             >
               <div>{Index[next].title}</div>
               <div className="text-gray-500 group-hover:text-primary">

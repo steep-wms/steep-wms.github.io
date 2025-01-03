@@ -24,7 +24,7 @@ const About = () => {
       <NavBar />
       <h1
         className={clsx(
-          `${robotoBold.variable} mt-40 text-center text-5xl font-bold text-gray-900`,
+          `${robotoBold.variable} mt-40 text-center font-bold text-5xl text-gray-900`,
         )}
       >
         About
@@ -105,24 +105,24 @@ const About = () => {
       <Container type="lg">
         <section id="contact" className="prose mb-40">
           <h2 className="mb-10 text-center text-4xl">Contact us</h2>
-          <p className="text-center lead max-w-2xl mx-auto">
+          <p className="lead mx-auto max-w-2xl text-center">
             If you have questions about Steep, or if you want to discuss
             interesting ideas and projects, feel free to drop us an email.
           </p>
-          <p className="text-center lead">
+          <p className="lead text-center">
             You may also reach out to us or Fraunhofer IGD in general via social
             media.
           </p>
-          <div className="mt-8 mb-12 text-center text-lg">
+          <div className="mb-12 mt-8 text-center text-lg">
             <Link href="mailto:michel.kraemer@igd.fraunhofer.de">
               <Button>
-                <Mail className="mr-1 mb-[2px]" />
+                <Mail className="mb-[2px] mr-1" />
                 Send email
               </Button>
             </Link>
           </div>
           <div className="flex justify-center">
-            <span className="group flex items-center gap-6 flex-wrap justify-center">
+            <span className="group flex flex-wrap items-center justify-center gap-6">
               <SocialButton
                 icon={<SimpleIcon icon={siGithub} size={42} title="" />}
                 title="Fork us on GitHub"

@@ -8,11 +8,11 @@ export interface MoreShowcasesProps {
 const MoreShowcases = ({ showcases }: MoreShowcasesProps) => {
   return (
     <>
-      <hr className="border-gray-200 my-14" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-2">
+      <hr className="my-14 border-gray-200" />
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 2xl:grid-cols-3">
         <Link href="/showcase">
-          <Card className="hover:bg-gray-100 min-h-full">
-            <h3 className="mt-1 mb-2 text-lg font-normal">&larr; Showcase</h3>
+          <Card className="min-h-full hover:bg-gray-100">
+            <h3 className="mb-2 mt-1 text-lg font-normal">&larr; Showcase</h3>
             <p className="text-sm text-gray-700">
               Go back and see more of what we’ve created with Steep
             </p>
@@ -20,8 +20,8 @@ const MoreShowcases = ({ showcases }: MoreShowcasesProps) => {
         </Link>
         {showcases.includes("telekom") && (
           <Link href="/showcase/telekom">
-            <Card className="hover:bg-gray-100 min-h-full">
-              <h3 className="mt-1 mb-2 text-lg font-normal flex items-center gap-2">
+            <Card className="min-h-full hover:bg-gray-100">
+              <h3 className="mb-2 mt-1 flex items-center gap-2 text-lg font-normal">
                 <div className="w-5">
                   <img
                     src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/telekom/telekom.svg`}
@@ -41,8 +41,8 @@ const MoreShowcases = ({ showcases }: MoreShowcasesProps) => {
         )}
         {showcases.includes("forest-type-classification") && (
           <Link href="/showcase/forest-type-classification">
-            <Card className="hover:bg-gray-100 min-h-full">
-              <h3 className="mt-1 mb-2 text-lg font-normal flex items-center gap-2">
+            <Card className="min-h-full hover:bg-gray-100">
+              <h3 className="mb-2 mt-1 flex items-center gap-2 text-lg font-normal">
                 Forest type classification
               </h3>
               <p className="text-sm text-gray-700">

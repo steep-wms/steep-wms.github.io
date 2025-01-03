@@ -14,7 +14,7 @@ const ShowcasePage = () => {
     <>
       <h1
         className={clsx(
-          `${robotoBold.variable} mt-40 text-center text-5xl font-bold text-gray-900`,
+          `${robotoBold.variable} mt-40 text-center font-bold text-5xl text-gray-900`,
         )}
       >
         What we’ve created with Steep

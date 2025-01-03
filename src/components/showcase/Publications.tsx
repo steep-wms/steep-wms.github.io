@@ -5,12 +5,12 @@ import Link from "next/link"
 const Publications = () => {
   return (
     <Container type="xl">
-      <section id="publications" className="mb-32 prose">
+      <section id="publications" className="prose mb-32">
         <h2 className="mb-4 text-center text-4xl">Publications</h2>
         <p className="lead text-center">
           Steep has appeared in a number of scientific publications.
         </p>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 xl:gap-8 mt-16">
+        <div className="mt-16 grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-6 xl:gap-8">
           <Publication
             previewImages={[
               "kraemer-et-al-2024-01",

@@ -77,7 +77,7 @@ const SidebarLeft = ({ className, sticky, onClickLink }: SidebarLeftProps) => {
 
   return (
     <Sidebar ref={sidebarRef} className={className} sticky={sticky}>
-      <ul className="flex flex-col gap-6 mb-4" ref={sectionsRef}>
+      <ul className="mb-4 flex flex-col gap-6" ref={sectionsRef}>
         {toc}
       </ul>
     </Sidebar>

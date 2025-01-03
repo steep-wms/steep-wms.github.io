@@ -26,14 +26,14 @@ const DocsLayout = ({ children }: { children: React.ReactNode }) => {
       <Container
         id="docs-layout"
         type="2xl"
-        className="mb-10 grid gap-10 xl:gap-8 2xl:gap-10 [grid-template-columns:minmax(0,1fr)] lg:[grid-template-columns:16rem_minmax(0,1fr)] xl:[grid-template-columns:15rem_minmax(0,1fr)_15rem] 2xl:[grid-template-columns:16rem_minmax(0,1fr)_16rem]"
+        className="mb-10 grid gap-10 [grid-template-columns:minmax(0,1fr)] lg:[grid-template-columns:16rem_minmax(0,1fr)] xl:gap-8 xl:[grid-template-columns:15rem_minmax(0,1fr)_15rem] 2xl:gap-10 2xl:[grid-template-columns:16rem_minmax(0,1fr)_16rem]"
       >
-        <SidebarLeft className="hidden lg:flex pt-24" />
+        <SidebarLeft className="hidden pt-24 lg:flex" />
         <ScrollObserver onChangeSlug={slug => setActiveSection(slug)}>
           {children}
         </ScrollObserver>
         <SidebarRight
-          className="hidden xl:flex pt-24"
+          className="hidden pt-24 xl:flex"
           activeSection={activeSection}
         />
       </Container>
@@ -44,7 +44,7 @@ const DocsLayout = ({ children }: { children: React.ReactNode }) => {
             aria-label="Documentation menu"
             className="flex h-full w-full bg-bg outline-none dark:bg-gray-100"
           >
-            <div className="mt-6 ml-6 mr-6 w-full">
+            <div className="ml-6 mr-6 mt-6 w-full">
               <SidebarLeft
                 sticky={false}
                 onClickLink={() => setMobileSidebarOpen(false)}

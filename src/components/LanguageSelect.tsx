@@ -43,7 +43,7 @@ const LanguageSelect = ({
               id={lang}
               key={lang}
               textValue={lang}
-              className="relative flex h-6 select-none items-center rounded-sm px-6 text-xs leading-none data-[focused]:bg-primary data-[focused]:text-bg outline-none uppercase"
+              className="relative flex h-6 select-none items-center rounded-sm px-6 text-xs uppercase leading-none outline-none data-[focused]:bg-primary data-[focused]:text-bg"
             >
               {({ isSelected }) => (
                 <>

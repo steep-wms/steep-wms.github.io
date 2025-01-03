@@ -98,7 +98,7 @@ const Telekom = () => {
             to prepare the data for web-based visualization in a tool called{" "}
             <em>Fibre3D</em>, which we’ve developed for Deutsche Telekom.
           </p>
-          <div className="grid grid-cols-2 gap-4 my-8">
+          <div className="my-8 grid grid-cols-2 gap-4">
             <picture className="m-0">
               <source
                 srcSet={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/telekom/screenshot1.avif`}
@@ -223,7 +223,7 @@ const Telekom = () => {
               </>
             }
           />
-          <div className="lg:hidden mt-8">
+          <div className="mt-8 lg:hidden">
             <Facts />
           </div>
         </div>
@@ -234,7 +234,7 @@ const Telekom = () => {
             imgWidth={256}
             imgHeight={256}
           />
-          <div className="hidden lg:block sticky top-20 mt-8">
+          <div className="sticky top-20 mt-8 hidden lg:block">
             <Facts />
           </div>
         </div>

@@ -6,10 +6,10 @@ const Telekom = () => {
     <Project>
       <Link
         href="/showcase/telekom"
-        className="group block relative w-full h-full"
+        className="group relative block h-full w-full"
       >
-        <div className="px-12 pt-14 pb-16 relative z-10 w-full h-full">
-          <div className="flex flex-row items-center text-xl font-normal gap-2 mb-3">
+        <div className="relative z-10 h-full w-full px-12 pb-16 pt-14">
+          <div className="mb-3 flex flex-row items-center gap-2 text-xl font-normal">
             <div className="w-8">
               <img
                 src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/showcase/projects/telekom/telekom.svg`}
@@ -20,7 +20,7 @@ const Telekom = () => {
             </div>
             Deutsche Telekom
           </div>
-          <h2 className="text-3xl font-bold mb-8">
+          <h2 className="mb-8 font-bold text-3xl">
             Cloud-based platform supporting the fibre roll-out in Germany
           </h2>
           <p>
@@ -50,11 +50,11 @@ const Telekom = () => {
             <img
               alt="Background image"
               fetchPriority="high"
-              className="w-full h-full object-cover grayscale opacity-20 group-hover:grayscale-[50%] transition-[filter_opacity] group-hover:opacity-20"
+              className="h-full w-full object-cover opacity-20 grayscale transition-[filter_opacity] group-hover:opacity-20 group-hover:grayscale-[50%]"
             />
           </picture>
-          <div className="absolute inset-0 bg-gradient-to-r from-bg/0 via-30% via-bg/50 to-bg" />
-          <div className="absolute inset-0 bg-gradient-to-l from-gray-200/80 via-60% via-gray-200/30 to-gray-200/10 dark:from-gray-100/80 dark:via-60% dark:via-gray-100/30 dark:to-gray-100/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+          <div className="absolute inset-0 bg-gradient-to-r from-bg/0 via-bg/50 via-30% to-bg" />
+          <div className="absolute inset-0 bg-gradient-to-l from-gray-200/80 via-gray-200/30 via-60% to-gray-200/10 opacity-0 transition-opacity group-hover:opacity-100 dark:from-gray-100/80 dark:via-gray-100/30 dark:via-60% dark:to-gray-100/10" />
         </div>
       </Link>
     </Project>

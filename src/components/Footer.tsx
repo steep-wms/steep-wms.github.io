@@ -81,7 +81,7 @@ const Footer = ({ bgBg = false }: FooterProps) => {
             <Link href="https://igd.fraunhofer.de/" className="group">
               <img
                 src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/fraunhofer.svg`}
-                className="w-48 h-fit opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:hidden"
+                className="h-fit w-48 opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:hidden"
                 width={301.647}
                 height={82.609}
                 alt="Fraunhofer Logo"
@@ -89,7 +89,7 @@ const Footer = ({ bgBg = false }: FooterProps) => {
               />
               <img
                 src={`${process.env.__NEXT_ROUTER_BASEPATH}/images/fraunhofer-light.svg`}
-                className="hidden w-48 h-fit opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:block"
+                className="hidden h-fit w-48 opacity-70 grayscale transition-all group-hover:opacity-100 group-hover:grayscale-0 dark:block"
                 width={301.647}
                 height={82.609}
                 alt="Fraunhofer Logo"

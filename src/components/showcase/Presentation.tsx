@@ -119,11 +119,11 @@ const Presentation = ({
   }, [animate, scope, nSlides, isInView])
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-5 gap-6 py-12 border-t border-gray-300 [&:first-child]:pt-0 [&:first-child]:border-none [&:last-child]:pb-0">
+    <div className="grid grid-cols-1 gap-6 border-t border-gray-300 py-12 md:grid-cols-5 [&:first-child]:border-none [&:first-child]:pt-0 [&:last-child]:pb-0">
       <div className="flex items-start md:col-span-2">
         <Link
           href={link}
-          className="mx-auto max-w-full xs:max-w-sm md:max-w-full border border-gray-200"
+          className="mx-auto max-w-full border border-gray-200 xs:max-w-sm md:max-w-full"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -162,9 +162,9 @@ const Presentation = ({
       </div>
       <div className="prose md:col-span-3">
         <Link href={link} target="_blank" rel="noopener noreferrer">
-          <h3 className="text-lg mt-0 mb-1">{title}</h3>
+          <h3 className="mb-1 mt-0 text-lg">{title}</h3>
         </Link>
-        <div className="text-gray-600 mb-4">{speaker}</div>
+        <div className="mb-4 text-gray-600">{speaker}</div>
         <div className="text-sm">{children}</div>
         <div className="mt-6 gap-1 text-sm">
           <Link href={link} target="_blank" rel="noopener noreferrer">

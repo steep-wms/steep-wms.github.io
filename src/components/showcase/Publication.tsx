@@ -105,19 +105,19 @@ const Publication = ({
   }, [animate])
 
   return (
-    <div className="bg-gray-100 rounded-md pt-8 pb-8 pr-8 pl-8 xs:pl-[8.75rem] relative overflow-hidden">
+    <div className="relative overflow-hidden rounded-md bg-gray-100 pb-8 pl-8 pr-8 pt-8 xs:pl-[8.75rem]">
       <div className="flex h-full flex-col">
-        <div className="flex flex-row text-sm text-gray-700 mb-2 gap-1">
-          <div className="whitespace-nowrap overflow-hidden text-ellipsis">
+        <div className="mb-2 flex flex-row gap-1 text-sm text-gray-700">
+          <div className="overflow-hidden text-ellipsis whitespace-nowrap">
             {authors}
           </div>
           <div>({year})</div>
         </div>
-        <h3 className="text-lg mt-0">{title}</h3>
+        <h3 className="mt-0 text-lg">{title}</h3>
         <div className="text-xs text-gray-600">{citation}</div>
         <div className="mt-2 text-gray-700"></div>
       </div>
-      <div className="absolute top-14 -left-20 w-48 hidden xs:block">
+      <div className="absolute -left-20 top-14 hidden w-48 xs:block">
         <Link
           href={pdf}
           target="_blank"
@@ -126,7 +126,7 @@ const Publication = ({
         >
           <div
             ref={scope}
-            className="drop-shadow-lg after:absolute after:inset-0 after:bg-[linear-gradient(0.18turn,rgba(255,255,255,0)_0%,rgba(255,255,255,0)_30%,rgba(255,255,255,0)_40%,rgba(255,255,255,0.4)_50%,rgba(255,255,255,0)_100%)] overflow-hidden relative bg-white rounded-sm"
+            className="relative overflow-hidden rounded-sm bg-white drop-shadow-lg after:absolute after:inset-0 after:bg-[linear-gradient(0.18turn,rgba(255,255,255,0)_0%,rgba(255,255,255,0)_30%,rgba(255,255,255,0)_40%,rgba(255,255,255,0.4)_50%,rgba(255,255,255,0)_100%)]"
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
           >

@@ -23,36 +23,36 @@ const ProjectQuote = ({
   return (
     <div
       className={clsx(
-        "border border-gray-200 rounded-lg py-8 my-8 grid grid-cols-1 sm:[grid-template-columns:4rem_1fr] gap-4",
+        "my-8 grid grid-cols-1 gap-4 rounded-lg border border-gray-200 py-8 sm:[grid-template-columns:4rem_1fr]",
         {
-          "px-6 md:px-16 items-center": !long,
-          "px-6 md:px-10 items-start": long,
+          "items-center px-6 md:px-16": !long,
+          "items-start px-6 md:px-10": long,
         },
       )}
     >
       <Link
         href="/about/#team"
-        className="rounded-full overflow-hidden w-16 mx-auto"
+        className="mx-auto w-16 overflow-hidden rounded-full"
       >
         <img
           src={authorImgSrc}
           width={authorImgWidth}
           height={authorImgHeight}
           alt={authorName}
-          className="w-full h-full m-0"
+          className="m-0 h-full w-full"
         />
       </Link>
-      <span className="italic text-lg leading-7">
+      <span className="text-lg italic leading-7">
         “{quote}”{" "}
         {authorLongName !== undefined ? (
-          <div className="mt-4 text-gray-600 flex items-start gap-1">
+          <div className="mt-4 flex items-start gap-1 text-gray-600">
             <div>&mdash;</div>
             <div>{authorLongName}</div>
           </div>
         ) : (
           <>
             <span className="inline-block w-4"></span>
-            <span className="text-gray-600 whitespace-nowrap">
+            <span className="whitespace-nowrap text-gray-600">
               &mdash; {authorName}
             </span>
           </>

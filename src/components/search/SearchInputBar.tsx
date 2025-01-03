@@ -39,7 +39,7 @@ const SearchInputBar = ({
       </div>
       <input
         type="text"
-        className="flex-1 rounded-lg bg-bg py-4 text-lg outline-none dark:bg-gray-100 md:text-base lg:text-sm min-w-0"
+        className="min-w-0 flex-1 rounded-lg bg-bg py-4 text-lg outline-none dark:bg-gray-100 md:text-base lg:text-sm"
         placeholder="Search documentation"
         onChange={onChangeSearchInput}
         autoComplete="off"

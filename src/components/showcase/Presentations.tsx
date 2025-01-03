@@ -5,10 +5,10 @@ import Link from "next/link"
 const Presentations = () => {
   return (
     <div className="relative">
-      <div className="-z-10 absolute top-0 left-0 right-0 bottom-1/2 bg-gradient-to-b from-gray-200/0 via-gray-200/40 to-gray-200/40 dark:from-gray-200/0 dark:via-gray-200/30 dark:to-gray-200/30"></div>
-      <div className="-z-10 absolute top-1/2 left-0 right-0 bottom-0 bg-gradient-to-t from-gray-200/0 via-gray-200/40 to-gray-200/40 dark:from-gray-200/0 dark:via-gray-200/30 dark:to-gray-200/30"></div>
+      <div className="absolute bottom-1/2 left-0 right-0 top-0 -z-10 bg-gradient-to-b from-gray-200/0 via-gray-200/40 to-gray-200/40 dark:from-gray-200/0 dark:via-gray-200/30 dark:to-gray-200/30"></div>
+      <div className="absolute bottom-0 left-0 right-0 top-1/2 -z-10 bg-gradient-to-t from-gray-200/0 via-gray-200/40 to-gray-200/40 dark:from-gray-200/0 dark:via-gray-200/30 dark:to-gray-200/30"></div>
       <Container type="lg">
-        <section id="presentations" className="mb-32 prose">
+        <section id="presentations" className="prose mb-32">
           <h2 className="mb-4 text-4xl">Presentations</h2>
           <p className="lead">
             Innovative topics around Steep presented at various events.

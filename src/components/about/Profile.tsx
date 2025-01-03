@@ -41,7 +41,7 @@ const Profile = ({
       />
       <h3 className="mb-2 mt-5 text-xl font-normal">{name}</h3>
       <Balancer>{role}</Balancer>
-      <div className="mt-3 flex gap-3 items-center">
+      <div className="mt-3 flex items-center gap-3">
         <Tooltip content="Email">
           <Link href={`mailto:${mail}`} aria-label={`Send ${name} an email`}>
             <Mail className="transition-colors hover:stroke-gray-600" />

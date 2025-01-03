@@ -11,13 +11,13 @@ const Projects = () => {
       <Container type="xl" className="mb-32">
         <section
           id="projects"
-          className={`${robotoBold.variable} grid grid-cols-1 lg:grid-cols-2 gap-8 mt-20 mb-16`}
+          className={`${robotoBold.variable} mb-16 mt-20 grid grid-cols-1 gap-8 lg:grid-cols-2`}
         >
           <Telekom />
           <Forest />
         </section>
         <div className="flex justify-center">
-          <div className="text-xl flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
+          <div className="flex flex-col items-center gap-8 text-center text-xl md:flex-row md:text-left">
             You want to know what Steep can do for you?
             <Link href="/about">
               <Button type="primary">Contact us!</Button>

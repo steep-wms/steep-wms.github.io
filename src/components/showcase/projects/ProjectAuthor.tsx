@@ -15,7 +15,7 @@ const ProjectAuthor = ({
 }: ProjectAuthorProps) => {
   return (
     <div className="flex flex-row items-center gap-3">
-      <Link href="/about/#team" className="w-16 rounded-full overflow-hidden">
+      <Link href="/about/#team" className="w-16 overflow-hidden rounded-full">
         <img src={imgSrc} width={imgWidth} height={imgHeight} alt={name} />
       </Link>
       <span className="prose">

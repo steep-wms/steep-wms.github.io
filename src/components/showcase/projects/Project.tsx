@@ -4,7 +4,7 @@ interface ProjectProps {
 
 const Project = ({ children }: ProjectProps) => {
   return (
-    <div className="bg-bg rounded-xl shadow hover:drop-shadow-md transition-[filter] overflow-hidden">
+    <div className="overflow-hidden rounded-xl bg-bg shadow transition-[filter] hover:drop-shadow-md">
       {children}
     </div>
   )

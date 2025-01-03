@@ -12,7 +12,7 @@ const MoreFeatures = () => {
       </p>
       <div className="prose-sm mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <Card className="bg-bg">
-          <h3 className="mt-0 text-[1.4em] font-normal leading-[1.4] mb-[0.7rem]">
+          <h3 className="mb-[0.7rem] mt-0 text-[1.4em] font-normal leading-[1.4]">
             Automatic failover
           </h3>
           <p>
@@ -22,7 +22,7 @@ const MoreFeatures = () => {
           </p>
         </Card>
         <Card className="bg-bg">
-          <h3 className="mt-0 text-[1.4em] font-normal leading-[1.4] mb-[0.7rem]">
+          <h3 className="mb-[0.7rem] mt-0 text-[1.4em] font-normal leading-[1.4]">
             Cyclic workflows
           </h3>
           <p>
@@ -32,7 +32,7 @@ const MoreFeatures = () => {
           </p>
         </Card>
         <Card className="bg-bg">
-          <h3 className="mt-0 text-[1.4em] font-normal leading-[1.4] mb-[0.7rem]">
+          <h3 className="mb-[0.7rem] mt-0 text-[1.4em] font-normal leading-[1.4]">
             Languages and runtimes
           </h3>
           <p>
@@ -42,7 +42,7 @@ const MoreFeatures = () => {
           </p>
         </Card>
         <Card className="bg-bg">
-          <h3 className="mt-0 text-[1.4em] font-normal leading-[1.4] mb-[0.7rem]">
+          <h3 className="mb-[0.7rem] mt-0 text-[1.4em] font-normal leading-[1.4]">
             Interfaces and extensibility
           </h3>
           <p>
@@ -52,7 +52,7 @@ const MoreFeatures = () => {
           </p>
         </Card>
         <Card className="bg-bg">
-          <h3 className="mt-0 text-[1.4em] font-normal leading-[1.4] mb-[0.7rem]">
+          <h3 className="mb-[0.7rem] mt-0 text-[1.4em] font-normal leading-[1.4]">
             Production-ready
           </h3>
           <p>
@@ -62,7 +62,7 @@ const MoreFeatures = () => {
           </p>
         </Card>
         <Card className="bg-bg">
-          <h3 className="mt-0 text-[1.4em] font-normal leading-[1.4] mb-[0.7rem]">
+          <h3 className="mb-[0.7rem] mt-0 text-[1.4em] font-normal leading-[1.4]">
             Open-Source
           </h3>
           <p>

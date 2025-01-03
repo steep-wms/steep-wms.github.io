@@ -20,7 +20,7 @@ const Home = () => {
           `${robotoBlack.variable} mx-auto mt-10 flex min-h-[780px] max-w-screen-2xl flex-col items-center justify-center px-2 md:mt-0`,
         )}
       >
-        <h1 className="mx-2 xs:mx-8 mb-5 text-center text-[3.4rem] font-black leading-[1.1] text-gray-900">
+        <h1 className="mx-2 mb-5 text-center font-black text-[3.4rem] leading-[1.1] text-gray-900 xs:mx-8">
           <Balancer>
             Scale <span style={{ letterSpacing: "-0.3rem" }}>Y</span>our Data{" "}
             <span style={{ letterSpacing: "-0.12rem" }}>W</span>
