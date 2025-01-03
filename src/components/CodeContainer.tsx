@@ -79,8 +79,7 @@ const CodeContainer = ({ title, children }: CodeContainerProps) => {
     state => state.preferredLanguages[languageStoreId],
   )
   const setPreferredLanguage = usePreferredLanguage(
-    state => (preferredLanguage: string) =>
-      state.setPreferredLanguage(languageStoreId, preferredLanguage),
+    state => state.setPreferredLanguage,
   )
   const [currentLanguage, setCurrentLanguage] = useState(languages[0])
 
@@ -96,7 +95,7 @@ const CodeContainer = ({ title, children }: CodeContainerProps) => {
 
   function onChangeCurrentLanguage(lang: string) {
     setCurrentLanguage(lang)
-    setPreferredLanguage(lang)
+    setPreferredLanguage(languageStoreId, lang)
   }
 
   function onCopy() {
