@@ -2,15 +2,17 @@ import { Button } from "@/components/Button"
 import Container from "@/components/Container"
 import Footer from "@/components/Footer"
 import NavBar from "@/components/NavBar"
+import SimpleIcon from "@/components/SimpleIcon"
 import Divider from "@/components/about/Divider"
 import Profile from "@/components/about/Profile"
 import SocialButton from "@/components/about/SocialButton"
 import { robotoBold } from "@/components/lib/roboto-bold"
+import { LinkedinLogo } from "@phosphor-icons/react/dist/ssr"
 import clsx from "clsx"
 import { Mail } from "lucide-react"
 import { Metadata } from "next"
 import Link from "next/link"
-import { siGithub, siInstagram, siLinkedin, siX, siYoutube } from "simple-icons"
+import { siGithub, siInstagram, siX, siYoutube } from "simple-icons"
 
 export const metadata: Metadata = {
   title: "About",
@@ -120,27 +122,27 @@ const About = () => {
           <div className="flex justify-center">
             <span className="group flex items-center gap-6 flex-wrap justify-center">
               <SocialButton
-                icon={siGithub}
+                icon={<SimpleIcon icon={siGithub} size={42} title="" />}
                 title="Fork us on GitHub"
                 href="https://github.com/steep-wms/"
               />
               <SocialButton
-                icon={siX}
+                icon={<SimpleIcon icon={siX} size={42} title="" />}
                 title="Fraunhofer IGD X feed"
                 href="https://twitter.com/fraunhofer_igd"
               />
               <SocialButton
-                icon={siLinkedin}
+                icon={<LinkedinLogo size={50} />}
                 title="Fraunhofer IGD LinkedIn profile"
                 href="https://www.linkedin.com/company/5642"
               />
               <SocialButton
-                icon={siYoutube}
+                icon={<SimpleIcon icon={siYoutube} size={42} title="" />}
                 title="Fraunhofer IGD YouTube channel"
                 href="https://www.youtube.com/@FraunhoferIGD"
               />
               <SocialButton
-                icon={siInstagram}
+                icon={<SimpleIcon icon={siInstagram} size={42} title="" />}
                 title="Fraunhofer IGD Instagram feed"
                 href="https://www.instagram.com/fraunhofer.igd/"
               />

@@ -1,12 +1,11 @@
 "use client"
 
-import SimpleIcon from "../SimpleIcon"
 import { Tooltip } from "../Tooltip"
 import Link from "next/link"
-import type { SimpleIcon as SI } from "simple-icons"
+import { ReactNode } from "react"
 
 interface SocialButtonProps {
-  icon: SI
+  icon: ReactNode
   title: string
   href: string
 }
@@ -19,7 +18,7 @@ const SocialButton = ({ icon, title, href }: SocialButtonProps) => {
         className="text-gray-700 transition-colors hover:text-gray-800 group-hover:[&:not(:hover)]:text-opacity-50"
         aria-label={title}
       >
-        <SimpleIcon icon={icon} size={42} title="" />
+        {icon}
       </Link>
     </Tooltip>
   )
