@@ -5,13 +5,15 @@ import { Metadata, ResolvingMetadata } from "next"
 import Link from "next/link"
 
 interface DocsPageProps {
-  params: { slug: string[] }
+  params: Promise<{ slug: string[] }>
 }
 
 export async function generateMetadata(
-  { params }: DocsPageProps,
+  props: DocsPageProps,
   _: ResolvingMetadata,
 ): Promise<Metadata> {
+  let params = await props.params
+
   let slug = undefined
   if (params.slug !== undefined) {
     slug = params.slug.join("/")
@@ -54,7 +56,9 @@ export async function generateStaticParams() {
   return params
 }
 
-const DocsPage = ({ params }: DocsPageProps) => {
+const DocsPage = async (props: DocsPageProps) => {
+  let params = await props.params
+
   let slug = undefined
   if (params.slug !== undefined) {
     slug = params.slug.join("/")

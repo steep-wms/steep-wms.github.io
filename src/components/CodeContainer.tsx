@@ -20,18 +20,18 @@ import { useMemo, useRef, useState } from "react"
 const COPY = "Copy to clipboard"
 const COPIED = "Copied!"
 
-function findCode(node: ReactNode, pres: ReactElement[]) {
+function findCode(node: ReactNode, pres: ReactElement<any>[]) {
   if (!isValidElement(node)) {
     return
   }
   if (node.type === "pre") {
     pres.push(node)
   } else {
-    findCodeInChildren(node.props.children, pres)
+    findCodeInChildren((node as ReactElement<any>).props.children, pres)
   }
 }
 
-function findCodeInChildren(children: ReactNode, pres: ReactElement[]) {
+function findCodeInChildren(children: ReactNode, pres: ReactElement<any>[]) {
   Children.forEach(children, n => findCode(n, pres))
 }
 
@@ -48,10 +48,10 @@ const CodeContainer = ({ title, children }: CodeContainerProps) => {
   let { languages, pages, unrecognizedChildren } = useMemo(() => {
     let languages: string[] = []
 
-    let pres: ReactElement[] = []
+    let pres: ReactElement<any>[] = []
     findCodeInChildren(children, pres)
 
-    let pages: Record<string, React.ReactElement> = {}
+    let pages: Record<string, React.ReactElement<any>> = {}
     let unrecognizedChildren = []
     for (let pre of pres) {
       let lang = pre.props?.["data-language"]

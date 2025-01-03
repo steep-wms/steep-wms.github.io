@@ -1,7 +1,7 @@
 import { RefObject, useEffect, useState } from "react"
 
 function useInViewEx(
-  ref: RefObject<Element>,
+  ref: RefObject<Element | null>,
   enterThreshold: number,
   leaveThreshold: number,
 ): boolean {

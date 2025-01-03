@@ -3,6 +3,8 @@ import { MetadataRoute } from "next"
 
 const root = `https://steep-wms.github.io${process.env.__NEXT_ROUTER_BASEPATH}`
 
+export const dynamic = "force-static"
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const docPages = Toc.flatMap(chapter => {
     return chapter.pages.map(page => {

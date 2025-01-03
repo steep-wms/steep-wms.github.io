@@ -196,7 +196,7 @@ function excerpt(
 function highlight(
   str: string,
   positions: [number, number][],
-): React.ReactElement {
+): React.ReactElement<any> {
   let lastend = 0
   let tokens = []
   for (let i in positions) {
