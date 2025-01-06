@@ -41,7 +41,7 @@
     "@radix-ui/react-tooltip": "^1.1.6",
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/typography": "^0.5.15",
-    "@types/lodash": "^4.17.13",
+    "@types/lodash": "^4.17.14",
     "@types/node": "^22.10.5",
     "@types/react": "19.0.2",
     "@types/react-dom": "19.0.2",
