@@ -62,7 +62,7 @@
     "prettier-plugin-tailwindcss": "^0.6.9",
     "pure-rand": "^6.1.0",
     "react": "19.0.0",
-    "react-aria-components": "^1.5.0",
+    "react-aria-components": "^1.6.0",
     "react-dom": "19.0.0",
     "react-hotkeys-hook": "^4.6.1",
     "react-remove-scroll": "^2.6.2",
